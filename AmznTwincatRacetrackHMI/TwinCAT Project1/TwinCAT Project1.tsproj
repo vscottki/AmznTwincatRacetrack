@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.54">
+	<Project ProjectGUID="{031B7ED8-F49D-48D5-B768-882831F5AF1A}" Target64Bit="true" ShowHideConfigurations="#x6">
+		<System>
+			<Licenses>
+				<Target BkhfOrder="SonomaHMIServer" CustomOrder="Amazon">
+					<ManualSelect>{648F394E-7DD1-499C-8112-7C38E161A94C}</ManualSelect>
+				</Target>
+			</Licenses>
+		</System>
+	</Project>
+</TcSmProject>
