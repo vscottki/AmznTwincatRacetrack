@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.59" ClassName="CSafetyPlcProjDef">
+	<Project GUID="{09B41B72-69B7-4567-B7DE-C6DD6C07C4CE}" Name="Modules" PrjFilePath="..\..\Modules\Modules.splcproj" TmcFilePath="..\..\Modules\Modules.tmc" GeneralArchiveSettings="#x000f" TargetArchiveSettings="#x0007" FileArchiveSettings="#x000e">
+		<Instance Id="#x01010680" KeepUnrestoredLinks="2">
+			<Name>Modules Instance</Name>
+			<TmcDesc GUID="{72A6D5B8-E98C-4604-8B90-09D1F8AB38A9}">
+				<Name>Safety</Name>
+				<InitSequence>PO</InitSequence>
+				<Contexts>
+					<Context>
+						<Id>1</Id>
+						<Name>Default</Name>
+					</Context>
+				</Contexts>
+			</TmcDesc>
+		</Instance>
+	</Project>
+</TcSmItem>

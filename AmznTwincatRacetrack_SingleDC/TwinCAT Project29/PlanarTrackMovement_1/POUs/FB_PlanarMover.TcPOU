@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="FB_PlanarMover" Id="{e98e5f10-cdde-43fc-96da-1ae5f511366a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PlanarMover
 
@@ -94,41 +94,5 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_PlanarMover">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_PlanarMover.IsCommandedInShortcut.Get">
-      <LineId Id="9" Count="3" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="13" Count="1" />
-      <LineId Id="23" Count="1" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_PlanarMover.JoinTrack">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_PlanarMover.McPlanarMover.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_PlanarMover.Update">
-      <LineId Id="5" Count="0" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="75" Count="1" />
-      <LineId Id="78" Count="2" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="64" Count="0" />
-      <LineId Id="55" Count="1" />
-      <LineId Id="65" Count="0" />
-      <LineId Id="57" Count="1" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="67" Count="1" />
-    </LineIds>
   </POU>
 </TcPlcObject>

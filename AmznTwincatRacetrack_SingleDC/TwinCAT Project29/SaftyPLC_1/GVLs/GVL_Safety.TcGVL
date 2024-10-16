@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <GVL Name="GVL_Safety" Id="{9ac51276-a3c2-4115-b10c-adf39bf6f5bc}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	Run			AT%Q* : BOOL;
-	Start		AT%Q* : BOOL;
+	Run			AT%Q* : BOOL := TRUE;
+	Start		AT%Q* : BOOL := TRUE;
 	Reset		AT%Q* : BOOL;
 	
 	SafetyInRun	AT%I* : BOOL;

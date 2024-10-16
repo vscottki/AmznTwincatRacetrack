@@ -6,7 +6,7 @@
     <ProjectGuid>{25828569-e288-4dd1-aacf-e36d960d51a6}</ProjectGuid>
     <SubObjectsSortedByName>True</SubObjectsSortedByName>
     <DownloadApplicationInfo>true</DownloadApplicationInfo>
-    <WriteProductVersion>true</WriteProductVersion>
+    <WriteProductVersion>false</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>PlanarTrackMovement_1</Name>
     <ProgramVersion>3.1.4024.0</ProgramVersion>
@@ -16,6 +16,8 @@
     <Implicit_KindOfTask>{36227600-4171-4ead-b62f-8eefff5521d6}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{ae2f82d0-9101-4716-9d93-4986dd302060}</Implicit_Jitter_Distribution>
     <LibraryReferences>{74ed6fa5-578b-4d51-a15f-f04fbf1d2c29}</LibraryReferences>
+    <Released>false</Released>
+    <CombineIds>true</CombineIds>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\E_TrackNum.TcDUT">
@@ -65,10 +67,62 @@
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_UPPER_BOUND</Key>
+          <Value>15</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_EXP</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_ADDRESS</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_COMMENT</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>STRING_LENGTH_OUTSTRING</Key>
+          <Value>255</Value>
+        </Parameter>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>TABLE_SHOW_VALID_ITEMS</Key>
+          <Value>FALSE</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Utilities">
       <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Utilities</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>NMAXLICENSES</Key>
+          <Value>50</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>NMAXLICENSEDEVICES</Key>
+          <Value>16</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>NMAXCPUCOUNT</Key>
+          <Value>64</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>CMAXCHARACTERS</Key>
+          <Value>16#FFFFFFF0</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>NMAXFILESONDONGLE</Key>
+          <Value>20</Value>
+        </Parameter>
+        <Parameter ListName="PARAMETERLIST" xmlns="">
+          <Key>CMAXCSVFIELDVALUESIZE</Key>
+          <Value>255</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Mc3PlanarMotion">
       <DefaultResolution>Tc3_Mc3PlanarMotion, * (Beckhoff Automation GmbH)</DefaultResolution>
@@ -85,6 +139,92 @@
     <PlaceholderReference Include="Tc3_XTS_Utility">
       <DefaultResolution>Tc3_XTS_Utility, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_XTS_Utility</Namespace>
+      <Parameters>
+        <Parameter ListName="XTSVISUPARAM" xmlns="">
+          <Key>MAX_XTS_SYSTEM</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="XTSVISUPARAM" xmlns="">
+          <Key>MAX_CA_GROUP</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="XTSPARAM" xmlns="">
+          <Key>MAX_MOVER_NUMBER</Key>
+          <Value>70</Value>
+        </Parameter>
+        <Parameter ListName="XTSPARAM" xmlns="">
+          <Key>MAX_MODULE_NUMBER</Key>
+          <Value>70</Value>
+        </Parameter>
+        <Parameter ListName="XTSPARAM" xmlns="">
+          <Key>MAX_NUM_MOVERS_ON_MODULE</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="XTSPARAM" xmlns="">
+          <Key>MAX_EC_MASTER_PER_XTS</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="XTSPARAM" xmlns="">
+          <Key>MAX_LAST_MESSAGE</Key>
+          <Value>25</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXETHERCATMASTER</Key>
+          <Value>80</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSPROCESSINGUNITS</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSPARTSPERXPU</Key>
+          <Value>25</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXMODULESPERPART</Key>
+          <Value>250</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXAREASPERPART</Key>
+          <Value>25</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSTRACKSPERXPU</Key>
+          <Value>50</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXPARTSPERTRACK</Key>
+          <Value>10</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSMOVERSPERXPU</Key>
+          <Value>200</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSTASKSPERXPU</Key>
+          <Value>8</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXMESSAGECOMMANDHISTORY</Key>
+          <Value>25</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSCAGROUP</Key>
+          <Value>5</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSINFOSERVER</Key>
+          <Value>1</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSINFOSTATION</Key>
+          <Value>50</Value>
+        </Parameter>
+        <Parameter ListName="TCIOXTSENVIRONMENTPARAMETERLIST" xmlns="">
+          <Key>MAXXTSSTOPPOSITIONSPERSTATION</Key>
+          <Value>25</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>

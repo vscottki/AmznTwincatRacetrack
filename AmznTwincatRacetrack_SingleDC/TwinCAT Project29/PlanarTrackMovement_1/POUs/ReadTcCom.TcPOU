@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="ReadTcCom" Id="{7b852c01-01d9-4893-960e-546d636dddf6}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ReadTcCom
 VAR_INPUT
@@ -71,18 +71,5 @@ END_VAR
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="ReadTcCom">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="ReadTcCom.GetComObject">
-      <LineId Id="9" Count="4" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="ReadTcCom.GetValue">
-      <LineId Id="71" Count="6" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="79" Count="3" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

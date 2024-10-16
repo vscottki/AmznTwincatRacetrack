@@ -6,7 +6,7 @@
     <Node>
       <Title>Scope Project1</Title>
       <Expanded>True</Expanded>
-      <FileName>C:\Users\Administrator\Documents\TcXaeShell\20240604_Indy\20240604_Indy\TwinCAT Measurement Project1\Scope Project1.tcscopex</FileName>
+      <FileName>C:\Users\Administrator\Documents\AmznTwincatRacetrack\AmznTwincatRacetrack_SingleDC\TwinCAT Measurement Project1\Scope Project1.tcscopex</FileName>
       <Children>
         <Node>
           <Title>DataPool</Title>
@@ -209,12 +209,12 @@
         </Node>
         <Node>
           <Title>YT Chart</Title>
-          <Expanded>True</Expanded>
+          <Expanded>False</Expanded>
           <FileName></FileName>
           <Children>
             <Node>
               <Title>HW Pos</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -257,7 +257,7 @@
             </Node>
             <Node>
               <Title>Velo</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -276,7 +276,7 @@
             </Node>
             <Node>
               <Title>Current</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -289,7 +289,7 @@
             </Node>
             <Node>
               <Title>Axis Group (3)</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
