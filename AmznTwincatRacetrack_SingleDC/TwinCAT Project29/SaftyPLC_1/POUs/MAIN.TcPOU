@@ -21,20 +21,29 @@ END_FOR
 
 IF GVL_Safety.hwStart THEN
 	StartSafety := TRUE;
+	GVL_Safety.Run := TRUE;
+	GVL_Safety.Start := TRUE;
+
 ELSIF NOT GVL_Safety.hwStop	THEN 
 	StartSafety := FALSE;
 END_IF
 
-Safety(StartSafety AND NOT GVL_Safety.hwReset AND State[1] = 8 AND State[2] = 8 ) ;
+GVL_Safety.Reset := GVL_Safety.hwReset  OR Restart;
 
+ GVL_Safety.HW_Error :=  State[1] <> 8 OR  State[2] <> 8  ;
+GVL_Safety.HW_Ok  :=GVL_Safety.SaeftyOk;
 
+ GVL_Safety.HW_Reset_Req:= (GVL_Safety.Error_Other OR GVL_Safety.Error_Out OR GVL_Safety.Error_Com );
+(*
 TcRestart(
 	NETID:= '', 
 	RESTART:=Restart , 
 	TMOUT:= , 
 	BUSY=> busy, 
 	ERR=> , 
-	ERRID=> );]]></ST>
+	ERRID=> );
+	
+	*)]]></ST>
     </Implementation>
     <Method Name="Safety" Id="{5e78818f-12cb-483c-81e6-defbcc3ed4ae}">
       <Declaration><![CDATA[METHOD Safety : BOOL
@@ -100,9 +109,18 @@ END_CASE]]></ST>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
       <LineId Id="7" Count="1" />
-      <LineId Id="16" Count="8" />
-      <LineId Id="29" Count="7" />
+      <LineId Id="16" Count="3" />
+      <LineId Id="53" Count="1" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="20" Count="2" />
+      <LineId Id="48" Count="1" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="30" Count="6" />
       <LineId Id="15" Count="0" />
+      <LineId Id="50" Count="1" />
     </LineIds>
     <LineIds Name="MAIN.Safety">
       <LineId Id="6" Count="13" />

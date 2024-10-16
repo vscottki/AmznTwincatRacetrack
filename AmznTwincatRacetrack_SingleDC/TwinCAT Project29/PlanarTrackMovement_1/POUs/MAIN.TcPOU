@@ -122,6 +122,8 @@ END_IF
 
 IsMoverCommandedInShortcut := FALSE;
 IsMoverInBlockingArea := FALSE;
+
+	bAllDone:= TRUE;
 FOR M := 1 TO nNumMovers DO///Movers
 	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
 	fbPlanarMover[m].nMoverId := nForCounter;
@@ -150,13 +152,13 @@ FOR M := 1 TO nNumMovers DO///Movers
 	IsMoverCommandedInShortcut := IsMoverCommandedInShortcut OR fbPlanarMover[M].IsCommandedInShortcut;
 	IsMoverInBlockingArea := IsMoverInBlockingArea OR (Mover[M].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND IsBetween(Mover[M].MoverPos, fMagnetEntry - 100, fMagnetExit + 100));
 	MoverFeedback[M].Update();
-//	Fp_error(clk := fbPlanarMover[M].McPlanarMover.Error);
+	
+
+	Fp_error(clk := fbPlanarMover[M].McPlanarMover.Error AND ncase= 100);
 	IF Fp_error.Q THEN
 		nCase := 140;
 		Fault := TRUE;
 		bMagnetOn := FALSE;
-	ELSE
-		Fault := FALSE;
 	END_IF
 END_FOR
 
@@ -168,6 +170,7 @@ END_FOR
 
 CASE nCase OF
 	10:
+		Fault := FALSE;
 		FOR nForCounter := 1 TO fbXtsEnvironment.XpuTcIo(1).GetPartCount() DO
 			fbXtsEnvironment.XpuTcIo(1).PartTcIo(TO_UINT(nForCounter)).TriggerReset();
 		END_FOR
@@ -225,8 +228,12 @@ CASE nCase OF
 	//55:
 
 	60:
-		FOR nForCounter:=nNumMovers TO 1  BY -1 DO
-			fbPlanarMover[nForCounter].JoinTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[Mover[nForCounter].MoverTrackNr]);
+		FOR nForCounter:=1 TO  nNumMovers DO
+			IF nForCounter <= 9 THEN
+				fbPlanarMover[nForCounter].JoinTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[e_TrackNum.Main]);//   Mover[nForCounter].MoverTrackNr]);
+			//ELSE
+		//		fbPlanarMover[nForCounter].JoinTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[e_TrackNum.Big]);
+			END_IF	
 		END_FOR
 		
 		nCase := 70;
@@ -400,10 +407,10 @@ CASE nCase OF
 			nCase := 0;
 END_CASE
 
-bMagnetOn := FALSE;
+//bMagnetOn := FALSE;
 FOR nForCounter:=1 TO nNumMovers DO
 	stPositionInfo := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(nForCounter)).GetPositionInfo();
-	IF stPositionInfo.nTrackObjectId = XtsShortcutOid AND (IsBetween(stPositionInfo.fTrackPosition, fMagnetEntry - (Velo*0.08), fMagnetExit)) THEN
+	IF NOT Fault AND stPositionInfo.nTrackObjectId = XtsShortcutOid AND (IsBetween(stPositionInfo.fTrackPosition, fMagnetEntry - (Velo*0.08), fMagnetExit- (Velo*0.06))) THEN
 		bMagnetOn := TRUE;
 	END_IF
 END_FOR
@@ -449,6 +456,8 @@ END_IF
       <LineId Id="1724" Count="0" />
       <LineId Id="2523" Count="0" />
       <LineId Id="1675" Count="0" />
+      <LineId Id="3464" Count="0" />
+      <LineId Id="3463" Count="0" />
       <LineId Id="1727" Count="0" />
       <LineId Id="3372" Count="3" />
       <LineId Id="3368" Count="0" />
@@ -468,10 +477,8 @@ END_IF
       <LineId Id="3365" Count="0" />
       <LineId Id="2519" Count="1" />
       <LineId Id="2525" Count="0" />
-      <LineId Id="2509" Count="2" />
-      <LineId Id="2730" Count="0" />
-      <LineId Id="2908" Count="0" />
-      <LineId Id="2739" Count="1" />
+      <LineId Id="3461" Count="1" />
+      <LineId Id="3466" Count="4" />
       <LineId Id="2512" Count="0" />
       <LineId Id="1919" Count="0" />
       <LineId Id="3342" Count="0" />
@@ -479,6 +486,7 @@ END_IF
       <LineId Id="3353" Count="1" />
       <LineId Id="527" Count="1" />
       <LineId Id="544" Count="0" />
+      <LineId Id="3472" Count="0" />
       <LineId Id="984" Count="0" />
       <LineId Id="986" Count="3" />
       <LineId Id="545" Count="1" />
@@ -498,7 +506,9 @@ END_IF
       <LineId Id="560" Count="17" />
       <LineId Id="3077" Count="0" />
       <LineId Id="578" Count="1" />
+      <LineId Id="3473" Count="0" />
       <LineId Id="581" Count="0" />
+      <LineId Id="3474" Count="2" />
       <LineId Id="587" Count="13" />
       <LineId Id="602" Count="1" />
       <LineId Id="2136" Count="0" />

@@ -18,6 +18,10 @@ VAR_GLOBAL
 	HwStop		AT%I* : BOOL;
 	HwReset 	AT%I* : BOOL;
 	
+	HW_Ok			AT%Q* : BOOL;
+	HW_Error	 	AT%Q* : BOOL;
+	HW_Reset_Req 	AT%Q* : BOOL;
+ 
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
