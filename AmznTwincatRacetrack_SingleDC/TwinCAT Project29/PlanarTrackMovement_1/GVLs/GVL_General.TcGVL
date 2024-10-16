@@ -3,7 +3,7 @@
   <GVL Name="GVL_General" Id="{027beb7e-728e-4aeb-a930-890d17a65a81}">
     <Declaration><![CDATA[VAR_GLOBAL CONSTANT
 
-	nNumMaxMovers : UDINT :=18;
+	nNumMaxMovers : UDINT :=3;
 	nNumMaxTracks : UDINT :=3;
  	fMagnetEntry : LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
 	fMagnetExit : LREAL := 10555; //PLEASE ENTER THE MAGNET EXIT!!!
@@ -16,7 +16,7 @@ VAR_GLOBAL
 END_VAR
 
 VAR_GLOBAL PERSISTENT
-	nNumMovers: UDINT := 4;
+	nNumMovers: UDINT := 3;
 END_VAR
 ]]></Declaration>
   </GVL>
