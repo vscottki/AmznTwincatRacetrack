@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Task Name="XTS_Task" Id="{171707c4-7e49-4d91-9e1d-99996eb56c2e}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>500</CycleTime>
+    <Priority>1</Priority>
+    <TaskFBGuid>{d6de8e70-fa1f-44f6-b79c-b04f9ce90b0b}</TaskFBGuid>
+    <Fb_init>{71ff62ea-3641-44b6-981b-2256148fe400}</Fb_init>
+    <Fb_exit>{4d026a77-2612-4b55-a914-aba79736effd}</Fb_exit>
+    <CycleUpdate>{8e642629-d827-452b-ba2b-25afff6d0704}</CycleUpdate>
+    <PostCycleUpdate>{001c4258-e1aa-4be8-b5e8-fafec6416b0f}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

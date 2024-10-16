@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_io" Id="{5d7710c1-74a5-4609-8ab7-e3ad916b5d6e}">
+    <Declaration><![CDATA[
+VAR_GLOBAL
+	Q_Spannung AT%I*: ARRAY[1..10] OF REAL;
+	D_Spannung AT%I*: ARRAY[1..10] OF REAL;
+	Voltage : ARRAY[1..10] OF REAL; 
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{1b4dff48-5fc4-4640-872d-67c650f13b5e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+nCase : INT;
+
+
+	
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+IF GVL_Safety.HWStart THEN
+	GVL_Safety.Run  := TRUE;
+	GVL_Safety.Start := TRUE;
+END_IF
+
+IF  NOT GVL_Safety.HWStop THEN
+	GVL_Safety.Run  := FALSE;
+	GVL_Safety.Start := FALSE;
+END_IF
+		
+IF 	GVL_Safety.HWReset THEN
+	GVL_Safety.Reset := TRUE;
+ELSE
+	GVL_Safety.Reset := FALSE;	
+END_IF
+
+
+IF gvl_safety.SaeftyOk THEN
+	gvl_safety.HWSafetyOk := TRUE;
+ELSE	
+	gvl_safety.HWSafetyOk := FALSE;
+END_IF
+
+IF NOT gvl_safety.SafetyInRun THEN
+	gvl_safety.HWerror := TRUE;
+ELSE	
+	gvl_safety.HWerror := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="43" Count="3" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="58" Count="1" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="81" Count="4" />
+      <LineId Id="80" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
