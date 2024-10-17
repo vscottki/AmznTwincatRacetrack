@@ -256,7 +256,7 @@ CASE nCase OF
 			aMoveOnTrackOptions[nForCounter].gapMode := MC_GAP_MODE_ON_TRACK.Fast1D;
 		END_FOR
 		
-		nCase := 90;
+		nCase := 100;
 
 	100:
 		
@@ -407,7 +407,7 @@ CASE nCase OF
 			nCase := 0;
 END_CASE
 
-//bMagnetOn := FALSE;
+bMagnetOn := FALSE;
 FOR nForCounter:=1 TO nNumMovers DO
 	stPositionInfo := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(nForCounter)).GetPositionInfo();
 	IF NOT Fault AND stPositionInfo.nTrackObjectId = XtsShortcutOid AND (IsBetween(stPositionInfo.fTrackPosition, fMagnetEntry - (Velo*0.08), fMagnetExit- (Velo*0.06))) THEN
