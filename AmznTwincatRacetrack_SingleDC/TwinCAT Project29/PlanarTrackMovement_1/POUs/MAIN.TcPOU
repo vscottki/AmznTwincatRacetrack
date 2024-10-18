@@ -3,37 +3,40 @@
   <POU Name="MAIN" Id="{66ade15a-bef8-4e71-a124-c2e5978c50eb}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-		
-	bAllDone		: BOOL;
-	bStopSequence	: BOOL;
+	bAllDone					: BOOL;
+	bStopSequence				: BOOL;
+	                    		
+	nCase 						: INT;
+	nMoveState					: ARRAY[1..nNumMaxMovers] OF INT;
+	                    		
+	aDynamics					: ARRAY[1..nNumMaxMovers] OF DynamicConstraint_PathXY;
+	aMoveOnTrackOptions 		: ARRAY[1..20] OF ST_MoveOnTrackOptions;
+	                    		
+	fbXtsEnvironment			: FB_TcIoXtsEnvironment;
+	                    		
+	nForCounter					: UDINT;
+	M,N,T,Tr					: UDINT;
+	dynamics					: INT;
+	                    		
+// Magnet
+	MagnetValue AT%Q*			: INT;
+	bMagnetOn 					: BOOL;	
+	stPositionInfo				: ST_PositionInfo;
+	stSwitchConfig				: ST_SwitchConfig;
 	
-	nCase 		: INT;
-	nMoveState		: ARRAY[1..nNumMaxMovers] OF INT;
-	
-	aDynamics	: ARRAY[1..nNumMaxMovers] OF DynamicConstraint_PathXY;
-	aMoveOnTrackOptions : ARRAY[1..20] OF ST_MoveOnTrackOptions;
-	
-	fbXtsEnvironment: FB_TcIoXtsEnvironment;
-	
-	nForCounter: UDINT;
-	M,N,T,Tr : UDINT;
-	dynamics: INT;
-	
-	// Magnet
-	MagnetValue AT%Q*: INT;
-	bMagnetOn : BOOL;	
-	stPositionInfo: ST_PositionInfo;
+//Configuration Values
+	stMoverConfig				: ST_MoverConfig;
+	stTrackConfig				: ST_TrackConfig;
 		
 	pwm: FB_PWM;
 	
-	IsMoverCommandedInShortcut: BOOL;
-	IsMoverInBlockingArea: BOOL;
-	nActStopPos: UINT := 1;
-	Fp_error : R_Trig;
-	MaxVelo : LREAL := 500;
-	Switch : BOOL;
-	WithoutSwitch : BOOL := TRUE;
-	SwtichOnly: BOOL;
+	IsMoverCommandedInShortcut	: BOOL;
+	IsMoverInBlockingArea		: BOOL;
+	nActStopPos					: UINT := 1;
+	Fp_error 					: R_Trig;
+	Switch 						: BOOL;
+	WithoutSwitch 				: BOOL := TRUE;
+	SwitchOnly					: BOOL;
 	
 	MoverStop 	AT%I* :BOOL;
 	MoverStopDone AT%Q*		: BOOL;
@@ -61,7 +64,6 @@ VAR
 	R_trigHorn : R_trig;
 	
 	TestPowerMat : BOOL;
-	StopPos : LREAL := 7611;
 	StopTime : TIME := T#8S;
 	StopTimer :ARRAY[1..nNumMaxMovers] OF ton;
 	StartTimer :ARRAY[1..nNumMaxMovers] OF BOOL;
@@ -94,7 +96,7 @@ END_IF
 
 IF NOT MoverStop AND NOT MoverStopDone THEN
 	FOR nForCounter:=1 TO nNumMovers DO
-		aDynamics[nForCounter].SetValuesVADJ(8000, 8000, 8000, 20000);
+		aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.MaxVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.MaxJerk);
 		nCase := 140;
 		//fbPlanarMover[nForCounter].McPlanarMover.Halt(MoverFeedback[nForCounter], aDynamics[nForCounter]);
 	END_FOR		
@@ -150,7 +152,7 @@ FOR M := 1 TO nNumMovers DO///Movers
 	
 		
 	IsMoverCommandedInShortcut := IsMoverCommandedInShortcut OR fbPlanarMover[M].IsCommandedInShortcut;
-	IsMoverInBlockingArea := IsMoverInBlockingArea OR (Mover[M].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND IsBetween(Mover[M].MoverPos, fMagnetEntry - 100, fMagnetExit + 100));
+	IsMoverInBlockingArea := IsMoverInBlockingArea OR (Mover[M].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND IsBetween(value := Mover[M].MoverPos, minV := stSwitchConfig.fMagnetEntryPosn - stSwitchConfig.MagnetPosnComp, maxV :=  stSwitchConfig.fMagnetExitPosn + stSwitchConfig.MagnetPosnComp));
 	MoverFeedback[M].Update();
 	
 
@@ -261,22 +263,27 @@ CASE nCase OF
 	100:
 		
 		FOR nForCounter:=1 TO nNumMovers DO
-			aDynamics[nForCounter].SetValuesVADJ(MaxVelo, 4000, 4000, 10000);
-			aMoveOnTrackOptions[nForCounter].gap:= 900;
+			aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
+			aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.MoverGap;
 		END_FOR
-		aDynamics[1].SetValuesVADJ(MaxVelo-test, 4000, 4000, 10000);
+		aDynamics[1].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
+
 		FOR nForCounter:=1 TO nNumMovers DO
 			CASE nMoveState[nForCounter] OF
 				
 				0: // Track 3 Main Cycel 
-					fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.Main],  GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-100, aDynamics[nForCounter], aMoveOnTrackOptions[nForCounter]);
+					fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
+																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackConfig.TargetPosnBeforeTrackEnd,
+																		constraint := aDynamics[nForCounter],
+																		options := aMoveOnTrackOptions[nForCounter]);
 					nMoveState[nForCounter] := 10;
 					
 				10:
-					IF Mover[nForCounter].MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-4000  AND  Mover[nForCounter].TrackID =   GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID    THEN//     MCTrackOid_MainSemicircle THEN
-						IF NOT Switch  and  not SwtichOnly THEN
+					IF Mover[nForCounter].MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackConfig.ShortcutEntryDistance AND (Mover[nForCounter].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID) THEN//     MCTrackOid_MainSemicircle THEN
+						IF NOT Switch AND NOT SwitchOnly THEN
 							nMoveState[nForCounter] := 20; // 20 - BigCycel
-							IF NOT  WithoutSwitch THEN
+							IF NOT WithoutSwitch THEN
 								Switch := TRUE;
 							END_IF
 						ELSE
@@ -288,23 +295,32 @@ CASE nCase OF
 
 				
 				20:
-					fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.Big], GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-100, aDynamics[nForCounter],aMoveOnTrackOptions[nForCounter]);
+					fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big],
+																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackConfig.TargetPosnBeforeTrackEnd,
+																		constraint := aDynamics[nForCounter],
+																		options := aMoveOnTrackOptions[nForCounter]);		
 					nMoveState[nForCounter] := 30;
 				
 					
 				30:
+				{warning 'What is the 4000 length?'}
 					IF Mover[nForCounter].MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-4000 AND  Mover[nForCounter].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
 						nMoveState[nForCounter] := 60;
 					END_IF				
 				
 			
 				40:
-					fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.Small], GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-100, aDynamics[nForCounter], aMoveOnTrackOptions[nForCounter]);
+				{warning 'What is the 100 length?'}
+					fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
+																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-100,
+																		constraint := aDynamics[nForCounter],
+																		options := aMoveOnTrackOptions[nForCounter]);					
 					nMoveState[nForCounter] := 50;
-
 			
 				50:
-					IF Mover[nForCounter].MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.small].GetLength()-4000 AND  Mover[nForCounter].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID    THEN// MCTrackOid_Shortcut THEN
+					IF Mover[nForCounter].MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.small].GetLength()-stTrackConfig.ShortcutEntryDistance AND  Mover[nForCounter].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID    THEN// MCTrackOid_Shortcut THEN
 						nMoveState[nForCounter] := 60;
 					END_IF
 					
@@ -315,7 +331,12 @@ CASE nCase OF
 						nMoveState[nForCounter] := 0;	
 					END_IF
 				70:
-					fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.Main], StopPos, aDynamics[nForCounter], aMoveOnTrackOptions[nForCounter]);
+					fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
+																		targetPositionOnTrack := stTrackConfig.StopPos,
+																		constraint := aDynamics[nForCounter],
+																		options := aMoveOnTrackOptions[nForCounter]);					
+
 					nMoveState[nForCounter] := 80;
 				80:
 					IF MoverFeedback[nForCounter].Done THEN
@@ -346,7 +367,7 @@ CASE nCase OF
 		120:	
 			nActStopPos := UDINT_TO_UINT(nNumMaxMovers-nNumMovers+1);
 			FOR nForCounter:=1 TO nNumMovers DO
-				aDynamics[nForCounter].SetValuesVADJ(1000, 4000, 4000, 10000);
+				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.StoppingVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 				nMoveState[nForCounter] := 0;
 				fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.main], 300, aDynamics[nForCounter],aMoveOnTrackOptions[nForCounter]);
 			END_FOR
@@ -359,7 +380,11 @@ CASE nCase OF
 						
 						IF Mover[nForCounter].MoverPos < 300 AND  Mover[nForCounter].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID THEN
 							aMoveOnTrackOptions[nForCounter].gap:= 150;
-							fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.main], aStopPositions[nActStopPos], aDynamics[nForCounter], aMoveOnTrackOptions[nForCounter]);
+							fbPlanarMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																				targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
+																				targetPositionOnTrack := aStopPositions[nActStopPos],
+																				constraint := aDynamics[nForCounter],
+																				options := aMoveOnTrackOptions[nForCounter]);									
 							nActStopPos := nActStopPos + 1;
 							nMoveState[nForCounter] := 10;
 						END_IF
@@ -410,7 +435,7 @@ END_CASE
 bMagnetOn := FALSE;
 FOR nForCounter:=1 TO nNumMovers DO
 	stPositionInfo := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(nForCounter)).GetPositionInfo();
-	IF NOT Fault AND stPositionInfo.nTrackObjectId = XtsShortcutOid AND (IsBetween(stPositionInfo.fTrackPosition, fMagnetEntry - (MaxVelo*0.08), fMagnetExit- (MaxVelo*0.06))) THEN
+	IF NOT Fault AND stPositionInfo.nTrackObjectId = XtsShortcutOid AND (IsBetween(stPositionInfo.fTrackPosition, stSwitchConfig.fMagnetEntryPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcEntry), stSwitchConfig.fMagnetExitPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcExit))) THEN
 		bMagnetOn := TRUE;
 	END_IF
 END_FOR
@@ -418,7 +443,7 @@ END_FOR
 pwm();
 	
 IF bMagnetOn AND NOT Fault THEN
-	MagnetValue := SwitchCurrent*1310;
+	MagnetValue := SwitchCurrent*stSwitchConfig.CurrentMultFactor;
 ELSE
  	MagnetValue := 0;
 END_IF
@@ -427,7 +452,6 @@ FP_Counter(clk:=bMagnetOn);
 
 IF FP_Counter.Q THEN
 	Switchcounter := Switchcounter+1;
-
 END_IF
 ]]></ST>
     </Implementation>

@@ -5,8 +5,6 @@
 
 	nNumMaxMovers : UDINT :=18;
 	nNumMaxTracks : UDINT :=3;
- 	fMagnetEntry : LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
-	fMagnetExit : LREAL := 10555; //PLEASE ENTER THE MAGNET EXIT!!!
 END_VAR
 
 VAR_GLOBAL

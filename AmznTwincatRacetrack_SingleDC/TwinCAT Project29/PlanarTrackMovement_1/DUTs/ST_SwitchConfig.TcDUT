@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_SwitchConfig" Id="{1b01e06e-3ad9-017e-0490-e818c7958e80}">
+    <Declaration><![CDATA[TYPE ST_SwitchConfig :
+STRUCT
+	CurrentMultFactor	: INT := 1310;
+	VeloPosnCalcEntry	: LREAL := 0.08;
+	VeloPosnCalcExit	: LREAL := 0.06;
+	MagnetPosnComp		: LREAL := 100;
+	fMagnetEntryPosn 	: LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
+	fMagnetExitPosn		: LREAL := 10555; //PLEASE ENTER THE MAGNET EXIT!!!
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
