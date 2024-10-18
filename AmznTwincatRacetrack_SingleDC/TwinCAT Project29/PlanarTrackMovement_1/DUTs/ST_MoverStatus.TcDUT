@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_MoverStatus" Id="{394eb97c-7f7c-016f-2b01-0deee4be5513}">
+    <Declaration><![CDATA[TYPE ST_MoverStatus :
+STRUCT
+	MoverInShortcut		: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

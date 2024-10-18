@@ -9,6 +9,7 @@ STRUCT
 	MagnetPosnComp		: LREAL := 100;
 	fMagnetEntryPosn 	: LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
 	fMagnetExitPosn		: LREAL := 10555; //PLEASE ENTER THE MAGNET EXIT!!!
+	EnableMagnet		: BOOL := TRUE;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

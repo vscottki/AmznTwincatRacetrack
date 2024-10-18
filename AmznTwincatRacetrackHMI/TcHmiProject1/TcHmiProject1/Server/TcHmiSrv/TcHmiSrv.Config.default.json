@@ -2518,16 +2518,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.MaxVelo": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::MaxVelo",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/LREAL"
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MAIN.MoverStop": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2597,6 +2587,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.SwitchOnly": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::SwitchOnly",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.Switchcounter": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2607,16 +2607,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.SwtichOnly": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::SwtichOnly",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MAIN.TestPowerMat": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2624,16 +2614,6 @@
             "MAPPING": "PLC1::MAIN::TestPowerMat",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.Velo": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::Velo",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/LREAL"
             },
             "USEMAPPING": true
         },
@@ -2684,6 +2664,23 @@
             "MAPPING": "PLC1::MAIN::nCase",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stMoverConfig.NormalVelo": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stMoverConfig::NormalVelo",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
             },
             "USEMAPPING": true
         },
@@ -3662,6 +3659,7 @@
                 "PLC1.MAIN.StopTime": 3,
                 "PLC1.MAIN.Switch": 3,
                 "PLC1.MAIN.SwitchCurrent": 3,
+                "PLC1.MAIN.SwitchOnly": 3,
                 "PLC1.MAIN.Switchcounter": 3,
                 "PLC1.MAIN.SwtichOnly": 3,
                 "PLC1.MAIN.TestPowerMat": 3,
@@ -3671,6 +3669,7 @@
                 "PLC1.MAIN.bStartSequence": 3,
                 "PLC1.MAIN.bStopSequence": 3,
                 "PLC1.MAIN.nCase": 3,
+                "PLC1.MAIN.stMoverConfig.NormalVelo": 3,
                 "Safety.GVL_Safety.SafetyOk": 3,
                 "Safety.GVL_Safety.Start": 3,
                 "Safety.MAIN.Restart": 3,

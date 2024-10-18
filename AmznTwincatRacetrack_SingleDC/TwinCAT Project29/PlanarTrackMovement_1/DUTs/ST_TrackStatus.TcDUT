@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_TrackStatus" Id="{aa7eb5a7-4425-0634-058a-ac63bf5e5c73}">
+    <Declaration><![CDATA[TYPE ST_TrackStatus :
+STRUCT
+	MoverCountOnTrack		: USINT;
+	MoverEnteredTrack		: Tc2_Standard.R_TRIG;
+	MoverExitedTrack		: Tc2_Standard.F_TRIG;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

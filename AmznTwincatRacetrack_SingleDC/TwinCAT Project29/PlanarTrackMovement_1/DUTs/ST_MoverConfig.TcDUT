@@ -4,8 +4,8 @@
     <Declaration><![CDATA[TYPE ST_MoverConfig EXTENDS ST_MoveOnTrackOptions:
 STRUCT
 //Velocity (mm/s)
-	MaxVelo			: LREAL := 2000;
-	NormalVelo		: LREAL := 1000;
+	MaxVelo			: LREAL := 4000;
+	NormalVelo		: LREAL := 3000;
 	StoppingVelo	: LREAL := 500;
 //Acceleration (mm/s^2)
 	NormalAccel		: LREAL := 4000;
