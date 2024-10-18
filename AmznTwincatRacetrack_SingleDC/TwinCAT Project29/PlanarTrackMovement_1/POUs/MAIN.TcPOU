@@ -30,7 +30,7 @@ VAR
 	IsMoverInBlockingArea: BOOL;
 	nActStopPos: UINT := 1;
 	Fp_error : R_Trig;
-	Velo : LREAL := 500;
+	MaxVelo : LREAL := 500;
 	Switch : BOOL;
 	WithoutSwitch : BOOL := TRUE;
 	SwtichOnly: BOOL;
@@ -55,7 +55,7 @@ VAR
 	
 	FP_Counter : r_trig;
 	Switchcounter : DINT;
-	SwitchCurrent: INT :=12000; 
+	SwitchCurrent: INT :=12; 
 	test : LREAL;
 	Horntimer : tp; 
 	R_trigHorn : R_trig;
@@ -261,10 +261,10 @@ CASE nCase OF
 	100:
 		
 		FOR nForCounter:=1 TO nNumMovers DO
-			aDynamics[nForCounter].SetValuesVADJ(Velo, 4000, 4000, 10000);
+			aDynamics[nForCounter].SetValuesVADJ(MaxVelo, 4000, 4000, 10000);
 			aMoveOnTrackOptions[nForCounter].gap:= 900;
 		END_FOR
-		aDynamics[1].SetValuesVADJ(Velo-test, 4000, 4000, 10000);
+		aDynamics[1].SetValuesVADJ(MaxVelo-test, 4000, 4000, 10000);
 		FOR nForCounter:=1 TO nNumMovers DO
 			CASE nMoveState[nForCounter] OF
 				
@@ -410,7 +410,7 @@ END_CASE
 bMagnetOn := FALSE;
 FOR nForCounter:=1 TO nNumMovers DO
 	stPositionInfo := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(nForCounter)).GetPositionInfo();
-	IF NOT Fault AND stPositionInfo.nTrackObjectId = XtsShortcutOid AND (IsBetween(stPositionInfo.fTrackPosition, fMagnetEntry - (Velo*0.08), fMagnetExit- (Velo*0.06))) THEN
+	IF NOT Fault AND stPositionInfo.nTrackObjectId = XtsShortcutOid AND (IsBetween(stPositionInfo.fTrackPosition, fMagnetEntry - (MaxVelo*0.08), fMagnetExit- (MaxVelo*0.06))) THEN
 		bMagnetOn := TRUE;
 	END_IF
 END_FOR

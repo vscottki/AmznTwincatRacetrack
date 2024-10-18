@@ -2518,6 +2518,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.MAIN.MaxVelo": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::MaxVelo",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/LREAL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.MoverStop": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3645,6 +3655,7 @@
                 "Login": 3,
                 "Logout": 3,
                 "PLC1.GVL_General.nNumMovers": 3,
+                "PLC1.MAIN.MaxVelo": 3,
                 "PLC1.MAIN.MoverStop": 3,
                 "PLC1.MAIN.Restart": 3,
                 "PLC1.MAIN.StopPos": 3,
