@@ -3,7 +3,7 @@
   <GVL Name="GVL_General" Id="{027beb7e-728e-4aeb-a930-890d17a65a81}">
     <Declaration><![CDATA[VAR_GLOBAL CONSTANT
 
-	nNumMaxMovers : UDINT :=2;
+	nNumMaxMovers : UDINT :=1;
 	nNumMaxTracks : UDINT :=3;
 END_VAR
 
@@ -14,7 +14,7 @@ VAR_GLOBAL
 END_VAR
 
 VAR_GLOBAL //PERSISTENT
-	nNumMovers: UDINT := 2;
+	nNumMovers: UDINT := 1;
 END_VAR
 ]]></Declaration>
   </GVL>

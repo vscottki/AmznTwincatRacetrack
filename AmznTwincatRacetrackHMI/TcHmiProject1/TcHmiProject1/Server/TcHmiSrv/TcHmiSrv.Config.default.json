@@ -2547,16 +2547,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.StopPos": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::StopPos",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/LREAL"
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MAIN.StopTime": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
