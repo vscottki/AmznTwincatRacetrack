@@ -9,10 +9,10 @@ VAR
 	nCase 						: INT;
 	nMoveState					: ARRAY[1..nNumMaxMovers] OF INT;
 	                    		
-	aDynamics					: ARRAY[1..nNumMaxMovers] OF DynamicConstraint_PathXY;
-	aMoveOnTrackOptions 		: ARRAY[1..20] OF ST_MoveOnTrackOptions;
+	aDynamics					: ARRAY[1..nNumMaxMovers] OF Tc3_Physics.DynamicConstraint_PathXY;
+	aMoveOnTrackOptions 		: ARRAY[1..20] OF Tc3_Mc3PlanarMotion.ST_MoveOnTrackOptions;
 	                    		
-	fbXtsEnvironment			: FB_TcIoXtsEnvironment;
+	fbXtsEnvironment			: Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	                    		
 	nForCounter					: UDINT;
 	M,N,T,Tr					: UDINT;
@@ -21,7 +21,7 @@ VAR
 // Magnet
 	MagnetValue AT%Q*			: INT;
 	bMagnetOn 					: BOOL;	
-	stPositionInfo				: ST_PositionInfo;
+	stPositionInfo				: Tc3_XTS_Utility.ST_PositionInfo;
 	stSwitchConfig				: ST_SwitchConfig;
 	
 //Configuration Values
@@ -65,13 +65,13 @@ VAR
 	
 	TestPowerMat : BOOL;
 	StopTime : TIME := T#8S;
-	StopTimer :ARRAY[1..nNumMaxMovers] OF ton;
+	StopTimer :ARRAY[1..nNumMaxMovers] OF Tc2_Standard.TON;
 	StartTimer :ARRAY[1..nNumMaxMovers] OF BOOL;
 	
 	
-	MoverPos :ARRAY[1..nNumMaxMovers] OF PositionXYC;
+	MoverPos :ARRAY[1..nNumMaxMovers] OF Tc3_Physics.PositionXYC;
 	ArcLength :ARRAY[1..nNumMaxMovers] OF LREAL;
-	TrackPos :ARRAY[1..nNumMaxMovers] OF ARRAY[1..nNumMaxTracks] OF PositionXYC;
+	TrackPos :ARRAY[1..nNumMaxMovers] OF ARRAY[1..nNumMaxTracks] OF Tc3_Physics.PositionXYC;
 	
 END_VAR
 ]]></Declaration>
@@ -128,9 +128,9 @@ IsMoverInBlockingArea := FALSE;
 	bAllDone:= TRUE;
 FOR M := 1 TO nNumMovers DO///Movers
 	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
-	fbPlanarMover[m].nMoverId := nForCounter;
-	fbPlanarMover[m].iTcIoXtsXpuMover := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(m));
-	fbPlanarMover[m].Update();
+	fbPlanarMover[M].nMoverId := nForCounter;
+	fbPlanarMover[M].iTcIoXtsXpuMover := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(m));
+	fbPlanarMover[M].Update();
 	
 	GVL_mc3.Mover[M].MoverPos  :=fbPlanarMover[M].McPlanarMover.MCTOPLC.SETONTRACK.SetPos;
 	GVL_mc3.Mover[M].TrackID:= fbPlanarMover[M].McPlanarMover.MCTOPLC.SETONTRACK.TrackOID;
@@ -435,9 +435,12 @@ END_CASE
 bMagnetOn := FALSE;
 FOR nForCounter:=1 TO nNumMovers DO
 	stPositionInfo := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(nForCounter)).GetPositionInfo();
-	IF NOT Fault AND stPositionInfo.nTrackObjectId = XtsShortcutOid AND (IsBetween(stPositionInfo.fTrackPosition, stSwitchConfig.fMagnetEntryPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcEntry), stSwitchConfig.fMagnetExitPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcExit))) THEN
+	IF NOT Fault AND stPositionInfo.nTrackObjectId = XtsShortcutOid AND 
+			(IsBetween(stPositionInfo.fTrackPosition, stSwitchConfig.fMagnetEntryPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcEntry), 
+			stSwitchConfig.fMagnetExitPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcExit))) THEN
 		bMagnetOn := TRUE;
 	END_IF
+	fbPlanarMover[nForCounter]();
 END_FOR
 
 pwm();
