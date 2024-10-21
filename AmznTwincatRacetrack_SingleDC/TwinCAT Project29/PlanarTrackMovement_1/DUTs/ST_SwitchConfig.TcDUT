@@ -9,9 +9,11 @@ STRUCT
 	MagnetPosnComp		: LREAL := 100;
 	fMagnetEntryPosn 	: LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
 	fMagnetExitPosn		: LREAL := 10555; //PLEASE ENTER THE MAGNET EXIT!!!
-	EnableMagnet		: BOOL := TRUE;
+	EnableMagnet		  : BOOL := TRUE;
+  Switch 						: BOOL;
+	WithoutSwitch     : BOOL := TRUE;
+	SwitchOnly			  : BOOL;
 END_STRUCT
-END_TYPE
-]]></Declaration>
+END_TYPE]]></Declaration>
   </DUT>
 </TcPlcObject>

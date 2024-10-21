@@ -34,9 +34,6 @@ VAR
 	IsMoverInBlockingArea		: BOOL;
 	nActStopPos					: UINT := 1;
 	Fp_error 					: R_Trig;
-	Switch 						: BOOL;
-	WithoutSwitch 				: BOOL := TRUE;
-	SwitchOnly					: BOOL;
 	
 	MoverStop 	AT%I* :BOOL;
 	MoverStopDone AT%Q*		: BOOL;
@@ -281,15 +278,15 @@ CASE nCase OF
 					
 				10:
 					IF Mover[nForCounter].MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackConfig.ShortcutEntryDistance AND (Mover[nForCounter].TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID) THEN//     MCTrackOid_MainSemicircle THEN
-						IF NOT Switch AND NOT SwitchOnly THEN
+						IF NOT stSwitchConfig.Switch AND NOT stSwitchConfig.SwitchOnly THEN
 							nMoveState[nForCounter] := 20; // 20 - BigCycel
-							IF NOT WithoutSwitch THEN
-								Switch := TRUE;
+							IF NOT stSwitchConfig.WithoutSwitch THEN
+								stSwitchConfig.Switch := TRUE;
 							END_IF
 						ELSE
 							nMoveState[nForCounter] := 40;  // 40- SmallCycel
 							IsMoverCommandedInShortcut := TRUE;
-							Switch := FALSE;
+							stSwitchConfig.Switch := FALSE;
 						END_IF
 					END_IF
 
