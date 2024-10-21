@@ -4,8 +4,8 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PlanarMover
 
 VAR_INPUT
-	nMoverId			: UDINT;
-	iTcIoXtsXpuMover	: Tc3_XTS_Utility.I_TcIoXtsXpuMover;
+	nMoverId			    : UDINT;
+	iTcIoXtsXpuMover	: REFERENCE TO Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 END_VAR
 
 VAR
@@ -85,25 +85,27 @@ END_VAR
     <Method Name="Update" Id="{2a189ea7-97f2-4dc0-980a-fdde9c091766}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD Update : PVOID]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_mcPlanarMover.Update();
+        <ST><![CDATA[IF iTcIoXtsXpuMover <> Tc3_Module.NULL THEN
+  stPositionInfo	:= iTcIoXtsXpuMover.GetPositionInfo();
+END_IF
 
+_mcPlanarMover.Update();
 
 _mcPlanarMover.GetTrackTrailInformation(_PlanarTrail);
 
 IF _PlanarTrail.Error OR _PlanarTrail.Size <= 1 THEN
    RETURN;
 END_IF
-   
-//SmallCircle
-IF _PlanarTrail.GetTrackOidAt(1) = MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID   THEN
-	iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsShortcutOid);
-//BigCircle
-ELSIF _PlanarTrail.GetTrackOidAt(1) =MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN
-	iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsOutterLoopOid);
-END_IF
 
-stPositionInfo	:= iTcIoXtsXpuMover.GetPositionInfo();
-]]></ST>
+IF iTcIoXtsXpuMover <> Tc3_Module.NULL THEN
+  //SmallCircle
+  IF _PlanarTrail.GetTrackOidAt(1) = MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID   THEN
+    iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsShortcutOid);
+  //BigCircle
+  ELSIF _PlanarTrail.GetTrackOidAt(1) =MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN
+    iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsOutterLoopOid);
+  END_IF
+END_IF]]></ST>
       </Implementation>
     </Method>
   </POU>

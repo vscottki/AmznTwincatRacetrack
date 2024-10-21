@@ -20,7 +20,7 @@ VAR
 	                    		
 // Magnet
 	MagnetValue AT%Q*			: INT;
-	bMagnetOn 					: BOOL;	
+	bMagnetOn 					  : BOOL;
 	stPositionInfo				: Tc3_XTS_Utility.ST_PositionInfo;
 	stSwitchConfig				: ST_SwitchConfig;
 	
@@ -126,7 +126,8 @@ IsMoverInBlockingArea := FALSE;
 FOR M := 1 TO nNumMovers DO///Movers
 	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
 	fbPlanarMover[M].nMoverId := nForCounter;
-	fbPlanarMover[M].iTcIoXtsXpuMover := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(m));
+  GVL_Mc3.aiXpuXtsMover[M]  := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(M));
+  fbPlanarMover[M].iTcIoXtsXpuMover REF= GVL_Mc3.aiXpuXtsMover[M];
 	fbPlanarMover[M].Update();
 	
 	GVL_mc3.Mover[M].MoverPos  :=fbPlanarMover[M].McPlanarMover.MCTOPLC.SETONTRACK.SetPos;
