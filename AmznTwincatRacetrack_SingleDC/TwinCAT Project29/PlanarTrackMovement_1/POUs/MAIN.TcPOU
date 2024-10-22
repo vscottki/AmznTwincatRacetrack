@@ -274,15 +274,18 @@ CASE nCase OF
 					nMoveState[nForCounter] := 10;
 					
 				10:
-          IF stSwitchStatus.MagnetEnabled THEN
-   					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackConfig.ShortcutEntryDistance AND 
-            (GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.TrackID = GVL_Mc3.MC_Tracks[e_TrackNum.Big].MCTOPLC_STD.TrackOID) THEN //     MCTrackOid_MainSemicircle
-							nMoveState[nForCounter]     := 40;	// 40- SmallLoop
-							IsMoverCommandedInShortcut  := TRUE;
+         			
+   						IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackConfig.ShortcutEntryDistance AND 
+           					 (GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.TrackID = GVL_Mc3.MC_Tracks[e_TrackNum.main].MCTOPLC_STD.TrackOID) THEN //     MCTrackOid_MainSemicircle
+							IF stSwitchStatus.MagnetEnabled THEN
+								nMoveState[nForCounter]     := 40;	// 40- SmallLoop
+								IsMoverCommandedInShortcut  := TRUE;
+							ELSE
+            					nMoveState[nForCounter]				:= 20;	// 20 - BigLoop  
+							END_IF	
+							
 						END_IF
-          ELSE
-            nMoveState[nForCounter]				:= 20;	// 20 - BigLoop  
-					END_IF
+        		 	
 					
 				20:
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
@@ -295,7 +298,8 @@ CASE nCase OF
 					
 				30:
 				{warning 'What is the 4000 length?'}
-					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-4000 AND GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
+					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-4000 AND GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID AND 
+						GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN//      MCTrackOid_BigSemicircle THEN
 						nMoveState[nForCounter] := 60;
 					END_IF				
 				
@@ -424,8 +428,8 @@ CASE nCase OF
 END_CASE
 
 stSwitchStatus.bCmdMagnetOn := FALSE;
-{warning 'Link Safety Status'}
-stSwitchStatus.MagnetEnabled  := stSwitchConfig.SwitchMode <> E_SwitchOpMode.WithoutSwitch; (*and SafetyOK from SafetyPLC*)
+
+stSwitchStatus.MagnetEnabled  := stSwitchConfig.SwitchMode <> E_SwitchOpMode.WithoutSwitch AND MoverStop;
 FOR nForCounter:=1 TO nNumMovers DO
   {warning 'Use FB Planar Mover for position info'}
 	stPositionInfo := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(nForCounter)).GetPositionInfo();

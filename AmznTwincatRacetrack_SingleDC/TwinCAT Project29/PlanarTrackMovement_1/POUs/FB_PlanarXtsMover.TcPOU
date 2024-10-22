@@ -117,6 +117,10 @@ _mcPlanarMover.Update();
 
 _mcPlanarMover.GetTrackTrailInformation(_PlanarTrail);
 
+Mover.MoverNumber 	:= nMoverId;
+Mover.MoverPos    	:= _McPlanarMover.MCTOPLC.SETONTRACK.SetPos;
+Mover.TrackID     	:= _McPlanarMover.MCTOPLC.SETONTRACK.TrackOID;
+
 IF _PlanarTrail.Error OR _PlanarTrail.Size <= 1 THEN
    RETURN;
 END_IF
@@ -131,9 +135,7 @@ IF iTcIoXtsXpuMover <> Tc3_Module.NULL THEN
   END_IF
 END_IF
 
-Mover.MoverNumber 	:= nMoverId;
-Mover.MoverPos    	:= _McPlanarMover.MCTOPLC.SETONTRACK.SetPos;
-Mover.TrackID     	:= _McPlanarMover.MCTOPLC.SETONTRACK.TrackOID;]]></ST>
+]]></ST>
       </Implementation>
     </Method>
   </POU>
