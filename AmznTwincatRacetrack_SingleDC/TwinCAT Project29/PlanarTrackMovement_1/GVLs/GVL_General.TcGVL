@@ -3,19 +3,18 @@
   <GVL Name="GVL_General" Id="{027beb7e-728e-4aeb-a930-890d17a65a81}">
     <Declaration><![CDATA[VAR_GLOBAL CONSTANT
 
-	nNumMaxMovers : UDINT :=1;
-	nNumMaxTracks : UDINT :=3;
+	nNumMaxMovers 		: UDINT :=1;
+	nNumMaxTracks 		: UDINT :=3;
 END_VAR
 
 VAR_GLOBAL
-	aStopPositions : ARRAY [1..nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
-	XtsOutterLoopOid: OTCID := 16#1010480;	
-	XtsShortcutOid: OTCID := 16#1010490;
+	aStopPositions 		: ARRAY [1..nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
+	XtsOutterLoopOid	: OTCID := 16#1010480;	
+	XtsShortcutOid		: OTCID := 16#1010490;
 END_VAR
 
 VAR_GLOBAL //PERSISTENT
-	nNumMovers: UDINT := 1;
-END_VAR
-]]></Declaration>
+	nNumMovers				: UDINT := 1;
+END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

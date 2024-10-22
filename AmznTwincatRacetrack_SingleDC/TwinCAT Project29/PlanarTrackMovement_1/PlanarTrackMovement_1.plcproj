@@ -20,13 +20,20 @@
     <CombineIds>true</CombineIds>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\E_SwitchOpMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\E_TrackNum.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\MoverSort.TcDUT">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="DUTs\ST_MoverStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_SwitchStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_TrackStatus.TcDUT">
@@ -58,7 +65,7 @@
     <Compile Include="POUs\ReadTcCom.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_PlanarMover.TcPOU">
+    <Compile Include="POUs\FB_PlanarXtsMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">

@@ -3,19 +3,18 @@
   <POU Name="FB_PWM" Id="{82311c7a-93bc-4182-941a-cffd8912175a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PWM
 VAR_INPUT
-	Torque: INT;
+	Torque		: INT;
 END_VAR
 
 VAR
-  	ModuleState AT %I* : UINT;
+	ModuleState AT %I* : UINT;
 	
  	Control AT %Q* :  UINT;
  	TargetTorque AT %Q*: INT; 	
 
- 	State  : INT := 1;
- 	PwmTimer : ton;
-END_VAR
-]]></Declaration>
+ 	State			: INT := 1;
+ 	PwmTimer	: Tc2_Standard.TON;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
 
