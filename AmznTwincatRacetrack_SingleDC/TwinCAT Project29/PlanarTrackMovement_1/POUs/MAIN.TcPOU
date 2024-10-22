@@ -297,20 +297,18 @@ CASE nCase OF
 				
 					
 				30:
-				{warning 'What is the 4000 length?'}
-					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-4000 AND GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID AND 
+					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackConfig.ShortcutEntryDistance AND GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID AND 
 						GVL_Mc3.fbPlanarXtsMover[nForCounter].P_XPlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN//      MCTrackOid_BigSemicircle THEN
 						nMoveState[nForCounter] := 60;
 					END_IF				
 				
 			
 				40:
-				{warning 'What is the 100 length?'}
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
-																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-100,
+																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackConfig.TargetPosnBeforeTrackEnd,
 																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);					
+																		options := aMoveOnTrackOptions[nForCounter]);
 					nMoveState[nForCounter] := 50;
 			
 				50:
