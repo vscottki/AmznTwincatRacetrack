@@ -3,9 +3,9 @@
   <DUT Name="ST_SwitchStatus" Id="{6e0f7c0e-6a92-0c57-26a9-be3a66aee476}">
     <Declaration><![CDATA[TYPE ST_SwitchStatus :
 STRUCT
- 	MagnetValue AT%Q* : INT;
-	bCmdMagnetOn 		  : BOOL;
-	MagnetEnabled     : BOOL;
+ 	MagnetValue		AT%Q* 	: INT;
+	bCmdMagnetOn 		  	: BOOL;
+	MagnetEnabled     		: BOOL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

@@ -3,9 +3,9 @@
   <DUT Name="ST_TrackConfig" Id="{0bf444be-035e-0e71-1156-30382b0847a6}">
     <Declaration><![CDATA[TYPE ST_TrackConfig :
 STRUCT
-	ShortcutEntryDistance		: LREAL := 4000; // mm
 	TargetPosnBeforeTrackEnd	: LREAL := 100;
 	StopPos						: LREAL := 7611;
+	stTrackShortcutConfig		: ST_TrackShortcutConfig;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

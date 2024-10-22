@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_TrackShortcutConfig" Id="{26fa2e14-a928-012c-3abf-7a0b030ea531}">
+    <Declaration><![CDATA[TYPE ST_TrackShortcutConfig :
+STRUCT
+	ShortcutEntryDistance			: LREAL := 4000; // mm
+	AllowedMoverCountOnShortcut		: UINT	:= 3;
+	TestPowerMat  					: BOOL;
+	stTrackSectorConfig				: ST_TrackSectorConfig;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

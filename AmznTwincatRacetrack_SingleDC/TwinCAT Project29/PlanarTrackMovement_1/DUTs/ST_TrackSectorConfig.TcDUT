@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_TrackSectorConfig" Id="{77932430-4813-013f-16b4-5b3df9147ac2}">
+    <Declaration><![CDATA[TYPE ST_TrackSectorConfig :
+STRUCT
+	SectorStartPosn				: LREAL;
+	SectorEndPosn				: LREAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

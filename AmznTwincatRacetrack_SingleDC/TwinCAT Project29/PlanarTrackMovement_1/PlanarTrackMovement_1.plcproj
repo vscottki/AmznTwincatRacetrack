@@ -36,7 +36,13 @@
     <Compile Include="DUTs\ST_SwitchStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_TrackStatus.TcDUT">
+    <Compile Include="DUTs\ST_TrackSectorConfig.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_TrackSectorStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_TrackShortcutConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_SwitchConfig.TcDUT">
@@ -57,6 +63,9 @@
       <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_PlanarTrack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_PWM.TcPOU">
@@ -264,6 +273,11 @@
     <None Include="PlanarTrackMovement_1.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <SubObject Include="FB_PlanarXtsMover._M_UpdateStatus">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
