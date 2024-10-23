@@ -3,7 +3,8 @@
   <DUT Name="ST_TrackSectorStatus" Id="{81103d69-266a-0895-1575-10ee8e38fb8d}">
     <Declaration><![CDATA[TYPE ST_TrackSectorStatus :
 STRUCT
-	MoverCountOnSector		: USINT;
+	MoverIsOnSector			: BOOL;
+	MoverCountOnSector		: UDINT;
 	MoverEnteredSector		: Tc2_Standard.R_TRIG;
 	MoverExitedSector		: Tc2_Standard.F_TRIG;
 END_STRUCT

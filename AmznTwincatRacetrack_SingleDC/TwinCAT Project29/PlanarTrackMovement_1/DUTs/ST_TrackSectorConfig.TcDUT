@@ -3,8 +3,9 @@
   <DUT Name="ST_TrackSectorConfig" Id="{77932430-4813-013f-16b4-5b3df9147ac2}">
     <Declaration><![CDATA[TYPE ST_TrackSectorConfig :
 STRUCT
-	SectorStartPosn				: LREAL;
-	SectorEndPosn				: LREAL;
+	XtsTrackObjId				: OTCID := GVL_General.XtsShortcutOid;
+	SectorStartPosn				: LREAL := 12000;
+	SectorEndPosn				: LREAL := 17000;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

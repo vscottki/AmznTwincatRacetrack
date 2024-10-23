@@ -6,7 +6,6 @@
 VAR_INPUT
 	nMoverId			    	: UDINT;
 	iTcIoXtsXpuMover			: REFERENCE TO Tc3_XTS_Utility.I_TcIoXtsXpuMover;
-	refTrackConfig				: REFERENCE TO ST_TrackConfig;
 END_VAR
 
 VAR
@@ -26,19 +25,6 @@ END_VAR]]></Declaration>
     </Implementation>
     <Folder Name="Methods" Id="{497e6300-3e6d-49b8-a318-13b94b960f56}" />
     <Folder Name="Properties" Id="{bafe569f-b5f0-4de9-ae48-854cd11ccd2e}" />
-    <Method Name="_M_IsOnSection" Id="{6fb38ca4-6b76-0afd-297f-a5f43cfa3834}" FolderPath="Methods\">
-      <Declaration><![CDATA[METHOD PROTECTED _M_IsOnSection : BOOL
-VAR_INPUT
-	XtsTrackId			: OTCID;
-	SectorStartPosn		: LREAL;
-	SectorEndPosn		: LREAL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[_M_IsOnSection	:= (stXtsPositionInfo.nTrackObjectid = XtsTrackId) AND
-					IsBetween(value := stXtsPositionInfo.fTrackPosition, minV := SectorStartPosn, maxV := SectorEndPosn);]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="_M_UpdateStatus" Id="{5fb917e1-5646-02f6-26ca-dbbb331704b2}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED _M_UpdateStatus]]></Declaration>
       <Implementation>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_MoverSectorInterface" Id="{454c8ee6-eb93-03bb-3d09-d82885cc2db0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MoverSectorInterface
+VAR_INPUT
+	stSectorConfig			: ST_TrackSectorConfig;
+END_VAR
+VAR
+	refXtsMover				: Tc3_XTS_Utility.ST_PositionInfo;
+	refPlanarTrack			: Tc3_Mc3PlanarMotion.MC_PlanarTrack;
+	stTrackSectorStatus		: ST_TrackSectorStatus;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stTrackSectorStatus.MoverIsOnSector	:= _M_IsOnSector();]]></ST>
+    </Implementation>
+    <Method Name="_M_IsOnSector" Id="{6fb38ca4-6b76-0afd-297f-a5f43cfa3834}">
+      <Declaration><![CDATA[METHOD PROTECTED _M_IsOnSector : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_M_IsOnSector	:= (refXtsMover.nTrackObjectid = stSectorConfig.XtsTrackObjId) AND
+					IsBetween(value := refXtsMover.fTrackPosition, 
+								minV := stSectorConfig.SectorStartPosn, 
+								maxV := stSectorConfig.SectorEndPosn);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_MCPlanarTrack" Id="{c0ac9430-b382-04fd-3b6a-1962bd5a1c7e}">
+      <Declaration><![CDATA[PROPERTY P_MCPlanarTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack]]></Declaration>
+      <Get Name="Get" Id="{804e0c8f-06ff-09a3-09d5-b11c0f048c58}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_MCPlanarTrack	REF= refPlanarTrack;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_SectorStatus" Id="{5f8e870d-e32a-0163-2da9-1a6a40e1a497}">
+      <Declaration><![CDATA[PROPERTY P_SectorStatus : REFERENCE TO ST_TrackSectorStatus]]></Declaration>
+      <Get Name="Get" Id="{de3ffc99-936a-0b5d-0ea1-4e9664bc445a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_SectorStatus	REF= stTrackSectorStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_XtsPositionInfo" Id="{d96f07f7-f866-0c16-0900-c47c81882126}">
+      <Declaration><![CDATA[PROPERTY P_XtsPositionInfo : REFERENCE TO Tc3_XTS_Utility.ST_PositionInfo]]></Declaration>
+      <Get Name="Get" Id="{ae45bb6f-f61b-08ea-11d8-d62f8182115f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_XtsPositionInfo REF= refXtsMover;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

@@ -7,14 +7,15 @@
  	//Track_SmallCircle	: 	MC_PlanarTrack;
 	
 {warning <'bundle FB_Track'>}
+	fbSectorInterface		: 	ARRAY[1..nNumMaxMovers] OF FB_MoverSectorInterface;
 	MC_Tracks    		    :	ARRAY[1..3] OF Tc3_Mc3PlanarMotion.MC_PlanarTrack;
-	MC_Trackfeedback	  :	ARRAY[1..3] OF Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
+	MC_Trackfeedback	  	:	ARRAY[1..3] OF Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
 	TrackTrail 			    :	Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
 	
 {warning <'bundle FB_PlanarMover'>}
 	fbPlanarXtsMover		:	ARRAY[1..nNumMaxMovers] OF FB_PlanarXtsMover;
 	MoverFeedback		    :	ARRAY[1..nNumMaxMovers] OF Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
-	aiXpuXtsMover       : ARRAY[1..nNumMaxMovers] OF Tc3_XTS_Utility.I_TcIoXtsXpuMover;
+	aiXpuXtsMover       	:	ARRAY[1..nNumMaxMovers] OF Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 	
 //	Mover				        :	ARRAY[0..nNumMaxMovers] OF MoverSort;
 END_VAR]]></Declaration>
