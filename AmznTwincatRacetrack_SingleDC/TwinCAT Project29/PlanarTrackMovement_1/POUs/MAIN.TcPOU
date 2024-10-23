@@ -467,5 +467,25 @@ IF FP_Counter.Q THEN
 END_IF
 ]]></ST>
     </Implementation>
+    <Method Name="FB_init" Id="{4e1853a7-56ec-084a-3f0b-082e9c64e84c}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+VAR
+	nTrackIndex	: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR nTrackIndex := E_TrackNum.Big TO E_TrackNum.Small DO
+//	stPlanarTrackConfig[E_TrackNum.Big].MCTrack		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD;
+//	stPlanarTrackConfig[E_TrackNum.Small].MCTrack	:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].MCTOPLC_STD;
+//	stPlanarTrackConfig[E_TrackNum.Main].MCTrack	:= GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD;
+	stPlanarTrackConfig[nTrackIndex].MCTrack		:= GVL_Mc3.MC_Tracks[nTrackIndex].MCTOPLC_STD;
+	stPlanarTrackConfig[nTrackIndex].TrackIndex		:= nTrackIndex;
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
