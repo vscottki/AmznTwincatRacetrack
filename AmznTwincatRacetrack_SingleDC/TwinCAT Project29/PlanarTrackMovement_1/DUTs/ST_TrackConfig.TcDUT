@@ -5,9 +5,7 @@
 STRUCT
 	TargetPosnBeforeTrackEnd	: LREAL := 100;
 	StopPos						: LREAL := 7611;
-	stTrackShortcutConfig		: ST_TrackShortcutConfig;
 END_STRUCT
-END_TYPE
-]]></Declaration>
+END_TYPE]]></Declaration>
   </DUT>
 </TcPlcObject>

@@ -30,6 +30,9 @@
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
+    <Compile Include="DUTs\ST_PlanarTrackConfig.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_MoverStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -53,6 +56,10 @@
     </Compile>
     <Compile Include="DUTs\ST_MoverConfig.TcDUT">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GC.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\GVL_General.TcGVL">
       <SubType>Code</SubType>

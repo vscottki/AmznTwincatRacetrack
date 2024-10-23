@@ -5,7 +5,7 @@
 STRUCT
 //Velocity (mm/s)
 	MaxVelo			: LREAL := 4000;
-	NormalVelo		: LREAL := 3000;
+	NormalVelo		: LREAL := 3200;
 	StoppingVelo	: LREAL := 500;
 //Acceleration (mm/s^2)
 	NormalAccel		: LREAL := 4000;
