@@ -5,8 +5,8 @@
 {attribute 'strict'}
 TYPE E_SwitchOpMode :
 (
-  Blend         := 0,
-  WithoutSwitch := 1,
+  WithoutSwitch := 0,
+  Blend         := 1,
   SwitchOnly    := 2
 );
 END_TYPE

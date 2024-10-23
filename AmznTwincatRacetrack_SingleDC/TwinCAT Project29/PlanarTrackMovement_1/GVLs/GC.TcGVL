@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GC" Id="{fd69563d-84d2-02e1-2244-b5fb69e7506b}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+//Movers
+	nNumMinMovers		: UDINT :=1;
+	nNumMaxMovers 		: UDINT :=1;
+	nNumMinMCAxes		: UDINT	:=1;
+	nNumMaxMCAxes		: UDINT	:=20;
+	
+//Tracks
+	nNumMinTracks 		: UDINT :=1;
+	nNumMaxTracks 		: UDINT :=3;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

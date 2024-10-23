@@ -8,6 +8,10 @@ VAR_INPUT
 	iTcIoXtsXpuMover			: REFERENCE TO Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 END_VAR
 
+VAR_IN_OUT
+	
+END_VAR
+
 VAR
 	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	_PlanarTrail    			: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
@@ -106,14 +110,25 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="P_XPlanarMover" Id="{a5ac8d37-9108-0740-305c-d3b342270158}" FolderPath="Properties\">
-      <Declaration><![CDATA[PROPERTY P_XPlanarMover : REFERENCE TO MoverSort]]></Declaration>
+    <Property Name="P_PlanarMover" Id="{a5ac8d37-9108-0740-305c-d3b342270158}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_PlanarMover : REFERENCE TO MoverSort]]></Declaration>
       <Get Name="Get" Id="{bae1975d-f945-0652-3748-976b73c4f7d6}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_XPlanarMover	REF= Mover;]]></ST>
+          <ST><![CDATA[P_PlanarMover	REF= Mover;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_TrackConfig" Id="{e32b61fd-1607-0d8a-3b00-a92d697c1e42}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_TrackConfig : REFERENCE TO ST_TrackConfig]]></Declaration>
+      <Get Name="Get" Id="{f2020383-ba74-08e6-01f4-c80f3d2580af}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
     </Property>

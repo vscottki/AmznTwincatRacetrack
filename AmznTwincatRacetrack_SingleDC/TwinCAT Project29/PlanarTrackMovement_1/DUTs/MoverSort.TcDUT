@@ -4,8 +4,8 @@
     <Declaration><![CDATA[TYPE MoverSort :
 STRUCT
 	MoverNumber 	: UDINT;
-	TrackID  			: PlanarTrackOTCID;
-	MoverPos 			: LREAL;
+	TrackID  		: PlanarTrackOTCID;
+	MoverPos 		: LREAL;
 	MoverTrackNr 	: UDINT;
 END_STRUCT
 END_TYPE
