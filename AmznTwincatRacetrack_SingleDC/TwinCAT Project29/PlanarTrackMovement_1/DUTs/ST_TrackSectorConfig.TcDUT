@@ -5,7 +5,7 @@
 STRUCT
 	XtsTrackObjId				: OTCID := GVL_General.XtsShortcutOid;
 	SectorStartPosn				: LREAL := 12000;
-	SectorEndPosn				: LREAL := 17000;
+	SectorEndPosn				: LREAL := 16600;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

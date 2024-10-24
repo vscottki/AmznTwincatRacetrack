@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE ST_TrackShortcutConfig :
 STRUCT
 	ShortcutEntryDistance			: LREAL := 4000; // mm
-	AllowedMoverCountOnShortcut		: UINT	:= 3;
+	AllowedMoverCountOnShortcut		: UDINT	:= GC.nNumMaxMovers;
 	TestPowerMat  					: BOOL;
 	stTrackSectorConfig				: ST_TrackSectorConfig;
 END_STRUCT

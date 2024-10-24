@@ -5,7 +5,7 @@
 VAR_GLOBAL CONSTANT
 //Movers
 	nNumMinMovers		: UDINT :=1;
-	nNumMaxMovers 		: UDINT :=1;
+	nNumMaxMovers 		: UDINT :=6;
 	nNumMinMCAxes		: UDINT	:=1;
 	nNumMaxMCAxes		: UDINT	:=20;
 	

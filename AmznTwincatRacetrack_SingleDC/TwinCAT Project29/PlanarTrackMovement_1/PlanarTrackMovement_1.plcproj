@@ -72,7 +72,7 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_MoverSectorInterface.TcPOU">
+    <Compile Include="POUs\FB_TrackSector.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_PWM.TcPOU">
