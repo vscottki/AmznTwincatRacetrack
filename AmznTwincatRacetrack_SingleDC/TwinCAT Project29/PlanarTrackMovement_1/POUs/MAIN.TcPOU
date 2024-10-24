@@ -59,7 +59,7 @@ VAR
 	                        	
 	FP_Counter 					: Tc2_Standard.R_TRIG;
 	Switchcounter 				: DINT;
-	SwitchCurrent				: INT :=8; //4.0A does crash
+	SwitchCurrent				: INT :=9; //4.0A does crash
 	test 						: LREAL;
 	Horntimer 					: Tc2_Standard.TP; 
 	R_trigHorn 					: Tc2_Standard.R_TRIG;
