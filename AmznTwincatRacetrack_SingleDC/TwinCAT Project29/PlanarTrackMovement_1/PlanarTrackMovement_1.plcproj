@@ -78,6 +78,9 @@
     <Compile Include="POUs\FB_PWM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB_TrackSectors.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\ReadTcCom.TcPOU">
       <SubType>Code</SubType>
     </Compile>

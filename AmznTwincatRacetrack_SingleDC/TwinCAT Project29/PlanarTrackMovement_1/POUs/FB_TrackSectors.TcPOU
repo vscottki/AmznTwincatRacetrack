@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_TrackSectors" Id="{cea668e4-bd5b-031f-3b1e-5ca5fef41ef1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TrackSectors
+VAR
+	InitDone								: BOOL;
+	SectorIndex								: UDINT;
+
+//Configurations
+	astSectorConfig							: ARRAY[MIN_SECTOR_CT..MAX_SECTOR_CT] OF ST_TrackSectorConfig;
+
+	fbSector								: ARRAY[MIN_SECTOR_CT..MAX_SECTOR_CT] OF FB_TrackSector;
+END_VAR
+VAR_IN_OUT
+	MoverIndex								: UDINT;
+END_VAR
+VAR CONSTANT
+	SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN	: UDINT := 12000;
+	SHORTCUT_SHUTTLE_END_POSN				: UDINT := 16600;
+	//Make same as first entry
+	MIN_SECTOR_CT							: USINT	:= 1;
+	DIVERT_OUTER_LOOP						: USINT := 1;
+	DIVERT_INNER_LOOP						: USINT := 2;
+	SHORTCUT								: USINT := 3;
+	SHORTCUT_MERGE_ENTRY					: USINT := 4;
+	//Make same as last entry
+	MAX_SECTOR_CT							: USINT	:= 4;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT InitDone THEN
+	_M_Init();
+END_IF
+
+FOR SectorIndex := MIN_SECTOR_CT TO MAX_SECTOR_CT DO
+	//Planar Mover
+	fbSector[SectorIndex].P_PlanarMover			:= GVL_Mc3.fbPlanarXtsMover[MoverIndex].P_PlanarMover;
+
+	//XTS Mover Reference
+	fbSector[SectorIndex].P_XtsPositionInfo		:= fbPlanarXtsMover[MoverIndex].P_XtsPositionInfo;
+	
+	//Sector Configuration
+	fbSector[SectorIndex].P_TrackSectorConfig	:= astSectorConfig[SectorIndex];
+
+	//FB calls
+	fbSector[SectorIndex](refPlanarTracks := GVL_General.stPlanarTrackConfig);
+END_FOR]]></ST>
+    </Implementation>
+    <Method Name="_M_Init" Id="{d5984703-ddc9-0101-2304-91fe3fd1a544}">
+      <Declaration><![CDATA[METHOD _M_Init]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (GVL_General.XtsOutterLoopOid <> 0) AND (GVL_General.XtsShortcutOid <> 0) THEN
+	astSectorConfig[DIVERT_OUTER_LOOP].XtsTrackObjId		:= GVL_General.XtsOutterLoopOid;
+	astSectorConfig[DIVERT_OUTER_LOOP].SectorStartPosn		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.ShortcutEntryDistance;
+	astSectorConfig[DIVERT_OUTER_LOOP].SectorEndPosn		:= 
+                                                        	
+	astSectorConfig[DIVERT_INNER_LOOP].XtsTrackObjId		:= GVL_General.XtsShortcutOid;
+	astSectorConfig[DIVERT_INNER_LOOP].SectorStartPosn		:= 0;
+	astSectorConfig[DIVERT_INNER_LOOP].SectorEndPosn		:= SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
+                                                        	
+	astSectorConfig[SHORTCUT].XtsTrackObjId					:= GVL_General.XtsShortcutOid;
+	astSectorConfig[SHORTCUT].SectorStartPosn				:= SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
+	astSectorConfig[SHORTCUT].SectorEndPosn					:= SHORTCUT_SHUTTLE_END_POSN;
+
+	astSectorConfig[SHORTCUT_MERGE_ENTRY].XtsTrackObjId		:= GVL_General.XtsShortcutOid;
+	astSectorConfig[SHORTCUT_MERGE_ENTRY].SectorStartPosn	:= SHORTCUT_SHUTTLE_END_POSN - GC.SHUTTLE_DIM_PADDED;
+	astSectorConfig[SHORTCUT_MERGE_ENTRY].SectorEndPosn		:= SHORTCUT_SHUTTLE_END_POSN;
+
+	InitDone	:= TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_M_UpdateStatus" Id="{7fe5605e-c7f4-08a0-2975-b47f8373ba34}">
+      <Declaration><![CDATA[METHOD PROTECTED _M_UpdateStatus]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF fbSector[SHORTCUT].P_SectorStatus.MoverEnteredSector.Q THEN
+	GVL_General.stTrackShortcutStatus.MoverCountOnSector	:= GVL_General.stTrackShortcutStatus.MoverCountOnSector +1;
+ELSIF fbSector[SHORTCUT].P_SectorStatus.MoverExitedSector.Q THEN
+	GVL_General.stTrackShortcutStatus.MoverCountOnSector	:= GVL_General.stTrackShortcutStatus.MoverCountOnSector -1;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

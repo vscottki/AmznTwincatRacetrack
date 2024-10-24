@@ -27,7 +27,29 @@
     "DEFAULTTIMEFORMATLOCALE": "client",
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
-    "DEFINITIONS": {},
+    "DEFINITIONS": {
+        "PLC1.E_SwitchOpMode": {
+            "attributes": {
+                "qualified_only": "",
+                "strict": ""
+            },
+            "enum": [
+                0,
+                1
+            ],
+            "options": [
+                {
+                    "label": "DivertSpecifiedCount",
+                    "value": 0
+                },
+                {
+                    "label": "DivertAllIfPossible",
+                    "value": 1
+                }
+            ],
+            "type": "integer"
+        }
+    },
     "DEFLATECOMPRESSIONLEVEL": 5,
     "DIAGNOSTICS_DOMAINS": [],
     "DISABLED_CONFIGURATION_HINTS": [],
@@ -2557,36 +2579,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.Switch": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::Switch",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.SwitchCurrent": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::SwitchCurrent",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/INT"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.SwitchOnly": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::SwitchOnly",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MAIN.Switchcounter": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2594,36 +2586,6 @@
             "MAPPING": "PLC1::MAIN::Switchcounter",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/DINT"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.TestPowerMat": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::TestPowerMat",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.WithoutSwitch": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::WithoutSwitch",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.bMagnetOn": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::bMagnetOn",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/BOOL"
             },
             "USEMAPPING": true
         },
@@ -2669,6 +2631,58 @@
                     },
                     {
                         "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stSwitchConfig.ShuttleCountToDivert": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stSwitchConfig::ShuttleCountToDivert",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/USINT"
+                    },
+                    {
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stSwitchConfig.SwitchCurrent": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stSwitchConfig::SwitchCurrent",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/INT"
+                    },
+                    {
+                        "comment": "4.0A does crash",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.MAIN.stSwitchConfig.SwitchMode": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stSwitchConfig::SwitchMode",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.E_SwitchOpMode"
+                    },
+                    {
+                        "propertyOrder": 8
                     }
                 ]
             },
@@ -3660,6 +3674,9 @@
                 "PLC1.MAIN.bStopSequence": 3,
                 "PLC1.MAIN.nCase": 3,
                 "PLC1.MAIN.stMoverConfig.NormalVelo": 3,
+                "PLC1.MAIN.stSwitchConfig.ShuttleCountToDivert": 3,
+                "PLC1.MAIN.stSwitchConfig.SwitchCurrent": 3,
+                "PLC1.MAIN.stSwitchConfig.SwitchMode": 3,
                 "Safety.GVL_Safety.SafetyOk": 3,
                 "Safety.GVL_Safety.Start": 3,
                 "Safety.MAIN.Restart": 3,

@@ -5,13 +5,17 @@
 VAR_GLOBAL CONSTANT
 //Movers
 	nNumMinMovers		: UDINT :=1;
-	nNumMaxMovers 		: UDINT :=6;
+	nNumMaxMovers 		: UDINT :=1;
 	nNumMinMCAxes		: UDINT	:=1;
 	nNumMaxMCAxes		: UDINT	:=20;
 	
 //Tracks
-	nNumMinTracks 		: UDINT :=1;
-	nNumMaxTracks 		: UDINT :=3;
+	nNumMinTracks 		: UDINT :=1; // Do not change - per NC
+	nNumMaxTracks 		: UDINT :=3; // Do not change - per NC
+	
+//
+	SHUTTLE_DIM			: UDINT := 600; //mm
+	SHUTTLE_DIM_PADDED	: UDINT := 1000; //mm
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

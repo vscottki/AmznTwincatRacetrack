@@ -6,6 +6,7 @@ STRUCT
  	MagnetValue		AT%Q* 	: INT;
 	bCmdMagnetOn 		  	: BOOL;
 	MagnetEnabled     		: BOOL;
+	DivertQueueCount		: USINT;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

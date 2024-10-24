@@ -21,17 +21,10 @@ VAR
 // Switch/Magnet
 	stSwitchConfig				: ST_SwitchConfig;
   	stSwitchStatus        		: ST_SwitchStatus;
-	
-//Configuration
-	stMoverConfig				: ST_MoverConfig;
-	stTrackGlobalConfig			: ST_TrackConfig;
-//	stPlanarTrackConfig			: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF ST_PlanarTrackConfig;
-	stPlanarTrackConfig			: ARRAY[1..3] OF ST_PlanarTrackConfig;
-	stTrackShortcutConfig		: ST_TrackShortcutConfig;
-	
+
 //Status
-	stTrackShortcutStatus		: ST_TrackSectorStatus;
-		
+
+//
 	pwm							: FB_PWM;
 	
 	IsMoverCommandedInShortcut	: BOOL;
@@ -59,7 +52,6 @@ VAR
 	                        	
 	FP_Counter 					: Tc2_Standard.R_TRIG;
 	Switchcounter 				: DINT;
-	SwitchCurrent				: INT :=9; //4.0A does crash
 	test 						: LREAL;
 	Horntimer 					: Tc2_Standard.TP; 
 	R_trigHorn 					: Tc2_Standard.R_TRIG;
@@ -148,7 +140,6 @@ FOR M := 1 TO nNumMovers DO///Movers
 //	IF ABS(GVL_Mc3.fbPlanarXtsMover[M].MoverPhysics.x - TrackPos[M][Tr].x) < 1 AND  ABS(fbPlanarXtsMover[M].MoverPhysics.y - TrackPos[M][Tr].y) < 1 THEN
 // 		GVL_Mc3.fbPlanarXtsMover[M].P_XPlanarMover.MoverTrackNr := Tr;
 //	END_IF	
-	fbSectorInterface[M].P_PlanarMover	:= 	GVL_Mc3.fbPlanarXtsMover[M].P_PlanarMover;
 	
 	IsMoverCommandedInShortcut := IsMoverCommandedInShortcut OR fbPlanarXtsMover[M].IsCommandedInShortcut;
 	IsMoverInBlockingArea := IsMoverInBlockingArea OR (GVL_Mc3.fbPlanarXtsMover[M].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND 
@@ -434,22 +425,20 @@ END_CASE
 
 stSwitchStatus.bCmdMagnetOn := FALSE;
 
-stSwitchStatus.MagnetEnabled  := MoverStop (* SafetyOK *) AND (stSwitchConfig.SwitchMode <> E_SwitchOpMode.WithoutSwitch) AND 
+//Only enable Magnet if DivertQueue = 0 
+stSwitchConfig.ModeChangeInMotionOK;
+stSwitchStatus.MagnetEnabled  := MoverStop (* SafetyOK *) AND (stSwitchConfig.ShuttleCountToDivert > 0) AND 
 									(stTrackShortcutStatus.MoverCountOnSector < stTrackShortcutConfig.AllowedMoverCountOnShortcut);
+									
 FOR nForCounter:=1 TO nNumMovers DO
 	IF stSwitchStatus.MagnetEnabled AND_THEN
 	(IsBetween(fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fTrackPosition, stSwitchConfig.fMagnetEntryPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcEntry),
 	stSwitchConfig.fMagnetExitPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcExit))) THEN
 		stSwitchStatus.bCmdMagnetOn := TRUE;
 	END_IF
-	fbSectorInterface[nForCounter].P_TrackSectorConfig 	:= stTrackShortcutConfig.stTrackSectorConfig;
-	fbSectorInterface[nForCounter].P_XtsPositionInfo	:= fbPlanarXtsMover[nForCounter].P_XtsPositionInfo;
-	fbSectorInterface[nForCounter](refPlanarTracks := stPlanarTrackConfig);
-	IF fbSectorInterface[nForCounter].P_SectorStatus.MoverEnteredSector.Q THEN
-		stTrackShortcutStatus.MoverCountOnSector	:= stTrackShortcutStatus.MoverCountOnSector +1;
-	ELSIF fbSectorInterface[nForCounter].P_SectorStatus.MoverExitedSector.Q THEN
-		stTrackShortcutStatus.MoverCountOnSector	:= stTrackShortcutStatus.MoverCountOnSector -1;
-	END_IF
+	
+	GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
+
 	fbPlanarXtsMover[nForCounter]();
 END_FOR
 
@@ -457,7 +446,7 @@ pwm();
 
 IF stSwitchStatus.MagnetEnabled AND NOT Fault THEN
   IF stSwitchStatus.bCmdMagnetOn THEN
-    stSwitchStatus.MagnetValue := SwitchCurrent*stSwitchConfig.CurrentMultFactor;
+    stSwitchStatus.MagnetValue := stSwitchConfig.SwitchCurrent*stSwitchConfig.CurrentMultFactor;
   ELSE
     stSwitchStatus.MagnetValue := 0;
   END_IF
@@ -475,13 +464,13 @@ END_IF
     <Method Name="M_WritePlanarTrackConfig" Id="{0295121c-55f9-0613-05f6-3ba76e5df670}">
       <Declaration><![CDATA[METHOD M_WritePlanarTrackConfig]]></Declaration>
       <Implementation>
-        <ST><![CDATA[stPlanarTrackConfig[E_TrackNum.Big].MCTrack			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD;
-stPlanarTrackConfig[E_TrackNum.Small].MCTrack		:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].MCTOPLC_STD;
-stPlanarTrackConfig[E_TrackNum.Main].MCTrack		:= GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD;
-
-stPlanarTrackConfig[E_TrackNum.Big].TrackIndex		:= E_TrackNum.Big;
-stPlanarTrackConfig[E_TrackNum.Small].TrackIndex	:= E_TrackNum.Small;
-stPlanarTrackConfig[E_TrackNum.Main].TrackIndex		:= E_TrackNum.Main;]]></ST>
+        <ST><![CDATA[stPlanarTrackConfig[E_TrackNum.Big].MCTrack				:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD;
+stPlanarTrackConfig[E_TrackNum.Small].MCTrack			:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].MCTOPLC_STD;
+stPlanarTrackConfig[E_TrackNum.Main].MCTrack			:= GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD;
+                                                    	
+stPlanarTrackConfig[E_TrackNum.Big].TrackIndex			:= E_TrackNum.Big;
+stPlanarTrackConfig[E_TrackNum.Small].TrackIndex		:= E_TrackNum.Small;
+stPlanarTrackConfig[E_TrackNum.Main].TrackIndex			:= E_TrackNum.Main;]]></ST>
       </Implementation>
     </Method>
   </POU>

@@ -5,9 +5,8 @@
 {attribute 'strict'}
 TYPE E_SwitchOpMode :
 (
-  WithoutSwitch := 0,
-  Blend         := 1,
-  SwitchOnly    := 2
+  DivertSpecifiedCount	:= 0,
+  DivertAllIfPossible	:= 1
 );
 END_TYPE
 ]]></Declaration>

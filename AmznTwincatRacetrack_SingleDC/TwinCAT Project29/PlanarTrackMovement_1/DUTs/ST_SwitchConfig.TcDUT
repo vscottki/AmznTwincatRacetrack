@@ -3,6 +3,7 @@
   <DUT Name="ST_SwitchConfig" Id="{1b01e06e-3ad9-017e-0490-e818c7958e80}">
     <Declaration><![CDATA[TYPE ST_SwitchConfig :
 STRUCT
+	SwitchCurrent								: INT := 9; //4.0A does crash	
 	CurrentMultFactor							: INT 	:= 1310;
 	VeloPosnCalcEntry							: LREAL := 0.08;
 	VeloPosnCalcExit							: LREAL := 0.06;
@@ -10,7 +11,9 @@ STRUCT
 	fMagnetEntryPosn 							: LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
 	fMagnetExitPosn								: LREAL := 10555; //PLEASE ENTER THE MAGNET EXIT!!!
  	SwitchMode        							: E_SwitchOpMode;
+	ModeChangeInMotionOK						: BOOL;
+	ShuttleCountToDivert						: USINT;
 END_STRUCT
-END_TYPE]]></Declaration>
+END_TYPE;]]></Declaration>
   </DUT>
 </TcPlcObject>

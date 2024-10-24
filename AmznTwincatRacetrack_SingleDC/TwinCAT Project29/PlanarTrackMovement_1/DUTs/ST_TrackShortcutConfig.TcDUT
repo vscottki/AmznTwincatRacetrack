@@ -3,10 +3,9 @@
   <DUT Name="ST_TrackShortcutConfig" Id="{26fa2e14-a928-012c-3abf-7a0b030ea531}">
     <Declaration><![CDATA[TYPE ST_TrackShortcutConfig :
 STRUCT
-	ShortcutEntryDistance			: LREAL := 4000; // mm
+	ShortcutEntryDistance			: LREAL := 4000; // mm // Switch Evaluate Trigger Position
 	AllowedMoverCountOnShortcut		: UDINT	:= GC.nNumMaxMovers;
 	TestPowerMat  					: BOOL;
-	stTrackSectorConfig				: ST_TrackSectorConfig;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
