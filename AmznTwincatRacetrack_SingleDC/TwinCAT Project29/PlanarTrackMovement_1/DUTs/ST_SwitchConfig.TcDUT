@@ -3,14 +3,16 @@
   <DUT Name="ST_SwitchConfig" Id="{1b01e06e-3ad9-017e-0490-e818c7958e80}">
     <Declaration><![CDATA[TYPE ST_SwitchConfig :
 STRUCT
-	CurrentMultFactor							: INT 	:= 1310;
+	SwitchCurrent								: LREAL := 9; //4.0A does crash at 3.2m/s	
+	CurrentMultFactor							: LREAL := 1310; // Scaling factor for 10V output=25.0A
 	VeloPosnCalcEntry							: LREAL := 0.08;
 	VeloPosnCalcExit							: LREAL := 0.06;
+	VeloCurrentCoeff							: LREAL := 1;
 	MagnetPosnComp								: LREAL := 100;
-	fMagnetEntryPosn 							: LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
-	fMagnetExitPosn								: LREAL := 10555; //PLEASE ENTER THE MAGNET EXIT!!!
  	SwitchMode        							: E_SwitchOpMode;
+	ModeChangeInMotionOK						: BOOL;
+	ShuttleCountToDivert						: USINT;
 END_STRUCT
-END_TYPE]]></Declaration>
+END_TYPE;]]></Declaration>
   </DUT>
 </TcPlcObject>

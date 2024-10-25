@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_SwitchMagnet" Id="{596e482d-b5f1-014c-1b84-be1ac17def4b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SwitchMagnet
+VAR_IN_OUT
+	stSwitchConfig				: ST_SwitchConfig;
+	ShuttleVelocity				: LREAL := GVL_General.stMoverConfig.NormalVelo;
+	Command	 		  			: BOOL;
+END_VAR
+VAR
+  	stSwitchStatus        		: ST_SwitchStatus;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Command THEN
+	stSwitchStatus.MagnetValue := LREAL_TO_INT(stSwitchConfig.SwitchCurrent*stSwitchConfig.CurrentMultFactor*stSwitchConfig.VeloCurrentCoeff);
+ELSE
+	stSwitchStatus.MagnetValue := 0;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -4,14 +4,29 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL CONSTANT
 //Movers
-	nNumMinMovers		: UDINT :=1;
-	nNumMaxMovers 		: UDINT :=6;
-	nNumMinMCAxes		: UDINT	:=1;
-	nNumMaxMCAxes		: UDINT	:=20;
-	
+	nNumMinMovers					: UDINT :=1;
+	nNumMaxMovers 					: UDINT :=1;
+	nNumMinMCAxes					: UDINT	:=1;
+	nNumMaxMCAxes					: UDINT	:=20;
+
 //Tracks
-	nNumMinTracks 		: UDINT :=1;
-	nNumMaxTracks 		: UDINT :=3;
+	nNumMinTracks 					: UDINT :=1; // Do not change - per NC
+	nNumMaxTracks 					: UDINT :=3; // Do not change - per NC
+	
+//Sectors
+	//Make same as first entry
+	MIN_SECTOR_CT					: USINT	:= 1;
+	MAGNET_COMMAND_ON				: USINT	:= 1;
+	DIVERT_OUTER_LOOP				: USINT := 2;
+	DIVERT_INNER_LOOP				: USINT := 3;
+	SHORTCUT						: USINT := 4;
+	SHORTCUT_MERGE_ENTRY			: USINT := 5;
+	//Make same as last entry       
+	MAX_SECTOR_CT					: USINT	:= 5;
+	
+// Global Position Constants
+	SHUTTLE_DIM						: LREAL := 600; //mm
+	SHUTTLE_DIM_PADDED				: LREAL := 1000; //mm
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
