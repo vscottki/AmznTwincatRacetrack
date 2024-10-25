@@ -4,7 +4,6 @@
     <Declaration><![CDATA[TYPE ST_SwitchStatus :
 STRUCT
  	MagnetValue		AT%Q* 	: INT;
-	bCmdMagnetOn 		  	: BOOL;
 	MagnetEnabled     		: BOOL;
 	DivertQueueCount		: USINT;
 END_STRUCT

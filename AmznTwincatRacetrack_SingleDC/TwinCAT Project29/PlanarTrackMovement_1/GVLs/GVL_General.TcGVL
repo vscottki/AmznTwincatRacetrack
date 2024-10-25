@@ -11,7 +11,8 @@
 	stTrackGlobalConfig			: ST_TrackConfig;
 	stPlanarTrackConfig			: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF ST_PlanarTrackConfig;
 	stTrackShortcutConfig		: ST_TrackShortcutConfig;
-                            	
+	stSwitchConfig				: ST_SwitchConfig;
+
 //Status                    	
 	stTrackShortcutStatus		: ST_TrackSectorStatus;
 END_VAR

@@ -8,7 +8,6 @@ STRUCT
 	MoverEnteredSector		: Tc2_Standard.R_TRIG;
 	MoverExitedSector		: Tc2_Standard.F_TRIG;
 END_STRUCT
-END_TYPE
-]]></Declaration>
+END_TYPE]]></Declaration>
   </DUT>
 </TcPlcObject>

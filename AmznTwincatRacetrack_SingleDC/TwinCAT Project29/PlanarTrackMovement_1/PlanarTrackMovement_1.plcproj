@@ -72,6 +72,9 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB_SwitchMagnet.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FB_TrackSector.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -286,6 +289,9 @@
   </ItemGroup>
   <ItemGroup>
     <SubObject Include="FB_PlanarXtsMover._M_UpdateStatus">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
+    <SubObject Include="FB_TrackSectors.P_SectorStatus">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
   </ItemGroup>

@@ -7,32 +7,29 @@ VAR
 	SectorIndex								: UDINT;
 
 //Configurations
-	astSectorConfig							: ARRAY[MIN_SECTOR_CT..MAX_SECTOR_CT] OF ST_TrackSectorConfig;
+	astSectorConfig							: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_TrackSectorConfig;
 
-	fbSector								: ARRAY[MIN_SECTOR_CT..MAX_SECTOR_CT] OF FB_TrackSector;
+	fbSector								: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF FB_TrackSector;
 END_VAR
 VAR_IN_OUT
 	MoverIndex								: UDINT;
 END_VAR
 VAR CONSTANT
-	SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN	: UDINT := 12000;
-	SHORTCUT_SHUTTLE_END_POSN				: UDINT := 16600;
-	//Make same as first entry
-	MIN_SECTOR_CT							: USINT	:= 1;
-	DIVERT_OUTER_LOOP						: USINT := 1;
-	DIVERT_INNER_LOOP						: USINT := 2;
-	SHORTCUT								: USINT := 3;
-	SHORTCUT_MERGE_ENTRY					: USINT := 4;
-	//Make same as last entry
-	MAX_SECTOR_CT							: USINT	:= 4;
+	MAGNET_ON_START_POSN 					: LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
+	MAGNET_ON_END_POSN						: LREAL := 10555; //PLEASE ENTER THE MAGNET EXIT!!!
+
+	SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN	: LREAL := 12000;
+	SHORTCUT_SHUTTLE_END_POSN				: LREAL := 16600;
 END_VAR
-]]></Declaration>
+VAR_OUTPUT
+	SectorStatus							: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_TrackSectorStatus;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT InitDone THEN
 	_M_Init();
 END_IF
 
-FOR SectorIndex := MIN_SECTOR_CT TO MAX_SECTOR_CT DO
+FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT DO
 	//Planar Mover
 	fbSector[SectorIndex].P_PlanarMover			:= GVL_Mc3.fbPlanarXtsMover[MoverIndex].P_PlanarMover;
 
@@ -50,21 +47,25 @@ END_FOR]]></ST>
       <Declaration><![CDATA[METHOD _M_Init]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF (GVL_General.XtsOutterLoopOid <> 0) AND (GVL_General.XtsShortcutOid <> 0) THEN
-	astSectorConfig[DIVERT_OUTER_LOOP].XtsTrackObjId		:= GVL_General.XtsOutterLoopOid;
-	astSectorConfig[DIVERT_OUTER_LOOP].SectorStartPosn		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.ShortcutEntryDistance;
-	astSectorConfig[DIVERT_OUTER_LOOP].SectorEndPosn		:= 
+	astSectorConfig[GC.MAGNET_COMMAND_ON].XtsTrackObjId			:= GVL_General.XtsOutterLoopOid;
+	astSectorConfig[GC.MAGNET_COMMAND_ON].SectorStartPosn		:= MAGNET_ON_START_POSN;
+	astSectorConfig[GC.MAGNET_COMMAND_ON].SectorEndPosn			:= MAGNET_ON_END_POSN;
+	
+	astSectorConfig[GC.DIVERT_OUTER_LOOP].XtsTrackObjId			:= GVL_General.XtsOutterLoopOid;
+	astSectorConfig[GC.DIVERT_OUTER_LOOP].SectorStartPosn		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.ShortcutEntryDistance;
+	astSectorConfig[GC.DIVERT_OUTER_LOOP].SectorEndPosn			:= 
                                                         	
-	astSectorConfig[DIVERT_INNER_LOOP].XtsTrackObjId		:= GVL_General.XtsShortcutOid;
-	astSectorConfig[DIVERT_INNER_LOOP].SectorStartPosn		:= 0;
-	astSectorConfig[DIVERT_INNER_LOOP].SectorEndPosn		:= SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
+	astSectorConfig[GC.DIVERT_INNER_LOOP].XtsTrackObjId			:= GVL_General.XtsShortcutOid;
+	astSectorConfig[GC.DIVERT_INNER_LOOP].SectorStartPosn		:= 0;
+	astSectorConfig[GC.DIVERT_INNER_LOOP].SectorEndPosn			:= SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
                                                         	
-	astSectorConfig[SHORTCUT].XtsTrackObjId					:= GVL_General.XtsShortcutOid;
-	astSectorConfig[SHORTCUT].SectorStartPosn				:= SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
-	astSectorConfig[SHORTCUT].SectorEndPosn					:= SHORTCUT_SHUTTLE_END_POSN;
+	astSectorConfig[GC.SHORTCUT].XtsTrackObjId					:= GVL_General.XtsShortcutOid;
+	astSectorConfig[GC.SHORTCUT].SectorStartPosn				:= SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
+	astSectorConfig[GC.SHORTCUT].SectorEndPosn					:= SHORTCUT_SHUTTLE_END_POSN;
 
-	astSectorConfig[SHORTCUT_MERGE_ENTRY].XtsTrackObjId		:= GVL_General.XtsShortcutOid;
-	astSectorConfig[SHORTCUT_MERGE_ENTRY].SectorStartPosn	:= SHORTCUT_SHUTTLE_END_POSN - GC.SHUTTLE_DIM_PADDED;
-	astSectorConfig[SHORTCUT_MERGE_ENTRY].SectorEndPosn		:= SHORTCUT_SHUTTLE_END_POSN;
+	astSectorConfig[GC.SHORTCUT_MERGE_ENTRY].XtsTrackObjId		:= GVL_General.XtsShortcutOid;
+	astSectorConfig[GC.SHORTCUT_MERGE_ENTRY].SectorStartPosn	:= SHORTCUT_SHUTTLE_END_POSN - GC.SHUTTLE_DIM_PADDED;
+	astSectorConfig[GC.SHORTCUT_MERGE_ENTRY].SectorEndPosn		:= SHORTCUT_SHUTTLE_END_POSN;
 
 	InitDone	:= TRUE;
 END_IF]]></ST>
@@ -73,12 +74,33 @@ END_IF]]></ST>
     <Method Name="_M_UpdateStatus" Id="{7fe5605e-c7f4-08a0-2975-b47f8373ba34}">
       <Declaration><![CDATA[METHOD PROTECTED _M_UpdateStatus]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF fbSector[SHORTCUT].P_SectorStatus.MoverEnteredSector.Q THEN
+        <ST><![CDATA[IF fbSector[GC.SHORTCUT].P_SectorStatus.MoverEnteredSector.Q THEN
 	GVL_General.stTrackShortcutStatus.MoverCountOnSector	:= GVL_General.stTrackShortcutStatus.MoverCountOnSector +1;
-ELSIF fbSector[SHORTCUT].P_SectorStatus.MoverExitedSector.Q THEN
+ELSIF fbSector[GC.SHORTCUT].P_SectorStatus.MoverExitedSector.Q THEN
 	GVL_General.stTrackShortcutStatus.MoverCountOnSector	:= GVL_General.stTrackShortcutStatus.MoverCountOnSector -1;
-END_IF]]></ST>
+END_IF
+
+SectorStatus[GC.MAGNET_COMMAND_ON] 		:= fbSector[GC.MAGNET_COMMAND_ON].P_SectorStatus;
+SectorStatus[GC.DIVERT_OUTER_LOOP] 		:= fbSector[GC.DIVERT_OUTER_LOOP].P_SectorStatus;
+SectorStatus[GC.DIVERT_INNER_LOOP] 		:= fbSector[GC.DIVERT_INNER_LOOP].P_SectorStatus;
+SectorStatus[GC.SHORTCUT] 				:= fbSector[GC.SHORTCUT].P_SectorStatus;
+SectorStatus[GC.SHORTCUT_MERGE_ENTRY] 	:= fbSector[GC.SHORTCUT_MERGE_ENTRY].P_SectorStatus;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="P_SectorStatus" Id="{c138f447-6b11-0444-0197-b6e1fc585cb1}">
+      <Declaration><![CDATA[PROPERTY P_SectorStatus : REFERENCE TO ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_TrackSectorStatus]]></Declaration>
+      <Get Name="Get" Id="{1fe4fbdc-aa9e-040a-0bfa-19f34391c5dd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_SectorStatus[GC.MAGNET_COMMAND_ON] 		REF= fbSector[GC.MAGNET_COMMAND_ON].P_SectorStatus;
+P_SectorStatus[GC.DIVERT_OUTER_LOOP] 		REF= fbSector[GC.DIVERT_OUTER_LOOP].P_SectorStatus;
+P_SectorStatus[GC.DIVERT_INNER_LOOP] 		REF= fbSector[GC.DIVERT_INNER_LOOP].P_SectorStatus;
+P_SectorStatus[GC.SHORTCUT] 				REF= fbSector[GC.SHORTCUT].P_SectorStatus;
+P_SectorStatus[GC.SHORTCUT_MERGE_ENTRY] 	REF= fbSector[GC.SHORTCUT_MERGE_ENTRY].P_SectorStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
   </POU>
 </TcPlcObject>
