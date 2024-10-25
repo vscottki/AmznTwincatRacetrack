@@ -4,22 +4,31 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SwitchMagnet
 
 VAR_INPUT
-	stSwitchConfig				: ST_SwitchConfig;
-	ShuttleVelocity				: LREAL := GVL_General.stMoverConfig.NormalVelo;
+	stSwitchConfig				: REFERENCE TO ST_SwitchConfig := GVL_General.stSwitchConfig;
+	ShuttleVelocity				: REFERENCE TO LREAL := GVL_General.stMoverConfig.NormalVelo;
 END_VAR
 VAR_IN_OUT
-	Command	 		  				: BOOL;
-END_VAR
-VAR
-  	stSwitchStatus        		: ST_SwitchStatus;
-END_VAR
-]]></Declaration>
+	Command	 		  			: BOOL;
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Command THEN
-	stSwitchStatus.MagnetValue := LREAL_TO_INT(stSwitchConfig.SwitchCurrent*stSwitchConfig.CurrentMultFactor*stSwitchConfig.VeloCurrentCoeff);
+      <ST><![CDATA[IF stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
+    GVL_General.stSwitchStatus.CurrentVelocityCoeff     := GVL_General.stSwitchConfig.CurrentVelocityCoeffNominal;
 ELSE
-	stSwitchStatus.MagnetValue := 0;
-END_IF]]></ST>
+    GVL_General.stSwitchStatus.CurrentVelocityCoeff     := GVL_General.stSwitchConfig.VelocityCoeffFactor*CurrentF_VelocityCoeff(Velocity := GVL_General.stMoverConfig.NormalVelo);
+END_IF
+
+GVL_General.stSwitchStatus.CurrentOutputMax     := (stSwitchConfig.SwitchCurrentNominal*stSwitchStatus.CurrentVelocityCoeff) + GVL_General.stSwitchConfig.PermanentMagnetForce;
+
+IF Command THEN
+	GVL_General.stSwitchStatus.MagnetValue := LREAL_TO_INT(GVL_General.stSwitchStatus.CurrentOutputMax*stSwitchConfig.CurrentMultFactor);
+ELSE
+	GVL_General.stSwitchStatus.MagnetValue := 0;
+END_IF
+
+IF stSwitchConfig.CurrentMultFactor <> 0 THEN
+    GVL_General.stSwitchStatus.CurrentOutputActual  := GVL_General.stSwitchStatus.MagnetValue / stSwitchConfig.CurrentMultFactor;
+END_IF
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

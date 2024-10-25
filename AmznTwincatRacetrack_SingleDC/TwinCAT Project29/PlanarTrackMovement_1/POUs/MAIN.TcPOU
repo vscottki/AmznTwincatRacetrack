@@ -32,6 +32,7 @@ VAR
 	Fp_error 					: R_Trig;
 	
 	MoverStop 	AT%I* 			: BOOL;
+    ResetSafetyLight AT%Q*      : BOOL;
 	MoverStopDone AT%Q*			: BOOL;
 	Info 		AT%Q*			: BOOL;
 	Operating	AT%Q*			: BOOL;
@@ -72,6 +73,7 @@ M_WritePlanarTrackConfig();
 //END_IF
 
 Emergency :=  MoverStop;
+ResetSafetyLight    := NOT MoverStop;
 
 Operating := NOT  MoverStop;
 R_trigHorn(clk := Voltage1> 10000 OR Voltage2 >10000);
@@ -114,7 +116,7 @@ IF fp_start.Q THEN
 	bStartSequence := FALSE;
 END_IF
 
-IsMoverCommandedInShortcut := FALSE;
+//IsMoverCommandedInShortcut := FALSE;
 IsMoverInBlockingArea := FALSE;
 
 	bAllDone:= TRUE;
@@ -140,7 +142,7 @@ FOR M := 1 TO nNumMovers DO///Movers
 // 		GVL_Mc3.fbPlanarXtsMover[M].P_XPlanarMover.MoverTrackNr := Tr;
 //	END_IF	
 	
-	IsMoverCommandedInShortcut := IsMoverCommandedInShortcut OR fbPlanarXtsMover[M].IsCommandedInShortcut;
+//	IsMoverCommandedInShortcut := IsMoverCommandedInShortcut OR fbPlanarXtsMover[M].IsCommandedInShortcut;
 //	IsMoverInBlockingArea := IsMoverInBlockingArea OR (GVL_Mc3.fbPlanarXtsMover[M].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND 
 //														IsBetween(value := GVL_Mc3.fbPlanarXtsMover[M].P_PlanarMover.MoverPos, 
 //														minV := GVL_General.stSwitchConfig.fMagnetEntryPosn - GVL_General.stSwitchConfig.MagnetPosnComp, 
@@ -152,7 +154,7 @@ FOR M := 1 TO nNumMovers DO///Movers
 	IF Fp_error.Q THEN
 		nCase := 140;
 		Fault := TRUE;
-		bCmdMagnetOn := FALSE;
+//		bCmdMagnetOn := FALSE;
 	END_IF
 END_FOR
 
@@ -275,9 +277,9 @@ CASE nCase OF
          			
    						IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackShortcutConfig.ShortcutEntryDistance AND 
            					 (GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID) THEN //     MCTrackOid_MainSemicircle
-							IF MagnetEnabled THEN
+							IF bCmdMagnetOn THEN
 								nMoveState[nForCounter]     := 40;	// 40- SmallLoop
-								IsMoverCommandedInShortcut  := TRUE;
+//								IsMoverCommandedInShortcut  := TRUE;
 							ELSE
             					nMoveState[nForCounter]				:= 20;	// 20 - BigLoop  
 							END_IF
@@ -424,28 +426,32 @@ END_CASE
 
 //stSwitchStatus.bCmdMagnetOn := FALSE;
 
-//Only enable Magnet if DivertQueue = 0 
-//stSwitchConfig.ModeChangeInMotionOK;
+
+
+IF stSwitchConfig.ModeChangeInMotionOK THEN
+    stSwitchConfig.SwitchModeInternal   := stSwitchConfig.SwitchModeHMI;
+END_IF
 MagnetEnabled  := MoverStop (* SafetyOK *) AND NOT Fault;
 //AND (stSwitchConfig.ShuttleCountToDivert > 0) AND (stTrackShortcutStatus.MoverCountOnSector < stTrackShortcutConfig.AllowedMoverCountOnShortcut);
 									
 FOR nForCounter:=1 TO nNumMovers DO
-	IF MagnetEnabled AND_THEN TrackSectors[nForCounter].SectorStatus[GC.MAGNET_COMMAND_ON].MoverIsOnSector THEN
-//	(IsBetween(fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fTrackPosition, stSwitchConfig.fMagnetEntryPosn - (stMoverConfig.NormalVelo*stSwitchConfig.VeloPosnCalcEntry),
-//	GVL_General.stSwitchConfig.fMagnetExitPosn - (stMoverConfig.NormalVelo*GVL_General.stSwitchConfig.VeloPosnCalcExit))) THEN
+    //Only enable Magnet if DivertQueue = 0
+    {warning <'Adjust Multi Sector for Only Into Shortcut?'>}
+    stSwitchConfig.ModeChangeInMotionOK := NOT TrackSectors[nForCounter].ShortcutEntrySectorStatus.MoverIsOnSector;
+
+	IF MagnetEnabled AND (GVL_General.stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert > 0) AND_THEN 
+        TrackSectors[nForCounter].SingularSectorStatuses[GC.MAGNETON_SECTOR].MoverIsOnSector THEN
 		bCmdMagnetOn := TRUE;
 	END_IF
-	
+
 	GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
 
 	fbPlanarXtsMover[nForCounter]();
 END_FOR
 
-IF MagnetEnabled THEN
- 	SwitchMagnet(stSwitchConfig := GVL_General.stSwitchConfig, 
+SwitchMagnet(stSwitchConfig := GVL_General.stSwitchConfig, 
 				ShuttleVelocity := GVL_General.stMoverConfig.NormalVelo, 
 				Command := bCmdMagnetOn);
-END_IF
 
 pwm();
 

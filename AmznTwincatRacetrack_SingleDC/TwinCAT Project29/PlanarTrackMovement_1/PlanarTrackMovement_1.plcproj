@@ -36,6 +36,9 @@
     <Compile Include="DUTs\ST_MoverStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_DivertConfig.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_SwitchStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -72,16 +75,22 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CurrentF_VelocityCoeff.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FB_SwitchMagnet.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_TrackSector.TcPOU">
+    <Compile Include="POUs\FB_SingularTrackSector.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_PWM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_TrackSectors.TcPOU">
+    <Compile Include="POUs\FB_ContiguousTrackSectors.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\PositionF_CurrentCoeff.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\ReadTcCom.TcPOU">
@@ -289,9 +298,6 @@
   </ItemGroup>
   <ItemGroup>
     <SubObject Include="FB_PlanarXtsMover._M_UpdateStatus">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </SubObject>
-    <SubObject Include="FB_TrackSectors.P_SectorStatus">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
   </ItemGroup>

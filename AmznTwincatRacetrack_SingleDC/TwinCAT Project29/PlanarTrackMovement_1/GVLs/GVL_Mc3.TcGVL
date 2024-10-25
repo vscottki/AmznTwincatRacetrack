@@ -7,17 +7,17 @@
  	//Track_SmallCircle	: 	MC_PlanarTrack;
 	
 {warning <'bundle FB_Track'>}
-	TrackSectors				: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
-	MC_Tracks    		    :	ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF Tc3_Mc3PlanarMotion.MC_PlanarTrack;
-	MC_Trackfeedback	 	:	ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
-	TrackTrail 			    :	Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
+	TrackSectors			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ContiguousTrackSectors;
+	MC_Tracks    		    : ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF Tc3_Mc3PlanarMotion.MC_PlanarTrack;
+	MC_Trackfeedback	 	: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
+	TrackTrail 			    : Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
 	
 {warning <'bundle FB_PlanarMover'>}
-	fbPlanarXtsMover		:	ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_PlanarXtsMover;
-	MoverFeedback		    :	ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
-	aiXpuXtsMover      	:	ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_XTS_Utility.I_TcIoXtsXpuMover;
+	fbPlanarXtsMover		: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_PlanarXtsMover;
+	MoverFeedback		    : ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
+	aiXpuXtsMover       	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 
-//	Mover				        :	ARRAY[0..nNumMaxMovers] OF MoverSort;
+//	Mover				       :	ARRAY[0..nNumMaxMovers] OF MoverSort;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

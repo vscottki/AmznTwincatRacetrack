@@ -3,9 +3,11 @@
   <GVL Name="GC" Id="{fd69563d-84d2-02e1-2244-b5fb69e7506b}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL CONSTANT
-//Movers
+//Movers-PLC
 	nNumMinMovers					: UDINT :=1;
-	nNumMaxMovers 					: UDINT :=2;
+	nNumMaxMovers 					: UDINT :=1;
+
+//Movers-MC
 	nNumMinMCAxes					: UDINT	:=1;
 	nNumMaxMCAxes					: UDINT	:=20;
 
@@ -16,11 +18,11 @@ VAR_GLOBAL CONSTANT
 //Sectors
 	//Make same as first entry
 	MIN_SECTOR_CT					: USINT	:= 1;
-	MAGNET_COMMAND_ON				: USINT	:= 1;
-	DIVERT_OUTER_LOOP				: USINT := 2;
-	DIVERT_INNER_LOOP				: USINT := 3;
-	SHORTCUT						: USINT := 4;
-	SHORTCUT_MERGE_ENTRY			: USINT := 5;
+	MAGNETON_SECTOR		    		: USINT	:= 1;
+	DIVERT_TRIG_ENDOUTERLOOP_SECTOR : USINT := 2;
+	DIVERT_STARTINNERLOOP_SECTOR	: USINT := 3;
+	SHORTCUT_INTERNAL_SECTOR		: USINT := 4;
+	SHORTCUT_MERGEWAIT_SECTOR		: USINT := 5;
 	//Make same as last entry       
 	MAX_SECTOR_CT					: USINT	:= 5;
 	

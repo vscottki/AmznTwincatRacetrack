@@ -3,15 +3,22 @@
   <DUT Name="ST_SwitchConfig" Id="{1b01e06e-3ad9-017e-0490-e818c7958e80}">
     <Declaration><![CDATA[TYPE ST_SwitchConfig :
 STRUCT
-	SwitchCurrent								: LREAL := 9; //4.0A does crash at 3.2m/s	
+	MagnetStartPosition				    	    : LREAL := 10000; // mm
+	MagnetEndPosition				    	    : LREAL := 10555; // mm
+	SwitchCurrentNominal						: LREAL := 9; // A
 	CurrentMultFactor							: LREAL := 1310; // Scaling factor for 10V output=25.0A
-	VeloPosnCalcEntry							: LREAL := 0.08;
-	VeloPosnCalcExit							: LREAL := 0.06;
-	VeloCurrentCoeff							: LREAL := 1;
+    UseNominalCurrentVeloSetpoints              : BOOL  := TRUE;
+    PosnCurrentCoeffNominal                     : LREAL := 0.1087;
+	PosnCoilResponseTimeCoeffNominal			: LREAL := 0.978;
+	CurrentVelocityCoeffNominal         		: LREAL := 1;
+    VelocityCoeffNominal                        : LREAL := 1;
+    VelocityCoeffPower                          : LREAL := 2;
+    VelocityCoeffFactor                         : LREAL := 0.00000007; //E-8
+    PermanentMagnetForce                        : LREAL := 0;
 //	MagnetPosnComp								: LREAL := 100;
- 	SwitchMode        							: E_SwitchOpMode;
+ 	SwitchModeHMI        						: ST_DivertConfig;
+ 	SwitchModeInternal    						: ST_DivertConfig;
 	ModeChangeInMotionOK						: BOOL;
-	ShuttleCountToDivert						: USINT;
 END_STRUCT
 END_TYPE;]]></Declaration>
   </DUT>

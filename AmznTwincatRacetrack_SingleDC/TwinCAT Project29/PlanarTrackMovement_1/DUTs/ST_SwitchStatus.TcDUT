@@ -3,9 +3,14 @@
   <DUT Name="ST_SwitchStatus" Id="{6e0f7c0e-6a92-0c57-26a9-be3a66aee476}">
     <Declaration><![CDATA[TYPE ST_SwitchStatus :
 STRUCT
- 	MagnetValue		AT%Q* 	: INT;
-	MagnetEnabled     		: BOOL;
-	DivertQueueCount		: USINT;
+ 	MagnetValue		        AT%Q* 	: INT;
+	MagnetEnabled     	        	: BOOL;
+    CurrentOutputActual             : LREAL;
+    CurrentOutputMax                : LREAL;
+    PosnCoilResponseTimeCoeff       : LREAL := 0.978;
+    PosnCurrentCoeff                : LREAL := 0.1087;
+	CurrentVelocityCoeff    		: LREAL := 1;
+    VelocityCoeffNominal            : LREAL := 1;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

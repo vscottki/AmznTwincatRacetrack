@@ -5,20 +5,21 @@
 	aStopPositions 					: ARRAY [GC.nNumMinMovers..GC.nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
 	XtsOutterLoopOid				: OTCID := 16#1010480;
 	XtsShortcutOid					: OTCID := 16#1010490;
-                            	
-//Configuration             	
-	stMoverConfig						: ST_MoverConfig;
-	stTrackGlobalConfig			: ST_TrackConfig;
-	stPlanarTrackConfig			: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF ST_PlanarTrackConfig;
-	stTrackShortcutConfig		: ST_TrackShortcutConfig;
+
+//Configuration
+	stMoverConfig					: ST_MoverConfig;
+	stTrackGlobalConfig				: ST_TrackConfig;
+	stPlanarTrackConfig				: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF ST_PlanarTrackConfig;
+	stTrackShortcutConfig			: ST_TrackShortcutConfig;
 	stSwitchConfig					: ST_SwitchConfig;
 
-//Status                    	
-	stTrackShortcutStatus		: ST_TrackSectorStatus;
+//Status
+  	stSwitchStatus        		    : ST_SwitchStatus;
+
 END_VAR
 
 VAR_GLOBAL //PERSISTENT
-	nNumMovers							: UDINT := 2;
+	nNumMovers						: UDINT := 1;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
