@@ -77,7 +77,7 @@ Operating := NOT  MoverStop;
 R_trigHorn(clk := Voltage1> 10000 OR Voltage2 >10000);
 Horntimer(in:= ( R_trigHorn.Q ) , PT:= T#2S,Q=> info);
 
-IF nCASE > 90 THEN
+IF nCase > 90 THEN
 	Process := TRUE;
 ELSE 
 	Process := FALSE;	

@@ -53,7 +53,7 @@ END_FOR]]></ST>
 	
 	astSectorConfig[GC.DIVERT_OUTER_LOOP].XtsTrackObjId			:= GVL_General.XtsOutterLoopOid;
 	astSectorConfig[GC.DIVERT_OUTER_LOOP].SectorStartPosn		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.ShortcutEntryDistance;
-	astSectorConfig[GC.DIVERT_OUTER_LOOP].SectorEndPosn			:= 
+	astSectorConfig[GC.DIVERT_OUTER_LOOP].SectorEndPosn			:= 7777;
                                                         	
 	astSectorConfig[GC.DIVERT_INNER_LOOP].XtsTrackObjId			:= GVL_General.XtsShortcutOid;
 	astSectorConfig[GC.DIVERT_INNER_LOOP].SectorStartPosn		:= 0;

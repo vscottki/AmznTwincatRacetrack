@@ -8,7 +8,7 @@ STRUCT
 	VeloPosnCalcEntry							: LREAL := 0.08;
 	VeloPosnCalcExit							: LREAL := 0.06;
 	VeloCurrentCoeff							: LREAL := 1;
-	MagnetPosnComp								: LREAL := 100;
+//	MagnetPosnComp								: LREAL := 100;
  	SwitchMode        							: E_SwitchOpMode;
 	ModeChangeInMotionOK						: BOOL;
 	ShuttleCountToDivert						: USINT;
