@@ -84,12 +84,12 @@ fbMultiSectorCompleteShortcut(refPlanarTracks := GVL_General.stPlanarTrackConfig
 	END_IF
 	
 	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].OriginOnlyXtsTrackObjId		:= GVL_General.XtsOutterLoopOid;
-	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].SectorStartPosn		        := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.ShortcutEntryDistance;
-	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].SectorEndPosn		        := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
+	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].SectorStartPosn		        := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.MagnetTriggerWindowStart;
+	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].SectorEndPosn		        := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.MagnetTriggerWindowEnd;
 	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].PositionsSpanXtsTracks	    := FALSE;
-    IF astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].PositionsSpanXtsTracks THEN
-        astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].DestinationXtsTrackObjId  := GVL_General.XtsShortcutOid;
-	END_IF
+//    IF astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].PositionsSpanXtsTracks THEN
+//        astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].DestinationXtsTrackObjId  := GVL_General.XtsShortcutOid;
+//	END_IF
                                                         	
 	astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].OriginOnlyXtsTrackObjId		:= GVL_General.XtsShortcutOid;
 	astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].SectorStartPosn		        := 0;

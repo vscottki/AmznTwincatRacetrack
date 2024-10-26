@@ -275,7 +275,7 @@ CASE nCase OF
 					
 				10: //Decision state to route mover through the switch or continue on the outer loop
          			
-   						IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackShortcutConfig.ShortcutEntryDistance AND 
+   						IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackShortcutConfig.MagnetTriggerWindowStart AND 
            					 (GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID) THEN //     MCTrackOid_MainSemicircle
 							IF bCmdMagnetOn THEN
 								nMoveState[nForCounter]     := 40;	// 40- SmallLoop
@@ -296,7 +296,7 @@ CASE nCase OF
 				
 					
 				30:
-					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackShortcutConfig.ShortcutEntryDistance AND GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID AND 
+					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackShortcutConfig.MagnetTriggerWindowStart AND GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID AND 
 						GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN//      MCTrackOid_BigSemicircle THEN
 						nMoveState[nForCounter] := 60;
 					END_IF				
@@ -311,7 +311,7 @@ CASE nCase OF
 					nMoveState[nForCounter] := 50;
 			
 				50:
-					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.small].GetLength()-stTrackShortcutConfig.ShortcutEntryDistance AND 
+					IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos > GVL_Mc3.MC_Tracks[E_TrackNum.small].GetLength()-stTrackShortcutConfig.MagnetTriggerWindowStart AND 
 					GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID THEN// MCTrackOid_Shortcut THEN
 						nMoveState[nForCounter] := 60;
 					END_IF

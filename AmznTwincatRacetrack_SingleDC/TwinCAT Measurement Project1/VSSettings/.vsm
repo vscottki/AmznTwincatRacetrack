@@ -526,9 +526,16 @@
         </Node>
         <Node>
           <Title>Sectors</Title>
-          <Expanded>False</Expanded>
+          <Expanded>True</Expanded>
           <FileName></FileName>
-          <Children />
+          <Children>
+            <Node>
+              <Title>Axis Group (1)</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+          </Children>
         </Node>
         <Node>
           <Title>Trigger</Title>

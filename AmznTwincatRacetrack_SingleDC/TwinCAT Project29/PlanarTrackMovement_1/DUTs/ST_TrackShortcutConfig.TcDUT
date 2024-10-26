@@ -3,7 +3,8 @@
   <DUT Name="ST_TrackShortcutConfig" Id="{26fa2e14-a928-012c-3abf-7a0b030ea531}">
     <Declaration><![CDATA[TYPE ST_TrackShortcutConfig :
 STRUCT
-	ShortcutEntryDistance			: LREAL := 4000; // mm // Switch Evaluate Trigger Position
+	MagnetTriggerWindowStart		: LREAL := 4000; // mm // Switch Entry Trigger Sector
+	MagnetTriggerWindowEnd  		: LREAL := 2000; // mm // Switch Entry Trigger Sector
 	AllowedMoverCountOnShortcut		: UDINT	:= GC.nNumMaxMovers;
 	TestPowerMat  					: BOOL;
 END_STRUCT
