@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_SingularTrackSector" Id="{454c8ee6-eb93-03bb-3d09-d82885cc2db0}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_SingularTrackSector
+    <Declaration><![CDATA[{warning <'Multi will not function for Sectors that span multiple XTS tracks'>}    
+FUNCTION_BLOCK FB_SingularTrackSector
 VAR_INPUT
 	PlanarTrackIndex				: E_TrackNum := E_TrackNum.Small;
 END_VAR
@@ -48,17 +49,11 @@ _M_IsOnPlanarSector	:= (refPlanarMover.TrackID = refPlanarTracks[(PlanarTrackInd
     <Method Name="_M_IsOnXtsSector" Id="{6fb38ca4-6b76-0afd-297f-a5f43cfa3834}">
       <Declaration><![CDATA[METHOD PROTECTED _M_IsOnXtsSector : BOOL]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF stSectorConfig.PositionsSpanXtsTracks THEN
-    _M_IsOnXtsSector	:= (refXtsMover.nTrackObjectid = stSectorConfig.OriginOnlyXtsTrackObjId) AND
-					IsBetween(value := refXtsMover.fTrackPosition, 
-								minV := stSectorConfig.SectorStartPosn, 
-								maxV := stSectorConfig.SectorEndPosn);
-ELSE
-    _M_IsOnXtsSector	:= (refXtsMover.nTrackObjectid = stSectorConfig.OriginOnlyXtsTrackObjId) AND
-					IsBetween(value := refXtsMover.fTrackPosition, 
-								minV := stSectorConfig.SectorStartPosn, 
-								maxV := stSectorConfig.SectorEndPosn);
-END_IF]]></ST>
+        <ST><![CDATA[_M_IsOnXtsSector	:= (refXtsMover.nTrackObjectid = stSectorConfig.XtsObjId) OR
+											(refXtsMover.nPartObjectid = stSectorConfig.XtsObjId) AND
+											IsBetween(value := refXtsMover.fTrackPosition, 
+											minV := stSectorConfig.SectorStartPosn, 
+											maxV := stSectorConfig.SectorEndPosn);]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_UpdateSectorStatus" Id="{3dbda7bd-d78d-0797-197a-6bd81167f773}">

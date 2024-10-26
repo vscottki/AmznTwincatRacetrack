@@ -3,11 +3,9 @@
   <DUT Name="ST_TrackSectorConfig" Id="{77932430-4813-013f-16b4-5b3df9147ac2}">
     <Declaration><![CDATA[TYPE ST_TrackSectorConfig :
 STRUCT
-	OriginOnlyXtsTrackObjId	    : OTCID;
-	DestinationXtsTrackObjId	: OTCID;
+	XtsObjId	    : OTCID;
 	SectorStartPosn				: LREAL;
 	SectorEndPosn				: LREAL;
-    PositionsSpanXtsTracks      : BOOL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

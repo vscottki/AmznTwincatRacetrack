@@ -68,7 +68,7 @@ fbMultiSectorCompleteShortcut(refPlanarTracks := GVL_General.stPlanarTrackConfig
       <Declaration><![CDATA[METHOD _M_Configurations]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF (GVL_General.XtsOutterLoopOid <> 0) AND (GVL_General.XtsShortcutOid <> 0) THEN
-	astSectorConfig[GC.MAGNETON_SECTOR].OriginOnlyXtsTrackObjId			            := GVL_General.XtsOutterLoopOid;
+	astSectorConfig[GC.MAGNETON_SECTOR].XtsObjId			            := GVL_General.XtsOutterLoopOid;
     
     IF GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
         GVL_General.stSwitchStatus.PosnCurrentCoeff                                 := GVL_General.stSwitchConfig.PosnCoilResponseTimeCoeffNominal;
@@ -77,62 +77,31 @@ fbMultiSectorCompleteShortcut(refPlanarTracks := GVL_General.stPlanarTrackConfig
 	END_IF
     astSectorConfig[GC.MAGNETON_SECTOR].SectorStartPosn		                        := GVL_General.stSwitchConfig.MagnetStartPosition*GVL_General.stSwitchStatus.PosnCurrentCoeff;
     astSectorConfig[GC.MAGNETON_SECTOR].SectorEndPosn			                    := GVL_General.stSwitchConfig.MagnetEndPosition*GVL_General.stSwitchStatus.PosnCurrentCoeff;
-
-	astSectorConfig[GC.MAGNETON_SECTOR].PositionsSpanXtsTracks			            := TRUE;
-    IF astSectorConfig[GC.MAGNETON_SECTOR].PositionsSpanXtsTracks THEN
-        astSectorConfig[GC.MAGNETON_SECTOR].DestinationXtsTrackObjId                := GVL_General.XtsShortcutOid;
-	END_IF
 	
-	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].OriginOnlyXtsTrackObjId		:= GVL_General.XtsOutterLoopOid;
+	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].XtsObjId		:= GVL_General.XtsOutterLoopOid;
 	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].SectorStartPosn		        := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.MagnetTriggerWindowStart;
 	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].SectorEndPosn		        := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GVL_General.stTrackShortcutConfig.MagnetTriggerWindowEnd;
-	astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].PositionsSpanXtsTracks	    := FALSE;
-//    IF astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].PositionsSpanXtsTracks THEN
-//        astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].DestinationXtsTrackObjId  := GVL_General.XtsShortcutOid;
-//	END_IF
-                                                        	
-	astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].OriginOnlyXtsTrackObjId		:= GVL_General.XtsShortcutOid;
+                                        	
+	astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].XtsObjId		:= GVL_General.XtsShortcutOid;
 	astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].SectorStartPosn		        := 0;
 	astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].SectorEndPosn			        := SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
-	astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].PositionsSpanXtsTracks			:= FALSE;
-//    IF astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].PositionsSpanXtsTracks THEN
-//        astSectorConfig[GC.DIVERT_STARTINNERLOOP_SECTOR].DestinationXtsTrackObjId                := GVL_General.XtsShortcutOid;
-//	END_IF
-                                                        	
-	astSectorConfig[GC.SHORTCUT_INTERNAL_SECTOR].OriginOnlyXtsTrackObjId			:= GVL_General.XtsShortcutOid;
+                                          	
+	astSectorConfig[GC.SHORTCUT_INTERNAL_SECTOR].XtsObjId			:= GVL_General.XtsShortcutOid;
 	astSectorConfig[GC.SHORTCUT_INTERNAL_SECTOR].SectorStartPosn			        := SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
 	astSectorConfig[GC.SHORTCUT_INTERNAL_SECTOR].SectorEndPosn				        := SHORTCUT_SHUTTLE_END_POSN;
-	astSectorConfig[GC.SHORTCUT_INTERNAL_SECTOR].PositionsSpanXtsTracks			    := FALSE;
-//    IF astSectorConfig[GC.SHORTCUT_INTERNAL_SECTOR].PositionsSpanXtsTracks THEN
-//        astSectorConfig[GC.SHORTCUT_INTERNAL_SECTOR].DestinationXtsTrackObjId                := GVL_General.XtsShortcutOid;
-//	END_IF
 
-	astSectorConfig[GC.SHORTCUT_MERGEWAIT_SECTOR].OriginOnlyXtsTrackObjId		    := GVL_General.XtsShortcutOid;
+	astSectorConfig[GC.SHORTCUT_MERGEWAIT_SECTOR].XtsObjId		    := GVL_General.XtsShortcutOid;
 	astSectorConfig[GC.SHORTCUT_MERGEWAIT_SECTOR].SectorStartPosn	                := SHORTCUT_SHUTTLE_END_POSN - GC.SHUTTLE_DIM_PADDED;
 	astSectorConfig[GC.SHORTCUT_MERGEWAIT_SECTOR].SectorEndPosn		                := SHORTCUT_SHUTTLE_END_POSN;
-	astSectorConfig[GC.SHORTCUT_MERGEWAIT_SECTOR].PositionsSpanXtsTracks			:= FALSE;
-//    IF astSectorConfig[GC.SHORTCUT_MERGEWAIT_SECTOR].PositionsSpanXtsTracks THEN
-//        astSectorConfig[GC.SHORTCUT_MERGEWAIT_SECTOR].DestinationXtsTrackObjId                := GVL_General.XtsShortcutOid;
-//	END_IF
-
 
     //Multi Sector references configuration of other singular sectors
-    {warning <'Multi will not function for Sectors that span multiple XTS tracks'>}    
-    stMultiSectorShortcutEntryConfig.OriginOnlyXtsTrackObjId                := GVL_General.XtsOutterLoopOid;
+    stMultiSectorShortcutEntryConfig.XtsObjId                := GVL_General.XtsOutterLoopOid;
     stMultiSectorShortcutEntryConfig.SectorStartPosn                        := astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].SectorStartPosn;
     stMultiSectorShortcutEntryConfig.SectorEndPosn                          := SHORTCUT_SHUTTLE_FULLY_INGRESSED_POSN;
-    stMultiSectorShortcutEntryConfig.PositionsSpanXtsTracks                 := TRUE;
-    IF stMultiSectorShortcutEntryConfig.PositionsSpanXtsTracks THEN
-        stMultiSectorShortcutEntryConfig.DestinationXtsTrackObjId           := GVL_General.XtsShortcutOid;
-	END_IF
 
-    stMultiSectorEntryAndShortcutConfig.OriginOnlyXtsTrackObjId             := GVL_General.XtsOutterLoopOid;
+    stMultiSectorEntryAndShortcutConfig.XtsObjId             := GVL_General.XtsOutterLoopOid;
     stMultiSectorEntryAndShortcutConfig.SectorStartPosn                     := astSectorConfig[GC.DIVERT_TRIG_ENDOUTERLOOP_SECTOR].SectorStartPosn;
     stMultiSectorEntryAndShortcutConfig.SectorEndPosn                       := astSectorConfig[GC.SHORTCUT_MERGEWAIT_SECTOR].SectorEndPosn;
-    stMultiSectorEntryAndShortcutConfig.PositionsSpanXtsTracks              := TRUE;
-    IF stMultiSectorEntryAndShortcutConfig.PositionsSpanXtsTracks THEN
-        stMultiSectorEntryAndShortcutConfig.DestinationXtsTrackObjId        := GVL_General.XtsShortcutOid;
-	END_IF
 
 END_IF]]></ST>
       </Implementation>
