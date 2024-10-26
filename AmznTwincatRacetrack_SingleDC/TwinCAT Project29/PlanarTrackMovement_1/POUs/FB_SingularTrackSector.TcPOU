@@ -40,17 +40,18 @@ UpperBoundPlanarTrackConfig	:= UPPER_BOUND(refPlanarTracks,1);]]></ST>
     <Method Name="_M_IsOnPlanarSector" Id="{801ce463-9c2b-0c61-1ed8-bdb6b24d5f35}">
       <Declaration><![CDATA[METHOD PROTECTED _M_IsOnPlanarSector : BOOL]]></Declaration>
       <Implementation>
-        <ST><![CDATA[{warning <'Set index based on external configuration value'>}
-//note refPlanarTracks ARRAY is 0-based!
+        <ST><![CDATA[//note refPlanarTracks ARRAY is 0-based!
 _M_IsOnPlanarSector	:= (refPlanarMover.TrackID = refPlanarTracks[(PlanarTrackIndex-1)].MCTrack.TrackOID) 
-						AND (refPlanarMover.MoverPos = refXtsMover.fPartPosition);]]></ST>
+						AND IsBetween(value := refPlanarMover.MoverPos, 
+											minV := stSectorConfig.SectorStartPosn, 
+											maxV := stSectorConfig.SectorEndPosn);]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_IsOnXtsSector" Id="{6fb38ca4-6b76-0afd-297f-a5f43cfa3834}">
       <Declaration><![CDATA[METHOD PROTECTED _M_IsOnXtsSector : BOOL]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_M_IsOnXtsSector	:= (refXtsMover.nTrackObjectid = stSectorConfig.XtsObjId) OR
-											(refXtsMover.nPartObjectid = stSectorConfig.XtsObjId) AND
+        <ST><![CDATA[_M_IsOnXtsSector	:= ((refXtsMover.nTrackObjectid = stSectorConfig.XtsObjId) OR
+											(refXtsMover.nPartObjectid = stSectorConfig.XtsObjId)) AND
 											IsBetween(value := refXtsMover.fTrackPosition, 
 											minV := stSectorConfig.SectorStartPosn, 
 											maxV := stSectorConfig.SectorEndPosn);]]></ST>
@@ -59,7 +60,7 @@ _M_IsOnPlanarSector	:= (refPlanarMover.TrackID = refPlanarTracks[(PlanarTrackInd
     <Method Name="_M_UpdateSectorStatus" Id="{3dbda7bd-d78d-0797-197a-6bd81167f773}">
       <Declaration><![CDATA[METHOD PROTECTED _M_UpdateSectorStatus]]></Declaration>
       <Implementation>
-        <ST><![CDATA[stTrackSectorStatus.MoverIsOnSector	:= _M_IsOnXtsSector(); // AND _M_IsOnPlanarSector();
+        <ST><![CDATA[stTrackSectorStatus.MoverIsOnSector	:= _M_IsOnXtsSector() OR _M_IsOnPlanarSector();
 
 stTrackSectorStatus.MoverEnteredSector(CLK := stTrackSectorStatus.MoverIsOnSector);
 stTrackSectorStatus.MoverExitedSector(CLK := stTrackSectorStatus.MoverIsOnSector);]]></ST>
