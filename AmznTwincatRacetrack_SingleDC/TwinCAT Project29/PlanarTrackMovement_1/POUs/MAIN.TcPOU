@@ -434,16 +434,19 @@ IF stSwitchConfig.ModeChangeInMotionOK THEN
     stSwitchConfig.SwitchModeInternal   := stSwitchConfig.SwitchModeHMI;
 END_IF
 MagnetEnabled  := MoverStop (* SafetyOK *) AND NOT Fault;
-//AND (stSwitchConfig.ShuttleCountToDivert > 0) AND (stTrackShortcutStatus.MoverCountOnSector < stTrackShortcutConfig.AllowedMoverCountOnShortcut);
-									
+//AND (stSwitchConfig.ShuttleCountToDivert > 0) AND (stTrackShortcutStatus.MoverCountOnSector < stTrackShortcutConfig.AllowedMoverCountOnShortcut
+
+SwitchMagnet(stSwitchConfig := GVL_General.stSwitchConfig, 
+				ShuttleVelocity := GVL_General.stMoverConfig.NormalVelo, 
+				Command := bCmdMagnetOn);
+
 FOR nForCounter:=1 TO nNumMovers DO
     //Only enable Magnet if DivertQueue = 0
     {warning <'Adjust Multi Sector for Only Into Shortcut?'>}
     stSwitchConfig.ModeChangeInMotionOK := NOT TrackSectors[nForCounter].ShortcutEntrySectorStatus.MoverIsOnSector;
 
-	IF MagnetEnabled AND (GVL_General.stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert > 0) AND_THEN 
-        TrackSectors[nForCounter].SingularSectorStatuses[GC.MAGNETON_SECTOR].MoverIsOnSector THEN
-		bCmdMagnetOn := TRUE;
+	IF MagnetEnabled AND (GVL_General.stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert > 0) THEN // Permissive & Configuration OK
+		bCmdMagnetOn := TrackSectors[nForCounter].SingularSectorStatuses[GC.MAGNETON_SECTOR].MoverIsOnSector;
 	END_IF
 
 	GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
@@ -451,9 +454,7 @@ FOR nForCounter:=1 TO nNumMovers DO
 	fbPlanarXtsMover[nForCounter]();
 END_FOR
 
-SwitchMagnet(stSwitchConfig := GVL_General.stSwitchConfig, 
-				ShuttleVelocity := GVL_General.stMoverConfig.NormalVelo, 
-				Command := bCmdMagnetOn);
+
 
 pwm();
 

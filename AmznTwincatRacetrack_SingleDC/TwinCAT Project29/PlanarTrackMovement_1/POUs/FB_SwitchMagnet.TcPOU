@@ -6,8 +6,6 @@
 VAR_INPUT
 	stSwitchConfig				: REFERENCE TO ST_SwitchConfig := GVL_General.stSwitchConfig;
 	ShuttleVelocity				: REFERENCE TO LREAL := GVL_General.stMoverConfig.NormalVelo;
-END_VAR
-VAR_IN_OUT
 	Command	 		  			: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
