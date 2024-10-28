@@ -88,6 +88,25 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="P_CmdDivert" Id="{8cede827-2b25-094d-2c84-715767aaf20f}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_CmdDivert : BOOL]]></Declaration>
+      <Get Name="Get" Id="{ee22a2e2-25c9-085f-3a80-3e499cb6195c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_CmdDivert	:= stMoverStatus.CommandedToDivert;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{c98a0e2b-686e-04d7-127e-7398704c1573}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[stMoverStatus.CommandedToDivert := P_CmdDivert;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Property Name="P_MoverPhysics" Id="{056b1259-392a-0821-097b-b08bee10a569}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_MoverPhysics : REFERENCE TO Tc3_Physics.PositionXYC]]></Declaration>
       <Get Name="Get" Id="{e7ba31e5-6730-0d69-35c1-51b7d57fd5fd}">
@@ -169,10 +188,10 @@ END_IF
 IF iTcIoXtsXpuMover <> Tc3_Module.NULL THEN
   //SmallCircle
   IF _PlanarTrail.GetTrackOidAt(1) = MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID   THEN
-    iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsShortcutOid);
+    iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsCompleteTrackInnerOID);
   //BigCircle
   ELSIF _PlanarTrail.GetTrackOidAt(1) =MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN
-    iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsOutterLoopOid);
+    iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsCompleteTrackOuterOID);
   END_IF
 END_IF
 

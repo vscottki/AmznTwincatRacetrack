@@ -6,7 +6,7 @@ VAR_INPUT
     Velocity    : LREAL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[CurrentF_VelocityCoeff  := EXPT(Velocity,2);]]></ST>
+      <ST><![CDATA[CurrentF_VelocityCoeff  := EXPT((Velocity/1000),2);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

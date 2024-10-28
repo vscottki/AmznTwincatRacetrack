@@ -7889,7 +7889,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement_1" PrjFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.plcproj" TmcFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{63246F73-A1AF-7FCF-314A-B4B327C69E06}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{2E27234E-A8B9-75C4-B8DE-692213AC2632}">
 					<Name>PlanarTrackMovement_1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -7970,13 +7970,13 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_General.stSwitchStatus.MagnetValue</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_Mc3.fbPlanarXtsMover[1]._McPlanarMover.PLCTOMC</Name>
 							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
 							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_General.stSwitchStatus.MagnetValue</Name>
+							<Type>INT</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2024-10-18T14:59:32">

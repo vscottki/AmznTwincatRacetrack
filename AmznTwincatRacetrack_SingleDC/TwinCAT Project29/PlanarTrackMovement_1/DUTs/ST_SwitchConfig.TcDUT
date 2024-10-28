@@ -5,6 +5,7 @@
 STRUCT
 	MagnetStartPosition				    	    : LREAL := 10000; // mm
 	MagnetEndPosition				    	    : LREAL := 10555; // mm
+	MagnetTriggerWindowEach					: LREAL := 40;	
 	SwitchCurrentNominal						: LREAL := 9; // A
 	CurrentMultFactor							: LREAL := 1310; // Scaling factor for 10V output=25.0A
     UseNominalCurrentVeloSetpoints              : BOOL  := TRUE;
@@ -13,8 +14,8 @@ STRUCT
 	CurrentVelocityCoeffNominal         		: LREAL := 1;
     VelocityCoeffNominal                        : LREAL := 1;
     VelocityCoeffPower                          : LREAL := 2;
-    VelocityCoeffFactor                         : LREAL := 0.00000007; //E-8
-    PermanentMagnetForce                        : LREAL := 0;
+    VelocityCoeffFactor                         : LREAL := 0.07;
+    PermanentMagnetForce                        : LREAL := 2.5;
 //	MagnetPosnComp								: LREAL := 100;
  	SwitchModeHMI        						: ST_DivertConfig;
  	SwitchModeInternal    						: ST_DivertConfig;

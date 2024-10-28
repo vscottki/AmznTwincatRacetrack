@@ -42,13 +42,13 @@
     <Compile Include="DUTs\ST_SwitchStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_TrackSectorConfig.TcDUT">
+    <Compile Include="DUTs\ST_SectorConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_TrackSectorStatus.TcDUT">
+    <Compile Include="DUTs\ST_SectorStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_TrackShortcutConfig.TcDUT">
+    <Compile Include="DUTs\ST_ShortcutConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_SwitchConfig.TcDUT">
@@ -87,7 +87,7 @@
     <Compile Include="POUs\FB_PWM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_ContiguousTrackSectors.TcPOU">
+    <Compile Include="POUs\FB_TrackSectors.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\PositionF_CurrentCoeff.TcPOU">
@@ -297,6 +297,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <SubObject Include="FB_PlanarXtsMover.IsCommandedInShortcut">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
     <SubObject Include="FB_PlanarXtsMover._M_UpdateStatus">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>

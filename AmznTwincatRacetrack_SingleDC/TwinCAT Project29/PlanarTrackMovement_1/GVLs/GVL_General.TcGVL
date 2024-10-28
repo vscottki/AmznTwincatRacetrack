@@ -3,14 +3,25 @@
   <GVL Name="GVL_General" Id="{027beb7e-728e-4aeb-a930-890d17a65a81}">
     <Declaration><![CDATA[VAR_GLOBAL
 	aStopPositions 					: ARRAY [GC.nNumMinMovers..GC.nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
-	XtsOutterLoopOid				: OTCID := 16#1010480;
-	XtsShortcutOid					: OTCID := 16#1010490;
+	
+//XTS - Complete Loop
+	XtsCompleteTrackOuterOID				: OTCID := 16#1010480;
+	XtsCompleteTrackInnerOID				: OTCID := 16#1010490;
+//XTS - Parts	
+	XtsPartOuterStart								: OTCID := 16#01010020;
+	XtsPartInnerFinish							: OTCID := 16#01010170;
+	XtsPartOuterFinish							: OTCID := 16#010102C0;
+
+//Planar
+	PlanarTrackOuterStart						: OTCID := 16#05120030;
+	PlanarTrackInnerFinish					: OTCID := 16#05120020;
+	PlanarTrackOuterFinish					: OTCID := 16#05120010;
 
 //Configuration
 	stMoverConfig					: ST_MoverConfig;
 	stTrackGlobalConfig				: ST_TrackConfig;
 	stPlanarTrackConfig				: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF ST_PlanarTrackConfig;
-	stTrackShortcutConfig			: ST_TrackShortcutConfig;
+	stTrackShortcutConfig			: ST_ShortcutConfig;
 	stSwitchConfig					: ST_SwitchConfig;
 
 //Status

@@ -7,6 +7,10 @@ VAR_INPUT
 	stSwitchConfig				: REFERENCE TO ST_SwitchConfig := GVL_General.stSwitchConfig;
 	ShuttleVelocity				: REFERENCE TO LREAL := GVL_General.stMoverConfig.NormalVelo;
 	Command	 		  			: BOOL;
+END_VAR
+VAR_OUTPUT
+	MagnetOn						: BOOL;
+	Timeout							: TON;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
@@ -15,7 +19,8 @@ ELSE
     GVL_General.stSwitchStatus.CurrentVelocityCoeff     := GVL_General.stSwitchConfig.VelocityCoeffFactor*CurrentF_VelocityCoeff(Velocity := GVL_General.stMoverConfig.NormalVelo);
 END_IF
 
-GVL_General.stSwitchStatus.CurrentOutputMax     := (stSwitchConfig.SwitchCurrentNominal*stSwitchStatus.CurrentVelocityCoeff) + GVL_General.stSwitchConfig.PermanentMagnetForce;
+GVL_General.stSwitchStatus.CurrentTheoreticalEstimation    := (stSwitchConfig.SwitchCurrentNominal*stSwitchStatus.CurrentVelocityCoeff) + GVL_General.stSwitchConfig.PermanentMagnetForce;
+GVL_General.stSwitchStatus.CurrentOutputMax     := GVL_General.stSwitchStatus.CurrentTheoreticalEstimation - GVL_General.stSwitchConfig.PermanentMagnetForce;
 
 IF Command THEN
 	GVL_General.stSwitchStatus.MagnetValue := LREAL_TO_INT(GVL_General.stSwitchStatus.CurrentOutputMax*stSwitchConfig.CurrentMultFactor);
@@ -23,9 +28,14 @@ ELSE
 	GVL_General.stSwitchStatus.MagnetValue := 0;
 END_IF
 
+MagnetOn	:= GVL_General.stSwitchStatus.MagnetValue >0;
+
 IF stSwitchConfig.CurrentMultFactor <> 0 THEN
     GVL_General.stSwitchStatus.CurrentOutputActual  := GVL_General.stSwitchStatus.MagnetValue / stSwitchConfig.CurrentMultFactor;
 END_IF
+
+//Use Magnet feedback to this timer; set preset time based on mover velocity
+Timeout(IN := Command, PT := T#40MS);
 ]]></ST>
     </Implementation>
   </POU>

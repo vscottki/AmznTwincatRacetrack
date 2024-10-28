@@ -6,6 +6,7 @@ STRUCT
  	MagnetValue		        AT%Q* 	: INT;
 	MagnetEnabled     	        	: BOOL;
     CurrentOutputActual             : LREAL;
+    CurrentTheoreticalEstimation    : LREAL;
     CurrentOutputMax                : LREAL;
     PosnCoilResponseTimeCoeff       : LREAL := 0.978;
     PosnCurrentCoeff                : LREAL := 0.1087;
