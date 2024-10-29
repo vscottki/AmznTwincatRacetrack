@@ -3,14 +3,13 @@
   <POU Name="PositionF_CurrentCoeff" Id="{dd4ad5d7-76cc-0a09-00fd-b2e01a0ea7b8}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION PositionF_CurrentCoeff : LREAL
 VAR_INPUT
-    Position : LREAL;
     Current : LREAL;
 END_VAR
 VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[PositionF_CurrentCoeff   := Position * Current;]]></ST>
+      <ST><![CDATA[PositionF_CurrentCoeff   := (-0.0009*Current)+ 1.0016;]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

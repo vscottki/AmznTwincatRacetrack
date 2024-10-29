@@ -51,7 +51,7 @@ _M_UpdateStatus();]]></ST>
 IF GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
 	GVL_General.stSwitchStatus.PosnCurrentCoeff                                 := GVL_General.stSwitchConfig.PosnCoilResponseTimeCoeffNominal;
 ELSE (* NOT GVL_General.stSwitchConfig.UseHMINominalSetpoints *)
-	GVL_General.stSwitchStatus.PosnCurrentCoeff                                 := PositionF_CurrentCoeff(Position := GVL_General.stSwitchConfig.MagnetStartPosition, Current := GVL_General.stSwitchStatus.CurrentOutputMax);
+	GVL_General.stSwitchStatus.PosnCurrentCoeff                                 := PositionF_CurrentCoeff(Current := GVL_General.stSwitchStatus.CurrentOutputMax);
 END_IF
 
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].ObjectId						    := GVL_General.XtsPartOuterStart;

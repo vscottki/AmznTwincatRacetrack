@@ -14,13 +14,12 @@ VAR_OUTPUT
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
-    GVL_General.stSwitchStatus.CurrentVelocityCoeff     := GVL_General.stSwitchConfig.CurrentVelocityCoeffNominal;
+    GVL_General.stSwitchStatus.CurrentTheoreticalEstimation     := GVL_General.stSwitchConfig.SwitchCurrentNominal;
 ELSE
-    GVL_General.stSwitchStatus.CurrentVelocityCoeff     := GVL_General.stSwitchConfig.VelocityCoeffFactor*CurrentF_VelocityCoeff(Velocity := GVL_General.stMoverConfig.NormalVelo);
+    GVL_General.stSwitchStatus.CurrentTheoreticalEstimation     := F_CurrentVelocity(Velocity := GVL_General.stMoverConfig.NormalVelo, a := 0.86, b := 0.67, c := 5.5);
 END_IF
 
-GVL_General.stSwitchStatus.CurrentTheoreticalEstimation    := (stSwitchConfig.SwitchCurrentNominal*stSwitchStatus.CurrentVelocityCoeff) + GVL_General.stSwitchConfig.PermanentMagnetForce;
-GVL_General.stSwitchStatus.CurrentOutputMax     := GVL_General.stSwitchStatus.CurrentTheoreticalEstimation - GVL_General.stSwitchConfig.PermanentMagnetForce;
+GVL_General.stSwitchStatus.CurrentOutputMax     := GVL_General.stSwitchStatus.CurrentTheoreticalEstimation;
 
 IF Command THEN
 	GVL_General.stSwitchStatus.MagnetValue := LREAL_TO_INT(GVL_General.stSwitchStatus.CurrentOutputMax*stSwitchConfig.CurrentMultFactor);

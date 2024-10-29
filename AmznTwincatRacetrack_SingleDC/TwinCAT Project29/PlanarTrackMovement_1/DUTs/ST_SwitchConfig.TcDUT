@@ -6,16 +6,13 @@ STRUCT
 	MagnetStartPosition				    	    : LREAL := 10000; // mm
 	MagnetEndPosition				    	    : LREAL := 10555; // mm
 	MagnetTriggerWindowEach						: LREAL := 40; // be mindful total of Magnet region not > length of XTS part (10695)
-	SwitchCurrentNominal						: LREAL := 6; // A
+	SwitchCurrentNominal						: LREAL := 5.8; // A (See function for computation)
 	CurrentMultFactor							: LREAL := 1310; // Scaling factor for 10V output=25.0A
-    UseNominalCurrentVeloSetpoints              : BOOL  := TRUE;
+    UseNominalCurrentVeloSetpoints              : BOOL;
     PosnCurrentCoeffNominal                     : LREAL := 0.1087;
 	PosnCoilResponseTimeCoeffNominal			: LREAL := 0.978;
-	CurrentVelocityCoeffNominal         		: LREAL := 1;
     VelocityCoeffNominal                        : LREAL := 1;
     VelocityCoeffPower                          : LREAL := 2;
-    VelocityCoeffFactor                         : LREAL := 0.07;
-    PermanentMagnetForce                        : LREAL := 2.5;
 //	MagnetPosnComp								: LREAL := 100;
  	SwitchModeHMI        						: ST_DivertConfig;
  	SwitchModeInternal    						: ST_DivertConfig;

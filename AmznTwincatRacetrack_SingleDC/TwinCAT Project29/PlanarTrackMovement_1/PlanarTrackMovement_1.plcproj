@@ -75,7 +75,7 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\CurrentF_VelocityCoeff.TcPOU">
+    <Compile Include="POUs\F_CurrentVelocity.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_SwitchMagnet.TcPOU">

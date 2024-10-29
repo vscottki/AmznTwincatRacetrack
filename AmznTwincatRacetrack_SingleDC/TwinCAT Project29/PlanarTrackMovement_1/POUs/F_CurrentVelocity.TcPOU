@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="F_CurrentVelocity" Id="{1b258ca5-4c38-0abc-3788-dd7e914aa2ca}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_CurrentVelocity : LREAL
+VAR_INPUT
+    Velocity    : LREAL;
+	a			: LREAL := 1.1;
+	b			: LREAL := 0.1;
+	c			: LREAL := 5.8;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[F_CurrentVelocity  := a*EXPT((Velocity/1000),2) + b*(Velocity/1000) + c;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
