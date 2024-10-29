@@ -6,7 +6,7 @@ STRUCT
 	MagnetStartPosition				    	    : LREAL := 10000; // mm
 	MagnetEndPosition				    	    : LREAL := 10555; // mm
 	MagnetTriggerWindowEach						: LREAL := 40; // be mindful total of Magnet region not > length of XTS part (10695)
-	SwitchCurrentNominal						: LREAL := 3; // A
+	SwitchCurrentNominal						: LREAL := 6; // A
 	CurrentMultFactor							: LREAL := 1310; // Scaling factor for 10V output=25.0A
     UseNominalCurrentVeloSetpoints              : BOOL  := TRUE;
     PosnCurrentCoeffNominal                     : LREAL := 0.1087;

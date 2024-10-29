@@ -3,6 +3,7 @@
   <POU Name="MAIN" Id="{66ade15a-bef8-4e71-a124-c2e5978c50eb}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	testMain					: BOOL;
 	bAllDone					: BOOL;
 	bStopSequence				: BOOL;
 	                    		
@@ -267,6 +268,7 @@ CASE nCase OF
 			CASE nMoveState[nForCounter] OF
 				
 				0: // Track 3 Main Cycle
+					fbPlanarXtsMover[nForCounter].P_CmdDivert := FALSE;
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
@@ -274,66 +276,50 @@ CASE nCase OF
 																		options := aMoveOnTrackOptions[nForCounter]);
 					nMoveState[nForCounter] := 10;
 
-				10: //Command Mover to the Big loop in order to avoid a slowdown
-					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
-						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
-																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big],
-																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
-																			constraint := aDynamics[nForCounter],
-																			options := aMoveOnTrackOptions[nForCounter]);
-					END_IF
-				
-					IF TrackSectors[nForCounter].afbSector[GC.MAG_ON_SECTOR_OPART_PAD].stTrackSectorStatus.MoverEnteredSector.Q THEN
-						nMoveState[nForCounter] := 20;
-					END_IF
-
-				20:
-					IF (TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_HALF_IPART].stTrackSectorStatus.MoverCountOnSector < 
-						GVL_General.stSwitchConfig.SwitchModeInternal.MaxMoverCountShortcut) THEN
-					//	GVL_General.stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert		:= stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert -1;
-						 fbPlanarXtsMover[nForCounter].P_CmdDivert := TRUE;
-					ELSE
-						 fbPlanarXtsMover[nForCounter].P_CmdDivert := FALSE;
-					END_IF
-					nMoveState[nForCounter] := 25;
-
-
-				25: //Decision state to route mover through the switch or continue on the outer loop
-					IF fbPlanarXtsMover[nForCounter].P_CmdDivert THEN
-						IF SwitchMagnet.MagnetOn THEN
-							nMoveState[nForCounter]				:= 50;	// SmallLoop
+				10: //Decision state to route mover through the switch or continue on the outer loop
+					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector THEN
+						IF (TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_HALF_IPART].stTrackSectorStatus.MoverCountOnSector < 
+							GVL_General.stSwitchConfig.SwitchModeInternal.MaxMoverCountShortcut) THEN
+						//	GVL_General.stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert		:= stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert -1;
+							 fbPlanarXtsMover[nForCounter].P_CmdDivert := TRUE;
+							 nMoveState[nForCounter] 	:= 20;
+						ELSE
+//							 fbPlanarXtsMover[nForCounter].P_CmdDivert := FALSE;
+							 nMoveState[nForCounter] 	:= 30;
 						END_IF
-					ELSE
-							nMoveState[nForCounter]     	:= 30;	// 30
 					END_IF
-        		 	
-				30: //Move command to continue straight
-					 fbPlanarXtsMover[nForCounter].P_CmdDivert := FALSE;
+
+				20: // Move command to inner track
+					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
+																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
+																		constraint := aDynamics[nForCounter],
+																		options := aMoveOnTrackOptions[nForCounter]);	
+					nMoveState[nForCounter] := 50;
+
+				30: //Move command to outer track (continue straight)
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																		constraint := aDynamics[nForCounter],
 																		options := aMoveOnTrackOptions[nForCounter]);	
 					nMoveState[nForCounter] := 40;
-				
-					
+
+
 				40:
 					IF TrackSectors[nForCounter].afbSector[GC.NO_DIVERT_POST_MAG].stTrackSectorStatus.MoverExitedSector.Q THEN
 						nMoveState[nForCounter]     := 0;
-					END_IF				
+					END_IF
 				
 			
 				50: // Route through shortcut
-					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
-																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
-																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
-																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);
-					nMoveState[nForCounter] := 60;
+					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
+						nMoveState[nForCounter] := 60;
+					END_IF															
 			
 				60:
 					IF stTrackShortcutConfig.TestPowerMat THEN
-						nMoveState[nForCounter] := 70;
+						nMoveState[nForCounter] := 80;
 					ELSE
 						nMoveState[nForCounter] := 0;	
 					END_IF
@@ -466,7 +452,11 @@ FOR nForCounter:=1 TO nNumMovers DO
 	GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
 
 	fbPlanarXtsMover[nForCounter]();
+	
+	testMain := (GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID);//     MCTrackOid_MainSemicircle
+
 END_FOR
+
 
 pwm();
 

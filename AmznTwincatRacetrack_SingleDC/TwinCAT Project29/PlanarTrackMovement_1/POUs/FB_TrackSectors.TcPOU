@@ -67,7 +67,7 @@ END_IF
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART_PAD].TrackSectorEndPosn 			 	:= 0;
 
 	astSectorConfig[GC.MAG_TRIG_SECTOR_OPART_END].ObjectId						:= GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.MAG_TRIG_SECTOR_OPART_END].PartSectorStartPosn			:= astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn-GVL_General.stTrackGlobalConfig.DistancePreMagnetAvoidDecel;
+	astSectorConfig[GC.MAG_TRIG_SECTOR_OPART_END].PartSectorStartPosn			:= astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn-(0.5*GVL_General.stMoverConfig.NormalVelo);
 	astSectorConfig[GC.MAG_TRIG_SECTOR_OPART_END].PartSectorEndPosn			 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength();
 	astSectorConfig[GC.MAG_TRIG_SECTOR_OPART_END].TrackSectorStartPosn			:= 0; 
 	astSectorConfig[GC.MAG_TRIG_SECTOR_OPART_END].TrackSectorEndPosn 			:= 0;

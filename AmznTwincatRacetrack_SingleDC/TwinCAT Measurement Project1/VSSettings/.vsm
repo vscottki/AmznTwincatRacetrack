@@ -6,7 +6,7 @@
     <Node>
       <Title>Scope Project1</Title>
       <Expanded>False</Expanded>
-      <FileName>C:\Users\vscottki\Documents\AmznTwincatRacetrack\AmznTwincatRacetrack_SingleDC\TwinCAT Measurement Project1\Scope Project1.tcscopex</FileName>
+      <FileName>C:\Users\Administrator\Documents\AmznTwincatRacetrack\AmznTwincatRacetrack_SingleDC\TwinCAT Measurement Project1\Scope Project1.tcscopex</FileName>
       <Children>
         <Node>
           <Title>DataPool</Title>
@@ -232,7 +232,7 @@
           <Children>
             <Node>
               <Title>HW Pos</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -257,7 +257,7 @@
             </Node>
             <Node>
               <Title>Velo</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -300,7 +300,7 @@
             </Node>
             <Node>
               <Title>Current</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -325,7 +325,7 @@
             </Node>
             <Node>
               <Title>Axis Group (3)</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -350,7 +350,7 @@
             </Node>
             <Node>
               <Title>Axis Group (4)</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -375,7 +375,7 @@
             </Node>
             <Node>
               <Title>Axis Group (8)</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -448,7 +448,7 @@
             </Node>
             <Node>
               <Title>Axis Group (9)</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -467,7 +467,7 @@
             </Node>
             <Node>
               <Title>Electromagnet</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -506,12 +506,12 @@
         </Node>
         <Node>
           <Title>YT Chart (2)</Title>
-          <Expanded>True</Expanded>
+          <Expanded>False</Expanded>
           <FileName></FileName>
           <Children>
             <Node>
               <Title>Axis Group</Title>
-              <Expanded>True</Expanded>
+              <Expanded>False</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -526,7 +526,7 @@
         </Node>
         <Node>
           <Title>Sectors</Title>
-          <Expanded>True</Expanded>
+          <Expanded>False</Expanded>
           <FileName></FileName>
           <Children>
             <Node>

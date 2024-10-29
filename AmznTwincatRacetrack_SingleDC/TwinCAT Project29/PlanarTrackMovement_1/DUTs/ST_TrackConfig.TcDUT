@@ -4,7 +4,6 @@
     <Declaration><![CDATA[TYPE ST_TrackConfig :
 STRUCT
 	TargetPosnBeforeTrackEnd	: LREAL := 100;
-	DistancePreMagnetAvoidDecel	: LREAL	:= 2000;
 	StopPos						: LREAL := 7611;
 END_STRUCT
 END_TYPE]]></Declaration>

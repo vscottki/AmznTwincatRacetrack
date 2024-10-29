@@ -5,8 +5,7 @@
 STRUCT
  	SwitchOpMode         						: E_SwitchOpMode;
 	IntervalToDivert							: USINT;
-	MaxMoverCountShortcut						: UDINT; //	:= GC.nNumMaxMovers;
-	ShuttleCountToDivert						: USINT := 0;
+	MaxMoverCountShortcut						: UDINT;	//:= GC.nNumMaxMovers;
 END_STRUCT
 END_TYPE;]]></Declaration>
   </DUT>
