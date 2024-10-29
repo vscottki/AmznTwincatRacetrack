@@ -274,8 +274,8 @@ CASE nCase OF
 																		options := aMoveOnTrackOptions[nForCounter]);
 					nMoveState[nForCounter] := 10;
 					
-				10: //Mover reaches Magnet Trigger Point; 
-					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_PRE].stTrackSectorStatus.MoverEnteredSector.Q THEN
+				10: //Mover reaches pre-Magnet Trigger Point, padded to avoid slowdown through the divert
+					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
 							IF (TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_HALF_IPART].stTrackSectorStatus.MoverCountOnSector < 
 								GVL_General.stSwitchConfig.SwitchModeInternal.MaxMoverCountShortcut) THEN
 							//	GVL_General.stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert		:= stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert -1;
@@ -297,11 +297,12 @@ CASE nCase OF
 					END_IF
         		 	
 				30: //Move command to continue straight
+					 fbPlanarXtsMover[nForCounter].P_CmdDivert := FALSE;
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);		
+																		options := aMoveOnTrackOptions[nForCounter]);	
 					nMoveState[nForCounter] := 40;
 				
 					
@@ -445,8 +446,8 @@ FOR nForCounter:=1 TO nNumMovers DO
 
 		// Execute command to magnet for divert
 	IF MagnetEnabled AND fbPlanarXtsMover[nForCounter].P_CmdDivert THEN
-			bCmdMagnetOn := TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OTRACK].MoverIsOnSector;
-	ELSIF NOT MagnetEnabled OR TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OTRACK].MoverExitedSector.Q THEN
+			bCmdMagnetOn := TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector;
+	ELSIF NOT MagnetEnabled OR TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
 		fbPlanarXtsMover[nForCounter].P_CmdDivert	:= FALSE;
 		bCmdMagnetOn 															:= FALSE;
 	END_IF
