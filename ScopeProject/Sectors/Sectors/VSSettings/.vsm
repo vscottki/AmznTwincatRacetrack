@@ -138,7 +138,25 @@
           <FileName></FileName>
           <Children>
             <Node>
+              <Title>a</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>b</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
               <Title>bCmdMagnetOn</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>c</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
@@ -151,6 +169,12 @@
             </Node>
             <Node>
               <Title>fTrackPosition</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>MaxMoverCountShortcut</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
@@ -239,6 +263,24 @@
               <FileName></FileName>
               <Children />
             </Node>
+            <Node>
+              <Title>x</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>y</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>z</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
           </Children>
         </Node>
         <Node>
@@ -323,6 +365,12 @@
                   <FileName></FileName>
                   <Children />
                 </Node>
+                <Node>
+                  <Title>MaxMoverCountShortcut</Title>
+                  <Expanded>False</Expanded>
+                  <FileName></FileName>
+                  <Children />
+                </Node>
               </Children>
             </Node>
             <Node>
@@ -344,6 +392,18 @@
                 </Node>
                 <Node>
                   <Title>SetPos</Title>
+                  <Expanded>False</Expanded>
+                  <FileName></FileName>
+                  <Children />
+                </Node>
+                <Node>
+                  <Title>x</Title>
+                  <Expanded>False</Expanded>
+                  <FileName></FileName>
+                  <Children />
+                </Node>
+                <Node>
+                  <Title>y</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />

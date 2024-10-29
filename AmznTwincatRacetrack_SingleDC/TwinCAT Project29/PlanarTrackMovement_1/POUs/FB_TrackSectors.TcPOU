@@ -19,7 +19,7 @@ VAR CONSTANT
 	SHORTCUT_SHUTTLE_MERGEWAIT_POSN				: LREAL := 6000; // Part Reference (not Track)
 END_VAR
 VAR_OUTPUT
-		SingularSectorStatus					: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorStatus;
+	SingularSectorStatus					: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorStatus;
     ShortcutEntrySectorStatus               : ST_SectorStatus;
 END_VAR]]></Declaration>
     <Implementation>
@@ -48,23 +48,23 @@ _M_UpdateStatus();]]></ST>
       <Implementation>
         <ST><![CDATA[IF (GVL_General.XtsCompleteTrackOuterOID <> 0) AND (GVL_General.XtsCompleteTrackInnerOID <> 0) THEN
 
-IF GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
+IF GVL_General.stSwitchConfig.UseNominalPositionCoeff THEN
 	GVL_General.stSwitchStatus.PosnCurrentCoeff                                 := GVL_General.stSwitchConfig.PosnCoilResponseTimeCoeffNominal;
 ELSE (* NOT GVL_General.stSwitchConfig.UseHMINominalSetpoints *)
 	GVL_General.stSwitchStatus.PosnCurrentCoeff                                 := PositionF_CurrentCoeff(Current := GVL_General.stSwitchStatus.CurrentOutputMax);
 END_IF
 
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].ObjectId						    := GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn			    := GVL_General.stSwitchConfig.MagnetStartPosition*GVL_General.stSwitchStatus.PosnCurrentCoeff;
+	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn			    	:= GVL_General.stSwitchConfig.MagnetStartPosition*GVL_General.stSwitchStatus.PosnCurrentCoeff;
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorEndPosn			 	    := GVL_General.stSwitchConfig.MagnetEndPosition*GVL_General.stSwitchStatus.PosnCurrentCoeff;
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].TrackSectorStartPosn			    := 0;
-	astSectorConfig[GC.MAG_ON_SECTOR_OPART].TrackSectorEndPosn 			 	:= 0;
+	astSectorConfig[GC.MAG_ON_SECTOR_OPART].TrackSectorEndPosn 			 		:= 0;
 
-	astSectorConfig[GC.MAG_ON_SECTOR_OPART_PAD].ObjectId						    := GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.MAG_ON_SECTOR_OPART_PAD].PartSectorStartPosn			    := astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn-GVL_General.stSwitchConfig.MagnetTriggerWindowEach;
-	astSectorConfig[GC.MAG_ON_SECTOR_OPART_PAD].PartSectorEndPosn			 	:= astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorEndPosn+GVL_General.stSwitchConfig.MagnetTriggerWindowEach;
-	astSectorConfig[GC.MAG_ON_SECTOR_OPART_PAD].TrackSectorStartPosn			    := 0;
-	astSectorConfig[GC.MAG_ON_SECTOR_OPART_PAD].TrackSectorEndPosn 			 	:= 0;
+	astSectorConfig[GC.SHORTCUT_DIVERT_SECTOR_IPART].ObjectId				    := GVL_General.XtsPartInnerFinish;
+	astSectorConfig[GC.SHORTCUT_DIVERT_SECTOR_IPART].PartSectorStartPosn	    := 0;
+	astSectorConfig[GC.SHORTCUT_DIVERT_SECTOR_IPART].PartSectorEndPosn			:= GVL_General.stSwitchConfig.OnInnerLoopOffMagnetPosn;
+	astSectorConfig[GC.SHORTCUT_DIVERT_SECTOR_IPART].TrackSectorStartPosn	    := 0;
+	astSectorConfig[GC.SHORTCUT_DIVERT_SECTOR_IPART].TrackSectorEndPosn 	 	:= 0;
 
 	astSectorConfig[GC.MAG_TRIG_SECTOR_OPART_END].ObjectId						:= GVL_General.XtsPartOuterStart;
 	astSectorConfig[GC.MAG_TRIG_SECTOR_OPART_END].PartSectorStartPosn			:= astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn-(0.5*GVL_General.stMoverConfig.NormalVelo);
@@ -151,16 +151,17 @@ FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT DO
 END_FOR
 
 
-SingularSectorStatus[GC.MAG_ON_SECTOR_OPART] 		        := afbSector[GC.MAG_ON_SECTOR_OPART].P_SectorStatus;
-SingularSectorStatus[GC.MAG_ON_SECTOR_OPART_PAD] 		    := afbSector[GC.MAG_ON_SECTOR_OPART_PAD].P_SectorStatus;
 SingularSectorStatus[GC.MAG_TRIG_SECTOR_OPART_END] 	  		:= afbSector[GC.MAG_TRIG_SECTOR_OPART_END].P_SectorStatus;
+SingularSectorStatus[GC.MAG_ON_SECTOR_OPART] 		        := afbSector[GC.MAG_ON_SECTOR_OPART].P_SectorStatus;
+SingularSectorStatus[GC.SHORTCUT_DIVERT_SECTOR_IPART] 		:= afbSector[GC.SHORTCUT_DIVERT_SECTOR_IPART].P_SectorStatus;
 SingularSectorStatus[GC.SHORTCUT_ENTRY_SECTOR_IPART] 		:= afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].P_SectorStatus;
-SingularSectorStatus[GC.SHORTCUT_MAIN_SECTOR_IPART] 		:= afbSector[GC.SHORTCUT_MAIN_SECTOR_IPART].P_SectorStatus;
-SingularSectorStatus[GC.SHORTCUT_EXIT_SECTOR_IPART] 	    := afbSector[GC.SHORTCUT_EXIT_SECTOR_IPART].P_SectorStatus;
-SingularSectorStatus[GC.MERGE_SECTOR_TO_FINISH] 	        := afbSector[GC.MERGE_SECTOR_TO_FINISH].P_SectorStatus;
 SingularSectorStatus[GC.SHORTCUT_ENTRY_HALF_IPART] 	        := afbSector[GC.SHORTCUT_ENTRY_HALF_IPART].P_SectorStatus;
+SingularSectorStatus[GC.SHORTCUT_MAIN_SECTOR_IPART] 		:= afbSector[GC.SHORTCUT_MAIN_SECTOR_IPART].P_SectorStatus;
 SingularSectorStatus[GC.LOAD_STOP_SECTOR_IPART] 	        := afbSector[GC.LOAD_STOP_SECTOR_IPART].P_SectorStatus;
 SingularSectorStatus[GC.SHORTCUT_EXIT_HALF_IPART] 	        := afbSector[GC.SHORTCUT_EXIT_HALF_IPART].P_SectorStatus;
+SingularSectorStatus[GC.SHORTCUT_EXIT_SECTOR_IPART] 	    := afbSector[GC.SHORTCUT_EXIT_SECTOR_IPART].P_SectorStatus;
+SingularSectorStatus[GC.MERGE_SECTOR_TO_FINISH] 	        := afbSector[GC.MERGE_SECTOR_TO_FINISH].P_SectorStatus;
+SingularSectorStatus[GC.NO_DIVERT_POST_MAG] 	       	 	:= afbSector[GC.NO_DIVERT_POST_MAG].P_SectorStatus;
 ]]></ST>
       </Implementation>
     </Method>

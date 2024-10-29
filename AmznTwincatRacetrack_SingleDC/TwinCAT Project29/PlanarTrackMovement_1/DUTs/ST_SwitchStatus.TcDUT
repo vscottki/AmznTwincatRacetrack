@@ -8,10 +8,10 @@ STRUCT
     CurrentOutputActual             : LREAL;
     CurrentTheoreticalEstimation    : LREAL;
     CurrentOutputMax                : LREAL;
-    PosnCoilResponseTimeCoeff       : LREAL := 0.978;
-    PosnCurrentCoeff                : LREAL := 0.1087;
+    PosnCurrentCoeff                : LREAL;
 	CurrentVelocityCoeff    		: LREAL := 1;
     VelocityCoeffNominal            : LREAL := 1;
+	ShuttleDiverting				: BOOL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

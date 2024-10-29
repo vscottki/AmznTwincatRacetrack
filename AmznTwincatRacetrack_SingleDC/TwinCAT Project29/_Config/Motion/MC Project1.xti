@@ -3561,7 +3561,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x05110020" Disabled="true">
+		<Axis Id="#x05110020">
 			<Name>MC_Mover 2</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
