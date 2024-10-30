@@ -90,6 +90,9 @@
     <Compile Include="POUs\FB_TrackSectors.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\F_PosnInitial.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\PositionF_CurrentCoeff.TcPOU">
       <SubType>Code</SubType>
     </Compile>

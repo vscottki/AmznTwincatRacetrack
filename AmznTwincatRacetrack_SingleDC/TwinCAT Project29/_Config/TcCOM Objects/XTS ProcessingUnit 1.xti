@@ -38849,7 +38849,7 @@
 				</ParameterValues>
 			</TmcDesc>
 		</Module>
-		<Module Id="#x01010520" Disabled="true" KeepUnrestoredLinks="2">
+		<Module Id="#x01010520" KeepUnrestoredLinks="2">
 			<Name>XL_Mover 3</Name>
 			<ImageId>1004</ImageId>
 			<TmcDesc GUID="{35216444-5D99-4518-9793-CB2C4F7D5D9C}">

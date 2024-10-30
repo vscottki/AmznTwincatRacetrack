@@ -5,6 +5,8 @@
 STRUCT
 	MoverInShortcut			: BOOL;
 	CommandedToDivert		: BOOL;
+	MoverInterval			: UDINT;
+	IntervalMarked			: BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

@@ -4,11 +4,11 @@
     <Declaration><![CDATA[TYPE ST_DivertConfig :
 STRUCT
  	SwitchOpMode         						: E_SwitchOpMode;
-	IntervalToDivert							: USINT;
+	IntervalToDivert							: UDINT := 1;
 	MaxAllowedDivertCount						: UDINT	:= 1;
-	CurrentFunctionCoeffA						: LREAL := 0.86;
-	CurrentFunctionCoeffB						: LREAL := 0.67;
-	CurrentFunctionCoeffC						: LREAL := 5.5;
+	CurrentFunctionCoeffA						: LREAL := 0.63;
+	CurrentFunctionCoeffB						: LREAL := 0.62;
+	CurrentFunctionCoeffC						: LREAL := 5;
 END_STRUCT
 END_TYPE;]]></Declaration>
   </DUT>

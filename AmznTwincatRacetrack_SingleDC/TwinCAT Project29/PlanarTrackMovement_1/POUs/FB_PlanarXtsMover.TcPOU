@@ -8,10 +8,6 @@ VAR_INPUT
 	iTcIoXtsXpuMover			: REFERENCE TO Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 END_VAR
 
-VAR_IN_OUT
-	
-END_VAR
-
 VAR
 	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	_PlanarTrail    			: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
