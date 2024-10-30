@@ -5,7 +5,10 @@
 STRUCT
  	SwitchOpMode         						: E_SwitchOpMode;
 	IntervalToDivert							: USINT;
-	MaxMoverCountShortcut						: UDINT	:= 1;
+	MaxAllowedDivertCount						: UDINT	:= 1;
+	CurrentFunctionCoeffA						: LREAL := 0.86;
+	CurrentFunctionCoeffB						: LREAL := 0.67;
+	CurrentFunctionCoeffC						: LREAL := 5.5;
 END_STRUCT
 END_TYPE;]]></Declaration>
   </DUT>

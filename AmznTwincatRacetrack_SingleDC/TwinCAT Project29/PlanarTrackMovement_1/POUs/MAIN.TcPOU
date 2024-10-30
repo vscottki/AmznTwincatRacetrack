@@ -27,6 +27,9 @@ VAR
 	MagnetEnabled				: BOOL;
 	SwitchMagnet				: FB_SwitchMagnet;
 	
+	rtDivertQueue				: Tc2_Standard.R_TRIG;
+	ftDivertQueue				: Tc2_Standard.F_TRIG;;
+	
 	IsMoverCommandedInShortcut	: BOOL;
 	IsMoverInBlockingArea		: BOOL;
 	nActStopPos					: UINT := 1;
@@ -277,9 +280,7 @@ CASE nCase OF
 
 				10: //Decision state to route mover through the switch or continue on the outer loop
 					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector THEN
-						IF (TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_HALF_IPART].stTrackSectorStatus.MoverCountOnSector < 
-							GVL_General.stSwitchConfig.SwitchModeInternal.MaxMoverCountShortcut) THEN
-						//	GVL_General.stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert		:= stSwitchConfig.SwitchModeInternal.ShuttleCountToDivert -1;
+						IF MagnetEnabled AND_THEN (GVL_General.stSwitchStatus.ShuttleCountQdAndOnShortcut < GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount) THEN
 							 fbPlanarXtsMover[nForCounter].P_CmdDivert := TRUE;
 							 nMoveState[nForCounter] 	:= 20;
 						ELSE
@@ -294,10 +295,7 @@ CASE nCase OF
 																		constraint := aDynamics[nForCounter],
 																		options := aMoveOnTrackOptions[nForCounter]);
 																		
-					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_DIVERT_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
-						fbPlanarXtsMover[nForCounter].P_CmdDivert := FALSE;
-						nMoveState[nForCounter] := 50;
-					END_IF
+					nMoveState[nForCounter] := 50;
 
 				30: //Move command to outer track (continue straight)
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
@@ -315,6 +313,10 @@ CASE nCase OF
 				
 			
 				50: // Route through shortcut
+					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_DIVERT_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
+						fbPlanarXtsMover[nForCounter].P_CmdDivert := FALSE;
+					END_IF				
+				
 					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
 						nMoveState[nForCounter] := 60;
 					END_IF															
@@ -431,26 +433,37 @@ END_CASE
 
 FOR nForCounter := GC.nNumMinMovers TO GC.nNumMaxMovers DO
 
-	IF NOT TrackSectors[nForCounter].ShortcutEntrySectorStatus.MoverIsOnSector THEN
+	IF NOT TrackSectors[nForCounter].DivertTrigQueueSectorStatus.MoverIsOnSector THEN
 		stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
-	ELSIF TrackSectors[nForCounter].ShortcutEntrySectorStatus.MoverCountOnSector  THEN
-		stSwitchConfig.SwitchModeInternal.MaxMoverCountShortcut := stSwitchConfig.SwitchModeInternal.MaxMoverCountShortcut -1;
 	END_IF
 	
+	// Movers on the Queue Sector
+	IF rtDivertQueue.Q THEN
+		GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount +1;
+	ELSIF ftDivertQueue.Q THEN
+		GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount -1;
+	END_IF
+
 	GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
 
 	fbPlanarXtsMover[nForCounter]();
+	
+	rtDivertQueue(CLK := fbPlanarXtsMover[nForCounter].P_MoverStatus.CommandedToDivert);
+	ftDivertQueue(CLK := fbPlanarXtsMover[nForCounter].P_MoverStatus.CommandedToDivert);
+	
+	GVL_General.stSwitchStatus.ShuttleCountQdAndOnShortcut := GVL_General.stSwitchStatus.ShuttleDivertQueueCount + TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_MAIN_SECTOR_IPART].MoverCountOnSector;
 
 END_FOR
 
 //Command Diverting to Magnet for any designated mover
 FOR nForCounterDiverting := GC.nNumMinMovers TO GC.nNumMaxMovers DO
-	
-	IF fbPlanarXtsMover[nForCounter].P_CmdDivert AND TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
-		GVL_General.stSwitchStatus.ShuttleDiverting := TRUE;
+
+	IF MagnetEnabled AND fbPlanarXtsMover[nForCounterDiverting].P_MoverStatus.CommandedToDivert AND_THEN 
+						TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
+		bCmdMagnetOn := TRUE;
 		EXIT;
-	ELSE
-		GVL_General.stSwitchStatus.ShuttleDiverting := FALSE;
+	ELSIF TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
+		bCmdMagnetOn := FALSE;
 	END_IF
 
 END_FOR
@@ -460,8 +473,6 @@ MagnetEnabled  := MoverStop (* SafetyOK *) AND NOT Fault;
 SwitchMagnet(stSwitchConfig := GVL_General.stSwitchConfig, 
 				ShuttleVelocity := GVL_General.stMoverConfig.NormalVelo, 
 				Command := bCmdMagnetOn);
-
-bCmdMagnetOn := MagnetEnabled AND_THEN GVL_General.stSwitchStatus.ShuttleDiverting;
 
 pwm();
 
