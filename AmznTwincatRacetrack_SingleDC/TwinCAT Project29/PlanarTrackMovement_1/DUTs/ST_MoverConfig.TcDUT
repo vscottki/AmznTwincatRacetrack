@@ -18,7 +18,8 @@ STRUCT
 	MaxJerk			: LREAL := 20000;
 //Platooning Vars
 	VeloComp		: LREAL := 600;
-	MoverGap		: LREAL := 800;
+	NormalMoverGap		: LREAL := 800;
+	TightMoverGap			: LREAL := 200;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

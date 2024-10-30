@@ -260,10 +260,19 @@ CASE nCase OF
 
 	100:	
 		
-		FOR nForCounter:=1 TO nNumMovers DO
-			aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
-			aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.MoverGap;
+		FOR nForCounter:= GC.nNumMinMovers TO GC.nNumMaxMovers DO
+			IF TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_EXIT_SECTOR_IPART].MoverIsOnSector THEN
+				//Reduce mover-mover gap
+				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
+			ELSIF TrackSectors[nForCounter].SingularSectorStatus[GC.MERGE_SECTOR_TO_FINISH].MoverIsOnSector THEN
+				//Increase acceleration
+				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
+			ELSE
+				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
+				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.NormalMoverGap;
+			END_IF
 		END_FOR
+		
 		//Adjust the first mover parameters to induce a platoon
 		aDynamics[GC.nNumMinMovers].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 
@@ -378,7 +387,7 @@ CASE nCase OF
 					0:								
 						
 						IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos < 300 AND GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID THEN
-							aMoveOnTrackOptions[nForCounter].gap:= 150;
+							aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
 							fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																				targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
 																				targetPositionOnTrack := aStopPositions[nActStopPos],
