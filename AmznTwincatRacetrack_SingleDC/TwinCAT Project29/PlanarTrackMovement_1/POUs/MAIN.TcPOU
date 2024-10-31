@@ -15,7 +15,6 @@ VAR
 	fbXtsEnvironment			: Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	                    		
 	nForCounter					: UDINT;
-	nForCounterDiverting		: UDINT;
 	M,N,T,Tr					: UDINT;
 	dynamics				    : INT;
 
@@ -45,7 +44,6 @@ VAR
 	fp_start 					: Tc2_Standard.R_TRIG;
 	bStartSequence				: BOOL;
 	                        	
-	test 						: LREAL;
 	Horntimer 					: Tc2_Standard.TP; 
 	R_trigHorn 					: Tc2_Standard.R_TRIG;
 
@@ -262,9 +260,19 @@ CASE nCase OF
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.NormalMoverGap;
 			END_IF
-		END_FOR
+//		END_FOR
 		
-		FOR nForCounter:= GC.nNumMinMovers TO nNumMovers DO
+//		FOR nForCounter:= GC.nNumMinMovers TO nNumMovers DO
+
+			IF NOT TrackSectors[nForCounter].DivertTrigQueueSectorStatus.MoverIsOnSector THEN
+				stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
+			END_IF
+		
+			GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
+		
+			fbPlanarXtsMover[nForCounter]();
+			
+
 			CASE nMoveState[nForCounter] OF
 				
 				0: // Track 3 Main Cycle
@@ -276,7 +284,8 @@ CASE nCase OF
 					nMoveState[nForCounter] := 10;
 
 				10: //Decision state to route mover through the switch or continue on the outer loop
-					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector AND (DivertQueue.P_MoverIndexAtDivertTrig = nForCounter) THEN
+					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector AND 
+						(DivertQueue.P_MoverIndexAtDivertTrig = fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverNumber) THEN
 						IF SwitchMagnet.PermIntlkOK THEN
 							 nMoveState[nForCounter] 	:= 20;
 						ELSE
@@ -427,18 +436,6 @@ CASE nCase OF
 				
 			nCase := 0;
 END_CASE
-
-FOR nForCounter := GC.nNumMinMovers TO GC.nNumMaxMovers DO
-
-	IF NOT TrackSectors[nForCounter].DivertTrigQueueSectorStatus.MoverIsOnSector THEN
-		stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
-	END_IF
-
-	GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
-
-	fbPlanarXtsMover[nForCounter]();
-	
-END_FOR
 
 FaultReset(CLK := MoverStop);
 

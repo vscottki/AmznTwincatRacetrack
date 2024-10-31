@@ -11,6 +11,7 @@ END_VAR
 VAR
 	MagnetPermIntlkOK				: BOOL;
 	nForCounterDiverting		: UDINT;
+	ftPermIntlk					: Tc2_Standard.F_TRIG;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -26,16 +27,19 @@ FOR nForCounterDiverting := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 		GVL_Mc3.TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
 		bMagnetCmdOn := TRUE;
 //		EXIT;
-	ELSIF NOT MagnetPermIntlkOK OR GVL_Mc3.TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
+	ELSIF ftPermIntlk.Q OR GVL_Mc3.TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
 		fbPlanarXtsMover[nForCounterDiverting].P_CmdDivert 	:= FALSE;
+		fbPlanarXtsMover[nForCounterDiverting].P_MoverStatus.IntervalMarked	:= FALSE;
 		bMagnetCmdOn := FALSE;
 	END_IF
 	
-	IF TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.SHORTCUT_DIVERT_SECTOR_IPART].MoverExitedSector.Q THEN
-			fbPlanarXtsMover[nForCounterDiverting].P_MoverStatus.IntervalMarked		:= FALSE;
-	END_IF
+//	IF TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.SHORTCUT_DIVERT_SECTOR_IPART].MoverExitedSector.Q THEN
+//			fbPlanarXtsMover[nForCounterDiverting].P_MoverStatus.IntervalMarked		:= FALSE;
+//	END_IF
 
-END_FOR]]></ST>
+END_FOR
+
+ftPermIntlk(CLK := MagnetPermIntlkOK);]]></ST>
     </Implementation>
     <Property Name="P_OK" Id="{fc7fc1bf-2e5f-0caa-35f3-e55afb89eca7}">
       <Declaration><![CDATA[PROPERTY P_OK : REFERENCE TO BOOL]]></Declaration>
