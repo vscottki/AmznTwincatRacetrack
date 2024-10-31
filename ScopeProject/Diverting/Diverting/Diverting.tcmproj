@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{ac2eccbd-5f77-498f-9d2e-afe559499fd7}</ProjectGuid>
-    <AssemblyName>TwinCAT Measurement Project2</AssemblyName>
-    <Name>TwinCAT Measurement Project2</Name>
-    <RootNamespace>TwinCAT Measurement Project2</RootNamespace>
+    <ProjectGuid>{714eca42-7a48-4f31-adb8-ad795fb5dc8d}</ProjectGuid>
+    <AssemblyName>Diverting</AssemblyName>
+    <Name>Diverting</Name>
+    <RootNamespace>Diverting</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="YT Scope Project.tcscopex">

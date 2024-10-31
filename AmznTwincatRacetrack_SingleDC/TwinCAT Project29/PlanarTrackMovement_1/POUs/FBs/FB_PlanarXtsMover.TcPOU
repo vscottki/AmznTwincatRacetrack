@@ -12,7 +12,7 @@ VAR
 	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	_PlanarTrail    			: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
 	
-	CfgUseIntervalMark				: BOOL := TRUE;
+	CfgUseIntervalMark				: BOOL;
 
 	stXtsPositionInfo			: Tc3_XTS_Utility.ST_PositionInfo;
 	
@@ -36,10 +36,7 @@ END_IF]]></ST>
     <Method Name="_M_UpdateStatus" Id="{5fb917e1-5646-02f6-26ca-dbbb331704b2}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD PROTECTED _M_UpdateStatus]]></Declaration>
       <Implementation>
-        <ST><![CDATA[stMoverStatus.MoverInShortcut := 
-	_M_IsOnSection(XtsTrackId := GVL_General.XtsOutterLoopOid, 
-					SectorStartPosn := refTrackConfig.stTrackShortcutConfig.stTrackSectorConfig.SectorStartPosn, 
-					SectorEndPosn := refTrackConfig.stTrackShortcutConfig.stTrackSectorConfig.SectorEndPosn);]]></ST>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <Property Name="IsCommandedInShortcut" Id="{e5e69e7e-f163-4728-82da-b10e582ce622}" FolderPath="Properties\">

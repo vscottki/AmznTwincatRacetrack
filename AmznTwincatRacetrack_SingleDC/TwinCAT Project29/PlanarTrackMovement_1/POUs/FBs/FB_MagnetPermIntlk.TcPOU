@@ -3,7 +3,7 @@
   <POU Name="FB_MagnetPermIntlk" Id="{962a6221-0f3e-03bc-045d-7d19eb7395ad}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MagnetPermIntlk
 VAR_INPUT
-	Enabled					: BOOL;
+	SystemPermIntlkOK				: BOOL;
 END_VAR
 VAR_OUTPUT
 	bMagnetCmdOn						: BOOL;
@@ -15,9 +15,9 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Command Diverting to Magnet for any designated mover
-FOR nForCounterDiverting := GC.nNumMinMovers TO GVL_General.nNumMaxMovers DO
+FOR nForCounterDiverting := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 
-	MagnetPermIntlkOK	:= Enabled AND
+	MagnetPermIntlkOK	:= SystemPermIntlkOK AND
 		fbPlanarXtsMover[nForCounterDiverting].P_MoverStatus.CommandedToDivert AND
 		(TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.SHORTCUT_MAIN_SECTOR_IPART].MoverCountOnSector <
 			GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedCountOnShortcut);
@@ -25,8 +25,8 @@ FOR nForCounterDiverting := GC.nNumMinMovers TO GVL_General.nNumMaxMovers DO
 	IF MagnetPermIntlkOK AND_THEN 
 		GVL_Mc3.TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
 		bMagnetCmdOn := TRUE;
-		EXIT;
-	ELSIF GVL_Mc3.TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
+//		EXIT;
+	ELSIF NOT MagnetPermIntlkOK OR GVL_Mc3.TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
 		fbPlanarXtsMover[nForCounterDiverting].P_CmdDivert 	:= FALSE;
 		bMagnetCmdOn := FALSE;
 	END_IF

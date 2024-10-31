@@ -2,7 +2,14 @@
 <TcPlcObject Version="1.1.0.1">
   <GVL Name="GVL_General" Id="{027beb7e-728e-4aeb-a930-890d17a65a81}">
     <Declaration><![CDATA[VAR_GLOBAL
-	aStopPositions 					: ARRAY [GC.nNumMinMovers..GVL_General.nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
+	aStopPositions 					: ARRAY [GC.nNumMinMovers..GC.nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
+
+//Configuration
+	stMoverConfig					: ST_MoverConfig;
+	stTrackGlobalConfig				: ST_TrackConfig;
+	stPlanarTrackConfig				: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF ST_PlanarTrackConfig;
+	stTrackShortcutConfig			: ST_ShortcutConfig;
+	stSwitchConfig					: ST_SwitchConfig;
 	
 //XTS - Complete Loop
 	XtsCompleteTrackOuterOID				: OTCID := 16#1010480;
@@ -17,16 +24,9 @@
 	PlanarTrackInnerFinish					: OTCID := 16#05120020;
 	PlanarTrackOuterFinish					: OTCID := 16#05120010;
 	
-	DivertQueue											: FB_DivertQueue;
-	SwitchMagnet				: FB_SwitchMagnet;
-	nMoveState				  	: ARRAY[GC.nNumMinMovers..GVL_General.nNumMaxMovers] OF INT;
-
-//Configuration
-	stMoverConfig					: ST_MoverConfig;
-	stTrackGlobalConfig				: ST_TrackConfig;
-	stPlanarTrackConfig				: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF ST_PlanarTrackConfig;
-	stTrackShortcutConfig			: ST_ShortcutConfig;
-	stSwitchConfig					: ST_SwitchConfig;
+	DivertQueue						: FB_DivertQueue;
+	SwitchMagnet					: FB_SwitchMagnet;
+	nMoveState				  		: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF INT;
 
 //Status
   	stSwitchStatus        		    : ST_SwitchStatus;
@@ -34,7 +34,7 @@
 END_VAR
 
 VAR_GLOBAL //PERSISTENT
-	nNumMaxMovers								: UDINT := 2;
+	nNumMovers								: UDINT := 3;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

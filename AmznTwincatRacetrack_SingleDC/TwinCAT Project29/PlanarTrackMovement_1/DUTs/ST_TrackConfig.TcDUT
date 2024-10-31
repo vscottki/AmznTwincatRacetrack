@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE ST_TrackConfig :
 STRUCT
 	TargetPosnBeforeTrackEnd	: LREAL := 100;
-	StopPos						: LREAL := 7611;
+	StopPosPowermat				: LREAL := 7611;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

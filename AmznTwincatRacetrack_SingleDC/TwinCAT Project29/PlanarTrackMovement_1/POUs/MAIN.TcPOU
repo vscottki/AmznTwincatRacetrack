@@ -20,21 +20,12 @@ VAR
 	dynamics				    : INT;
 
 //Status
+	SystemEnabled				: BOOL;
 
-//
-	pwm							: FB_PWM;
-	bCmdMagnetOn				: BOOL;
-	MagnetEnabled				: BOOL;
-	SwitchMagnet				: FB_SwitchMagnet;
-	
-	rtDivertQueue				: Tc2_Standard.R_TRIG;
-	ftDivertQueue				: Tc2_Standard.F_TRIG;;
-	
-	IsMoverCommandedInShortcut	: BOOL;
 	IsMoverInBlockingArea		: BOOL;
 	nActStopPos					: UINT := 1;
-	Fp_error 					: R_Trig;
-	
+	Fp_error 					: Tc2_Standard.R_TRIG;
+	FaultReset					: Tc2_Standard.R_TRIG;
 	MoverStop 	AT%I* 			: BOOL;
     ResetSafetyLight AT%Q*      : BOOL;
 	MoverStopDone AT%Q*			: BOOL;
@@ -54,13 +45,11 @@ VAR
 	fp_start 					: Tc2_Standard.R_TRIG;
 	bStartSequence				: BOOL;
 	                        	
-	FP_Counter 					: Tc2_Standard.R_TRIG;
-	Switchcounter 				: DINT;
 	test 						: LREAL;
 	Horntimer 					: Tc2_Standard.TP; 
 	R_trigHorn 					: Tc2_Standard.R_TRIG;
 
-	StopTime 					: TIME := T#8S;
+	StopTime 					: TIME := T#1S;
 	StopTimer 					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc2_Standard.TON;
 	StartTimer 					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF BOOL;
 
@@ -124,7 +113,7 @@ END_IF
 IsMoverInBlockingArea := FALSE;
 
 	bAllDone:= TRUE;
-FOR M := 1 TO nNumMovers DO///Movers
+FOR M := GC.nNumMinMovers TO nNumMovers DO///Movers
 	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
 	GVL_Mc3.fbPlanarXtsMover[M].nMoverId := M;
 	GVL_Mc3.fbPlanarXtsMover[M].P_PlanarMover.MoverNumber	:= GVL_Mc3.fbPlanarXtsMover[M].nMoverId;
@@ -162,10 +151,9 @@ FOR M := 1 TO nNumMovers DO///Movers
 	END_IF
 END_FOR
 
-FOR T := 1 TO GC.nNumMaxTracks DO 
+FOR T := GC.nNumMinTracks TO GC.nNumMaxTracks DO 
 	MC_Tracks[T].Update();
 	MC_Trackfeedback[T].Update();
-	
 END_FOR
 
 CASE nCase OF
@@ -178,7 +166,7 @@ CASE nCase OF
 		nCase := 20;
 
 	20:
-		FOR T := 1 TO GC.nNumMaxTracks DO 
+		FOR T := GC.nNumMinTracks TO GC.nNumMaxTracks DO 
 			MC_Tracks[T].Enable(MC_Trackfeedback[T]);
 		END_FOR
 				nCase := 30;
@@ -191,7 +179,7 @@ CASE nCase OF
 		
 		
 	35:
-		FOR nForCounter:=1 TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
 			fbPlanarXtsMover[nForCounter].McPlanarMover.Reset(MoverFeedback[nForCounter]);
 		END_FOR
 		nCase := 36;	
@@ -199,7 +187,7 @@ CASE nCase OF
 		
 	36:	
 		bAllDone:=TRUE;
-		FOR nForCounter:=1 TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
 			bAllDone:=bAllDone AND MoverFeedback[nForCounter].Done;
 		END_FOR
 		
@@ -209,7 +197,7 @@ CASE nCase OF
 		
 		
 	40:
-		FOR nForCounter:=1 TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
 			fbPlanarXtsMover[nForCounter].McPlanarMover.Enable(MoverFeedback[nForCounter]);
 		END_FOR
 		nCase := 50;
@@ -217,7 +205,7 @@ CASE nCase OF
 		
 	50:
 		bAllDone:=TRUE;
-		FOR nForCounter:=1 TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
 			bAllDone:=bAllDone AND MoverFeedback[nForCounter].Done;
 		END_FOR
 		
@@ -228,7 +216,7 @@ CASE nCase OF
 	//55:
 
 	60:
-		FOR nForCounter:=1 TO  nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
 			IF nForCounter <= 9 THEN
 				fbPlanarXtsMover[nForCounter].JoinTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.Big]);//   Mover[nForCounter].MoverTrackNr]);
 			ELSE
@@ -241,7 +229,7 @@ CASE nCase OF
 		
 	70:
 		bAllDone:=TRUE;
-		FOR nForCounter:=1 TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
 			bAllDone:=bAllDone AND MoverFeedback[nForCounter].Done;
 		END_FOR
 		
@@ -250,7 +238,7 @@ CASE nCase OF
 		END_IF
 		
 	80:	
-		FOR nForCounter:=1 TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
 			nMoveState[nForCounter] := 0;
 			aMoveOnTrackOptions[nForCounter].direction := MC_Direction.mcDirectionPositive;
 			aMoveOnTrackOptions[nForCounter].gapMode := MC_GAP_MODE_ON_TRACK.Fast1D;
@@ -258,8 +246,11 @@ CASE nCase OF
 		
 		nCase := 100;
 
-	100:	
-		
+	100:
+
+		//Adjust the first mover parameters to induce a platoon
+		aDynamics[GC.nNumMinMovers].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
+
 		FOR nForCounter:= GC.nNumMinMovers TO GC.nNumMaxMovers DO
 			IF TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_EXIT_SECTOR_IPART].MoverIsOnSector THEN
 				//Reduce mover-mover gap
@@ -273,10 +264,7 @@ CASE nCase OF
 			END_IF
 		END_FOR
 		
-		//Adjust the first mover parameters to induce a platoon
-		aDynamics[GC.nNumMinMovers].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
-
-		FOR nForCounter:=1 TO nNumMovers DO
+		FOR nForCounter:= GC.nNumMinMovers TO nNumMovers DO
 			CASE nMoveState[nForCounter] OF
 				
 				0: // Track 3 Main Cycle
@@ -288,9 +276,8 @@ CASE nCase OF
 					nMoveState[nForCounter] := 10;
 
 				10: //Decision state to route mover through the switch or continue on the outer loop
-					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector THEN
-						IF MagnetEnabled AND_THEN (GVL_General.stSwitchStatus.ShuttleCountQdAndOnShortcut < GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount) THEN
-							 fbPlanarXtsMover[nForCounter].P_CmdDivert := TRUE;
+					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector AND (DivertQueue.P_MoverIndexAtDivertTrig = nForCounter) THEN
+						IF SwitchMagnet.PermIntlkOK THEN
 							 nMoveState[nForCounter] 	:= 20;
 						ELSE
 							 nMoveState[nForCounter] 	:= 30;
@@ -300,7 +287,7 @@ CASE nCase OF
 				20: // Move command to inner track
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
-																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
+																		targetPositionOnTrack := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength() / 2), // midpoint of shortcut
 																		constraint := aDynamics[nForCounter],
 																		options := aMoveOnTrackOptions[nForCounter]);
 																		
@@ -316,45 +303,46 @@ CASE nCase OF
 
 
 				40:
-					IF TrackSectors[nForCounter].afbSector[GC.NO_DIVERT_POST_MAG].stTrackSectorStatus.MoverExitedSector.Q THEN
+					IF TrackSectors[nForCounter].afbSector[GC.NO_DIVERT_POST_MAG].stTrackSectorStatus.MoverExitedSector.Q THEN // did not divert
 						nMoveState[nForCounter]     := 0;
 					END_IF
 				
 			
 				50: // Route through shortcut
-					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_DIVERT_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
-						fbPlanarXtsMover[nForCounter].P_CmdDivert := FALSE;
-					END_IF				
-				
-					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
-						nMoveState[nForCounter] := 60;
-					END_IF															
-			
-				60:
 					IF stTrackShortcutConfig.TestPowerMat THEN
-						nMoveState[nForCounter] := 80;
+						IF TrackSectors[nForCounter].afbSector[GC.LOAD_STOP_SECTOR_IPART].stTrackSectorStatus.MoverEnteredSector.Q THEN
+							nMoveState[nForCounter] := 70;
+						END_IF
 					ELSE
-						nMoveState[nForCounter] := 0;	
+						IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
+							nMoveState[nForCounter] := 60;
+						END_IF			
+					END_IF
+					
+				60:
+					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
+																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
+																		constraint := aDynamics[nForCounter],
+																		options := aMoveOnTrackOptions[nForCounter]);
+					nMoveState[nForCounter] := 0;
+
+				70:
+//					GVL_Mc3.fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+//																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
+//																		targetPositionOnTrack := stTrackGlobalConfig.StopPosPowermat,
+//																		constraint := aDynamics[nForCounter],
+//																		options := aMoveOnTrackOptions[nForCounter]);					
+
+					IF MoverFeedback[nForCounter].Done THEN
+						StartTimer[nForCounter] := TRUE;
+						nMoveState[nForCounter] := 80;
 					END_IF
 					
 				80:
-					GVL_Mc3.fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
-																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
-																		targetPositionOnTrack := stTrackGlobalConfig.StopPos,
-																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);					
-
-					nMoveState[nForCounter] := 90;
-				90:
-					IF MoverFeedback[nForCounter].Done THEN
-						StartTimer[nForCounter] := TRUE;
-						nMoveState[nForCounter] := 95;
-					END_IF
-					
-				95:
 					IF 	StopTimer[nForCounter].Q THEN
 						StartTimer[nForCounter] := FALSE;
-						nMoveState[nForCounter] := 0;	
+						nMoveState[nForCounter] := 60;	
 					END_IF
 				END_CASE
 		
@@ -445,51 +433,26 @@ FOR nForCounter := GC.nNumMinMovers TO GC.nNumMaxMovers DO
 	IF NOT TrackSectors[nForCounter].DivertTrigQueueSectorStatus.MoverIsOnSector THEN
 		stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
 	END_IF
-	
-	// Movers on the Queue Sector
-	IF rtDivertQueue.Q THEN
-		GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount +1;
-	ELSIF ftDivertQueue.Q THEN
-		GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount -1;
-	END_IF
 
 	GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
 
 	fbPlanarXtsMover[nForCounter]();
 	
-	rtDivertQueue(CLK := fbPlanarXtsMover[nForCounter].P_MoverStatus.CommandedToDivert);
-	ftDivertQueue(CLK := fbPlanarXtsMover[nForCounter].P_MoverStatus.CommandedToDivert);
-	
-	GVL_General.stSwitchStatus.ShuttleCountQdAndOnShortcut := GVL_General.stSwitchStatus.ShuttleDivertQueueCount + TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_MAIN_SECTOR_IPART].MoverCountOnSector;
-
 END_FOR
+
+FaultReset(CLK := MoverStop);
+
+IF FaultReset.Q THEN
+	Fault	:= FALSE;
+END_IF
+
+SystemEnabled	:= (MoverStop (* SafetyOK *) AND NOT Fault);
 
 //Command Diverting to Magnet for any designated mover
-FOR nForCounterDiverting := GC.nNumMinMovers TO GC.nNumMaxMovers DO
+DivertQueue();
 
-	IF MagnetEnabled AND fbPlanarXtsMover[nForCounterDiverting].P_MoverStatus.CommandedToDivert AND_THEN 
-						TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
-		bCmdMagnetOn := TRUE;
-		EXIT;
-	ELSIF TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
-		bCmdMagnetOn := FALSE;
-	END_IF
-
-END_FOR
-
-MagnetEnabled  := MoverStop (* SafetyOK *) AND NOT Fault;
-
-SwitchMagnet(stSwitchConfig := GVL_General.stSwitchConfig, 
-				ShuttleVelocity := GVL_General.stMoverConfig.NormalVelo, 
-				Command := bCmdMagnetOn);
-
-pwm();
-
-FP_Counter(CLK := bCmdMagnetOn);
-
-IF FP_Counter.Q THEN
-	Switchcounter := Switchcounter+1;
-END_IF]]></ST>
+SwitchMagnet(SafetyPermIntlk := SystemEnabled,
+			stSwitchConfig := GVL_General.stSwitchConfig);]]></ST>
     </Implementation>
     <Method Name="M_WritePlanarTrackConfig" Id="{0295121c-55f9-0613-05f6-3ba76e5df670}">
       <Declaration><![CDATA[METHOD M_WritePlanarTrackConfig]]></Declaration>

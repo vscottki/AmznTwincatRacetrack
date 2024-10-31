@@ -12,15 +12,9 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Increment counter, mark each mover for divert interval
-FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMaxMovers DO
-
-//Allow writing the configuration when movers not queued
-	IF NOT TrackSectors[nForCounterInterval].DivertTrigQueueSectorStatus.MoverIsOnSector THEN
-		GVL_General.stSwitchConfig.SwitchModeInternal		:=  GVL_General.stSwitchConfig.SwitchModeHMI;
-	END_IF
+FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 	
 	// Movers on the Queue Sector
-	
 	IF rtDivertTrigQueue.Q THEN
 		DivertingMoverIndex	:= nForCounterInterval; // capture the index
 		GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig		:= GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig +1; //always MODing this; don't need to decrement
@@ -44,19 +38,20 @@ FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMaxMovers DO
 		GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount -1;	
 	END_IF
 	
-	//Mover property managed by Mover exit from Magnet Sector
-	rtIncrementDivertCount(CLK := fbPlanarXtsMover[nForCounterInterval].P_MoverStatus.CommandedToDivert);
-	ftDecrementDivertCount(CLK := fbPlanarXtsMover[nForCounterInterval].P_MoverStatus.CommandedToDivert);
+//Mover property managed by Mover exit from Magnet Sector
+rtIncrementDivertCount(CLK := fbPlanarXtsMover[nForCounterInterval].P_MoverStatus.CommandedToDivert);
+ftDecrementDivertCount(CLK := fbPlanarXtsMover[nForCounterInterval].P_MoverStatus.CommandedToDivert);
+
 END_FOR]]></ST>
     </Implementation>
-    <Property Name="P_DivertingMoverIndex" Id="{ee8b060e-fa07-04f9-1120-e6095f5b5877}">
-      <Declaration><![CDATA[PROPERTY P_DivertingMoverIndex : REFERENCE TO UDINT]]></Declaration>
+    <Property Name="P_MoverIndexAtDivertTrig" Id="{ee8b060e-fa07-04f9-1120-e6095f5b5877}">
+      <Declaration><![CDATA[PROPERTY P_MoverIndexAtDivertTrig : REFERENCE TO UDINT]]></Declaration>
       <Get Name="Get" Id="{9e25bfd7-6aef-08b7-15e5-7b305ca027ad}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_DivertingMoverIndex	REF= DivertingMoverIndex;]]></ST>
+          <ST><![CDATA[P_MoverIndexAtDivertTrig	REF= DivertingMoverIndex;]]></ST>
         </Implementation>
       </Get>
     </Property>

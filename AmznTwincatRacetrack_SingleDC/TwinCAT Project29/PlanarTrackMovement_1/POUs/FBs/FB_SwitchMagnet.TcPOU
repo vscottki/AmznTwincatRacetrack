@@ -16,7 +16,7 @@ VAR
 	Timeout							: TON;
 END_VAR
 VAR_OUTPUT
-	Enabled						: BOOL;
+	PermIntlkOK					: BOOL;
 	MagnetOn					: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
@@ -27,8 +27,6 @@ ELSE
 END_IF
 
 GVL_General.stSwitchStatus.CurrentOutputMax     := GVL_General.stSwitchStatus.CurrentTheoreticalEstimation;
-
-Enabled		:= SafetyPermIntlk AND NOT Timeout.Q;
 
 IF Timeout.Q THEN
 	Command		:= FALSE;
@@ -42,7 +40,7 @@ ELSE
 	GVL_General.stSwitchStatus.MagnetValue := 0;
 END_IF
 
-MagnetOn	:= GVL_General.stSwitchStatus.MagnetValue > 0;
+MagnetOn	:= (GVL_General.stSwitchStatus.MagnetValue > 0);
 
 IF stSwitchConfig.CurrentMultFactor <> 0 THEN
     GVL_General.stSwitchStatus.CurrentOutputActual  := GVL_General.stSwitchStatus.MagnetValue / stSwitchConfig.CurrentMultFactor;
@@ -51,8 +49,10 @@ END_IF
 //Use Magnet feedback to this timer; set preset time based on mover velocity
 Timeout(IN := Command, PT := T#2S);
 
+PermIntlkOK	:= MagnetPermIntlk.P_OK;
+
 pwm();
-MagnetPermIntlk(Enabled := Enabled);]]></ST>
+MagnetPermIntlk(SystemPermIntlkOK := (SafetyPermIntlk AND NOT Timeout.Q));]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
