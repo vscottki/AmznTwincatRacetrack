@@ -75,43 +75,54 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\F_CurrentVelocity.TcPOU">
+    <Compile Include="POUs\FBs\FB_DivertQueue.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_SwitchMagnet.TcPOU">
+    <Compile Include="POUs\FBs\FB_MagnetPermIntlk.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_SingularTrackSector.TcPOU">
+    <Compile Include="POUs\FBs\FB_PlanarXtsMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_PWM.TcPOU">
+    <Compile Include="POUs\FBs\FB_PWM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_TrackSectors.TcPOU">
+    <Compile Include="POUs\FBs\FB_SingularTrackSector.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\F_PosnInitial.TcPOU">
+    <Compile Include="POUs\FBs\FB_State100.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\PositionF_CurrentCoeff.TcPOU">
+    <Compile Include="POUs\FBs\FB_SwitchMagnet.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\ReadTcCom.TcPOU">
+    <Compile Include="POUs\FBs\FB_TrackSectors.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_PlanarXtsMover.TcPOU">
+    <Compile Include="POUs\FBs\ReadTcCom.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FUNs\F_CurrentVelocity.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FUNs\F_PosnInitial.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FUNs\IsBetween.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FUNs\PositionF_CurrentCoeff.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\IsBetween.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\FBs" />
+    <Folder Include="POUs\FUNs" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -298,14 +309,6 @@
     <None Include="PlanarTrackMovement_1.tmc">
       <SubType>Content</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <SubObject Include="FB_PlanarXtsMover.IsCommandedInShortcut">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </SubObject>
-    <SubObject Include="FB_PlanarXtsMover._M_UpdateStatus">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </SubObject>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

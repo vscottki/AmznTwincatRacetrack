@@ -6,19 +6,21 @@
 VAR_INPUT
 	stSwitchConfig				: REFERENCE TO ST_SwitchConfig := GVL_General.stSwitchConfig;
 	ShuttleVelocity				: REFERENCE TO LREAL := GVL_General.stMoverConfig.NormalVelo;
+	SafetyPermIntlk			: REFERENCE TO BOOL;
 END_VAR
 VAR
 	TimeoutTime					: TIME := T#2S;
-END_VAR
-VAR_IN_OUT
+	MagnetPermIntlk			: FB_MagnetPermIntlk;
+	pwm									: FB_PWM;
 	Command	 		  			: BOOL;
+	Timeout							: TON;
 END_VAR
 VAR_OUTPUT
+	Enabled						: BOOL;
 	MagnetOn					: BOOL;
-	Timeout						: TON;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
+      <ST><![CDATA[IF GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
     GVL_General.stSwitchStatus.CurrentTheoreticalEstimation     := GVL_General.stSwitchConfig.SwitchCurrentNominal;
 ELSE
     GVL_General.stSwitchStatus.CurrentTheoreticalEstimation     := F_CurrentVelocity(Velocity := GVL_General.stMoverConfig.NormalVelo, a := GVL_General.stSwitchConfig.SwitchModeInternal.CurrentFunctionCoeffA, b := GVL_General.stSwitchConfig.SwitchModeInternal.CurrentFunctionCoeffB, c := GVL_General.stSwitchConfig.SwitchModeInternal.CurrentFunctionCoeffC);
@@ -26,7 +28,15 @@ END_IF
 
 GVL_General.stSwitchStatus.CurrentOutputMax     := GVL_General.stSwitchStatus.CurrentTheoreticalEstimation;
 
-IF Command AND NOT Timeout.Q THEN
+Enabled		:= SafetyPermIntlk AND NOT Timeout.Q;
+
+IF Timeout.Q THEN
+	Command		:= FALSE;
+ELSE
+	Command		:= MagnetPermIntlk.bMagnetCmdOn; 
+END_IF
+
+IF Command THEN
 	GVL_General.stSwitchStatus.MagnetValue := LREAL_TO_INT(GVL_General.stSwitchStatus.CurrentOutputMax*stSwitchConfig.CurrentMultFactor);
 ELSE
 	GVL_General.stSwitchStatus.MagnetValue := 0;
@@ -38,12 +48,11 @@ IF stSwitchConfig.CurrentMultFactor <> 0 THEN
     GVL_General.stSwitchStatus.CurrentOutputActual  := GVL_General.stSwitchStatus.MagnetValue / stSwitchConfig.CurrentMultFactor;
 END_IF
 
-IF Timeout.Q THEN
-	Command		:= FALSE;
-END_IF
-
 //Use Magnet feedback to this timer; set preset time based on mover velocity
-Timeout(IN := Command, PT := T#2S);]]></ST>
+Timeout(IN := Command, PT := T#2S);
+
+pwm();
+MagnetPermIntlk(Enabled := Enabled);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

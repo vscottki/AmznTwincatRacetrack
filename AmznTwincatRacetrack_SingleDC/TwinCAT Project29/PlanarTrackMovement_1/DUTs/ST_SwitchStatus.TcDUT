@@ -9,9 +9,7 @@ STRUCT
     CurrentTheoreticalEstimation    : LREAL;
     CurrentOutputMax                : LREAL;
     PosnCurrentCoeff                : LREAL;
-//	ShuttleIsDiverting				: BOOL;
 	ShuttleDivertQueueCount			: UDINT;
-	ShuttleCountQdAndOnShortcut		: UDINT;
 	ShuttleCountAtDivertTrig		: UDINT;
 END_STRUCT
 END_TYPE]]></Declaration>

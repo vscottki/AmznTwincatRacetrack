@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_MagnetPermIntlk" Id="{962a6221-0f3e-03bc-045d-7d19eb7395ad}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MagnetPermIntlk
+VAR_INPUT
+	Enabled					: BOOL;
+END_VAR
+VAR_OUTPUT
+	bMagnetCmdOn						: BOOL;
+END_VAR
+VAR
+	MagnetPermIntlkOK				: BOOL;
+	nForCounterDiverting		: UDINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Command Diverting to Magnet for any designated mover
+FOR nForCounterDiverting := GC.nNumMinMovers TO GVL_General.nNumMaxMovers DO
+
+	MagnetPermIntlkOK	:= Enabled AND
+		fbPlanarXtsMover[nForCounterDiverting].P_MoverStatus.CommandedToDivert AND
+		(TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.SHORTCUT_MAIN_SECTOR_IPART].MoverCountOnSector <
+			GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedCountOnShortcut);
+			
+	IF MagnetPermIntlkOK AND_THEN 
+		GVL_Mc3.TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
+		bMagnetCmdOn := TRUE;
+		EXIT;
+	ELSIF GVL_Mc3.TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
+		fbPlanarXtsMover[nForCounterDiverting].P_CmdDivert 	:= FALSE;
+		bMagnetCmdOn := FALSE;
+	END_IF
+	
+	IF TrackSectors[nForCounterDiverting].SingularSectorStatus[GC.SHORTCUT_DIVERT_SECTOR_IPART].MoverExitedSector.Q THEN
+			fbPlanarXtsMover[nForCounterDiverting].P_MoverStatus.IntervalMarked		:= FALSE;
+	END_IF
+
+END_FOR]]></ST>
+    </Implementation>
+    <Property Name="P_OK" Id="{fc7fc1bf-2e5f-0caa-35f3-e55afb89eca7}">
+      <Declaration><![CDATA[PROPERTY P_OK : REFERENCE TO BOOL]]></Declaration>
+      <Get Name="Get" Id="{0e6c77fc-4f91-0be7-2897-0cbafedb3e53}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_OK REF= MagnetPermIntlkOK;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

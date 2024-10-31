@@ -11,6 +11,8 @@ END_VAR
 VAR
 	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	_PlanarTrail    			: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
+	
+	CfgUseIntervalMark				: BOOL := TRUE;
 
 	stXtsPositionInfo			: Tc3_XTS_Utility.ST_PositionInfo;
 	
@@ -18,10 +20,16 @@ VAR
 
 	Mover				        : MoverSort;
 	
+	CmdDivert						: BOOL;
+	
 	stMoverStatus				: ST_MoverStatus;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF CfgUseIntervalMark THEN
+	stMoverStatus.CommandedToDivert := CmdDivert AND stMoverStatus.IntervalMarked;
+ELSE
+	stMoverStatus.CommandedToDivert := CmdDivert;
+END_IF]]></ST>
     </Implementation>
     <Folder Name="Methods" Id="{497e6300-3e6d-49b8-a318-13b94b960f56}" />
     <Folder Name="Properties" Id="{bafe569f-b5f0-4de9-ae48-854cd11ccd2e}" />
@@ -91,7 +99,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_CmdDivert	REF= stMoverStatus.CommandedToDivert;]]></ST>
+          <ST><![CDATA[P_CmdDivert	REF= CmdDivert;]]></ST>
         </Implementation>
       </Get>
     </Property>
