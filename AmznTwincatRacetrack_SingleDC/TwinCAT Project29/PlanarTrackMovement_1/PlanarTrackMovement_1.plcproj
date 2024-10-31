@@ -90,9 +90,6 @@
     <Compile Include="POUs\FBs\FB_SingularTrackSector.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\FB_State100.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\FBs\FB_SwitchMagnet.TcPOU">
       <SubType>Code</SubType>
     </Compile>
