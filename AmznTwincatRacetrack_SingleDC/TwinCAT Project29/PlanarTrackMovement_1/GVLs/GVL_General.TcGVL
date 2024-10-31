@@ -26,7 +26,6 @@
 	
 	DivertQueue						: FB_DivertQueue;
 	SwitchMagnet					: FB_SwitchMagnet;
-	nMoveState				  		: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF INT;
 
 //Status
   	stSwitchStatus        		    : ST_SwitchStatus;

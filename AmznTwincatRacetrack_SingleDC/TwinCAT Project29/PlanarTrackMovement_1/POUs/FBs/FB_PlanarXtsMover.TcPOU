@@ -4,11 +4,12 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PlanarXtsMover
 
 VAR_INPUT
-	nMoverId			    	: UDINT;
 	iTcIoXtsXpuMover			: REFERENCE TO Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 END_VAR
 
 VAR
+	nMoverId			    	: UDINT;
+
 	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	_PlanarTrail    			: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
 	
@@ -99,6 +100,25 @@ END_VAR
           <ST><![CDATA[P_CmdDivert	REF= CmdDivert;]]></ST>
         </Implementation>
       </Get>
+    </Property>
+    <Property Name="P_MoverId" Id="{033bc7d6-a908-0af3-1630-2fc499f56ad8}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_MoverId : UDINT]]></Declaration>
+      <Get Name="Get" Id="{c0e5d564-a073-06e0-3bca-52836c21275c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_MoverId	:= nMoverId;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{ff03ecba-f79d-0c21-3b65-7c6a4248584c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[nMoverId := P_MoverId;]]></ST>
+        </Implementation>
+      </Set>
     </Property>
     <Property Name="P_MoverPhysics" Id="{056b1259-392a-0821-097b-b08bee10a569}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_MoverPhysics : REFERENCE TO Tc3_Physics.PositionXYC]]></Declaration>

@@ -57,11 +57,16 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//IF NOT fbXtsEnvironment.P_IsInitialized THEN
-	fbXtsEnvironment.Init(bExecute := TRUE);
-	//Cyclic
+      <ST><![CDATA[fbXtsEnvironment.Init(bExecute := TRUE);
+//Cyclic
 M_WritePlanarTrackConfig();
-//END_IF
+SystemEnabled	:= (MoverStop (* SafetyOK *) AND NOT Fault);
+
+//Command Diverting to Magnet for any designated mover
+DivertQueue();
+
+SwitchMagnet(SafetyPermIntlk := SystemEnabled,
+			stSwitchConfig := GVL_General.stSwitchConfig);
 
 Emergency :=  MoverStop;
 ResetSafetyLight    := NOT MoverStop;
@@ -113,7 +118,7 @@ IsMoverInBlockingArea := FALSE;
 	bAllDone:= TRUE;
 FOR M := GC.nNumMinMovers TO nNumMovers DO///Movers
 	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
-	GVL_Mc3.fbPlanarXtsMover[M].nMoverId := M;
+	GVL_Mc3.fbPlanarXtsMover[M].P_MoverId := M;
 	GVL_Mc3.fbPlanarXtsMover[M].P_PlanarMover.MoverNumber	:= GVL_Mc3.fbPlanarXtsMover[M].nMoverId;
   GVL_Mc3.aiXpuXtsMover[M]  := fbXtsEnvironment.XpuTcIo(1).MoverTcIo(TO_UINT(M));
   fbPlanarXtsMover[M].iTcIoXtsXpuMover REF= GVL_Mc3.aiXpuXtsMover[M];
@@ -177,7 +182,7 @@ CASE nCase OF
 		
 		
 	35:
-		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			fbPlanarXtsMover[nForCounter].McPlanarMover.Reset(MoverFeedback[nForCounter]);
 		END_FOR
 		nCase := 36;	
@@ -185,7 +190,7 @@ CASE nCase OF
 		
 	36:	
 		bAllDone:=TRUE;
-		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			bAllDone:=bAllDone AND MoverFeedback[nForCounter].Done;
 		END_FOR
 		
@@ -195,7 +200,7 @@ CASE nCase OF
 		
 		
 	40:
-		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			fbPlanarXtsMover[nForCounter].McPlanarMover.Enable(MoverFeedback[nForCounter]);
 		END_FOR
 		nCase := 50;
@@ -203,7 +208,7 @@ CASE nCase OF
 		
 	50:
 		bAllDone:=TRUE;
-		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			bAllDone:=bAllDone AND MoverFeedback[nForCounter].Done;
 		END_FOR
 		
@@ -214,7 +219,7 @@ CASE nCase OF
 	//55:
 
 	60:
-		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			IF nForCounter <= 9 THEN
 				fbPlanarXtsMover[nForCounter].JoinTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.Big]);//   Mover[nForCounter].MoverTrackNr]);
 			ELSE
@@ -227,7 +232,7 @@ CASE nCase OF
 		
 	70:
 		bAllDone:=TRUE;
-		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			bAllDone:=bAllDone AND MoverFeedback[nForCounter].Done;
 		END_FOR
 		
@@ -236,7 +241,7 @@ CASE nCase OF
 		END_IF
 		
 	80:	
-		FOR nForCounter:=GC.nNumMinMovers TO nNumMovers DO
+		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			nMoveState[nForCounter] := 0;
 			aMoveOnTrackOptions[nForCounter].direction := MC_Direction.mcDirectionPositive;
 			aMoveOnTrackOptions[nForCounter].gapMode := MC_GAP_MODE_ON_TRACK.Fast1D;
@@ -246,10 +251,7 @@ CASE nCase OF
 
 	100:
 
-		//Adjust the first mover parameters to induce a platoon
-		aDynamics[GC.nNumMinMovers].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
-
-		FOR nForCounter:= GC.nNumMinMovers TO GC.nNumMaxMovers DO
+		FOR nForCounter:= GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			IF TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_EXIT_SECTOR_IPART].MoverIsOnSector THEN
 				//Reduce mover-mover gap
 				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
@@ -260,9 +262,9 @@ CASE nCase OF
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.NormalMoverGap;
 			END_IF
-//		END_FOR
-		
-//		FOR nForCounter:= GC.nNumMinMovers TO nNumMovers DO
+
+			//Adjust the first mover parameters to induce a platoon
+			aDynamics[GC.nNumMinMovers].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 
 			IF NOT TrackSectors[nForCounter].DivertTrigQueueSectorStatus.MoverIsOnSector THEN
 				stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
@@ -271,7 +273,6 @@ CASE nCase OF
 			GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
 		
 			fbPlanarXtsMover[nForCounter]();
-			
 
 			CASE nMoveState[nForCounter] OF
 				
@@ -284,13 +285,16 @@ CASE nCase OF
 					nMoveState[nForCounter] := 10;
 
 				10: //Decision state to route mover through the switch or continue on the outer loop
-					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector AND 
-						(DivertQueue.P_MoverIndexAtDivertTrig = fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverNumber) THEN
-						IF SwitchMagnet.PermIntlkOK THEN
-							 nMoveState[nForCounter] 	:= 20;
-						ELSE
-							 nMoveState[nForCounter] 	:= 30;
-						END_IF
+					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
+						 nMoveState[nForCounter] 	:= 15;
+					END_IF
+					
+				15:
+					IF SwitchMagnet.PermIntlkOK AND 
+						(DivertQueue.DivertingMoverIndex = fbPlanarXtsMover[nForCounter].P_MoverId) THEN
+						 nMoveState[nForCounter] 	:= 20;
+					ELSE
+						 nMoveState[nForCounter] 	:= 30;
 					END_IF
 
 				20: // Move command to inner track
@@ -442,14 +446,7 @@ FaultReset(CLK := MoverStop);
 IF FaultReset.Q THEN
 	Fault	:= FALSE;
 END_IF
-
-SystemEnabled	:= (MoverStop (* SafetyOK *) AND NOT Fault);
-
-//Command Diverting to Magnet for any designated mover
-DivertQueue();
-
-SwitchMagnet(SafetyPermIntlk := SystemEnabled,
-			stSwitchConfig := GVL_General.stSwitchConfig);]]></ST>
+]]></ST>
     </Implementation>
     <Method Name="M_WritePlanarTrackConfig" Id="{0295121c-55f9-0613-05f6-3ba76e5df670}">
       <Declaration><![CDATA[METHOD M_WritePlanarTrackConfig]]></Declaration>
