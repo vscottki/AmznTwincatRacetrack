@@ -65,7 +65,6 @@ SystemEnabled	:= (MoverStop (* SafetyOK *) AND NOT Fault);
 //Command Diverting to Magnet for any designated mover
 DivertQueue();
 
-SwitchMagnet.M_UpdateMoverCommands();
 SwitchMagnet(SafetyPermIntlk := SystemEnabled,
 			stSwitchConfig := GVL_General.stSwitchConfig);
 
@@ -288,12 +287,11 @@ CASE nCase OF
 				10: //Decision state to route mover through the switch or continue on the outer loop
 					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
 						DivertQueue.M_UpdateAtTrig();
-						SwitchMagnet.M_EvaluatePermIntlk(MoverId := DivertQueue.DivertingMoverIndex);
 						nMoveState[nForCounter] 	:= 15;
 					END_IF
 					
-				15:
-					IF SwitchMagnet.PermIntlkOK THEN
+				15: // Match the move command with the shuttle that is commanded to divert
+					IF SwitchMagnet.PermIntlkOK AND (fbPlanarXtsMover[nForCounter].P_MoverId = DivertQueue.DivertingMoverIndex) THEN
 						 nMoveState[nForCounter] 	:= 20;
 					ELSE
 						 nMoveState[nForCounter] 	:= 30;
@@ -324,11 +322,9 @@ CASE nCase OF
 				
 				
 				50: // Confirm the shuttle is diverting
-					SwitchMagnet.M_EvaluateCommand(MoverId := nForCounter);
-
 					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
 						nMoveState[nForCounter] := 55;
-					END_IF				
+					END_IF
 			
 				55: // Route through shortcut
 					IF stTrackShortcutConfig.TestPowerMat THEN

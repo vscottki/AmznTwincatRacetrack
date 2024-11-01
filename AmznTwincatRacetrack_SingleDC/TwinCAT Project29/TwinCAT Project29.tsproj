@@ -6067,7 +6067,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement_1" PrjFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.plcproj" TmcFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{8B47A1B6-9754-9B23-42E2-FA0DD3C1D5DD}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{F9DEB2D7-D072-1BC4-EA9E-2E8C41111668}">
 					<Name>PlanarTrackMovement_1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -6085,10 +6085,6 @@ External Setpoint Generation:
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL_General.SwitchMagnet.pwm.ModuleState</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_Mc3.MC_Tracks[1].MCTOPLC_STD</Name>
 							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
 							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
@@ -6102,6 +6098,10 @@ External Setpoint Generation:
 							<Name>GVL_Mc3.MC_Tracks[3].MCTOPLC_STD</Name>
 							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
 							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
+						</Var>
+						<Var>
+							<Name>GVL_General.SwitchMagnet.pwm.ModuleState</Name>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Mc3.fbPlanarXtsMover[1]._McPlanarMover.MCTOPLC</Name>
@@ -6150,15 +6150,15 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_General.stSwitchStatus.MagnetValue</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>GVL_General.SwitchMagnet.pwm.Control</Name>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_General.SwitchMagnet.pwm.TargetTorque</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_General.stSwitchStatus.MagnetValue</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>

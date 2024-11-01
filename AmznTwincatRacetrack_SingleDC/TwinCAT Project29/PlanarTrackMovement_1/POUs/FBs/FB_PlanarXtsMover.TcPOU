@@ -28,21 +28,10 @@ VAR_OUTPUT
 	stMoverStatus				: ST_MoverStatus;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF CfgUseIntervalMark THEN
-	stMoverStatus.IntervalMarked	:= CmdMarkInterval;
-	stMoverStatus.CommandedToDivert := CmdDivert AND stMoverStatus.IntervalMarked;
-ELSE
-	stMoverStatus.CommandedToDivert := CmdDivert;
-END_IF]]></ST>
+      <ST><![CDATA[]]></ST>
     </Implementation>
     <Folder Name="Methods" Id="{497e6300-3e6d-49b8-a318-13b94b960f56}" />
     <Folder Name="Properties" Id="{bafe569f-b5f0-4de9-ae48-854cd11ccd2e}" />
-    <Method Name="_M_UpdateStatus" Id="{5fb917e1-5646-02f6-26ca-dbbb331704b2}" FolderPath="Methods\">
-      <Declaration><![CDATA[METHOD PROTECTED _M_UpdateStatus]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="IsCommandedInShortcut" Id="{e5e69e7e-f163-4728-82da-b10e582ce622}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY IsCommandedInShortcut : BOOL]]></Declaration>
       <Get Name="Get" Id="{7a71ba46-249d-415a-b1f4-f1c52c07bed0}">
@@ -80,6 +69,31 @@ VAR_IN_OUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[_McPlanarMover.JoinTrack(feedback, track, 0, 0);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_EvaluateCommands" Id="{5fb917e1-5646-02f6-26ca-dbbb331704b2}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD M_EvaluateCommands
+VAR_INST
+	rtIncrementDivertCount			: Tc2_Standard.R_TRIG;
+	ftDecrementDivertCount			: Tc2_Standard.F_TRIG;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF CfgUseIntervalMark THEN
+	stMoverStatus.IntervalMarked	:= CmdMarkInterval;
+	stMoverStatus.CommandedToDivert := CmdDivert AND stMoverStatus.IntervalMarked;
+ELSE
+	stMoverStatus.CommandedToDivert := CmdDivert;
+END_IF
+
+//Mover property managed by Mover exit from Magnet Sector
+rtIncrementDivertCount(CLK := stMoverStatus.CommandedToDivert);
+ftDecrementDivertCount(CLK := stMoverStatus.CommandedToDivert);
+
+IF rtIncrementDivertCount.Q THEN
+	GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount +1;
+ELSIF ftDecrementDivertCount.Q THEN
+	GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount -1;	
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="McPlanarMover" Id="{79d72b75-52b9-47c8-886e-5e60276bf5f1}" FolderPath="Properties\">

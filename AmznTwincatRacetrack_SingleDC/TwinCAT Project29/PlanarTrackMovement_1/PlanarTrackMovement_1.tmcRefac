@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="535e96ce-529b-4543-94ca-98d4d4681fb8">_M_EVALUATECOMMANDS</Type>
+      <From>_M_EvaluateCommands</From>
+      <To>M_EvaluateCommands</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="1fa02d38-56aa-4934-816d-cd73ac9e7a7e">_M_EVALUATEPERMINTLK</Type>
+      <From>_M_EvaluatePermIntlk</From>
+      <To>M_EvaluatePermIntlk</To>
+    </RenamedType>
+  </Renames>
+</Refactors>
