@@ -317,9 +317,12 @@ CASE nCase OF
 
 
 				40:
-					IF TrackSectors[nForCounter].afbSector[GC.NO_DIVERT_POST_MAG].stTrackSectorStatus.MoverExitedSector.Q THEN // did not divert
-						fbPlanarXtsMover[nForCounter].P_CmdDivert			:= FALSE;
-						fbPlanarXtsMover[nForCounter].P_CmdIntvl			:= FALSE;
+					IF TrackSectors[nForCounter].afbSector[GC.NO_DIVERT_POST_MAG].stTrackSectorStatus.MoverExitedSector.Q THEN
+						IF fbPlanarXtsMover[nForCounter].stMoverStatus.CommandedToDivert THEN // did not divert
+							GVL_General.stSwitchStatus.ShuttleDivertQueueCount			:= GVL_General.stSwitchStatus.ShuttleDivertQueueCount -1;
+							fbPlanarXtsMover[nForCounter].P_CmdDivert			:= FALSE;
+							fbPlanarXtsMover[nForCounter].P_CmdIntvl			:= FALSE;
+						END_IF
 						nMoveState[nForCounter]     := 0;
 					END_IF
 				
@@ -328,6 +331,7 @@ CASE nCase OF
 					SwitchMagnet.M_EvaluateInlineCommands();
 
 					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
+						GVL_General.stSwitchStatus.ShuttleDivertQueueCount			:= GVL_General.stSwitchStatus.ShuttleDivertQueueCount -1;
 						nMoveState[nForCounter] := 55;
 					END_IF
 			
