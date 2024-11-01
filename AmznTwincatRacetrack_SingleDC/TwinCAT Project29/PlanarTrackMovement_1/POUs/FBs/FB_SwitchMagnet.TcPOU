@@ -19,9 +19,10 @@ VAR_OUTPUT
 	MagnetIsOn					: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[M_EvaluatePermIntlk();
-M_EvaluateCommands();
+      <ST><![CDATA[_M_EvaluatePermIntlk();
+_M_EvaluateCommands();
 
+//Configuration
 IF GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
     GVL_General.stSwitchStatus.CurrentTheoreticalEstimation     := GVL_General.stSwitchConfig.SwitchCurrentNominal;
 ELSE
@@ -30,7 +31,8 @@ END_IF
 
 GVL_General.stSwitchStatus.CurrentOutputMax     := GVL_General.stSwitchStatus.CurrentTheoreticalEstimation;
 
-IF Command THEN
+//Output
+IF PermIntlkOK AND Command THEN
 	GVL_General.stSwitchStatus.MagnetValue := LREAL_TO_INT(GVL_General.stSwitchStatus.CurrentOutputMax*stSwitchConfig.CurrentMultFactor);
 ELSE
 	GVL_General.stSwitchStatus.MagnetValue := 0;
@@ -45,50 +47,42 @@ END_IF
 pwm();
 
 //Use Magnet feedback to this timer; set preset time based on mover velocity
-Timeout(IN := Command, PT := T#2S);]]></ST>
+Timeout(IN := MagnetIsOn, PT := T#2S);]]></ST>
     </Implementation>
-    <Method Name="M_EvaluateCommands" Id="{76dc13a7-b013-0892-3e05-7bb942654e1e}">
-      <Declaration><![CDATA[METHOD M_EvaluateCommands
+    <Method Name="_M_EvaluateCommands" Id="{18a83905-5928-0097-0202-56fb98387126}">
+      <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateCommands
+VAR_INST
+	nForCounter		: UDINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT PermIntlkOK OR Timeout.Q THEN
+	Command		:= FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_M_EvaluatePermIntlk" Id="{3a22a851-b422-04e5-2ba2-2e1e3a932bd8}">
+      <Declaration><![CDATA[METHOD PRIVATE _M_EvaluatePermIntlk]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[PermIntlkOK	:= SafetyPermIntlk AND NOT Timeout.Q;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_EvaluateInlineCommands" Id="{76dc13a7-b013-0892-3e05-7bb942654e1e}">
+      <Declaration><![CDATA[METHOD M_EvaluateInlineCommands
 VAR_INST
 	nForCounter					: UDINT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR nForCounter := GC.nNumMinMovers TO GVL_General.nNumMovers DO
-	IF Timeout.Q THEN
+	
+	IF GVL_Mc3.fbPlanarXtsMover[nForCounter].stMoverStatus.CommandedToDivert AND 
+			GVL_Mc3.TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
+		Command		:= TRUE;
+	ELSIF GVL_Mc3.TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
 		Command		:= FALSE;
-	ELSE
-		Command		:= PermIntlkOK AND GVL_Mc3.TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector;
-	END_IF
-END_FOR]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="M_EvaluatePermIntlk" Id="{3a22a851-b422-04e5-2ba2-2e1e3a932bd8}">
-      <Declaration><![CDATA[METHOD M_EvaluatePermIntlk
-VAR_INST
-	nForCounter					: UDINT;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[FOR nForCounter := GC.nNumMinMovers TO GVL_General.nNumMovers DO
-
-	PermIntlkOK	:= (SafetyPermIntlk AND NOT Timeout.Q) AND fbPlanarXtsMover[nForCounter].stMoverStatus.CommandedToDivert;
-
-END_FOR]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="M_UpdateMoverCommands" Id="{55e8ad42-4541-06be-0512-1305d2277528}">
-      <Declaration><![CDATA[METHOD M_UpdateMoverCommands
-VAR_INST
-	nForCounter					: UDINT;
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//Command Diverting to Magnet for any designated mover
-FOR nForCounter := GC.nNumMinMovers TO GVL_General.nNumMovers DO
-
-	IF GVL_Mc3.TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
-		fbPlanarXtsMover[nForCounter].P_CmdDivert 			:= FALSE;
+		fbPlanarXtsMover[nForCounter].P_CmdDivert			:= FALSE;
 		fbPlanarXtsMover[nForCounter].P_CmdIntvl			:= FALSE;
 	END_IF
-	
+
 END_FOR]]></ST>
       </Implementation>
     </Method>

@@ -36,14 +36,14 @@ FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			IF (((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1) = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
 				fbPlanarXtsMover[DivertingMoverIndex].P_CmdIntvl		:= TRUE;
 			END_IF
-		ELSE  // Also written false when mover exits magnet sector
+		ELSE  // Also written false when mover if magnet 
 			fbPlanarXtsMover[DivertingMoverIndex].P_CmdDivert			:= FALSE;
 			fbPlanarXtsMover[DivertingMoverIndex].P_CmdIntvl			:= FALSE;
 		END_IF
 
 	END_IF
 	
-	//Evaluate mover commands inline
+	//Evaluate mover commands, update ShuttleCount inline
 	fbPlanarXtsMover[nForCounterInterval].M_EvaluateCommands();
 
 END_FOR]]></ST>

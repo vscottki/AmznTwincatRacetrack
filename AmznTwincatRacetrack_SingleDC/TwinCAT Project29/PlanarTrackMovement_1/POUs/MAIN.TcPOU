@@ -291,7 +291,8 @@ CASE nCase OF
 					END_IF
 					
 				15: // Match the move command with the shuttle that is commanded to divert
-					IF SwitchMagnet.PermIntlkOK AND (fbPlanarXtsMover[nForCounter].P_MoverId = DivertQueue.DivertingMoverIndex) THEN
+					IF SwitchMagnet.P_PermIntlkOK AND fbPlanarXtsMover[DivertQueue.DivertingMoverIndex].stMoverStatus.CommandedToDivert AND
+						(fbPlanarXtsMover[nForCounter].P_MoverId = DivertQueue.DivertingMoverIndex) THEN
 						 nMoveState[nForCounter] 	:= 20;
 					ELSE
 						 nMoveState[nForCounter] 	:= 30;
@@ -317,11 +318,15 @@ CASE nCase OF
 
 				40:
 					IF TrackSectors[nForCounter].afbSector[GC.NO_DIVERT_POST_MAG].stTrackSectorStatus.MoverExitedSector.Q THEN // did not divert
+						fbPlanarXtsMover[nForCounter].P_CmdDivert			:= FALSE;
+						fbPlanarXtsMover[nForCounter].P_CmdIntvl			:= FALSE;
 						nMoveState[nForCounter]     := 0;
 					END_IF
 				
 				
 				50: // Confirm the shuttle is diverting
+					SwitchMagnet.M_EvaluateInlineCommands();
+
 					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
 						nMoveState[nForCounter] := 55;
 					END_IF

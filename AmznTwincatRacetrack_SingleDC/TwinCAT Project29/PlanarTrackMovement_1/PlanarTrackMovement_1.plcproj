@@ -305,7 +305,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <SubObject Include="FB_SwitchMagnet.M_EvaluatePermIntlk" />
+    <SubObject Include="FB_SwitchMagnet._M_EvaluatePermIntlk" />
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
