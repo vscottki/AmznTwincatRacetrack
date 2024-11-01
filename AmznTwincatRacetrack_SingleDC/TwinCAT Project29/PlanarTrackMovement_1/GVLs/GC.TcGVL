@@ -5,7 +5,7 @@
 VAR_GLOBAL CONSTANT
 //Movers-PLC
 	nNumMinMovers					: UDINT :=1;
-	nNumMaxMovers 					: UDINT :=3; //See General (Persistent, non-constant)
+	nNumMaxMovers 					: UDINT :=17; //See General (Persistent, non-constant)
 
 //Movers-MC
 	nNumMinMCAxes					: UDINT	:=1;

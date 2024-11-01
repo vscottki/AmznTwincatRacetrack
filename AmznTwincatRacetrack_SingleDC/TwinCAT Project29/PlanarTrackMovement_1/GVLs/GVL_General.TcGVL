@@ -33,7 +33,7 @@
 END_VAR
 
 VAR_GLOBAL //PERSISTENT
-	nNumMovers								: UDINT := 3;
+	nNumMovers								: UDINT := 17;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

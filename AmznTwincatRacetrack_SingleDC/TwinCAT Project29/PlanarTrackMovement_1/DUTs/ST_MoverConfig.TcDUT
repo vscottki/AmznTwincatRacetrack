@@ -5,7 +5,7 @@
 STRUCT
 //Velocity (mm/s)
 	MaxVelo			: LREAL := 4000;
-	NormalVelo		: LREAL := 3800;
+	NormalVelo		: LREAL := 2500;
 	StoppingVelo	: LREAL := 300;
 //Acceleration (mm/s^2)
 	NormalAccel		: LREAL := 4000;
@@ -17,7 +17,7 @@ STRUCT
 	NormalJerk		: LREAL := 10000;
 	MaxJerk			: LREAL := 20000;
 //Platooning Vars
-	VeloComp		: LREAL := 600;
+	VeloComp		: LREAL := 100;
 	NormalMoverGap	: LREAL := 800;
 	TightMoverGap	: LREAL := 300;
 END_STRUCT
