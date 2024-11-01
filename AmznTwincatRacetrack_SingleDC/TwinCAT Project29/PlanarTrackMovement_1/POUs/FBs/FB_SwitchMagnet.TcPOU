@@ -6,18 +6,18 @@
 VAR_INPUT
 	stSwitchConfig				: REFERENCE TO ST_SwitchConfig := GVL_General.stSwitchConfig;
 	ShuttleVelocity				: REFERENCE TO LREAL := GVL_General.stMoverConfig.NormalVelo;
-	SafetyPermIntlk			: REFERENCE TO BOOL;
+	SafetyPermIntlk				: REFERENCE TO BOOL;
 END_VAR
 VAR
 	TimeoutTime					: TIME := T#2S;
-	MagnetPermIntlk			: FB_MagnetPermIntlk;
-	pwm									: FB_PWM;
+	pwm							: FB_PWM;
 	Command	 		  			: BOOL;
-	Timeout							: TON;
+	Timeout						: TON;
+	nForCounter					: UDINT;
+	PermIntlkOK					: BOOL;
 END_VAR
 VAR_OUTPUT
-	PermIntlkOK					: BOOL;
-	MagnetOn					: BOOL;
+	MagnetIsOn					: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints THEN
@@ -28,31 +28,78 @@ END_IF
 
 GVL_General.stSwitchStatus.CurrentOutputMax     := GVL_General.stSwitchStatus.CurrentTheoreticalEstimation;
 
-IF Timeout.Q THEN
-	Command		:= FALSE;
-ELSE
-	Command		:= MagnetPermIntlk.bMagnetCmdOn; 
-END_IF
-
 IF Command THEN
 	GVL_General.stSwitchStatus.MagnetValue := LREAL_TO_INT(GVL_General.stSwitchStatus.CurrentOutputMax*stSwitchConfig.CurrentMultFactor);
 ELSE
 	GVL_General.stSwitchStatus.MagnetValue := 0;
 END_IF
 
-MagnetOn	:= (GVL_General.stSwitchStatus.MagnetValue > 0);
+MagnetIsOn	:= (GVL_General.stSwitchStatus.MagnetValue > 0);
 
 IF stSwitchConfig.CurrentMultFactor <> 0 THEN
     GVL_General.stSwitchStatus.CurrentOutputActual  := GVL_General.stSwitchStatus.MagnetValue / stSwitchConfig.CurrentMultFactor;
 END_IF
 
-//Use Magnet feedback to this timer; set preset time based on mover velocity
-Timeout(IN := Command, PT := T#2S);
-
-PermIntlkOK	:= MagnetPermIntlk.P_OK;
-
 pwm();
-MagnetPermIntlk(SystemPermIntlkOK := (SafetyPermIntlk AND NOT Timeout.Q));]]></ST>
+
+//Use Magnet feedback to this timer; set preset time based on mover velocity
+Timeout(IN := Command, PT := T#2S);]]></ST>
     </Implementation>
+    <Method Name="M_EvaluateCommand" Id="{76dc13a7-b013-0892-3e05-7bb942654e1e}">
+      <Declaration><![CDATA[METHOD M_EvaluateCommand
+VAR_INPUT
+	MoverId		: UDINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Timeout.Q THEN
+	Command		:= FALSE;
+ELSE
+	Command		:= PermIntlkOK AND GVL_Mc3.TrackSectors[MoverId].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_EvaluatePermIntlk" Id="{3a22a851-b422-04e5-2ba2-2e1e3a932bd8}">
+      <Declaration><![CDATA[METHOD M_EvaluatePermIntlk
+VAR_INPUT
+	MoverId		: UDINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Command Diverting to Magnet for any designated mover
+PermIntlkOK	:= (SafetyPermIntlk AND NOT Timeout.Q) AND fbPlanarXtsMover[MoverId].stMoverStatus.CommandedToDivert;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateMoverCommands" Id="{55e8ad42-4541-06be-0512-1305d2277528}">
+      <Declaration><![CDATA[METHOD M_UpdateMoverCommands]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Command Diverting to Magnet for any designated mover
+FOR nForCounter := GC.nNumMinMovers TO GVL_General.nNumMovers DO
+
+	IF GVL_Mc3.TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
+		fbPlanarXtsMover[nForCounter].P_CmdDivert 			:= FALSE;
+		fbPlanarXtsMover[nForCounter].P_CmdIntvl			:= FALSE;
+	END_IF
+
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_PermIntlkOK" Id="{f87c32dd-cae1-0f90-29fa-c766eb8aab84}">
+      <Declaration><![CDATA[PROPERTY P_PermIntlkOK : BOOL]]></Declaration>
+      <Get Name="Get" Id="{4701e452-f323-0dba-2f8b-aff9cbc66282}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_PermIntlkOK := PermIntlkOK;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{e0591e6f-c681-08bd-1bc4-4d15b87d214b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PermIntlkOK := P_PermIntlkOK;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
   </POU>
 </TcPlcObject>

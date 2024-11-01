@@ -4,36 +4,16 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_DivertQueue
 VAR
 	nForCounterInterval			: UDINT;
-	rtDivertTrigQueue						: Tc2_Standard.R_TRIG;
 	rtIncrementDivertCount			: Tc2_Standard.R_TRIG;
 	ftDecrementDivertCount			: Tc2_Standard.R_TRIG;
 END_VAR
 VAR_OUTPUT
-	DivertingMoverIndex							: UDINT := GC.nNumMinMovers;
+	DivertingMoverIndex				: UDINT := GC.nNumMinMovers;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Increment counter, mark each mover for divert interval
 FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 
-	// Movers on the Queue Sector
-	IF rtDivertTrigQueue.Q THEN
-		DivertingMoverIndex	:= nForCounterInterval; // capture the index
-		GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig		:= GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig +1; //always MODing this; don't need to decrement
-		IF GVL_General.stSwitchStatus.ShuttleDivertQueueCount < GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN
-			fbPlanarXtsMover[DivertingMoverIndex].P_CmdDivert			:= TRUE;
-		END_IF
-	END_IF
-	
-	rtDivertTrigQueue(CLK := TrackSectors[nForCounterInterval].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q);
-	
-	IF (DivertingMoverIndex = fbPlanarXtsMover[nForCounterInterval].P_MoverId) 
-		AND NOT fbPlanarXtsMover[DivertingMoverIndex].P_MoverStatus.IntervalMarked THEN
-		IF (((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1) = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
-			fbPlanarXtsMover[DivertingMoverIndex].P_MoverStatus.IntervalMarked	:= TRUE;
-		END_IF
-		//Written false when mover diverts
-	END_IF
-	
 	IF rtIncrementDivertCount.Q THEN
 		GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount +1;
 	ELSIF ftDecrementDivertCount.Q THEN
@@ -41,17 +21,48 @@ FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 	END_IF
 	
 	//Mover property managed by Mover exit from Magnet Sector
-		rtIncrementDivertCount(CLK := fbPlanarXtsMover[DivertingMoverIndex].P_MoverStatus.CommandedToDivert);
-		ftDecrementDivertCount(CLK := fbPlanarXtsMover[DivertingMoverIndex].P_MoverStatus.CommandedToDivert);
+		rtIncrementDivertCount(CLK := fbPlanarXtsMover[DivertingMoverIndex].stMoverStatus.CommandedToDivert);
+		ftDecrementDivertCount(CLK := fbPlanarXtsMover[DivertingMoverIndex].stMoverStatus.CommandedToDivert);
 END_FOR]]></ST>
     </Implementation>
-    <Method Name="M_UpdateCount" Id="{6ebfa865-70ed-099f-252e-a28cbe294425}">
-      <Declaration><![CDATA[METHOD M_UpdateCount
-VAR_INPUT
-END_VAR
-]]></Declaration>
+    <Method Name="M_UpdateAtTrig" Id="{6ebfa865-70ed-099f-252e-a28cbe294425}">
+      <Declaration><![CDATA[METHOD M_UpdateAtTrig]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[//Increment counter, mark each mover for divert interval
+FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
+
+	IF TrackSectors[nForCounterInterval].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
+		GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig		:= GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig +1; //always MODing this; don't need to decrement
+	END_IF
+
+	IF (GVL_General.stSwitchStatus.ShuttleDivertQueueCount + TrackSectors[nForCounterInterval].SingularSectorStatus[GC.SHORTCUT_ENTRY_HALF_IPART].MoverCountOnSector) < 
+		GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN
+
+	// Movers on the Queue Sector
+		IF TrackSectors[nForCounterInterval].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q AND NOT
+			fbPlanarXtsMover[nForCounterInterval].stMoverStatus.CommandedToDivert THEN
+			DivertingMoverIndex	:= nForCounterInterval; // capture the index
+		END_IF
+	
+		IF (DivertingMoverIndex = fbPlanarXtsMover[nForCounterInterval].P_MoverId) THEN
+			fbPlanarXtsMover[DivertingMoverIndex].P_CmdDivert			:= TRUE;
+			IF (((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1) = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
+				fbPlanarXtsMover[DivertingMoverIndex].P_CmdIntvl		:= TRUE; //Written false when mover exits magnet sector
+			END_IF
+		END_IF
+
+	END_IF
+
+	IF rtIncrementDivertCount.Q THEN
+		GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount +1;
+	ELSIF ftDecrementDivertCount.Q THEN
+		GVL_General.stSwitchStatus.ShuttleDivertQueueCount := GVL_General.stSwitchStatus.ShuttleDivertQueueCount -1;	
+	END_IF
+	
+	//Mover property managed by Mover exit from Magnet Sector
+		rtIncrementDivertCount(CLK := fbPlanarXtsMover[DivertingMoverIndex].stMoverStatus.CommandedToDivert);
+		ftDecrementDivertCount(CLK := fbPlanarXtsMover[DivertingMoverIndex].stMoverStatus.CommandedToDivert);
+END_FOR]]></ST>
       </Implementation>
     </Method>
   </POU>

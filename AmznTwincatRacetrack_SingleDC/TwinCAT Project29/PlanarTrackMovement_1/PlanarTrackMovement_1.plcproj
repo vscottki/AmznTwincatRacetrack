@@ -78,9 +78,6 @@
     <Compile Include="POUs\FBs\FB_DivertQueue.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\FB_MagnetPermIntlk.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\FBs\FB_PlanarXtsMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -306,6 +303,9 @@
     <None Include="PlanarTrackMovement_1.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <SubObject Include="FB_SwitchMagnet.M_EvaluatePermIntlk" />
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

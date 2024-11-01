@@ -22,11 +22,14 @@ VAR
 	Mover				        : MoverSort;
 	
 	CmdDivert						: BOOL;
-	
+	CmdMarkInterval					: BOOL;
+END_VAR
+VAR_OUTPUT
 	stMoverStatus				: ST_MoverStatus;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF CfgUseIntervalMark THEN
+	stMoverStatus.IntervalMarked	:= CmdMarkInterval;
 	stMoverStatus.CommandedToDivert := CmdDivert AND stMoverStatus.IntervalMarked;
 ELSE
 	stMoverStatus.CommandedToDivert := CmdDivert;
@@ -101,6 +104,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="P_CmdIntvl" Id="{ef3bf2d0-f8c2-073d-2c1c-f93b8a8fdd2b}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_CmdIntvl : REFERENCE TO BOOL]]></Declaration>
+      <Get Name="Get" Id="{286f47f8-1582-0069-0f5a-5eb57603432d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_CmdIntvl	REF= CmdMarkInterval;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="P_MoverId" Id="{033bc7d6-a908-0af3-1630-2fc499f56ad8}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_MoverId : UDINT]]></Declaration>
       <Get Name="Get" Id="{c0e5d564-a073-06e0-3bca-52836c21275c}">
@@ -128,17 +142,6 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[P_MoverPhysics	REF= MoverPhysics;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Property Name="P_MoverStatus" Id="{4597e151-4034-0716-26cd-3b84c52a00ed}" FolderPath="Properties\">
-      <Declaration><![CDATA[PROPERTY P_MoverStatus : REFERENCE TO ST_MoverStatus]]></Declaration>
-      <Get Name="Get" Id="{c9b03fbe-77df-00fa-3e75-da43ee6790b6}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[P_MoverStatus REF= stMoverStatus;]]></ST>
         </Implementation>
       </Get>
     </Property>
