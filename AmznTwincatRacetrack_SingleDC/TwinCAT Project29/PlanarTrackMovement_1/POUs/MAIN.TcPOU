@@ -19,7 +19,7 @@ VAR
 	dynamics				    : INT;
 
 //Status
-	xSimulation					: BOOL := TRUE;
+	xSimulation					: BOOL;
 	SystemEnabled				: BOOL;
 
 	IsMoverInBlockingArea		: BOOL;
@@ -62,9 +62,10 @@ END_VAR
 //Cyclic
 M_WritePlanarTrackConfig();
 IF xSimulation THEN
-	MoverStop	:= TRUE;	
+	MoverStop	:= TRUE;
+ELSE
+	SystemEnabled	:= (MoverStop (* SafetyOK *) AND NOT Fault);
 END_IF
-SystemEnabled	:= (MoverStop (* SafetyOK *) AND NOT Fault);
 
 //Command Diverting to Magnet for any designated mover
 DivertQueue();
