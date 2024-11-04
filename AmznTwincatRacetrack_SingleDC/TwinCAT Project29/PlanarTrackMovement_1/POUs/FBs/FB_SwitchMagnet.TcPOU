@@ -79,8 +79,6 @@ END_VAR]]></Declaration>
 		Command		:= TRUE;
 	ELSIF GVL_Mc3.TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
 		Command		:= FALSE;
-		fbPlanarXtsMover[nForCounter].P_CmdDivert			:= FALSE;
-		fbPlanarXtsMover[nForCounter].P_CmdIntvl			:= FALSE;
 	END_IF
 
 END_FOR]]></ST>

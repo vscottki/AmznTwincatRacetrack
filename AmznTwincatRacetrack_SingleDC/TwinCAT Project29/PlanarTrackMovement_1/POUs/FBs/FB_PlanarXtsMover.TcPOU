@@ -13,7 +13,7 @@ VAR
 	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	_PlanarTrail    			: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
 	
-	CfgUseIntervalMark				: BOOL;
+	CfgUseIntervalMark				: BOOL := TRUE;
 
 	stXtsPositionInfo			: Tc3_XTS_Utility.ST_PositionInfo;
 	
@@ -79,6 +79,10 @@ END_VAR]]></Declaration>
 	stMoverStatus.CommandedToDivert := CmdDivert AND stMoverStatus.IntervalMarked;
 ELSE
 	stMoverStatus.CommandedToDivert := CmdDivert;
+END_IF
+
+IF NOT CmdDivert THEN
+	CmdMarkInterval	:= FALSE;
 END_IF]]></ST>
       </Implementation>
     </Method>

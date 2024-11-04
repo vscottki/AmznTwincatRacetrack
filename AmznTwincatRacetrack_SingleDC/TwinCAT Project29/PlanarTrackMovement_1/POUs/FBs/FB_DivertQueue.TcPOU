@@ -7,6 +7,7 @@ VAR
 END_VAR
 VAR_OUTPUT
 	DivertingMoverIndex				: UDINT := GC.nNumMinMovers;
+	TempMoverIndex						: UDINT := GVL_General.nNumMovers; //init to a different value
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -20,21 +21,22 @@ FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 
 	IF TrackSectors[nForCounterInterval].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
 		GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig		:= GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig +1; //always MODing this; don't need to decrement
-		DivertingMoverIndex	:= nForCounterInterval; // capture the index
+		TempMoverIndex	:= nForCounterInterval; // capture the index	
 	END_IF
 
 	IF (GVL_General.stSwitchStatus.ShuttleDivertQueueCount + TrackSectors[nForCounterInterval].SingularSectorStatus[GC.SHORTCUT_ENTRY_HALF_IPART].MoverCountOnSector) < 
-		GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN
+		GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
 	
-		IF (DivertingMoverIndex = fbPlanarXtsMover[nForCounterInterval].P_MoverId) AND NOT fbPlanarXtsMover[nForCounterInterval].P_CmdDivert THEN
+		IF (TempMoverIndex <> DivertingMoverIndex) THEN
+			DivertingMoverIndex			:= TempMoverIndex;
 			fbPlanarXtsMover[DivertingMoverIndex].P_CmdDivert			:= TRUE;
 			GVL_General.stSwitchStatus.ShuttleDivertQueueCount			:= GVL_General.stSwitchStatus.ShuttleDivertQueueCount +1;
 			IF (((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1) = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
 				fbPlanarXtsMover[DivertingMoverIndex].P_CmdIntvl		:= TRUE;
 			END_IF
-		ELSE  // Also written false when mover if magnet 
-			fbPlanarXtsMover[DivertingMoverIndex].P_CmdDivert			:= FALSE;
-			fbPlanarXtsMover[DivertingMoverIndex].P_CmdIntvl			:= FALSE;
+//		ELSE //Update FALSE inline with sequence
+//			fbPlanarXtsMover[DivertingMoverIndex].P_CmdDivert			:= FALSE;
+//			fbPlanarXtsMover[DivertingMoverIndex].P_CmdIntvl			:= FALSE;
 		END_IF
 
 	END_IF
