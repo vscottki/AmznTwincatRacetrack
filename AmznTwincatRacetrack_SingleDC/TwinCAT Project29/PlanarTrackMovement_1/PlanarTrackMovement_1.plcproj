@@ -77,6 +77,7 @@
     </Compile>
     <Compile Include="POUs\FBs\FB_DivertQueue.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\FBs\FB_PlanarXtsMover.TcPOU">
       <SubType>Code</SubType>
@@ -121,6 +122,20 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="RingBuffer">
+      <DefaultResolution>RingBuffer, * (Amazon)</DefaultResolution>
+      <Namespace>RingBuffer</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM_RINGBUFFER" xmlns="">
+          <Key>MIN_NUMBER_OBJECTS</Key>
+          <Value>0</Value>
+        </Parameter>
+        <Parameter ListName="PARAM_RINGBUFFER" xmlns="">
+          <Key>MAX_NUMBER_OBJECTS</Key>
+          <Value>999</Value>
+        </Parameter>
+      </Parameters>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
@@ -289,6 +304,9 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderResolution Include="RingBuffer">
+      <Resolution>RingBuffer, 1.4.0.999 (Amazon)</Resolution>
+    </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Mc3PlanarMotion">
       <Resolution>Tc3_Mc3PlanarMotion, 0.3.30.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>

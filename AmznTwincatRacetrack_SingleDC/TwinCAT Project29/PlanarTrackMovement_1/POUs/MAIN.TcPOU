@@ -19,7 +19,7 @@ VAR
 	dynamics				    : INT;
 
 //Status
-	xSimulation					: BOOL;
+	xSimulation					: BOOL := TRUE;
 	SystemEnabled				: BOOL;
 
 	IsMoverInBlockingArea		: BOOL;
@@ -51,7 +51,6 @@ VAR
 	StopTime 					: TIME := T#1S;
 	StopTimer 					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc2_Standard.TON;
 	StartTimer 					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF BOOL;
-
 
 	ArcLength 					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF LREAL;
 	TrackPos					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF Tc3_Physics.PositionXYC;
@@ -301,7 +300,7 @@ CASE nCase OF
 
 				10: //Decision state to route mover through the switch or continue on the outer loop
 					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
-						DivertQueue.M_UpdateAtTrig();
+						DivertQueue.
 						nMoveState[nForCounter] 	:= 15;
 					END_IF
 					

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_DivertQueue" Id="{6d05417c-3e76-051c-28a5-89303f3d9e18}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_DivertQueue
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DivertQueue EXTENDS RingBuffer.RingBufferMoverDivert
 VAR
 	nForCounterInterval			: UDINT;
 END_VAR
