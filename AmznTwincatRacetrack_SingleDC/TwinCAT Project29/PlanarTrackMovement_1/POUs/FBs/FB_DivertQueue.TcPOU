@@ -25,7 +25,7 @@ FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 	END_IF
 	
 		IF (TempMoverIndex <> DivertQueue.P_MoverDivert.MoverID) THEN
-				IF (DivertQueue.P_ObjCountInBuffer + TrackSectors[nForCounterInterval].SingularSectorStatus[GC.SHORTCUT_ENTRY_HALF_IPART].MoverCountOnSector) < 
+				IF (DivertQueue.P_ObjCountInBuffer + stSwitchStatus.ShuttleCountOnShortcut) <
 					GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
 						DivertQueue.P_MoverDivert.Divert				:= RingBuffer.E_Divert.Divert;
 					IF (TempMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
