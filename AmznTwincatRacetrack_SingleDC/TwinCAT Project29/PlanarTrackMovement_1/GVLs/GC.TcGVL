@@ -29,8 +29,9 @@ VAR_GLOBAL CONSTANT
 	SHORTCUT_EXIT_SECTOR_IPART 		: USINT := 9;
 	MERGE_SECTOR_TO_FINISH 			: USINT := 10;
 	NO_DIVERT_POST_MAG				: USINT := 11;
+	OUTER_FINISH							: USINT := 12;
 	//Make MAX same as last entry
-	MAX_SECTOR_CT					: USINT	:= 11;
+	MAX_SECTOR_CT					: USINT	:= 12;
 	
 // Global Position Constants
 	SHUTTLE_LENGTH						: LREAL := 600; //mm

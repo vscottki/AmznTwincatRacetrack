@@ -126,13 +126,13 @@
       <DefaultResolution>RingBuffer, * (Amazon)</DefaultResolution>
       <Namespace>RingBuffer</Namespace>
       <Parameters>
-        <Parameter ListName="PARAM_RINGBUFFER" xmlns="">
+        <Parameter ListName="PARAM_RINGBUFFER">
           <Key>MIN_NUMBER_OBJECTS</Key>
           <Value>0</Value>
         </Parameter>
-        <Parameter ListName="PARAM_RINGBUFFER" xmlns="">
+        <Parameter ListName="PARAM_RINGBUFFER">
           <Key>MAX_NUMBER_OBJECTS</Key>
-          <Value>999</Value>
+          <Value>5</Value>
         </Parameter>
       </Parameters>
     </PlaceholderReference>
@@ -323,6 +323,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <SubObject Include="FB_PlanarXtsMover.IsCommandedInShortcut">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
+    <SubObject Include="FB_PlanarXtsMover.P_CmdDivert">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
+    <SubObject Include="FB_PlanarXtsMover.P_CmdIntvl">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
     <SubObject Include="FB_SwitchMagnet._M_EvaluatePermIntlk" />
   </ItemGroup>
   <ProjectExtensions>

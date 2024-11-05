@@ -67,21 +67,19 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_EvaluateInlineCommands" Id="{76dc13a7-b013-0892-3e05-7bb942654e1e}">
-      <Declaration><![CDATA[METHOD M_EvaluateInlineCommands
-VAR_INST
-	nForCounter					: UDINT;
-END_VAR]]></Declaration>
+      <Declaration><![CDATA[METHOD M_EvaluateInlineCommands]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR nForCounter := GC.nNumMinMovers TO GVL_General.nNumMovers DO
-	
-	IF GVL_Mc3.fbPlanarXtsMover[nForCounter].stMoverStatus.CommandedToDivert AND 
-			GVL_Mc3.TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
+        <ST><![CDATA[//FOR nForCounter := GC.nNumMinMovers TO GVL_General.nNumMovers DO
+IF IsBetween(value := DivertQueue.P_LastObjectRemoved.MoverID, minV := GC.nNumMinMovers, maxV := GVL_General.nNumMovers) THEN
+	IF (DivertQueue.P_LastObjectRemoved.Divert = RingBuffer.E_Divert.Divert) AND DivertQueue.P_LastObjectRemoved.DivertOnInterval AND
+			GVL_Mc3.TrackSectors[DivertQueue.P_LastObjectRemoved.MoverID].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
 		Command		:= TRUE;
-	ELSIF GVL_Mc3.TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
+	ELSIF GVL_Mc3.TrackSectors[DivertQueue.P_LastObjectRemoved.MoverID].SingularSectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
 		Command		:= FALSE;
 	END_IF
+END_IF
 
-END_FOR]]></ST>
+//END_FOR]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_PermIntlkOK" Id="{f87c32dd-cae1-0f90-29fa-c766eb8aab84}">

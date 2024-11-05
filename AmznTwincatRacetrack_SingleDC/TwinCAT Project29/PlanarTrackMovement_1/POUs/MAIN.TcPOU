@@ -61,7 +61,7 @@ END_VAR
 //Cyclic
 M_WritePlanarTrackConfig();
 IF xSimulation THEN
-	MoverStop	:= TRUE;
+	SystemEnabled	:= TRUE;
 ELSE
 	SystemEnabled	:= (MoverStop (* SafetyOK *) AND NOT Fault);
 END_IF
@@ -279,14 +279,6 @@ CASE nCase OF
 			GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
 		
 			fbPlanarXtsMover[nForCounter]();
-			
-			//Manage Shuttle Queue Count
-			IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverExitedSector.Q AND 
-					fbPlanarXtsMover[nForCounter].stMoverStatus.CommandedToDivert THEN
-					GVL_General.stSwitchStatus.ShuttleDivertQueueCount			:= GVL_General.stSwitchStatus.ShuttleDivertQueueCount -1;
-			ELSIF NOT TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector THEN
-				GVL_General.stSwitchStatus.ShuttleDivertQueueCount	:= 0;
-			END_IF
 
 			CASE nMoveState[nForCounter] OF
 				
@@ -300,16 +292,21 @@ CASE nCase OF
 
 				10: //Decision state to route mover through the switch or continue on the outer loop
 					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
-						DivertQueue.
-						nMoveState[nForCounter] 	:= 15;
+						DivertQueue.M_UpdateAtTrig();
+					END_IF
+					
+					IF (stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount > 0) AND (DivertQueue.P_ObjCountInBuffer > 0) THEN
+						IF DivertQueue.P_ObjectAdded THEN
+							DivertQueue.RemoveObjFromBuffer();
+							nMoveState[nForCounter] 	:= 15; //Diverting Mover
+						END_IF
+					ELSE
+						 nMoveState[nForCounter] 	:= 30;
 					END_IF
 					
 				15: // Match the move command with the shuttle that is commanded to divert
-					IF SwitchMagnet.P_PermIntlkOK AND fbPlanarXtsMover[DivertQueue.DivertingMoverIndex].stMoverStatus.CommandedToDivert AND
-						(fbPlanarXtsMover[nForCounter].P_MoverId = DivertQueue.DivertingMoverIndex) THEN
+					IF SwitchMagnet.P_PermIntlkOK AND DivertQueue.P_ObjectRemoved THEN
 						 nMoveState[nForCounter] 	:= 20;
-					ELSE
-						 nMoveState[nForCounter] 	:= 30;
 					END_IF
 
 				20: // Move command to inner track
@@ -331,23 +328,15 @@ CASE nCase OF
 
 
 				40:
-					IF TrackSectors[nForCounter].afbSector[GC.NO_DIVERT_POST_MAG].stTrackSectorStatus.MoverExitedSector.Q THEN
-						IF fbPlanarXtsMover[nForCounter].stMoverStatus.CommandedToDivert THEN // did not divert for some reason (Magnet PermIntlk, etc.)
-							fbPlanarXtsMover[nForCounter].P_CmdDivert			:= FALSE;
-//							fbPlanarXtsMover[nForCounter].P_CmdIntvl			:= FALSE;
-						fbPlanarXtsMover[nForCounter].M_EvaluateCommands();
-						END_IF
+					IF TrackSectors[nForCounter].afbSector[GC.NO_DIVERT_POST_MAG].stTrackSectorStatus.MoverExitedSector.Q OR 
+						TrackSectors[nForCounter].afbSector[GC.OUTER_FINISH].stTrackSectorStatus.MoverIsOnSector THEN
 						nMoveState[nForCounter]     := 0;
 					END_IF
-				
-				
+					
 				50: // Confirm the shuttle is diverting
 					SwitchMagnet.M_EvaluateInlineCommands();
 
 					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverExitedSector.Q THEN
-							fbPlanarXtsMover[DivertQueue.DivertingMoverIndex].P_CmdDivert			:= FALSE;
-//							fbPlanarXtsMover[DivertQueue.DivertingMoverIndex].P_CmdIntvl			:= FALSE;
-							fbPlanarXtsMover[nForCounter].M_EvaluateCommands();
 						nMoveState[nForCounter] := 55;
 					END_IF
 			
@@ -369,12 +358,6 @@ CASE nCase OF
 					nMoveState[nForCounter] := 0;
 
 				70:
-//					GVL_Mc3.fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
-//																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
-//																		targetPositionOnTrack := stTrackGlobalConfig.StopPosPowermat,
-//																		constraint := aDynamics[nForCounter],
-//																		options := aMoveOnTrackOptions[nForCounter]);					
-
 					IF MoverFeedback[nForCounter].Done THEN
 						StartTimer[nForCounter] := TRUE;
 						nMoveState[nForCounter] := 80;
