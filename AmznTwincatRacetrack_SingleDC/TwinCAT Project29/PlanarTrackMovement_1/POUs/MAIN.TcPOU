@@ -334,6 +334,8 @@ CASE nCase OF
 																				constraint := aDynamics[nForCounter],
 																				options := aMoveOnTrackOptions[nForCounter]);
 							nMoveState[nForCounter] 	:= 30; //Diverting Mover
+						ELSE // didn't make the cut for divert - command straight
+							nMoveState[nForCounter] 	:= 15;
 						END_IF
 					ELSIF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector THEN
 						 nMoveState[nForCounter] 	:= 15;

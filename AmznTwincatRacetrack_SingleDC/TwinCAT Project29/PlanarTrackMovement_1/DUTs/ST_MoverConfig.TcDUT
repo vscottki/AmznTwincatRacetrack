@@ -9,10 +9,10 @@ STRUCT
 	StoppingVelo	: LREAL := 300;
 //Acceleration (mm/s^2)
 	NormalAccel		: LREAL := 4000;
-	MaxAccel		: LREAL := 8000;
+	MaxAccel		: LREAL := 6000;
 //Deceleration (mm/s^2)
 	NormalDecel		: LREAL := 3000;	
-	MaxDecel		: LREAL := 8000;
+	MaxDecel		: LREAL := 6000;
 //Jerk (mm/s^3)
 	NormalJerk		: LREAL := 10000;
 	MaxJerk			: LREAL := 20000;

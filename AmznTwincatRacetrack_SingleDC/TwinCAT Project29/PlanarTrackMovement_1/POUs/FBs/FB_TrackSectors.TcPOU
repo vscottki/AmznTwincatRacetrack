@@ -110,7 +110,7 @@ END_IF
 	astSectorConfig[GC.SHORTCUT_EXIT_SECTOR_IPART].TrackSectorEndPosn 			:= 0;
 
 	astSectorConfig[GC.MERGE_SECTOR_TO_FINISH].ObjectId						    := GVL_General.XtsPartInnerFinish;
-	astSectorConfig[GC.MERGE_SECTOR_TO_FINISH].PartSectorStartPosn			    := F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength());
+	astSectorConfig[GC.MERGE_SECTOR_TO_FINISH].PartSectorStartPosn			    := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-GC.SHUTTLE_LENGTH;
 	astSectorConfig[GC.MERGE_SECTOR_TO_FINISH].PartSectorEndPosn			 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength();
 	astSectorConfig[GC.MERGE_SECTOR_TO_FINISH].TrackSectorStartPosn			   	:= 0;
 	astSectorConfig[GC.MERGE_SECTOR_TO_FINISH].TrackSectorEndPosn 			 	:= 0;

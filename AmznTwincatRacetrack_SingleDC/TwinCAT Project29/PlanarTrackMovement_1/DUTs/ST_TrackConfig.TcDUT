@@ -5,7 +5,7 @@
 STRUCT
 	TargetPosnBeforeTrackEnd	: LREAL := 100;
 	StopPosPowermat				: LREAL := 7611;
-	MergeWaitFinishDistance : LREAL := 3000;
+	MergeWaitFinishDistance : LREAL := 3500;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
