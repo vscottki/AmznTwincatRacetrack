@@ -29,7 +29,10 @@ VAR_GLOBAL
 	PlanarTrackOuterFinish					: OTCID := 16#05120010;
 	
 	DivertQueue						: FB_DivertQueue;
+	TempMoverIndex							: UDINT;
+	DivertingMoverIndex					: UDINT := GC.nNumMinMovers;
 	SwitchMagnet					: FB_SwitchMagnet;
+	AboutToDivertGate			: BOOL;
 
 //Status
   	stSwitchStatus        		    : ST_SwitchStatus;

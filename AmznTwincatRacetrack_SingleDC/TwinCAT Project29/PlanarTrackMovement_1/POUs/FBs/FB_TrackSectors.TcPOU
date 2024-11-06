@@ -127,6 +127,11 @@ END_IF
 	astSectorConfig[GC.OUTER_FINISH].TrackSectorStartPosn			        := 0;
 	astSectorConfig[GC.OUTER_FINISH].TrackSectorEndPosn 			 	    := 0;
 	
+	astSectorConfig[GC.OUTERLOOP_MERGE].ObjectId						        	:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTERLOOP_MERGE].PartSectorStartPosn			      := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GC.OUTER_FINISH_MERGE_PAD;
+	astSectorConfig[GC.OUTERLOOP_MERGE].PartSectorEndPosn			 	    			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-GC.SHUTTLE_LENGTH;
+	astSectorConfig[GC.OUTERLOOP_MERGE].TrackSectorStartPosn			        := 0;
+	astSectorConfig[GC.OUTERLOOP_MERGE].TrackSectorEndPosn 			 	    := 0;
 
 END_IF]]></ST>
       </Implementation>

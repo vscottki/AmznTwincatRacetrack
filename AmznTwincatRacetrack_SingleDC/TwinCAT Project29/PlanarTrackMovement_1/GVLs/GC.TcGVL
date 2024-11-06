@@ -30,12 +30,14 @@ VAR_GLOBAL CONSTANT
 	MERGE_SECTOR_TO_FINISH 			: USINT := 10;
 	NO_DIVERT_POST_MAG				: USINT := 11;
 	OUTER_FINISH							: USINT := 12;
+	OUTERLOOP_MERGE						: USINT := 13;
 	//Make MAX same as last entry
-	MAX_SECTOR_CT					: USINT	:= 12;
+	MAX_SECTOR_CT					: USINT	:= 13;
 	
 // Global Position Constants
 	SHUTTLE_LENGTH						: LREAL := 600; //mm
 	SHUTTLE_LENGTH_PADDED				: LREAL := 900; //mm
+	OUTER_FINISH_MERGE_PAD			: LREAL := 6000; //mm
 	
 END_VAR]]></Declaration>
   </GVL>

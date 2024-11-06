@@ -6,9 +6,7 @@ VAR
 	nForCounterInterval			: UDINT;
 	MoverDivert							: RingBuffer.ST_MoverDivert;
 END_VAR
-VAR_OUTPUT
-	TempMoverIndex						: UDINT := GVL_General.nNumMovers; //init to a different value
-END_VAR]]></Declaration>
+]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
@@ -18,23 +16,17 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Increment counter, mark each mover for divert interval
 FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
-
-	IF TrackSectors[nForCounterInterval].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
-		GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig		:= GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig +1; //always MODing this; don't need to decrement
-		TempMoverIndex	:= ((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1); // capture the index	
-	END_IF
 	
-		IF (TempMoverIndex <> DivertQueue.P_MoverDivert.MoverID) THEN
-				IF (DivertQueue.P_ObjCountInBuffer + stSwitchStatus.ShuttleCountOnShortcut) <
-					GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
-						DivertQueue.P_MoverDivert.Divert				:= RingBuffer.E_Divert.Divert;
-					IF (TempMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
-						DivertQueue.P_MoverDivert.DivertOnInterval	:= TRUE;
-					END_IF
-				END_IF
-			DivertQueue.AddObjToBuffer(RefObject := DivertQueue.P_MoverDivert);
-			DivertQueue.P_MoverDivert.MoverID			:= TempMoverIndex;
+	IF (stSwitchStatus.ShuttleQueueCount + stSwitchStatus.ShuttleCountOnShortcut) <
+		GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
+			DivertQueue.P_MoverDivert.MoverID				:= DivertingMoverIndex;
+			DivertQueue.P_MoverDivert.Divert				:= RingBuffer.E_Divert.Divert;
+		IF (TempMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
+			DivertQueue.P_MoverDivert.DivertOnInterval	:= TRUE;
 		END_IF
+			DivertQueue.AddObjToBuffer(RefObject := DivertQueue.P_MoverDivert);
+			stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount + 1;
+	END_IF
 
 END_FOR]]></ST>
       </Implementation>

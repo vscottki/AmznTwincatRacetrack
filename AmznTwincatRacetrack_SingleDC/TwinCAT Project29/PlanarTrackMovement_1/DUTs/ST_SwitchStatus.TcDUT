@@ -10,6 +10,7 @@ STRUCT
     CurrentOutputMax                : LREAL;
     PosnCurrentCoeff                : LREAL;
 	ShuttleCountAtDivertTrig		: UDINT;
+	ShuttleQueueCount						: UDINT;
 	ShuttleCountOnShortcut			: UDINT;
 END_STRUCT
 END_TYPE]]></Declaration>
