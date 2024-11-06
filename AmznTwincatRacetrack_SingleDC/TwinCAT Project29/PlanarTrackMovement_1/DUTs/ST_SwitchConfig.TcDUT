@@ -9,8 +9,8 @@ STRUCT
 	SwitchCurrentNominal						: LREAL := 5.8; // A (See function for computation)
 	CurrentMultFactor							: LREAL := 1310; // Scaling factor for 10V output=25.0A
     UseNominalCurrentVeloSetpoints              : BOOL;
-    UseNominalPositionCoeff			            : BOOL;
-	PosnCoilResponseTimeCoeffNominal			: LREAL := 0.978;
+    UseNominalPositionCoeff			            : BOOL := TRUE;
+	PosnCoilResponseTimeCoeffNominal			: LREAL := 0.983;
  	SwitchModeHMI        						: ST_DivertConfig;
  	SwitchModeInternal    						: ST_DivertConfig;
 END_STRUCT

@@ -79,7 +79,7 @@ IF DivertQueue.P_LastObjectRemoved.MoverID <> 0 THEN
 		Command		:= FALSE;
 		DivertQueue.ClearLastRemoved();
 		stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount -1;
-		AboutToDivertGate		:= FALSE;
+		MagnetControlledByOtherMover		:= FALSE;
 	END_IF
 END_IF
 

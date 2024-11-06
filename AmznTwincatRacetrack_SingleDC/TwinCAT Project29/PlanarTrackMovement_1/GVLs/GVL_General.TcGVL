@@ -32,7 +32,7 @@ VAR_GLOBAL
 	TempMoverIndex							: UDINT;
 	DivertingMoverIndex					: UDINT := GC.nNumMinMovers;
 	SwitchMagnet					: FB_SwitchMagnet;
-	AboutToDivertGate			: BOOL;
+	MagnetControlledByOtherMover			: BOOL;
 
 //Status
   	stSwitchStatus        		    : ST_SwitchStatus;

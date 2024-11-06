@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_Debounce" Id="{5c414ebf-65a9-0af7-23b2-89a791f4af19}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Debounce
+VAR_INPUT
+	tOnDelay	: TIME;
+	tOffDelay	: TIME;
+	xRawSignal	: BOOL;
+END_VAR
+VAR_OUTPUT
+	Debounced	: BOOL;
+END_VAR
+VAR
+	TimerOn 	: Tc2_Standard.TON;
+	TimerOff 	: Tc2_Standard.TOF;
+	ftSignal	: Tc2_Standard.F_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TimerOn(PT := tOnDelay);  //TON
+TimerOff(PT := tOffDelay);  //TOF
+ftSignal(CLK := xRawSignal);
+
+TimerOn.IN := xRawSignal;
+TimerOff.IN := ftSignal.Q; 
+
+Debounced := TimerOn.Q OR TimerOff.Q;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

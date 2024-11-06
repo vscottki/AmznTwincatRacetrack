@@ -5,7 +5,10 @@
 STRUCT
 	TargetPosnBeforeTrackEnd	: LREAL := 100;
 	StopPosPowermat				: LREAL := 7611;
-	MergeWaitFinishDistance : LREAL := 3500;
+	MergeWaitFinishDistance 	: LREAL := 2000;
+	DistanceOuterFinishEnd		: LREAL := 1500;
+	MergeWait					: TON;
+	MergeWaitTime				: TIME := T#1S;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
