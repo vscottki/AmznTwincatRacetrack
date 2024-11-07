@@ -230,7 +230,6 @@ CASE nCase OF
 		
 		nCase := 70;
 		
-		
 	70:
 		bAllDone:=TRUE;
 		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
@@ -253,7 +252,7 @@ CASE nCase OF
 	100:
 
 		FOR nForCounter:= GC.nNumMinMovers TO GVL_General.nNumMovers DO
-			IF TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_COMPLETE].MoverIsOnSector THEN
+			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_COMPLETE].MoverIsOnSector THEN
 				//Increase dynamics on Shortcut
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.MaxJerk);
 			ELSE
@@ -265,14 +264,14 @@ CASE nCase OF
 			aDynamics[GC.nNumMinMovers].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 
 			// allow updating the config per the HMI, when it will not jeopardize the system
-			IF NOT TrackSectors[nForCounter].SingularSectorStatus[GC.MAG_TRIG_SECTOR_OPART_END].MoverIsOnSector AND NOT 
-				TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_ENTRY_HALF_IPART].MoverIsOnSector THEN
+			IF NOT TrackSectors[nForCounter].SectorStatus[GC.MAG_TRIG_SECTOR_OPART_END].MoverIsOnSector AND NOT 
+				TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_ENTRY_HALF_IPART].MoverIsOnSector THEN
 				stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
 			END_IF
 			
-			IF TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverEnteredSector.Q THEN
+			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverEnteredSector.Q THEN
 				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut + 1;
-			ELSIF TrackSectors[nForCounter].SingularSectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverExitedSector.Q THEN
+			ELSIF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverExitedSector.Q THEN
 				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut - 1;
 			END_IF
 		
@@ -385,7 +384,6 @@ CASE nCase OF
 					END_IF
 
 				66: // These sectors need to clear in order of travel direction
-					TrackSectors[nForCounter].M_EvaluateInlineStatus();
 					IF stTrackStatus.MergePermIntlk THEN
 						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],

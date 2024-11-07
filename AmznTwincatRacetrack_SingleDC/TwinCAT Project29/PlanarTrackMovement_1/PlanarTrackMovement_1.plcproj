@@ -75,9 +75,6 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\FB_AllTrackSectors.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\FBs\FB_Debounce.TcPOU">
       <SubType>Code</SubType>
     </Compile>

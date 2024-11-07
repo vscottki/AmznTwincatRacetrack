@@ -3,11 +3,15 @@
   <DUT Name="ST_SectorConfig" Id="{77932430-4813-013f-16b4-5b3df9147ac2}">
     <Declaration><![CDATA[TYPE ST_SectorConfig :
 STRUCT
-	ObjectId	    : OTCID;
+	TrackObjectId			: OTCID;
+	PartObjectId	    : OTCID;
+	PartObjectIdEnt	    : OTCID;
+	PartObjectIdExit    : OTCID;	
 	PartSectorStartPosn				: LREAL;
 	PartSectorEndPosn				: LREAL;
 	TrackSectorStartPosn				: LREAL;
 	TrackSectorEndPosn				: LREAL;
+	SectorSpansBoundary		: BOOL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
