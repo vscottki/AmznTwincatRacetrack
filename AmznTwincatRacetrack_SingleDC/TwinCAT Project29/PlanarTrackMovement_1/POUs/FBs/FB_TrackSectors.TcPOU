@@ -16,7 +16,6 @@ VAR_IN_OUT
 END_VAR
 VAR_OUTPUT
 	SingularSectorStatus					: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorStatus;
-    DivertTrigQueueSectorStatus             : ST_SectorStatus;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//IF NOT InitDone THEN

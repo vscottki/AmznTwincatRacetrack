@@ -9,9 +9,6 @@ VAR
 	nCase 						: INT;
 	nMoveState				  	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF INT;
 	                    		
-	aDynamics					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_Physics.DynamicConstraint_PathXY;
-	aMoveOnTrackOptions   		: ARRAY[GC.nNumMinMCAxes..GC.nNumMaxMCAxes] OF Tc3_Mc3PlanarMotion.ST_MoveOnTrackOptions;
-	                    		
 	fbXtsEnvironment			: Tc3_XTS_Utility.FB_TcIoXtsEnvironment;
 	                    		
 	nForCounter					: UDINT;
@@ -19,7 +16,7 @@ VAR
 	dynamics				    : INT;
 
 //Status
-	xSimulation					: BOOL;
+	xSimulation					: BOOL := TRUE;
 	SystemEnabled				: BOOL;
 
 	IsMoverInBlockingArea		: BOOL;
@@ -389,8 +386,7 @@ CASE nCase OF
 
 				66: // These sectors need to clear in order of travel direction
 					TrackSectors[nForCounter].M_EvaluateInlineStatus();
-					IF stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_END] (*AND stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_MID] AND 
-						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_OUTCURV] *) THEN
+					IF stTrackStatus.TestPermInt THEN
 						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
@@ -400,6 +396,7 @@ CASE nCase OF
 						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_END] 		:= FALSE;
 //						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_MID] 		:= FALSE; 
 //						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_OUTCURV]	:= FALSE;
+						stTrackStatus.TestPermInt 	:= FALSE;
 						nMoveState[nForCounter] := 5;
 					END_IF
 

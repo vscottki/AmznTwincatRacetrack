@@ -4,6 +4,7 @@
     <Declaration><![CDATA[TYPE ST_TrackStatus :
 STRUCT
 	MergePermIntlk : ARRAY[GC.MIN_MERGE_PERMINTLK..GC.MAX_MERGE_PERMINTLK] OF BOOL;
+	TestPermInt	: BOOL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
