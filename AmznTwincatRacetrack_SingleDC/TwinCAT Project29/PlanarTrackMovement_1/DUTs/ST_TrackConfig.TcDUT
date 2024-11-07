@@ -8,7 +8,6 @@ STRUCT
 	MergeWaitFinishDistance 			: LREAL := 1700;
 	ShortcutShuttleFullyInPosn 			: LREAL := 1500; // Part Reference (not Track)
 	CollisionDeltaFromTrackEndOuter		: LREAL := 1650;
-	TimeAtVConstant						: LREAL := 0.8;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

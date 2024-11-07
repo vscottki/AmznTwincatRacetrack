@@ -344,7 +344,7 @@ CASE nCase OF
 					 nMoveState[nForCounter] 	:= 20;				
 					
 				20:
-					IF TrackSectors[nForCounter].afbSector[GC.OUTER_FINISH_COL_AVOID].stTrackSectorStatus.MoverIsOnSector THEN
+					IF TrackSectors[nForCounter].afbSector[GC.OUTER_BIGTRACK_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
 						nMoveState[nForCounter]     := 5;
 					END_IF				
 
@@ -386,17 +386,16 @@ CASE nCase OF
 
 				66: // These sectors need to clear in order of travel direction
 					TrackSectors[nForCounter].M_EvaluateInlineStatus();
-					IF stTrackStatus.TestPermInt THEN
+					IF stTrackStatus.MergePermIntlk THEN
 						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																			constraint := aDynamics[nForCounter],
 																			options := aMoveOnTrackOptions[nForCounter]);
 						//Reset PermIntlk On Exit
-						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_END] 		:= FALSE;
+						stTrackStatus.MergePermIntlk 		:= FALSE;
 //						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_MID] 		:= FALSE; 
 //						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_OUTCURV]	:= FALSE;
-						stTrackStatus.TestPermInt 	:= FALSE;
 						nMoveState[nForCounter] := 5;
 					END_IF
 

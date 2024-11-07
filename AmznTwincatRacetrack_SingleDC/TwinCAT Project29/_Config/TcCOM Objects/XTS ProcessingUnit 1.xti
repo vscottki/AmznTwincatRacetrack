@@ -4040,7 +4040,7 @@
 				</Value>
 				<Value>
 					<Name>OperationMode</Name>
-					<EnumText>Normal</EnumText>
+					<EnumText>Simulation</EnumText>
 				</Value>
 				<Value>
 					<Name>MoverType</Name>
@@ -40632,7 +40632,7 @@
 					</Value>
 					<Value>
 						<Name>SimulatedStartUpPosition</Name>
-						<Value>18653</Value>
+						<Value>6653</Value>
 					</Value>
 					<Value>
 						<Name>IsVirtualFeedbackEnabled</Name>
@@ -41109,7 +41109,7 @@
 					</Value>
 					<Value>
 						<Name>SimulatedStartUpPosition</Name>
-						<Value>19773</Value>
+						<Value>7773</Value>
 					</Value>
 					<Value>
 						<Name>IsVirtualFeedbackEnabled</Name>
@@ -41574,7 +41574,7 @@
 					</Value>
 					<Value>
 						<Name>SimulatedStartUpPosition</Name>
-						<Value>20923</Value>
+						<Value>8923</Value>
 					</Value>
 					<Value>
 						<Name>IsVirtualFeedbackEnabled</Name>
@@ -42047,7 +42047,7 @@
 					</Value>
 					<Value>
 						<Name>SimulatedStartUpPosition</Name>
-						<Value>22047</Value>
+						<Value>9047</Value>
 					</Value>
 					<Value>
 						<Name>IsVirtualFeedbackEnabled</Name>
