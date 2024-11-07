@@ -36,6 +36,7 @@ VAR_GLOBAL
 
 //Status
   	stSwitchStatus        		    : ST_SwitchStatus;
+	stTrackStatus					: ST_TrackStatus;
 
 END_VAR]]></Declaration>
   </GVL>

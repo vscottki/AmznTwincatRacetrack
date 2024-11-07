@@ -283,8 +283,6 @@ CASE nCase OF
 		
 			fbPlanarXtsMover[nForCounter]();
 			
-			stTrackGlobalConfig.MergeWait(PT := stTrackGlobalConfig.MergeWaitTime);
-
 			CASE nMoveState[nForCounter] OF
 				
 				0: // Start-up/Init
@@ -349,7 +347,7 @@ CASE nCase OF
 					 nMoveState[nForCounter] 	:= 20;				
 					
 				20:
-					IF TrackSectors[nForCounter].afbSector[GC.OUTER_FINISH].stTrackSectorStatus.MoverIsOnSector THEN
+					IF TrackSectors[nForCounter].afbSector[GC.OUTER_FINISH_COL_AVOID].stTrackSectorStatus.MoverIsOnSector THEN
 						nMoveState[nForCounter]     := 5;
 					END_IF				
 
@@ -375,36 +373,35 @@ CASE nCase OF
 						nMoveState[nForCounter] := 60;
 					END_IF
 					
-				60:
+				60: // Move to MergeWait Position
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance,
 																		constraint := aDynamics[nForCounter],
 																		options := aMoveOnTrackOptions[nForCounter]);
-//					stTrackGlobalConfig.MergeWait.PT := LREAL_TO_TIME(stMoverConfig.NormalVelo / stTrackGlobalConfig.WaitTimeFactor);
-					stTrackGlobalConfig.MergeWait.IN := TRUE;
-					nMoveState[nForCounter] := 65;
 
-				65:
-				IF NOT TrackSectors[nForCounter].afbSector[GC.OUTERLOOP_MERGE].P_SectorStatus.MoverIsOnSector THEN // Region at Merge all clear
-					nMoveState[nForCounter] := 68;
-				END_IF
-				
-				68:
-				IF NOT TrackSectors[nForCounter].afbSector[GC.OUTER_FINISH].P_SectorStatus.MoverIsOnSector AND stTrackGlobalConfig.MergeWait.Q THEN // Region at Merge all clear
-					stTrackGlobalConfig.MergeWait.IN := FALSE;
-					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
-																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
-																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
-																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);
-					nMoveState[nForCounter] := 5;
-				END_IF
-				
-				IF NOT TrackSectors[nForCounter].afbSector[GC.OUTERLOOP_MERGE].P_SectorStatus.MoverIsOnSector AND NOT 
-					TrackSectors[nForCounter].afbSector[GC.OUTER_FINISH].P_SectorStatus.MoverIsOnSector THEN
 					nMoveState[nForCounter] := 65;
-				END_IF
+					
+				65://Check for Done to Interlock another mover
+					IF MoverFeedback[nForCounter].Done THEN
+						nMoveState[nForCounter] := 66;
+					END_IF
+
+				66: // These sectors need to clear in order of travel direction
+					TrackSectors[nForCounter].M_EvaluateInlineStatus();
+					IF stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_END] (*AND stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_MID] AND 
+						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_OUTCURV] *) THEN
+						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
+																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
+																			constraint := aDynamics[nForCounter],
+																			options := aMoveOnTrackOptions[nForCounter]);
+						//Reset PermIntlk On Exit
+						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_END] 		:= FALSE;
+//						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_MID] 		:= FALSE; 
+//						stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_OUTCURV]	:= FALSE;
+						nMoveState[nForCounter] := 5;
+					END_IF
 
 				70:
 					IF MoverFeedback[nForCounter].Done THEN

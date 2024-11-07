@@ -33,9 +33,6 @@
     <Compile Include="DUTs\ST_PlanarTrackConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_MoverStatus.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DUTs\ST_DivertConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +55,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_MoverConfig.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_TrackStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\GC.TcGVL">
@@ -104,6 +104,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FUNs\F_PosnInitial.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FUNs\F_t_v0.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FUNs\F_t_vConstant.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FUNs\IsBetween.TcPOU">

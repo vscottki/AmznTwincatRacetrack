@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_TrackStatus" Id="{52c41a94-2924-04db-36ec-f1d788451b33}">
+    <Declaration><![CDATA[TYPE ST_TrackStatus :
+STRUCT
+	MergePermIntlk : ARRAY[GC.MIN_MERGE_PERMINTLK..GC.MAX_MERGE_PERMINTLK] OF BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

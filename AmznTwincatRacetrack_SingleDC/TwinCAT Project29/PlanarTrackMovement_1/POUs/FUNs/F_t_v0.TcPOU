@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="F_t_v0" Id="{44389f47-6186-02c6-24ef-53943624ab4b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_t_v0 : TIME
+VAR_INPUT
+	PosnDelta	: LREAL;
+	Accel		: LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Accel <> 0 THEN
+	F_t_v0	:= LREAL_TO_TIME(SQRT((2*PosnDelta)/Accel));
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

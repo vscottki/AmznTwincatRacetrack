@@ -3,12 +3,12 @@
   <DUT Name="ST_TrackConfig" Id="{0bf444be-035e-0e71-1156-30382b0847a6}">
     <Declaration><![CDATA[TYPE ST_TrackConfig :
 STRUCT
-	TargetPosnBeforeTrackEnd	: LREAL := 100;
-	StopPosPowermat				: LREAL := 7611;
-	MergeWaitFinishDistance 	: LREAL := 2000;
-	DistanceOuterFinishEnd		: LREAL := 1500;
-	MergeWait					: TON;
-	MergeWaitTime				: TIME := T#1S;
+	TargetPosnBeforeTrackEnd			: LREAL := 100;
+	StopPosPowermat						: LREAL := 7611; // Track Ref; Part Ref ~ 3750 (mm)
+	MergeWaitFinishDistance 			: LREAL := 1700;
+	ShortcutShuttleFullyInPosn 			: LREAL := 1500; // Part Reference (not Track)
+	CollisionDeltaFromTrackEndOuter		: LREAL := 1650;
+	TimeAtVConstant						: LREAL := 0.8;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

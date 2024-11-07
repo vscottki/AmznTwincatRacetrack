@@ -41,10 +41,13 @@ UpperBoundPlanarTrackConfig	:= UPPER_BOUND(refPlanarTracks,1);]]></ST>
       <Declaration><![CDATA[METHOD PROTECTED _M_IsOnPlanarSector : BOOL]]></Declaration>
       <Implementation>
         <ST><![CDATA[//note refPlanarTracks ARRAY is 0-based!
-_M_IsOnPlanarSector	:= (refPlanarMover.TrackID = refPlanarTracks[(PlanarTrackIndex-1)].MCTrack.TrackOID) 
-						AND IsBetween(value := refPlanarMover.MoverPos, 
-											minV := stSectorConfig.TrackSectorStartPosn, 
-											maxV := stSectorConfig.TrackSectorEndPosn);]]></ST>
+IF ADR(refPlanarTracks[(PlanarTrackIndex-1)]) <> Tc3_Module.NULL THEN
+	_M_IsOnPlanarSector	:= (refPlanarMover.TrackID = refPlanarTracks[(PlanarTrackIndex-1)].MCTrack.TrackOID) 
+							AND IsBetween(value := refPlanarMover.MoverPos, 
+												minV := stSectorConfig.TrackSectorStartPosn, 
+												maxV := stSectorConfig.TrackSectorEndPosn);
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_IsOnXtsSector" Id="{6fb38ca4-6b76-0afd-297f-a5f43cfa3834}">

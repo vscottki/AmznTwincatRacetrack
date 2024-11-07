@@ -45868,11 +45868,11 @@
 					</Value>
 					<Value>
 						<Name>Collision range at start</Name>
-						<Value>1500</Value>
+						<Value>1000</Value>
 					</Value>
 					<Value>
 						<Name>Collision range at end</Name>
-						<Value>1990</Value>
+						<Value>1000</Value>
 					</Value>
 					<Value>
 						<Name>Collision range mode</Name>
