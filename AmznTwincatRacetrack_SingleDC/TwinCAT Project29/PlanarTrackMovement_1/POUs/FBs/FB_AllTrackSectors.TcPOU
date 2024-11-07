@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_AllTrackSectors" Id="{91e11ff8-fd1a-0d9d-0270-84b7011c7028}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AllTrackSectors
+VAR_INPUT
+	Index				: REFERENCE TO UDINT;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	TrackSectors			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR Index := GC.nNumMinMovers TO GVL_General.nNumMovers DO
+	
+	TrackSectors[Index](MoverIndex := Index);
+	
+END_FOR]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

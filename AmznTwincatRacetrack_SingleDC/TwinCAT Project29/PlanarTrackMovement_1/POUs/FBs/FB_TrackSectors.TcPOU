@@ -16,6 +16,7 @@ VAR_IN_OUT
 END_VAR
 VAR_OUTPUT
 	SingularSectorStatus					: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorStatus;
+	MergeCombinedSectorStat			: ST_SectorStatus;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//IF NOT InitDone THEN
@@ -76,7 +77,7 @@ END_IF
 
 	astSectorConfig[GC.SHORTCUT_CALC_SECTOR_IPART].ObjectId						:= GVL_General.XtsPartInnerFinish;
 	astSectorConfig[GC.SHORTCUT_CALC_SECTOR_IPART].PartSectorStartPosn			:= 0;
-	astSectorConfig[GC.SHORTCUT_CALC_SECTOR_IPART].PartSectorEndPosn			:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-GC.SHUTTLE_LENGTH_PADDED;
+	astSectorConfig[GC.SHORTCUT_CALC_SECTOR_IPART].PartSectorEndPosn			:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance;
 	astSectorConfig[GC.SHORTCUT_CALC_SECTOR_IPART].TrackSectorStartPosn			:= 0;
 	astSectorConfig[GC.SHORTCUT_CALC_SECTOR_IPART].TrackSectorEndPosn 			:= 0;
 
@@ -123,17 +124,17 @@ END_IF
 //	astSectorConfig[GC.OUTER_MERGE_COL_AVOID].TrackSectorStartPosn			 	:= 0;
 //	astSectorConfig[GC.OUTER_MERGE_COL_AVOID].TrackSectorEndPosn 			 	:= 0;
 
-//	astSectorConfig[GC.OUTER_MERGE_CLEAR].ObjectId						 	 	:= GVL_General.XtsPartOuterFinish;
-//	astSectorConfig[GC.OUTER_MERGE_CLEAR].PartSectorStartPosn			 	 	:= astSectorConfig[GC.OUTER_MERGE_COL_AVOID].PartSectorEndPosn;
-//	astSectorConfig[GC.OUTER_MERGE_CLEAR].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
-//	astSectorConfig[GC.OUTER_MERGE_CLEAR].TrackSectorStartPosn			 		:= 0;
-//	astSectorConfig[GC.OUTER_MERGE_CLEAR].TrackSectorEndPosn 			 		:= 0;
+	astSectorConfig[GC.OUTER_MERGE_START].ObjectId						 	 				:= GVL_General.XtsPartOuterStart;
+	astSectorConfig[GC.OUTER_MERGE_START].PartSectorStartPosn			 	 		:= 0;
+	astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn			 	 	 		:= (stMoverConfig.NormalMoverGap / 2) ; // stTrackGlobalConfig.MergeStartDistance;
+	astSectorConfig[GC.OUTER_MERGE_START].TrackSectorStartPosn			 		:= 0;
+	astSectorConfig[GC.OUTER_MERGE_START].TrackSectorEndPosn 			 			:= 0;
 
-	astSectorConfig[GC.OUTER_MERGE_ALL].ObjectId						 	 	:= GVL_General.XtsPartOuterFinish; // Sector is on the OuterFinish Track, but it's the length from MergeWait to Finish
-	astSectorConfig[GC.OUTER_MERGE_ALL].PartSectorStartPosn			 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeWaitFinishDistance;
-	astSectorConfig[GC.OUTER_MERGE_ALL].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
-	astSectorConfig[GC.OUTER_MERGE_ALL].TrackSectorStartPosn			 		:= 0;
-	astSectorConfig[GC.OUTER_MERGE_ALL].TrackSectorEndPosn 			 			:= 0;
+	astSectorConfig[GC.OUTER_MERGE_FINISH].ObjectId						 	 				:= GVL_General.XtsPartOuterFinish; // Sector is on the OuterFinish Track, but it's the length from MergeWait to Finish
+	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn			 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeWaitFinishDistance - (stMoverConfig.NormalMoverGap /2);
+	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
+	astSectorConfig[GC.OUTER_MERGE_FINISH].TrackSectorStartPosn			 		:= 0;
+	astSectorConfig[GC.OUTER_MERGE_FINISH].TrackSectorEndPosn 			 			:= 0;
 
 	astSectorConfig[GC.OUTER_BIGTRACK_END].ObjectId						 	 			:= GVL_General.XtsPartOuterFinish;
 	astSectorConfig[GC.OUTER_BIGTRACK_END].PartSectorStartPosn			 	 		:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()) - GC.SHUTTLE_LENGTH;
@@ -145,15 +146,16 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_UpdateMultiSectors" Id="{ae03c76e-6e16-04d8-1424-44e866fd999f}">
-      <Declaration><![CDATA[METHOD PRIVATE _M_UpdateMultiSectors]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE _M_UpdateMultiSectors : UDINT]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Update Multi Sectors
 
-//Shortcut Entry
-//DivertTrigQueueSectorStatus.MoverCountOnSector    := afbSector[GC.MAG_TRIG_SECTOR_OPART_END].P_SectorStatus.MoverCountOnSector + 
-//                                                        afbSector[GC.SHORTCUT_DIVERT_SECTOR_IPART].P_SectorStatus.MoverCountOnSector;
-                                            
-//DivertTrigQueueSectorStatus.MoverIsOnSector       := NOT (DivertTrigQueueSectorStatus.MoverCountOnSector = 0);]]></ST>
+MergeCombinedSectorStat.MoverCountOnSector			:= afbSector[GC.OUTER_MERGE_START].P_SectorStatus.MoverCountOnSector + 
+                                                  afbSector[GC.OUTER_MERGE_FINISH].P_SectorStatus.MoverCountOnSector;
+																									
+MergeCombinedSectorStat.MoverIsOnSector				:= NOT (MergeCombinedSectorStat.MoverCountOnSector = 0);
+
+_M_UpdateMultiSectors	:= MergeCombinedSectorStat.MoverCountOnSector;]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_UpdateSingularSectors" Id="{84bf508d-6aa5-0db5-249e-627d20df0d52}">
@@ -184,8 +186,8 @@ SingularSectorStatus[GC.SHORTCUT_EXIT_SECTOR_IPART] 	    := afbSector[GC.SHORTCU
 SingularSectorStatus[GC.INNER_MERGE_TO_FINISH] 	        	:= afbSector[GC.INNER_MERGE_TO_FINISH].P_SectorStatus;
 //SingularSectorStatus[GC.OUTER_FINISH_COL_AVOID] 	        := afbSector[GC.OUTER_FINISH_COL_AVOID].P_SectorStatus;
 //SingularSectorStatus[GC.OUTER_MERGE_COL_AVOID] 	       	 	:= afbSector[GC.OUTER_MERGE_COL_AVOID].P_SectorStatus;
-//SingularSectorStatus[GC.OUTER_MERGE_CLEAR] 	        		:= afbSector[GC.OUTER_MERGE_CLEAR].P_SectorStatus;
-SingularSectorStatus[GC.OUTER_MERGE_ALL] 	       	 		:= afbSector[GC.OUTER_MERGE_ALL].P_SectorStatus;
+SingularSectorStatus[GC.OUTER_MERGE_START] 	        		:= afbSector[GC.OUTER_MERGE_START].P_SectorStatus;
+SingularSectorStatus[GC.OUTER_MERGE_FINISH] 	       	 		:= afbSector[GC.OUTER_MERGE_FINISH].P_SectorStatus;
 SingularSectorStatus[GC.OUTER_BIGTRACK_END] 	       	 		:= afbSector[GC.OUTER_BIGTRACK_END].P_SectorStatus;
 ]]></ST>
       </Implementation>
@@ -200,35 +202,15 @@ SingularSectorStatus[GC.OUTER_BIGTRACK_END] 	       	 		:= afbSector[GC.OUTER_BI
     </Method>
     <Method Name="M_EvaluateInlineStatus" Id="{3ab8a915-7979-05ce-1a8d-dd2933ba9d34}">
       <Declaration><![CDATA[METHOD M_EvaluateInlineStatus
-VAR
-	nForIndex : UDINT;
+
+VAR_INST
+	SumUpdated : BOOL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[FOR nForIndex := GC.nNumMinMovers TO GVL_General.nNumMovers DO
-	
-	stTrackStatus.SumMoverCount := stTrackStatus.SumMoverCount + TrackSectors[nForIndex].SingularSectorStatus[GC.OUTER_MERGE_ALL].MoverCountOnSector;
-	
-	IF stTrackStatus.SumMoverCount <> 0 THEN
-		stTrackStatus.MergePermIntlk := FALSE;
-		EXIT;
-	ELSIF stTrackStatus.SumMoverCount = 0 THEN
-		stTrackStatus.MergePermIntlk := TRUE;
-		stTrackStatus.SumMoverCount := 0;
-	END_IF
-	
-//	IF NOT TrackSectors[nForIndex].SingularSectorStatus[GC.OUTER_MERGE_CLEAR].MoverIsOnSector THEN
-//		stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_MID] := TRUE;
-//	ELSE
-//		stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_MID] := FALSE;
-//	END_IF
-
-//	IF NOT TrackSectors[nForIndex].SingularSectorStatus[GC.OUTER_MERGE_COL_AVOID].MoverIsOnSector THEN
-//		stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_OUTCURV] := TRUE;
-//	ELSE
-//		stTrackStatus.MergePermIntlk[GC.MERGE_PERMINTLK_OUTCURV] := FALSE;
-//	END_IF
-
-END_FOR]]></ST>
+        <ST><![CDATA[IF NOT SumUpdated THEN
+	stTrackStatus.SumMoverCount	:= stTrackStatus.SumMoverCount + _M_UpdateMultiSectors();
+	SumUpdated	:= TRUE;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_SectorConfig" Id="{ce3410f7-df14-06f9-06cc-e42f221e6feb}">
