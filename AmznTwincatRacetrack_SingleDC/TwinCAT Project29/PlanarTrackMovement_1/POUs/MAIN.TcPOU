@@ -276,6 +276,7 @@ CASE nCase OF
 			END_IF
 		
 			GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
+			AllTrackSectors(TrackSectorsRef := GVL_Mc3.TrackSectors);
 		
 			fbPlanarXtsMover[nForCounter]();
 			
@@ -380,21 +381,23 @@ CASE nCase OF
 					
 				65://Check for Done to Interlock another mover
 					IF MoverFeedback[nForCounter].Done THEN
-						nMoveState[nForCounter] := 69;
+						nMoveState[nForCounter] := 68;
 					END_IF
 
-				69: // These sectors need to clear in order of travel direction
-				
+				68: // These sectors need to clear in order of travel direction
+					AllTrackSectors.M_EvaluateCommands();
 					IF stTrackStatus.MergeCommand THEN
 						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																			constraint := aDynamics[nForCounter],
 																			options := aMoveOnTrackOptions[nForCounter]);
-						//Reset PermIntlk On Exit
+						nMoveState[nForCounter] := 69;
+					END_IF
+				
+				69: //Reset Command On Exit
 						stTrackStatus.MergeCommand 		:= FALSE;
 						nMoveState[nForCounter] := 5;
-					END_IF
 
 				70:
 					IF MoverFeedback[nForCounter].Done THEN

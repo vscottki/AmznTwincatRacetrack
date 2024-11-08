@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_AllTrackSectors" Id="{8170c47e-844a-0729-0ada-578a428ea257}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AllTrackSectors
+VAR_INPUT
+			TrackSectorsRef				: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
+END_VAR
+//VAR_IN_OUT CONSTANT //not writeable by this FB
+//		TrackSectorsRef				: ARRAY[*] OF FB_TrackSectors;
+//END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	MoverIndex			: UDINT;
+	ForCounterExit : UDINT;
+	SectorIndex : UDINT;
+	AllSectorStatus	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
+	LowerOut : DINT;
+	UpperOut : DINT;
+	MoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//LowerOut := LOWER_BOUND(TrackSectorsRef, 1);
+//UpperOut := UPPER_BOUND(TrackSectorsRef, 1);
+
+//IF LowerOut<>0 AND UpperOut<>0 THEN
+	_M_EvaluateStatus();
+//END_IF]]></ST>
+    </Implementation>
+    <Method Name="_M_EvaluateStatus" Id="{cdab348b-40a1-098a-037b-f73262f9331f}">
+      <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateStatus]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ADR(TrackSectorsRef) <> 0 THEN // pointer validity check
+	FOR MoverIndex := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+		FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT BY 1 DO
+			//Note!: VAR_IN_OUT (REF) Arrays are O-Based! 
+			AllSectorStatus[MoverIndex][SectorIndex] := TrackSectorsRef[(MoverIndex)].SectorStatus[(SectorIndex)].MoverIsOnSector;
+		END_FOR
+	END_FOR
+END_IF
+
+FOR ForCounterExit := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+	IF AllSectorStatus[ForCounterExit][GC.OUTER_MERGE_COMBINED] THEN
+			MoverIsOnSector[GC.OUTER_MERGE_COMBINED] := TRUE;
+			EXIT;
+		ELSIF NOT AllSectorStatus[ForCounterExit][GC.OUTER_MERGE_COMBINED] THEN
+			MoverIsOnSector[GC.OUTER_MERGE_COMBINED] := FALSE;
+		END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_M_VARINOUT_TroubleshootingJunk" Id="{ea69075c-a9ec-0830-0636-202b848c0db0}">
+      <Declaration><![CDATA[METHOD PRIVATE _M_VARINOUT_TroubleshootingJunk
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//IF ADR(TrackSectorsRef) <> 0 THEN
+//	FOR MoverIndex := LowerOut TO UpperOut BY 1 DO
+
+//AllSectorStatus[1][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[1].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[2][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[2].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[3][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[3].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[4][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[4].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[5][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[5].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[6][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[6].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[7][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[7].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[8][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[8].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[9][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[9].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[10][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[10].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[11][GC.OUTER_MERGE_COMBINED]				:= TrackSectorsRef[11].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[12][GC.OUTER_MERGE_COMBINED]				:= TrackSectorsRef[12].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[13][GC.OUTER_MERGE_COMBINED]				:= TrackSectorsRef[13].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[14][GC.OUTER_MERGE_COMBINED]				:= TrackSectorsRef[14].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[15][GC.OUTER_MERGE_COMBINED]				:= TrackSectorsRef[15].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//AllSectorStatus[16][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[16].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
+//	END_FOR
+//END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_EvaluateCommands" Id="{68870f41-050f-06a0-1aef-7c90fb85acc7}">
+      <Declaration><![CDATA[METHOD M_EvaluateCommands]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT MoverIsOnSector[GC.OUTER_MERGE_COMBINED] THEN
+	stTrackStatus.MergeCommand		:= TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_MoverInOuterLoopMerge" Id="{f4cf0eea-5a9d-0f7b-3f4c-7fa2dbe4ea06}">
+      <Declaration><![CDATA[PROPERTY P_MoverInOuterLoopMerge : REFERENCE TO BOOL]]></Declaration>
+      <Get Name="Get" Id="{cda39bdb-8304-0010-1b9c-c2c72b916f33}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_MoverInOuterLoopMerge REF= MoverIsOnSector[GC.OUTER_MERGE_COMBINED];]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

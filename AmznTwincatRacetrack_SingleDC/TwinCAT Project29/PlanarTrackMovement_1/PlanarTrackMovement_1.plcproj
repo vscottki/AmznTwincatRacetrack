@@ -75,6 +75,9 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FBs\FB_AllTrackSectors.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FBs\FB_Debounce.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -332,6 +335,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <SubObject Include="FB_AllTrackSectors._M_VARINOUT_TroubleshootingJunk">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
     <SubObject Include="FB_PlanarXtsMover.IsCommandedInShortcut">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>

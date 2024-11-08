@@ -122,13 +122,13 @@ END_IF
 	
 	astSectorConfig[GC.OUTER_MERGE_START].PartObjectId						 	 						:= GVL_General.XtsPartOuterStart;
 	astSectorConfig[GC.OUTER_MERGE_START].PartSectorStartPosn			 	 				:= 0;
-	astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn			 	 	 				:= (stMoverConfig.NormalMoverGap / 2) ; // stTrackGlobalConfig.MergeStartDistance;
+	astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn			 	 	 				:= (*(stMoverConfig.NormalMoverGap / 2) +*) stTrackGlobalConfig.MergeWindowExitAdj ; // stTrackGlobalConfig.MergeStartDistance;
 	astSectorConfig[GC.OUTER_MERGE_START].TrackSectorStartPosn			 				:= 0;
 	astSectorConfig[GC.OUTER_MERGE_START].TrackSectorEndPosn 			 					:= 0;
 	astSectorConfig[GC.OUTER_MERGE_START].SectorSpansBoundary								:= FALSE;
 
 	astSectorConfig[GC.OUTER_MERGE_FINISH].PartObjectId						 	 				:= GVL_General.XtsPartOuterFinish; // Sector is on the OuterFinish Track, but it's the length from MergeWait to Finish
-	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn			 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeWaitFinishDistance - (stMoverConfig.NormalMoverGap /2);
+	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn			 	 		:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := (GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeWaitFinishDistance)) (*- (stMoverConfig.NormalMoverGap /2)*) - stTrackGlobalConfig.MergeWindowEntryAdj;
 	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
 	astSectorConfig[GC.OUTER_MERGE_FINISH].TrackSectorStartPosn			 		:= 0;
 	astSectorConfig[GC.OUTER_MERGE_FINISH].TrackSectorEndPosn 			 			:= 0;
@@ -150,7 +150,9 @@ END_IF
 	astSectorConfig[GC.OUTER_BIGTRACK_END].TrackSectorEndPosn 			 				:= 0;
 	astSectorConfig[GC.OUTER_BIGTRACK_END].SectorSpansBoundary						:= FALSE;
 	
-END_IF]]></ST>
+END_IF
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_UpdateMultiSectors" Id="{ae03c76e-6e16-04d8-1424-44e866fd999f}">

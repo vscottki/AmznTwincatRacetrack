@@ -4,7 +4,6 @@
     <Declaration><![CDATA[TYPE ST_TrackStatus :
 STRUCT
 	MergeCommand : BOOL;
-	SumMoverCount	: UDINT;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
