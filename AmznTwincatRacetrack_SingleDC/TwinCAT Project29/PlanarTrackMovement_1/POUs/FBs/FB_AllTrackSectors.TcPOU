@@ -41,11 +41,11 @@ END_VAR
 END_IF
 
 FOR ForCounterExit := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllSectorStatus[ForCounterExit][GC.OUTER_MERGE_COMBINED] THEN
-			MoverIsOnSector[GC.OUTER_MERGE_COMBINED] := TRUE;
+	IF AllSectorStatus[ForCounterExit][GC.OUTER_MERGE_FINISH] THEN
+			MoverIsOnSector[GC.OUTER_MERGE_FINISH] := TRUE;
 			EXIT;
-		ELSIF NOT AllSectorStatus[ForCounterExit][GC.OUTER_MERGE_COMBINED] THEN
-			MoverIsOnSector[GC.OUTER_MERGE_COMBINED] := FALSE;
+		ELSIF NOT AllSectorStatus[ForCounterExit][GC.OUTER_MERGE_FINISH] THEN
+			MoverIsOnSector[GC.OUTER_MERGE_FINISH] := FALSE;
 		END_IF
 END_FOR]]></ST>
       </Implementation>
@@ -82,7 +82,7 @@ END_VAR
     <Method Name="M_EvaluateCommands" Id="{68870f41-050f-06a0-1aef-7c90fb85acc7}">
       <Declaration><![CDATA[METHOD M_EvaluateCommands]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT MoverIsOnSector[GC.OUTER_MERGE_COMBINED] THEN
+        <ST><![CDATA[IF NOT MoverIsOnSector[GC.OUTER_MERGE_FINISH] THEN
 	stTrackStatus.MergeCommand		:= TRUE;
 END_IF]]></ST>
       </Implementation>
@@ -94,7 +94,7 @@ END_IF]]></ST>
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_MoverInOuterLoopMerge REF= MoverIsOnSector[GC.OUTER_MERGE_COMBINED];]]></ST>
+          <ST><![CDATA[P_MoverInOuterLoopMerge REF= MoverIsOnSector[GC.OUTER_MERGE_FINISH];]]></ST>
         </Implementation>
       </Get>
     </Property>

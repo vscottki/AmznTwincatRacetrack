@@ -86,8 +86,8 @@ END_IF
 	astSectorConfig[GC.SHORTCUT_CALC_SECTOR_IPART].SectorSpansBoundary			:= FALSE;
 
 	astSectorConfig[GC.LOAD_STOP_SECTOR_IPART].PartObjectId						    := GVL_General.XtsPartInnerFinish;
-	astSectorConfig[GC.LOAD_STOP_SECTOR_IPART].PartSectorStartPosn			    := F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength() /2));
-	astSectorConfig[GC.LOAD_STOP_SECTOR_IPART].PartSectorEndPosn			 	:= (GC.SHUTTLE_LENGTH + GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()) / 2;
+	astSectorConfig[GC.LOAD_STOP_SECTOR_IPART].PartSectorStartPosn			    := F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength() /2) -GC.SHUTTLE_LENGTH);
+	astSectorConfig[GC.LOAD_STOP_SECTOR_IPART].PartSectorEndPosn			 	:= GC.SHUTTLE_LENGTH + (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength() /2) ;
 	astSectorConfig[GC.LOAD_STOP_SECTOR_IPART].TrackSectorStartPosn			    := 0;
 	astSectorConfig[GC.LOAD_STOP_SECTOR_IPART].TrackSectorEndPosn 			 	:= 0;
 	astSectorConfig[GC.LOAD_STOP_SECTOR_IPART].SectorSpansBoundary			:= FALSE;
@@ -120,28 +120,29 @@ END_IF
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorEndPosn 					 	:= 0;
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].SectorSpansBoundary						:= FALSE;
 	
-	astSectorConfig[GC.OUTER_MERGE_START].PartObjectId						 	 						:= GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.OUTER_MERGE_START].PartSectorStartPosn			 	 				:= 0;
-	astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn			 	 	 				:= (*(stMoverConfig.NormalMoverGap / 2) +*) stTrackGlobalConfig.MergeWindowExitAdj ; // stTrackGlobalConfig.MergeStartDistance;
-	astSectorConfig[GC.OUTER_MERGE_START].TrackSectorStartPosn			 				:= 0;
-	astSectorConfig[GC.OUTER_MERGE_START].TrackSectorEndPosn 			 					:= 0;
-	astSectorConfig[GC.OUTER_MERGE_START].SectorSpansBoundary								:= FALSE;
+	//For Multi
+//	astSectorConfig[GC.OUTER_MERGE_START].PartObjectId						 	 						:= GVL_General.XtsPartOuterStart;
+//	astSectorConfig[GC.OUTER_MERGE_START].PartSectorStartPosn			 	 				:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn			 	 	 				:= (*(stMoverConfig.NormalMoverGap / 2) +*) stTrackGlobalConfig.MergeWindowExitAdj ; // stTrackGlobalConfig.MergeStartDistance;
+//	astSectorConfig[GC.OUTER_MERGE_START].TrackSectorStartPosn			 				:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_START].TrackSectorEndPosn 			 					:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_START].SectorSpansBoundary								:= FALSE;
 
 	astSectorConfig[GC.OUTER_MERGE_FINISH].PartObjectId						 	 				:= GVL_General.XtsPartOuterFinish; // Sector is on the OuterFinish Track, but it's the length from MergeWait to Finish
-	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn			 	 		:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := (GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeWaitFinishDistance)) (*- (stMoverConfig.NormalMoverGap /2)*) - stTrackGlobalConfig.MergeWindowEntryAdj;
-	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
+	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn			 	 		:= (*F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := ( *) GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() (*- stTrackGlobalConfig.MergeWaitFinishDistance))*) (*- (stMoverConfig.NormalMoverGap /2)*) - stTrackGlobalConfig.MergeWindowEntryAdj;
+	astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeWindowExitAdj;
 	astSectorConfig[GC.OUTER_MERGE_FINISH].TrackSectorStartPosn			 		:= 0;
 	astSectorConfig[GC.OUTER_MERGE_FINISH].TrackSectorEndPosn 			 			:= 0;
 	astSectorConfig[GC.OUTER_MERGE_FINISH].SectorSpansBoundary					:= FALSE;
 	
 	//Multi
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartObjectIdEnt						 	:= GVL_General.XtsPartOuterFinish;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartObjectIdExit						 	:= GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartSectorStartPosn			 	 		:= astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartSectorEndPosn			 	 	 		:= astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].TrackSectorStartPosn			 		:= 0;//GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength() + astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].TrackSectorEndPosn 			 			:= 0;//astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].SectorSpansBoundary					:= TRUE;
+//	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartObjectIdEnt						 	:= GVL_General.XtsPartOuterFinish;
+//	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartObjectIdExit						 	:= GVL_General.XtsPartOuterStart;
+//	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartSectorStartPosn			 	 		:= astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn;
+//	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartSectorEndPosn			 	 	 		:= astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn;
+//	astSectorConfig[GC.OUTER_MERGE_COMBINED].TrackSectorStartPosn			 		:= 0;//GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength() + astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn;
+//	astSectorConfig[GC.OUTER_MERGE_COMBINED].TrackSectorEndPosn 			 			:= 0;//astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn;
+//	astSectorConfig[GC.OUTER_MERGE_COMBINED].SectorSpansBoundary					:= TRUE;
 
 	astSectorConfig[GC.OUTER_BIGTRACK_END].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
 	astSectorConfig[GC.OUTER_BIGTRACK_END].PartSectorStartPosn			 	 		:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()) - GC.SHUTTLE_LENGTH;

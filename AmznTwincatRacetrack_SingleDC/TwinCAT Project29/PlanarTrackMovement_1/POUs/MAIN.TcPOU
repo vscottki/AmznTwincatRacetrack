@@ -324,7 +324,7 @@ CASE nCase OF
 							// Divert Move command
 							fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																				targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
-																				targetPositionOnTrack := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength() / 2), // midpoint of shortcut
+																				targetPositionOnTrack := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength() / 2) - GC.SHUTTLE_LENGTH, // midpoint of shortcut
 																				constraint := aDynamics[nForCounter],
 																				options := aMoveOnTrackOptions[nForCounter]);
 							nMoveState[nForCounter] 	:= 30; //Diverting Mover
