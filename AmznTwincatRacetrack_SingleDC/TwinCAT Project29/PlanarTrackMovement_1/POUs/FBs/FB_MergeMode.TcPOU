@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_MergeMode" Id="{530a7457-cacc-066b-2d1c-454d6eb0cd46}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MergeMode
+VAR_INPUT
+	UpstreamIsBlocked : BOOL;
+	DownstreamIsBlocked : BOOL;
+END_VAR
+VAR_OUTPUT
+	Mode				 :	 E_MergeMode := E_MergeMode.BlockedWait;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF UpstreamIsBlocked AND DownstreamIsBlocked THEN
+	Mode		:= E_MergeMode.BlockedWait;
+ELSIF UpstreamIsBlocked AND NOT DownstreamIsBlocked THEN
+	Mode		:= E_MergeMode.ComeOutAhead;
+ELSIF NOT UpstreamIsBlocked AND DownstreamIsBlocked THEN
+	Mode		:= E_MergeMode.ChaseTail;
+ELSIF NOT UpstreamIsBlocked AND NOT DownstreamIsBlocked THEN
+	Mode		:= E_MergeMode.DontStopKeepGoing;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

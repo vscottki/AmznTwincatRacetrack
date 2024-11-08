@@ -7,8 +7,7 @@ STRUCT
 	StopPosPowermat								: LREAL := 7611; // Track Ref; Part Ref ~ 3750 (mm)
 	MergeWaitFinishDistance 			: LREAL := 1570;
 	ShortcutShuttleFullyInPosn 		: LREAL := 1500; // Part Reference (not Track)
-	MergeWindowEntryAdj						: LREAL := 3500;
-	MergeWindowExitAdj						: LREAL := 500;
+	DownstreamSector							: LREAL := 1000;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

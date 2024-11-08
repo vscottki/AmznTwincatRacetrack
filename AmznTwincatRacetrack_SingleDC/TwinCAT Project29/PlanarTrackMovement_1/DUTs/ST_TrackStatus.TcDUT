@@ -4,6 +4,7 @@
     <Declaration><![CDATA[TYPE ST_TrackStatus :
 STRUCT
 	MergeCommand : BOOL;
+	MergeMode		: E_MergeMode;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

@@ -25,6 +25,7 @@ FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			DivertQueue.P_MoverDivert.DivertOnInterval	:= TRUE;
 		END_IF
 			DivertQueue.AddObjToBuffer(RefObject := DivertQueue.P_MoverDivert);
+			HistoryDivertQueue.AddObjToBuffer(RefObject := DivertQueue.P_MoverDivert);
 			stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount + 1;
 	END_IF
 

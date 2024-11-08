@@ -12,12 +12,13 @@ VAR_OUTPUT
 END_VAR
 VAR
 	MoverIndex			: UDINT;
-	ForCounterExit : UDINT;
+	ForCounterExit : ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF UDINT;
 	SectorIndex : UDINT;
 	AllSectorStatus	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
 	LowerOut : DINT;
 	UpperOut : DINT;
-	MoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
+//	MoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_Debounce;
+	AMoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -40,12 +41,43 @@ END_VAR
 	END_FOR
 END_IF
 
-FOR ForCounterExit := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllSectorStatus[ForCounterExit][GC.OUTER_MERGE_FINISH] THEN
-			MoverIsOnSector[GC.OUTER_MERGE_FINISH] := TRUE;
+//Merge Upstream Pre
+FOR ForCounterExit[GC.OUTER_MERGE_UPSTREAM_PRE] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_UPSTREAM_PRE]][GC.OUTER_MERGE_UPSTREAM_PRE] THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_UPSTREAM_PRE] := TRUE;
 			EXIT;
-		ELSIF NOT AllSectorStatus[ForCounterExit][GC.OUTER_MERGE_FINISH] THEN
-			MoverIsOnSector[GC.OUTER_MERGE_FINISH] := FALSE;
+		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_UPSTREAM_PRE]][GC.OUTER_MERGE_UPSTREAM_PRE] THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_UPSTREAM_PRE] := FALSE;
+		END_IF
+END_FOR
+
+//Merge Upstream
+FOR ForCounterExit[GC.OUTER_MERGE_UPSTREAM] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_UPSTREAM]][GC.OUTER_MERGE_UPSTREAM] THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_UPSTREAM] := TRUE;
+			EXIT;
+		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_UPSTREAM]][GC.OUTER_MERGE_UPSTREAM] THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_UPSTREAM] := FALSE;
+		END_IF
+END_FOR
+
+//Merge Downstream
+FOR ForCounterExit[GC.OUTER_MERGE_DOWNSTREAM] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_DOWNSTREAM]][GC.OUTER_MERGE_DOWNSTREAM] THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_DOWNSTREAM] := TRUE;
+			EXIT;
+		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_DOWNSTREAM]][GC.OUTER_MERGE_DOWNSTREAM] THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_DOWNSTREAM] := FALSE;
+		END_IF
+END_FOR
+
+//Merge Combined
+FOR ForCounterExit[GC.OUTER_MERGE_COMBINED] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_COMBINED]][GC.OUTER_MERGE_COMBINED] THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_COMBINED] := TRUE;
+			EXIT;
+		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_COMBINED]][GC.OUTER_MERGE_COMBINED] THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_COMBINED] := FALSE;
 		END_IF
 END_FOR]]></ST>
       </Implementation>
@@ -82,19 +114,20 @@ END_VAR
     <Method Name="M_EvaluateCommands" Id="{68870f41-050f-06a0-1aef-7c90fb85acc7}">
       <Declaration><![CDATA[METHOD M_EvaluateCommands]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT MoverIsOnSector[GC.OUTER_MERGE_FINISH] THEN
-	stTrackStatus.MergeCommand		:= TRUE;
-END_IF]]></ST>
+        <ST><![CDATA[//IF NOT MoverIsOnSector[GC.OUTER_MERGE_UPSTREAM].RawSignal AND
+//	MoverIsOnSector[GC.OUTER_MERGE_DOWNSTREAM].RawSignal THEN
+//	stTrackStatus.MergeCommand		:= TRUE;
+//END_IF]]></ST>
       </Implementation>
     </Method>
-    <Property Name="P_MoverInOuterLoopMerge" Id="{f4cf0eea-5a9d-0f7b-3f4c-7fa2dbe4ea06}">
-      <Declaration><![CDATA[PROPERTY P_MoverInOuterLoopMerge : REFERENCE TO BOOL]]></Declaration>
-      <Get Name="Get" Id="{cda39bdb-8304-0010-1b9c-c2c72b916f33}">
+    <Property Name="P_AMoverIsOnSector" Id="{aa8e3eac-0684-095a-1a33-a2f73cae8290}">
+      <Declaration><![CDATA[PROPERTY P_AMoverIsOnSector : REFERENCE TO ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL]]></Declaration>
+      <Get Name="Get" Id="{0efc0011-49e0-0380-1773-49873cefbadf}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_MoverInOuterLoopMerge REF= MoverIsOnSector[GC.OUTER_MERGE_FINISH];]]></ST>
+          <ST><![CDATA[P_AMoverIsOnSector REF= AMoverIsOnSector;]]></ST>
         </Implementation>
       </Get>
     </Property>
