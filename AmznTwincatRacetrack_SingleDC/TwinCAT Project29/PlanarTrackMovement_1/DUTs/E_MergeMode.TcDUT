@@ -5,10 +5,9 @@
 {attribute 'strict'}
 TYPE E_MergeMode :
 (
-	BlockedWait := 0, // Don't stop at MergeWait
-	DontStopKeepGoing := 1, //CombinedSectorClear
-	ChaseTail := 2, //UpstreamClrDnstreamNot
-	ComeOutAhead := 3 //DnstreamClrUpstrmNot
+	BlockedWait := 0,
+	ChaseTailStatic := 1, //also 'window'
+	MergeInAhead := 2 // KeepGoing or from Standstill
 );
 END_TYPE]]></Declaration>
   </DUT>

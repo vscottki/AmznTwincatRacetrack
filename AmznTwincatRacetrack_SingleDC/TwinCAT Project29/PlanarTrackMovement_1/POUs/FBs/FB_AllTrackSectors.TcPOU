@@ -111,15 +111,6 @@ END_VAR
 //END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_EvaluateCommands" Id="{68870f41-050f-06a0-1aef-7c90fb85acc7}">
-      <Declaration><![CDATA[METHOD M_EvaluateCommands]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//IF NOT MoverIsOnSector[GC.OUTER_MERGE_UPSTREAM].RawSignal AND
-//	MoverIsOnSector[GC.OUTER_MERGE_DOWNSTREAM].RawSignal THEN
-//	stTrackStatus.MergeCommand		:= TRUE;
-//END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Property Name="P_AMoverIsOnSector" Id="{aa8e3eac-0684-095a-1a33-a2f73cae8290}">
       <Declaration><![CDATA[PROPERTY P_AMoverIsOnSector : REFERENCE TO ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL]]></Declaration>
       <Get Name="Get" Id="{0efc0011-49e0-0380-1773-49873cefbadf}">

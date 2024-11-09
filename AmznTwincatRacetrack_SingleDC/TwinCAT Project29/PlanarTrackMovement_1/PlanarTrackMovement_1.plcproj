@@ -63,9 +63,6 @@
     <Compile Include="DUTs\ST_MoverConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_TrackStatus.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GVLs\GC.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -91,7 +88,7 @@
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
-    <Compile Include="POUs\FBs\FB_MergeMode.TcPOU">
+    <Compile Include="POUs\FBs\FB_Merge.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\FB_PlanarXtsMover.TcPOU">
