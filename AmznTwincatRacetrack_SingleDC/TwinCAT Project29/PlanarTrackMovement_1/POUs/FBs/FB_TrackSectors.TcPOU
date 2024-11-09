@@ -116,20 +116,20 @@ END_IF
 	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].TrackSectorStartPosn			 		:= 0;
 	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].TrackSectorEndPosn 			 			:= 0;
 	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].SectorSpansBoundary 			 				:= FALSE;
-	
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartObjectId						 	 						:= GVL_General.XtsPartOuterFinish;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorStartPosn			 	 				:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeWaitFinishDistance);
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorEndPosn			 	 	 				:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].TrackSectorStartPosn			 				:= 0;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].TrackSectorEndPosn 			 					:= 0;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].SectorSpansBoundary 			 				:= FALSE;
 
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartObjectId						 	 				:= GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorStartPosn			 	 			:= 0;
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorEndPosn			 	 	 			:= stTrackGlobalConfig.DownstreamSector;
+	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartObjectId						 	 				:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorStartPosn			 	 			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - GC.SHUTTLE_LENGTH_PADDED;
+	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorEndPosn			 	 	 			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
 	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].TrackSectorStartPosn			 				:= 0;
 	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].TrackSectorEndPosn 			 				:= 0;
 	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].SectorSpansBoundary 			 				:= FALSE;
+	
+	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartObjectId						 	 						:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorStartPosn			 	 				:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorStartPosn);
+	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorEndPosn			 	 	 				:= astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorStartPosn;
+	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].TrackSectorStartPosn			 				:= 0;
+	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].TrackSectorEndPosn 			 					:= 0;
+	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].SectorSpansBoundary 			 				:= FALSE;
 	
 	//Multi
 	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartObjectIdEnt						 	:= GVL_General.XtsPartOuterFinish;
