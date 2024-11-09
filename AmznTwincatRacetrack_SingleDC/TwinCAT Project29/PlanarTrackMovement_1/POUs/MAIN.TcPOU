@@ -313,7 +313,7 @@ CASE nCase OF
 					 nMoveState[nForCounter] 	:= 10;
 
 				10: //Trig state for decision to divert
-					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
+					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stSectorStatus.MoverEnteredSector.Q THEN
 						GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig		:= GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig +1; //always MODing this; don't need to decrement
 						TempMoverIndex	:= ((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1); // capture the index
 						DivertingMoverIndex := fbPlanarXtsMover[nForCounter].P_MoverId;
@@ -333,10 +333,10 @@ CASE nCase OF
 																				constraint := aDynamics[nForCounter],
 																				options := aMoveOnTrackOptions[nForCounter]);
 							nMoveState[nForCounter] 	:= 30; //Diverting Mover
-						ELSE // Config is to divert, but too many in queue/on shortcut already ; command mover straight
+						ELSIF (*Not diverting the mover *) THEN
 							nMoveState[nForCounter] 	:= 15;
 						END_IF
-					ELSIF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stTrackSectorStatus.MoverIsOnSector THEN
+					ELSIF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stSectorStatus.MoverIsOnSector THEN
 						 nMoveState[nForCounter] 	:= 15;
 					END_IF
 	
@@ -349,7 +349,7 @@ CASE nCase OF
 					 nMoveState[nForCounter] 	:= 20;				
 					
 				20:
-					IF TrackSectors[nForCounter].afbSector[GC.OUTER_BIGTRACK_END].stTrackSectorStatus.MoverEnteredSector.Q THEN
+					IF TrackSectors[nForCounter].afbSector[GC.OUTER_BIGTRACK_END].stSectorStatus.MoverEnteredSector.Q THEN
 						nMoveState[nForCounter]     := 5;
 					END_IF				
 
@@ -362,13 +362,13 @@ CASE nCase OF
 					END_IF
 					
 				40: // Confirm the shuttle is diverting
-					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stTrackSectorStatus.MoverExitedSector.Q THEN
+					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stSectorStatus.MoverExitedSector.Q THEN
 						nMoveState[nForCounter] := 45;
 					END_IF
 			
 				45: // Route through shortcut
 					IF stTrackShortcutConfig.TestPowerMat THEN
-						IF TrackSectors[nForCounter].afbSector[GC.LOAD_STOP_SECTOR_IPART].stTrackSectorStatus.MoverEnteredSector.Q THEN
+						IF TrackSectors[nForCounter].afbSector[GC.LOAD_STOP_SECTOR_IPART].stSectorStatus.MoverEnteredSector.Q THEN
 							nMoveState[nForCounter] := 70;
 						END_IF
 					ELSE		
@@ -385,7 +385,7 @@ CASE nCase OF
 					nMoveState[nForCounter] := 61;
 					
 				61:
-				IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_MERGE_COMMAND].stTrackSectorStatus.MoverEnteredSector.Q THEN
+				IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_MERGE_COMMAND].stSectorStatus.MoverEnteredSector.Q THEN
 					IF MergeController.Mode = E_MergeMode.MergeInAhead THEN
 						nMoveState[nForCounter] := 68;
 					ELSE
@@ -407,7 +407,7 @@ CASE nCase OF
 						nMoveState[nForCounter] := 69;
 				
 				69: //Reset Command On Exit
-						IF TrackSectors[nForCounter].afbSector[GC.INNER_MERGE_TO_FINISH].stTrackSectorStatus.MoverEnteredSector.Q THEN
+						IF TrackSectors[nForCounter].afbSector[GC.INNER_MERGE_TO_FINISH].stSectorStatus.MoverEnteredSector.Q THEN
 							nMoveState[nForCounter] := 5;
 						END_IF
 

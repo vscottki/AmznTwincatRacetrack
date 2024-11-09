@@ -36,10 +36,16 @@
     <Compile Include="DUTs\ST_Debounce.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_DynSectorConfig.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_PlanarTrackConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_DivertConfig.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_DynSectorStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_SwitchStatus.TcDUT">
@@ -48,7 +54,7 @@
     <Compile Include="DUTs\ST_SectorConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_SectorStatus.TcDUT">
+    <Compile Include="DUTs\ST_StaticSectorStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_ShortcutConfig.TcDUT">
@@ -88,6 +94,9 @@
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
+    <Compile Include="POUs\FBs\FB_DynamicSector.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FBs\FB_Merge.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -97,13 +106,16 @@
     <Compile Include="POUs\FBs\FB_PWM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\FB_SingularTrackSector.TcPOU">
+    <Compile Include="POUs\FBs\FB_TrackSector.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\FB_SwitchMagnet.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\FB_TrackSectors.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FBs\FB_DynSectors.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\ReadTcCom.TcPOU">

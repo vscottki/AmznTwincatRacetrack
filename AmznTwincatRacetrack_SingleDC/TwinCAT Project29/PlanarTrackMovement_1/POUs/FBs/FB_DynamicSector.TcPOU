@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DynamicSector" Id="{8d5ed951-fbb1-003d-3542-110cb93ddd55}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DynamicSector EXTENDS FB_TrackSector
+VAR_INPUT
+	ComparisonSector		: REFERENCE TO FB_TrackSector;
+END_VAR
+VAR
+	stDynSectorConfig		: ST_DynSectorConfig; // the configuration of the mover "sector"
+	stDynSectorStatus		: ST_DynSectorStatus;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_M_UpdateConfiguration();
+
+_M_UpdateSectorStatus();
+
+//SUPER^(refPlanarTracks := , PlanarTrackIndex := );]]></ST>
+    </Implementation>
+    <Method Name="_M_UpdateConfiguration" Id="{10f382da-eb0d-0d2f-0fd8-7826c0d7c144}">
+      <Declaration><![CDATA[METHOD PROTECTED _M_UpdateConfiguration]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stDynSectorConfig.stStatConfig.PartObjectId := SUPER^.refXtsMover.nPartObjectid;
+stDynSectorConfig.SectorBndryFront					:= SUPER^.refXtsMover.fPartPosition + (GC.SHUTTLE_LENGTH / 2);
+stDynSectorConfig.SectorBndryRear						:= SUPER^.refXtsMover.fPartPosition - (GC.SHUTTLE_LENGTH / 2);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_M_UpdateSectorStatus" Id="{5b6a388a-1a04-02ed-024b-cd6b9a534ebd}">
+      <Declaration><![CDATA[METHOD PROTECTED _M_UpdateSectorStatus]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//stDynSectorStatus.HasInterference := ; 
+IF ADR(ComparisonSector) <> 0 THEN
+	IF ComparisonSector.P_TrackSectorConfig.PartObjectId = 
+			stDynSectorConfig.ComparePartObjectId[GC.OuterFinishPart] THEN
+		//
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{21eb1326-a843-0de0-1c1e-2b7842e3607a}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stDynSectorConfig.stStatConfig REF= SUPER^.stSectorConfig;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_DynSectorStatus" Id="{23770526-a57b-0779-2341-38528fb65358}">
+      <Declaration><![CDATA[PROPERTY P_DynSectorStatus : REFERENCE TO ST_DynSectorStatus]]></Declaration>
+      <Get Name="Get" Id="{0873d419-8a66-07f8-0d4d-4521e7e958d7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_DynSectorStatus REF= stDynSectorStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

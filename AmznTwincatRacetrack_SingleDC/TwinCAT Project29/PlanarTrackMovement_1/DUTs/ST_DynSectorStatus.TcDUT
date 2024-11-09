@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_DynSectorStatus" Id="{a98e7ea4-f570-0414-0e88-a9faaf2729e3}">
+    <Declaration><![CDATA[TYPE ST_DynSectorStatus :
+STRUCT
+	HasInterference				: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

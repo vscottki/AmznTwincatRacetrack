@@ -9,13 +9,13 @@ VAR
 //Configurations
 	astSectorConfig							: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorConfig;
 
-	afbSector								: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF FB_SingularTrackSector;
+	afbSector								: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF FB_TrackSector;
 END_VAR
 VAR_IN_OUT
 	MoverIndex								: UDINT;
 END_VAR
 VAR_OUTPUT
-	SectorStatus					: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorStatus;
+	SectorStatus					: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_StaticSectorStatus;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//IF NOT InitDone THEN

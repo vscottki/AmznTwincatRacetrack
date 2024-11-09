@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="FB_SingularTrackSector" Id="{454c8ee6-eb93-03bb-3d09-d82885cc2db0}" SpecialFunc="None">
-    <Declaration><![CDATA[{warning <'Multi will not function for Sectors that span multiple XTS tracks'>}    
-FUNCTION_BLOCK FB_SingularTrackSector
+  <POU Name="FB_TrackSector" Id="{454c8ee6-eb93-03bb-3d09-d82885cc2db0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TrackSector
 VAR_INPUT
 	PlanarTrackIndex				: E_TrackNum := E_TrackNum.Small;
 END_VAR
@@ -16,7 +15,7 @@ VAR
 	UpperBoundPlanarTrackConfig		: DINT;
 	refXtsMover						: Tc3_XTS_Utility.ST_PositionInfo;
 	refPlanarMover					: MoverSort;
-	stTrackSectorStatus				: ST_SectorStatus;
+	stSectorStatus				: ST_StaticSectorStatus;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -64,18 +63,18 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//By XTS Loop
 IF NOT MoverEnteredOneShot AND _M_EnteredSectorBoundary() THEN
-	stTrackSectorStatus.MoverIsOnSector	:= TRUE;
+	stSectorStatus.MoverIsOnSector	:= TRUE;
 	MoverEnteredOneShot	:= TRUE;
 END_IF
 
 IF MoverEnteredOneShot THEN
 	IF NOT MoverExitedOneShot AND _M_ExitedSectorBoundary() THEN
-		stTrackSectorStatus.MoverIsOnSector	:= FALSE;
+		stSectorStatus.MoverIsOnSector	:= FALSE;
 		MoverExitedOneShot := TRUE;
 	END_IF
 END_IF
 
-IF stTrackSectorStatus.MoverExitedSector.Q THEN
+IF stSectorStatus.MoverExitedSector.Q THEN
 	MoverEnteredOneShot 	:= FALSE;
 	MoverExitedOneShot		:= FALSE;
 END_IF]]></ST>
@@ -114,11 +113,11 @@ _M_IsOnXtsSector	:= ((refXtsMover.nTrackObjectid = stSectorConfig.TrackObjectId)
         <ST><![CDATA[IF stSectorConfig.SectorSpansBoundary THEN
 	_M_IsOnBoundarySector();
 ELSE // by parts
-	stTrackSectorStatus.MoverIsOnSector	:= _M_IsOnXtsSector() OR _M_IsOnPlanarSector();
+	stSectorStatus.MoverIsOnSector	:= _M_IsOnXtsSector() OR _M_IsOnPlanarSector();
 END_IF
 
-stTrackSectorStatus.MoverEnteredSector(CLK := stTrackSectorStatus.MoverIsOnSector);
-stTrackSectorStatus.MoverExitedSector(CLK := stTrackSectorStatus.MoverIsOnSector);]]></ST>
+stSectorStatus.MoverEnteredSector(CLK := stSectorStatus.MoverIsOnSector);
+stSectorStatus.MoverExitedSector(CLK := stSectorStatus.MoverIsOnSector);]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_PlanarMover" Id="{c0ac9430-b382-04fd-3b6a-1962bd5a1c7e}">
@@ -133,13 +132,13 @@ END_VAR
       </Get>
     </Property>
     <Property Name="P_SectorStatus" Id="{5f8e870d-e32a-0163-2da9-1a6a40e1a497}">
-      <Declaration><![CDATA[PROPERTY P_SectorStatus : REFERENCE TO ST_SectorStatus]]></Declaration>
+      <Declaration><![CDATA[PROPERTY P_SectorStatus : REFERENCE TO ST_StaticSectorStatus]]></Declaration>
       <Get Name="Get" Id="{de3ffc99-936a-0b5d-0ea1-4e9664bc445a}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_SectorStatus	REF= stTrackSectorStatus;]]></ST>
+          <ST><![CDATA[P_SectorStatus	REF= stSectorStatus;]]></ST>
         </Implementation>
       </Get>
     </Property>

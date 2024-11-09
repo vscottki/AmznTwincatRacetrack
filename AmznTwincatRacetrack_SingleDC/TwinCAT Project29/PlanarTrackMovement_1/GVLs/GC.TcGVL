@@ -13,6 +13,9 @@ VAR_GLOBAL CONSTANT
 
 //Tracks
 	nNumMinTracks 					: UDINT :=1; // Do not change - per NC
+	OuterFinishPart					: UDINT := 1;
+	InnerFinishPart					: UDINT := 2;
+	OuterStartPart					: UDINT := 3;	
 	nNumMaxTracks 					: UDINT :=3; // Do not change - per NC
 	
 //Sectors
