@@ -3,11 +3,13 @@
   <DUT Name="ST_TrackConfig" Id="{0bf444be-035e-0e71-1156-30382b0847a6}">
     <Declaration><![CDATA[TYPE ST_TrackConfig :
 STRUCT
-	TargetPosnBeforeTrackEnd			: LREAL := 100;
-	StopPosPowermat								: LREAL := 7611; // Track Ref; Part Ref ~ 3750 (mm)
-	MergeWaitFinishDistance 			: LREAL := 1570;
-	ShortcutShuttleFullyInPosn 		: LREAL := 1500; // Part Reference (not Track)
-	DownstreamSector							: LREAL := 1000;
+	TargetPosnBeforeTrackEnd					: LREAL := 100;
+	StopPosPowermat										: LREAL := 7611; // Track Ref; Part Ref ~ 3750 (mm)
+	MergeWaitFinishDistance 					: LREAL := 1570;
+	ShortcutShuttleFullyInPosn 				: LREAL := 1500; // Part Reference (not Track)
+	DownstreamSectorU									: LREAL := 500;
+	DownstreamSectorD									: LREAL := 500;
+	WindowLength											: LREAL := 1200; //Upstream Sector; roughly 2X SHUTTLE_LENGTH
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
