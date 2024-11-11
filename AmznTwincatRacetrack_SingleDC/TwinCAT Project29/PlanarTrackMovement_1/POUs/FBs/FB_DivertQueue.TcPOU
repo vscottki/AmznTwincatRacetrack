@@ -28,6 +28,7 @@ FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			stMoverDivertTemp.Divert								:= RingBuffer.E_Divert.Divert;
 		IF (TempMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
 			stMoverDivertTemp.DivertOnInterval			:= TRUE;
+			fbPlanarXtsMover[DivertingMoverIndex].P_CmdDivert		:= TRUE;
 		END_IF
 			DivertQueue.AddObjToBuffer(RefObject := stMoverDivertTemp);
 			HistoryDivertQueue.AddObjToBuffer(RefObject := stMoverDivertTemp);

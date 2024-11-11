@@ -19,14 +19,11 @@ VAR
 	UpperOut : DINT;
 	AMoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
 	LapTrig1		: ST_MergeWindow;
-	LapTrig2		: ST_MergeWindow;
 	LapGap			: ST_MergeWindow;
 	WindowClearDebounce : TIME;
 	GapClearTail			: Tc2_Standard.TON;
 	ValidPosnTime				: ST_PosnTime;
-END_VAR
-VAR CONSTANT
-	TicksPerS	: LREAL := 10000000;
+	MoverIdToFollowOnMerge	: UDINT;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//LowerOut := LOWER_BOUND(TrackSectorsRef, 1);
@@ -44,6 +41,11 @@ END_VAR]]></Declaration>
 		FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT BY 1 DO
 			//Note!: VAR_IN_OUT (REF) Arrays are O-Based! 
 			AllSectorStatus[MoverIndex][SectorIndex] := TrackSectorsRef[(MoverIndex)].SectorStatus[(SectorIndex)];
+			
+			IF LapTrig1.Latch AND_THEN TrackSectorsRef[MoverIndex].SectorStatus[GC.OUTER_FINISH_MOVERTOFOLLOW].MoverIsOnSector THEN
+				MoverIdToFollowOnMerge	:= MoverIndex;
+			END_IF
+	
 		END_FOR
 	END_FOR
 END_IF
@@ -89,20 +91,20 @@ FOR ForCounterExit[GC.OUTER_MERGE_COMBINED] := GC.nNumMinMovers TO GVL_General.n
 END_FOR
 
 //Lap Trig 1
-FOR ForCounterExit[GC.OUTER_FINISH_LAPTRIG1] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+FOR ForCounterExit[GC.OUTER_FINISH_LAPTRIG] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
 //		IF AllSectorStatus[ForCounterExit[GC.OUTER_FINISH_LAPTRIG1]][GC.OUTER_FINISH_LAPTRIG1].MoverIsOnSector THEN
 //			AMoverIsOnSector[GC.OUTER_FINISH_LAPTRIG1] := TRUE;
 //			EXIT;
 //		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_FINISH_LAPTRIG1]][GC.OUTER_FINISH_LAPTRIG1].MoverIsOnSector THEN
 //			AMoverIsOnSector[GC.OUTER_FINISH_LAPTRIG1] := FALSE;
 //		END_IF
-	IF NOT LapTrig1.Latch AND NOT LapGap.Latch AND AllSectorStatus[ForCounterExit[GC.OUTER_FINISH_LAPTRIG1]][GC.OUTER_FINISH_LAPTRIG1].MoverExitedSector.Q THEN
+	IF NOT LapTrig1.Latch AND NOT LapGap.Latch AND AllSectorStatus[ForCounterExit[GC.OUTER_FINISH_LAPTRIG]][GC.OUTER_FINISH_LAPTRIG].MoverExitedSector.Q THEN
 			LapTrig1.Latch := TRUE;
 			GapClearTail.IN	:= TRUE;
 			LapTrig1.timestamp	:= Tc2_System.F_GetSystemTime();
 			EXIT;
 		END_IF
-	IF LapTrig1.Latch AND NOT LapGap.Latch AND AllSectorStatus[ForCounterExit[GC.OUTER_FINISH_LAPTRIG1]][GC.OUTER_FINISH_LAPTRIG1].MoverEnteredSector.Q THEN
+	IF LapTrig1.Latch AND NOT LapGap.Latch AND AllSectorStatus[ForCounterExit[GC.OUTER_FINISH_LAPTRIG]][GC.OUTER_FINISH_LAPTRIG].MoverEnteredSector.Q THEN
 			LapGap.Latch := TRUE;
 			LapGap.timestamp	:= Tc2_System.F_GetSystemTime();
 			EXIT;
@@ -159,9 +161,9 @@ END_IF
 IF GapClearTail.Q AND NOT LapGap.Latch THEN
 	// Position to match with merging mover
 	ValidPosnTime.ValidPosnSrc :=
-			 TrackSectorsRef[GC.nNumMinMovers].P_SectorConfig[GC.OUTER_FINISH_LAPTRIG1].PartSectorStartPosn - (stTrackGlobalConfig.WindowLength / 2);
+			 TrackSectorsRef[GC.nNumMinMovers].P_SectorConfig[GC.OUTER_FINISH_LAPTRIG].PartSectorStartPosn - (stTrackGlobalConfig.WindowLength / 2);
 	ValidPosnTime.ValidPosnSrcTime := LapTrig1.timestamp;
-//	MergeQueue.AddObjToBuffer(RefObject := ValidPosnTime.ValidPosnSrcTime);
+	MergeQueue.AddObjToBuffer(RefObject := ValidPosnTime.ValidPosnSrcTime);
 	GapClearTail.IN	:= FALSE;
 END_IF
 
@@ -169,7 +171,7 @@ DistanceDeltaFromMerge := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - ValidP
 IF (stMoverConfig.NormalVelo - stMoverConfig.VeloComp) <> 0 THEN 
 	TempCalc 	:= 1000* (DistanceDeltaFromMerge / (stMoverConfig.NormalVelo - stMoverConfig.VeloComp));
 END_IF
-TargetTimeForLastTPosnAtMerge	:= MergeQueue.P_LastObjectRemoved + LREAL_TO_ULINT(TempCalc * 1E6);  //ms to ns
+TargetTimeForLastTPosnAtMerge	:= MergeQueue.P_LastObjectRemoved + LREAL_TO_ULINT(TempCalc * 1E4);  //ms to count of 100ns intervals
 
 //ValidPosnTime.ValidTargetDestTime := MergeQueue.P_LastObjectRemoved + ;
 

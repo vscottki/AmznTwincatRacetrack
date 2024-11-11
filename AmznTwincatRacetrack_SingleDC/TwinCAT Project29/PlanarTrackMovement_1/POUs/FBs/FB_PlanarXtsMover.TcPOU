@@ -18,6 +18,7 @@ VAR
 	MoverPhysics				: Tc3_Physics.PositionXYC;
 
 	Mover				        : MoverSort;
+	CmdDivert						: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -82,17 +83,6 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[P_CmdDivert	REF= CmdDivert;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Property Name="P_CmdIntvl" Id="{ef3bf2d0-f8c2-073d-2c1c-f93b8a8fdd2b}" FolderPath="Properties\">
-      <Declaration><![CDATA[PROPERTY P_CmdIntvl : REFERENCE TO BOOL]]></Declaration>
-      <Get Name="Get" Id="{286f47f8-1582-0069-0f5a-5eb57603432d}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[P_CmdIntvl	REF= CmdMarkInterval;]]></ST>
         </Implementation>
       </Get>
     </Property>

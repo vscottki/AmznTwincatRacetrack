@@ -334,7 +334,7 @@ CASE nCase OF
 																				constraint := aDynamics[nForCounter],
 																				options := aMoveOnTrackOptions[nForCounter]);
 							nMoveState[nForCounter] 	:= 30; //Diverting Mover
-						ELSE
+						ELSIF NOT fbPlanarXtsMover[nForCounter].P_CmdDivert THEN
 							nMoveState[nForCounter] 	:= 15;
 						END_IF
 					ELSIF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stSectorStatus.MoverIsOnSector THEN

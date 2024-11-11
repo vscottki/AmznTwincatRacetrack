@@ -365,12 +365,6 @@
     <SubObject Include="FB_PlanarXtsMover.IsCommandedInShortcut">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
-    <SubObject Include="FB_PlanarXtsMover.P_CmdDivert">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </SubObject>
-    <SubObject Include="FB_PlanarXtsMover.P_CmdIntvl">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </SubObject>
     <SubObject Include="FB_SwitchMagnet._M_EvaluatePermIntlk" />
   </ItemGroup>
   <ProjectExtensions>
