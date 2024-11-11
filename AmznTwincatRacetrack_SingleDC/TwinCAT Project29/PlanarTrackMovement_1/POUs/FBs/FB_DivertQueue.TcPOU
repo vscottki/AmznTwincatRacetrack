@@ -12,20 +12,26 @@ END_VAR
     </Implementation>
     <Method Name="M_UpdateAtTrig" Id="{6ebfa865-70ed-099f-252e-a28cbe294425}">
       <Declaration><![CDATA[METHOD M_UpdateAtTrig
-]]></Declaration>
+VAR_INST
+	stMoverDivertTemp : RingBuffer.ST_MoverDivert;
+END_VAR
+VAR
+	stMoverDivertInit : RingBuffer.ST_MoverDivert;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Increment counter, mark each mover for divert interval
 FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 	
 	IF (stSwitchStatus.ShuttleQueueCount + stSwitchStatus.ShuttleCountOnShortcut) <
 		GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
-			DivertQueue.P_MoverDivert.MoverID				:= DivertingMoverIndex;
-			DivertQueue.P_MoverDivert.Divert				:= RingBuffer.E_Divert.Divert;
+			stMoverDivertTemp.MoverID								:= DivertingMoverIndex;
+			stMoverDivertTemp.Divert								:= RingBuffer.E_Divert.Divert;
 		IF (TempMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
-			DivertQueue.P_MoverDivert.DivertOnInterval	:= TRUE;
+			stMoverDivertTemp.DivertOnInterval			:= TRUE;
 		END_IF
-			DivertQueue.AddObjToBuffer(RefObject := DivertQueue.P_MoverDivert);
-			HistoryDivertQueue.AddObjToBuffer(RefObject := DivertQueue.P_MoverDivert);
+			DivertQueue.AddObjToBuffer(RefObject := stMoverDivertTemp);
+			HistoryDivertQueue.AddObjToBuffer(RefObject := stMoverDivertTemp);
+			stMoverDivertTemp		:= stMoverDivertInit;
 			stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount + 1;
 	END_IF
 
