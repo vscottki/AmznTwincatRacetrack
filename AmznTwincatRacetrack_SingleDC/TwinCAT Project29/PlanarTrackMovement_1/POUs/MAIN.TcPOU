@@ -66,6 +66,7 @@ END_IF
 //Command Diverting to Magnet for any designated mover
 DivertQueue();
 HistoryDivertQueue(); // no removal
+MergeQueue();
 
 SwitchMagnet(SafetyPermIntlk := SystemEnabled,
 			stSwitchConfig := GVL_General.stSwitchConfig);
@@ -333,7 +334,7 @@ CASE nCase OF
 																				constraint := aDynamics[nForCounter],
 																				options := aMoveOnTrackOptions[nForCounter]);
 							nMoveState[nForCounter] 	:= 30; //Diverting Mover
-						ELSIF (*Not diverting the mover *) THEN
+						ELSE
 							nMoveState[nForCounter] 	:= 15;
 						END_IF
 					ELSIF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stSectorStatus.MoverIsOnSector THEN

@@ -10,6 +10,8 @@ STRUCT
 	DownstreamSectorU									: LREAL := 500;
 	DownstreamSectorD									: LREAL := 500;
 	WindowLength											: LREAL := 1200; //Upstream Sector; roughly 2X SHUTTLE_LENGTH
+	WindowVerifyDistancePreBigEnd			: LREAL := 3000;
+	MaxLagDistance										: LREAL := 100;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

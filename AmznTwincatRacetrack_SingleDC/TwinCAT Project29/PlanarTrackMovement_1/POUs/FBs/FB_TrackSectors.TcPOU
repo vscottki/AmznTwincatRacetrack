@@ -146,7 +146,21 @@ END_IF
 	astSectorConfig[GC.OUTER_BIGTRACK_END].PartSectorEndPosn			 	 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
 	astSectorConfig[GC.OUTER_BIGTRACK_END].TrackSectorStartPosn			 			:= 0;
 	astSectorConfig[GC.OUTER_BIGTRACK_END].TrackSectorEndPosn 			 				:= 0;
-	
+	astSectorConfig[GC.OUTER_BIGTRACK_END].SectorSpansBoundary					:= FALSE;
+
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG2].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG2].PartSectorStartPosn			 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.WindowVerifyDistancePreBigEnd - stTrackGlobalConfig.MaxLagDistance;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG2].PartSectorEndPosn			 	 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.WindowVerifyDistancePreBigEnd;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG2].TrackSectorStartPosn			 			:= 0;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG2].TrackSectorEndPosn 			 				:= 0;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG2].SectorSpansBoundary					:= FALSE;
+
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG1].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG1].PartSectorStartPosn			 	 		:= astSectorConfig[GC.OUTER_FINISH_LAPTRIG2].PartSectorStartPosn-stTrackGlobalConfig.WindowLength - stTrackGlobalConfig.MaxLagDistance;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG1].PartSectorEndPosn			 	 	 		:= astSectorConfig[GC.OUTER_FINISH_LAPTRIG2].PartSectorStartPosn-stTrackGlobalConfig.WindowLength;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG1].TrackSectorStartPosn			 			:= 0;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG1].TrackSectorEndPosn 			 				:= 0;
+	astSectorConfig[GC.OUTER_FINISH_LAPTRIG1].SectorSpansBoundary					:= FALSE;
 END_IF
 
 ]]></ST>
@@ -194,6 +208,10 @@ SectorStatus[GC.OUTER_MERGE_UPSTREAM] 	        		:= afbSector[GC.OUTER_MERGE_UPS
 SectorStatus[GC.OUTER_MERGE_DOWNSTREAM] 	       	 		:= afbSector[GC.OUTER_MERGE_DOWNSTREAM].P_SectorStatus;
 SectorStatus[GC.OUTER_MERGE_COMBINED] 	        := afbSector[GC.OUTER_MERGE_COMBINED].P_SectorStatus;
 SectorStatus[GC.OUTER_BIGTRACK_END] 	       	 		:= afbSector[GC.OUTER_BIGTRACK_END].P_SectorStatus;
+SectorStatus[GC.OUTER_FINISH_LAPTRIG1] 	        := afbSector[GC.OUTER_FINISH_LAPTRIG1].P_SectorStatus;
+SectorStatus[GC.OUTER_FINISH_LAPTRIG2] 	       	 		:= afbSector[GC.OUTER_FINISH_LAPTRIG2].P_SectorStatus;
+
+
 ]]></ST>
       </Implementation>
     </Method>

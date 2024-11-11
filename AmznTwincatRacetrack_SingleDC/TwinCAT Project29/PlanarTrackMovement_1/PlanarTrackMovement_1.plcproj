@@ -39,6 +39,9 @@
     <Compile Include="DUTs\ST_DynSectorConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_MergeWindow.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_PlanarTrackConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +49,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_DynSectorStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_PosnTime.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_SwitchStatus.TcDUT">
@@ -335,7 +341,7 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="RingBuffer">
-      <Resolution>RingBuffer, 1.4.0.999 (Amazon)</Resolution>
+      <Resolution>RingBuffer, 1.5.2.999 (Amazon)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Mc3PlanarMotion">
       <Resolution>Tc3_Mc3PlanarMotion, 0.3.30.0 (Beckhoff Automation GmbH)</Resolution>
