@@ -85,7 +85,7 @@ SectorStatus[GC.INNER_MERGE_TO_FINISH] 	        	:= afbSector[GC.INNER_MERGE_TO_
 SectorStatus[GC.OUTER_MERGE_UPSTREAM_PRE] 	        		:= afbSector[GC.OUTER_MERGE_UPSTREAM_PRE].P_SectorStatus;
 SectorStatus[GC.OUTER_MERGE_UPSTREAM] 	        		:= afbSector[GC.OUTER_MERGE_UPSTREAM].P_SectorStatus;
 SectorStatus[GC.OUTER_MERGE_DOWNSTREAM] 	       	 		:= afbSector[GC.OUTER_MERGE_DOWNSTREAM].P_SectorStatus;
-SectorStatus[GC.OUTER_MERGE_COMBINED] 	        := afbSector[GC.OUTER_MERGE_COMBINED].P_SectorStatus;
+SectorStatus[GC.OUTER_MERGE_INFRONT] 	        := afbSector[GC.OUTER_MERGE_INFRONT].P_SectorStatus;
 SectorStatus[GC.OUTER_BIGTRACK_END] 	       	 		:= afbSector[GC.OUTER_BIGTRACK_END].P_SectorStatus;
 ]]></ST>
       </Implementation>

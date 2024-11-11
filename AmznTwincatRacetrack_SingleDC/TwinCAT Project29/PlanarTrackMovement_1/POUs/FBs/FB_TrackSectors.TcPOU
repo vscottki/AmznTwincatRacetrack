@@ -110,36 +110,36 @@ END_IF
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorStartPosn					   	:= 0;
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorEndPosn 					 	:= 0;
 
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].PartObjectId						 	 			:= GVL_General.XtsPartOuterFinish;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].PartSectorStartPosn			 	 		:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorStartPosn);
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].PartSectorEndPosn			 	 	 		:= astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorStartPosn;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].TrackSectorStartPosn			 		:= 0;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].TrackSectorEndPosn 			 		:= 0;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].SectorSpansBoundary 			 			:= FALSE;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].PartObjectId						 	 			:= GVL_General.XtsPartOuterFinish;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].PartSectorStartPosn			 	 		:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorStartPosn);
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].PartSectorEndPosn			 	 	 		:= astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorStartPosn;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].TrackSectorStartPosn			 		:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].TrackSectorEndPosn 			 		:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].SectorSpansBoundary 			 			:= FALSE;
                                                                             
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorStartPosn			 	 			:= astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorEndPosn - stTrackGlobalConfig.WindowLength;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorEndPosn			 	 	 			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.DownstreamSectorU;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].TrackSectorStartPosn			 				:= 0;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].TrackSectorEndPosn 			 					:= 0;
-	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].SectorSpansBoundary 			 				:= FALSE;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorStartPosn			 	 			:= astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorEndPosn - stTrackGlobalConfig.WindowLength;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].PartSectorEndPosn			 	 	 			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.DownstreamSectorU;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].TrackSectorStartPosn			 				:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].TrackSectorEndPosn 			 					:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_UPSTREAM].SectorSpansBoundary 			 				:= FALSE;
 	
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartObjectIdEnt						 		:= GVL_General.XtsPartOuterFinish;
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartObjectIdExit						 		:= GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorStartPosn			 	 			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.DownstreamSectorU;
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorEndPosn			 	 	 			:= stTrackGlobalConfig.DownstreamSectorD;
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].TrackSectorStartPosn			 				:= 0;
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].TrackSectorEndPosn 			 				:= 0;
-	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].SectorSpansBoundary 			 				:= TRUE;
+//	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartObjectIdEnt						 		:= GVL_General.XtsPartOuterFinish;
+//	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartObjectIdExit						 		:= GVL_General.XtsPartOuterStart;
+//	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorStartPosn			 	 			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.DownstreamSectorU;
+//	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorEndPosn			 	 	 			:= stTrackGlobalConfig.DownstreamSectorD;
+//	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].TrackSectorStartPosn			 				:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].TrackSectorEndPosn 			 				:= 0;
+//	astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].SectorSpansBoundary 			 				:= TRUE;
 	
 	//Multi
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartObjectIdEnt						 	:= GVL_General.XtsPartOuterFinish;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartObjectIdExit						 	:= GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartSectorStartPosn			 	 		:= astSectorConfig[GC.OUTER_MERGE_UPSTREAM_PRE].PartSectorStartPosn;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].PartSectorEndPosn			 	 	 		:= astSectorConfig[GC.OUTER_MERGE_DOWNSTREAM].PartSectorEndPosn;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].TrackSectorStartPosn			 		:= 0;//GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength() + astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].TrackSectorEndPosn 			 			:= 0;//astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn;
-	astSectorConfig[GC.OUTER_MERGE_COMBINED].SectorSpansBoundary					:= TRUE;
+	astSectorConfig[GC.OUTER_MERGE_INFRONT].PartObjectIdEnt						 	:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_MERGE_INFRONT].PartObjectIdExit						 	:= GVL_General.XtsPartOuterStart;
+	astSectorConfig[GC.OUTER_MERGE_INFRONT].PartSectorStartPosn			 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].PartSectorStartPosn; // take the distance from the small track 
+	astSectorConfig[GC.OUTER_MERGE_INFRONT].PartSectorEndPosn			 	 	 		:= stTrackGlobalConfig.WindowLength /2;
+	astSectorConfig[GC.OUTER_MERGE_INFRONT].TrackSectorStartPosn			 		:= 0;//GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength() + astSectorConfig[GC.OUTER_MERGE_FINISH].PartSectorStartPosn;
+	astSectorConfig[GC.OUTER_MERGE_INFRONT].TrackSectorEndPosn 			 			:= 0;//astSectorConfig[GC.OUTER_MERGE_START].PartSectorEndPosn;
+	astSectorConfig[GC.OUTER_MERGE_INFRONT].SectorSpansBoundary					:= TRUE;
 
 	astSectorConfig[GC.OUTER_BIGTRACK_END].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
 	astSectorConfig[GC.OUTER_BIGTRACK_END].PartSectorStartPosn			 	 		:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()) - GC.SHUTTLE_LENGTH;
@@ -205,9 +205,9 @@ SectorStatus[GC.SHORTCUT_EXIT_HALF_IPART] 	        := afbSector[GC.SHORTCUT_EXIT
 SectorStatus[GC.SHORTCUT_MERGE_COMMAND] 	    := afbSector[GC.SHORTCUT_MERGE_COMMAND].P_SectorStatus;
 SectorStatus[GC.INNER_MERGE_TO_FINISH] 	        	:= afbSector[GC.INNER_MERGE_TO_FINISH].P_SectorStatus;
 SectorStatus[GC.OUTER_MERGE_UPSTREAM_PRE] 	        		:= afbSector[GC.OUTER_MERGE_UPSTREAM_PRE].P_SectorStatus;
-SectorStatus[GC.OUTER_MERGE_UPSTREAM] 	        		:= afbSector[GC.OUTER_MERGE_UPSTREAM].P_SectorStatus;
-SectorStatus[GC.OUTER_MERGE_DOWNSTREAM] 	       	 		:= afbSector[GC.OUTER_MERGE_DOWNSTREAM].P_SectorStatus;
-SectorStatus[GC.OUTER_MERGE_COMBINED] 	        := afbSector[GC.OUTER_MERGE_COMBINED].P_SectorStatus;
+//SectorStatus[GC.OUTER_MERGE_UPSTREAM] 	        		:= afbSector[GC.OUTER_MERGE_UPSTREAM].P_SectorStatus;
+//SectorStatus[GC.OUTER_MERGE_DOWNSTREAM] 	       	 		:= afbSector[GC.OUTER_MERGE_DOWNSTREAM].P_SectorStatus;
+SectorStatus[GC.OUTER_MERGE_INFRONT] 	        := afbSector[GC.OUTER_MERGE_INFRONT].P_SectorStatus;
 SectorStatus[GC.OUTER_BIGTRACK_END] 	       	 		:= afbSector[GC.OUTER_BIGTRACK_END].P_SectorStatus;
 SectorStatus[GC.OUTER_FINISH_LAPTRIG] 	        := afbSector[GC.OUTER_FINISH_LAPTRIG].P_SectorStatus;
 SectorStatus[GC.OUTER_FINISH_MOVERTOFOLLOW] 	       	 		:= afbSector[GC.OUTER_FINISH_MOVERTOFOLLOW].P_SectorStatus;

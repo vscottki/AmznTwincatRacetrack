@@ -50,43 +50,13 @@ END_VAR]]></Declaration>
 	END_FOR
 END_IF
 
-//Merge Upstream Pre
-FOR ForCounterExit[GC.OUTER_MERGE_UPSTREAM_PRE] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_UPSTREAM_PRE]][GC.OUTER_MERGE_UPSTREAM_PRE].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_UPSTREAM_PRE] := TRUE;
-			EXIT;
-		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_UPSTREAM_PRE]][GC.OUTER_MERGE_UPSTREAM_PRE].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_UPSTREAM_PRE] := FALSE;
-		END_IF
-END_FOR
-
-//Merge Upstream
-FOR ForCounterExit[GC.OUTER_MERGE_UPSTREAM] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_UPSTREAM]][GC.OUTER_MERGE_UPSTREAM].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_UPSTREAM] := TRUE;
-			EXIT;
-		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_UPSTREAM]][GC.OUTER_MERGE_UPSTREAM].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_UPSTREAM] := FALSE;
-		END_IF
-END_FOR
-
-//Merge Downstream
-FOR ForCounterExit[GC.OUTER_MERGE_DOWNSTREAM] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_DOWNSTREAM]][GC.OUTER_MERGE_DOWNSTREAM].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_DOWNSTREAM] := TRUE;
-			EXIT;
-		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_DOWNSTREAM]][GC.OUTER_MERGE_DOWNSTREAM].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_DOWNSTREAM] := FALSE;
-		END_IF
-END_FOR
-
 //Merge Combined
-FOR ForCounterExit[GC.OUTER_MERGE_COMBINED] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_COMBINED]][GC.OUTER_MERGE_COMBINED].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_COMBINED] := TRUE;
+FOR ForCounterExit[GC.OUTER_MERGE_INFRONT] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_INFRONT]][GC.OUTER_MERGE_INFRONT].MoverIsOnSector THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_INFRONT] := TRUE;
 			EXIT;
-		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_COMBINED]][GC.OUTER_MERGE_COMBINED].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_COMBINED] := FALSE;
+		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_INFRONT]][GC.OUTER_MERGE_INFRONT].MoverIsOnSector THEN
+			AMoverIsOnSector[GC.OUTER_MERGE_INFRONT] := FALSE;
 		END_IF
 END_FOR
 

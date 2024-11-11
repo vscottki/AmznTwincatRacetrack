@@ -7,8 +7,8 @@ STRUCT
 	StopPosPowermat										: LREAL := 7611; // Track Ref; Part Ref ~ 3750 (mm)
 	MergeWaitFinishDistance 					: LREAL := 1570;
 	ShortcutShuttleFullyInPosn 				: LREAL := 1500; // Part Reference (not Track)
-	DownstreamSectorU									: LREAL := 500;
-	DownstreamSectorD									: LREAL := 500;
+//	DownstreamSectorU									: LREAL := 500;
+//	DownstreamSectorD									: LREAL := 500;
 	WindowLength											: LREAL := 1200; //Upstream Sector; roughly 2X SHUTTLE_LENGTH
 	WindowVerifyDistancePreBigEnd			: LREAL := 3000;
 	MaxLagDistance										: LREAL := 100;

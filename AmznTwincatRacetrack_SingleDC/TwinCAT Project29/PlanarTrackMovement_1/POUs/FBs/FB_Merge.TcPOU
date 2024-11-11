@@ -26,24 +26,11 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ADR(SectorValue) <> 0 THEN
 
-IF SectorValue[GC.OUTER_MERGE_UPSTREAM_PRE] AND SectorValue[GC.OUTER_MERGE_UPSTREAM] AND SectorValue[GC.OUTER_MERGE_DOWNSTREAM] THEN //111
-	Mode		:= E_MergeMode.BlockedWait;
-ELSIF SectorValue[GC.OUTER_MERGE_UPSTREAM_PRE] AND SectorValue[GC.OUTER_MERGE_UPSTREAM] AND NOT SectorValue[GC.OUTER_MERGE_DOWNSTREAM] THEN //110
-	Mode		:= E_MergeMode.BlockedWait;
-ELSIF NOT SectorValue[GC.OUTER_MERGE_UPSTREAM_PRE] AND SectorValue[GC.OUTER_MERGE_UPSTREAM] AND SectorValue[GC.OUTER_MERGE_DOWNSTREAM] THEN //011
-	Mode		:= E_MergeMode.BlockedWait;
-ELSIF NOT SectorValue[GC.OUTER_MERGE_UPSTREAM_PRE] AND SectorValue[GC.OUTER_MERGE_UPSTREAM] AND SectorValue[GC.OUTER_MERGE_DOWNSTREAM] THEN //010
-	Mode		:= E_MergeMode.BlockedWait;
-//
-ELSIF SectorValue[GC.OUTER_MERGE_UPSTREAM_PRE] AND NOT SectorValue[GC.OUTER_MERGE_UPSTREAM] AND NOT SectorValue[GC.OUTER_MERGE_DOWNSTREAM] THEN //100
-	Mode		:= E_MergeMode.MergeInAhead;
-ELSIF NOT SectorValue[GC.OUTER_MERGE_UPSTREAM_PRE] AND NOT SectorValue[GC.OUTER_MERGE_UPSTREAM] AND SectorValue[GC.OUTER_MERGE_DOWNSTREAM] THEN //001
-	Mode		:= E_MergeMode.ChaseTailStatic;
-ELSIF NOT SectorValue[GC.OUTER_MERGE_UPSTREAM_PRE] AND NOT SectorValue[GC.OUTER_MERGE_UPSTREAM] AND NOT SectorValue[GC.OUTER_MERGE_DOWNSTREAM] THEN //000
-	Mode		:= E_MergeMode.MergeInAhead;
-ELSIF SectorValue[GC.OUTER_MERGE_UPSTREAM_PRE] AND NOT SectorValue[GC.OUTER_MERGE_UPSTREAM] AND SectorValue[GC.OUTER_MERGE_DOWNSTREAM] THEN // 101
-	Mode		:= E_MergeMode.ChaseTailStatic;
-END_IF
+	IF NOT SectorValue[GC.OUTER_MERGE_INFRONT] THEN
+		Mode		:= E_MergeMode.MergeInAhead;
+	ELSE
+		Mode		:= E_MergeMode.BlockedWait;
+	END_IF
 
 END_IF]]></ST>
       </Implementation>
