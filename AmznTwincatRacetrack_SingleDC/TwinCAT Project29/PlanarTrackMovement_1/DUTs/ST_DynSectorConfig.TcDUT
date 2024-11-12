@@ -6,8 +6,8 @@ STRUCT
 	stStatConfig						: REFERENCE TO ST_SectorConfig;
 	CompareTrackObjectId		: ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF OTCID;
 	ComparePartObjectId	    : ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF OTCID;
-	SectorBndryFront				: LREAL := GC.SHUTTLE_LENGTH;
-	SectorBndryRear					: LREAL := GC.SHUTTLE_LENGTH;
+	SectorBndryFront				: LREAL := GC.SHUTTLE_LENGTH_PADDED;
+	SectorBndryRear					: LREAL := GC.SHUTTLE_LENGTH_PADDED;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

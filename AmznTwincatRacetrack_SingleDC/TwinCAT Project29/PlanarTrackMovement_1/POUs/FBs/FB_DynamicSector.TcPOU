@@ -1,39 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_DynamicSector" Id="{8d5ed951-fbb1-003d-3542-110cb93ddd55}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_DynamicSector EXTENDS FB_TrackSector
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DynamicSector
 VAR_INPUT
-	ComparisonSector		: REFERENCE TO FB_TrackSector;
+	MoverRef		: REFERENCE TO FB_PlanarXtsMover;
 END_VAR
 VAR
-	stDynSectorConfig		: ST_DynSectorConfig; // the configuration of the mover "sector"
+//	stDynSectorConfig		: ST_DynSectorConfig; // the configuration of the mover "sector"
 	stDynSectorStatus		: ST_DynSectorStatus;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[_M_UpdateConfiguration();
-
-_M_UpdateSectorStatus();
-
-//SUPER^(refPlanarTracks := , PlanarTrackIndex := );]]></ST>
+      <ST><![CDATA[_M_UpdateSectorStatus();]]></ST>
     </Implementation>
-    <Method Name="_M_UpdateConfiguration" Id="{10f382da-eb0d-0d2f-0fd8-7826c0d7c144}">
-      <Declaration><![CDATA[METHOD PROTECTED _M_UpdateConfiguration]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[stDynSectorConfig.stStatConfig.PartObjectId := SUPER^.refXtsMover.nPartObjectid;
-stDynSectorConfig.SectorBndryFront					:= SUPER^.refXtsMover.fPartPosition + (GC.SHUTTLE_LENGTH / 2);
-stDynSectorConfig.SectorBndryRear						:= SUPER^.refXtsMover.fPartPosition - (GC.SHUTTLE_LENGTH / 2);]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="_M_UpdateSectorStatus" Id="{5b6a388a-1a04-02ed-024b-cd6b9a534ebd}">
       <Declaration><![CDATA[METHOD PROTECTED _M_UpdateSectorStatus]]></Declaration>
       <Implementation>
         <ST><![CDATA[//stDynSectorStatus.HasInterference := ; 
-IF ADR(ComparisonSector) <> 0 THEN
-	IF ComparisonSector.P_TrackSectorConfig.PartObjectId = 
-			stDynSectorConfig.ComparePartObjectId[GC.OuterFinishPart] THEN
-		//
-	END_IF
+IF ADR(MoverRef) <> 0 THEN
+	//stDynSectorConfig.stStatConfig.PartObjectId := MoverRef.P_XtsPositionInfo.nPartObjectid;
+	stDynSectorStatus.SectorBndryHead 		:= MoverRef.P_XtsPositionInfo.fPartPosition + GC.SHUTTLE_LENGTH_PADDED;
+	stDynSectorStatus.SectorBndryTail			:= MoverRef.P_XtsPositionInfo.fPartPosition - GC.SHUTTLE_LENGTH_PADDED;
 END_IF]]></ST>
       </Implementation>
     </Method>

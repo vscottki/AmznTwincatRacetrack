@@ -278,9 +278,13 @@ CASE nCase OF
 				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut - 1;
 			END_IF
 		
-			GVL_Mc3.TrackSectors[nForCounter](MoverIndex := nForCounter);
+			TrackSectors[nForCounter](MoverIndex := nForCounter);
 			AllTrackSectors(TrackSectorsRef := GVL_Mc3.TrackSectors);
-		
+			
+			HeadVoidSectors[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
+			TailVoidSectors[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
+			AllVoidSectors(HeadRef := HeadVoidSectors, TailRef := TailVoidSectors);
+			
 			fbPlanarXtsMover[nForCounter]();
 			
 			MergeController(SectorValue := AllTrackSectors.P_AMoverIsOnSector);
