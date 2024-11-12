@@ -19,16 +19,20 @@ END_VAR
       <Implementation>
         <ST><![CDATA[//stDynSectorStatus.HasInterference := ; 
 IF ADR(MoverRef) <> 0 THEN
-	//stDynSectorConfig.stStatConfig.PartObjectId := MoverRef.P_XtsPositionInfo.nPartObjectid;
 	stDynSectorStatus.XtsRefData 							:= MoverRef.P_XtsPositionInfo;
-	stDynSectorStatus.TrackSectorBndryHead 		:= stDynSectorStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.WindowLength + GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.TrackSectorBndryTail		:= stDynSectorStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.WindowLength - GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.TrackSectorCenterHead 	:= stDynSectorStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.WindowLength/2 + GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.TrackSectorCenterTail		:= stDynSectorStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.WindowLength/2 - GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.PartSectorBndryHead 		:= stDynSectorStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.WindowLength + GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.PartSectorBndryTail			:= stDynSectorStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.WindowLength - GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.PartSectorCenterHead 		:= stDynSectorStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.WindowLength/2 + GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.PartSectorCenterTail		:= stDynSectorStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.WindowLength/2 - GC.SHUTTLE_LENGTH/2;
+//	stDynSectorStatus.TrackSectorBndryHead 		:= stDynSectorStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.WindowLength + GC.SHUTTLE_LENGTH/2;
+//	stDynSectorStatus.TrackSectorBndryTail		:= stDynSectorStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.WindowLength - GC.SHUTTLE_LENGTH/2;
+//	stDynSectorStatus.TrackSectorCenterHead 	:= stDynSectorStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.WindowLength/2 + GC.SHUTTLE_LENGTH/2;
+//	stDynSectorStatus.TrackSectorCenterTail		:= stDynSectorStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.WindowLength/2 - GC.SHUTTLE_LENGTH/2;
+
+	stDynSectorStatus.PartSectorBndryHeadF 		:= stDynSectorStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength + GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.PartSectorBndryHeadR 		:= stDynSectorStatus.XTSRefData.fPartPosition + GC.SHUTTLE_LENGTH/2;
+	
+	stDynSectorStatus.PartSectorCenterHead 		:= stDynSectorStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength/2 + GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.PartSectorCenterTail		:= stDynSectorStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength/2 - GC.SHUTTLE_LENGTH/2;
+
+	stDynSectorStatus.PartSectorBndryTailF			:= stDynSectorStatus.XTSRefData.fPartPosition - GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.PartSectorBndryTailR			:= stDynSectorStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength - GC.SHUTTLE_LENGTH/2;
 END_IF]]></ST>
       </Implementation>
     </Method>

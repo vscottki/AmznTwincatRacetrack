@@ -34,23 +34,23 @@ END_VAR
 	FOR MoverIndex := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
 		FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT BY 1 DO
 			
-			IF LapTrig1.Latch AND_THEN TrackSectorsRef[MoverIndex].SectorStatus[GC.OUTER_FINISH_MOVERTOFOLLOW].MoverIsOnSector THEN
-				MoverIdToFollowOnMerge	:= MoverIndex;
-			END_IF
+//			IF LapTrig1.Latch AND_THEN TrackSectorsRef[MoverIndex].SectorStatus[GC.OUTER_FINISH_MOVERTOFOLLOW].MoverIsOnSector THEN
+//				MoverIdToFollowOnMerge	:= MoverIndex;
+//			END_IF
 	
 		END_FOR
 	END_FOR
 END_IF
 
 //Merge Combined
-FOR ForCounterExit[GC.OUTER_MERGE_INFRONT] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_INFRONT]][GC.OUTER_MERGE_INFRONT].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_INFRONT] := TRUE;
-			EXIT;
-		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_INFRONT]][GC.OUTER_MERGE_INFRONT].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_MERGE_INFRONT] := FALSE;
-		END_IF
-END_FOR
+//FOR ForCounterExit[GC.OUTER_MERGE_INFRONT] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+//	IF AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_INFRONT]][GC.OUTER_MERGE_INFRONT].MoverIsOnSector THEN
+//			AMoverIsOnSector[GC.OUTER_MERGE_INFRONT] := TRUE;
+//			EXIT;
+//		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_MERGE_INFRONT]][GC.OUTER_MERGE_INFRONT].MoverIsOnSector THEN
+//			AMoverIsOnSector[GC.OUTER_MERGE_INFRONT] := FALSE;
+//		END_IF
+//END_FOR
 
 //Lap Trig 1
 FOR ForCounterExit[GC.OUTER_FINISH_LAPTRIG] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
@@ -107,7 +107,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF (stMoverConfig.NormalVelo - stMoverConfig.VeloComp) <> 0 THEN
-	WindowClearDebounce := LREAL_TO_TIME(1000*stTrackGlobalConfig.WindowLength / (stMoverConfig.NormalVelo - stMoverConfig.VeloComp));
+	WindowClearDebounce := LREAL_TO_TIME(1000*stTrackGlobalConfig.ExpMoverLength / (stMoverConfig.NormalVelo - stMoverConfig.VeloComp));
 END_IF
 
 IF LapTrig1.Latch AND LapGap.Latch THEN
@@ -123,7 +123,7 @@ END_IF
 IF GapClearTail.Q AND NOT LapGap.Latch THEN
 	// Position to match with merging mover
 	ValidPosnTime.ValidPosnSrc :=
-			 TrackSectorsRef[GC.nNumMinMovers].P_SectorConfig[GC.OUTER_FINISH_LAPTRIG].PartSectorStartPosn - (stTrackGlobalConfig.WindowLength / 2);
+			 TrackSectorsRef[GC.nNumMinMovers].P_SectorConfig[GC.OUTER_FINISH_LAPTRIG].PartSectorStartPosn - (stTrackGlobalConfig.ExpMoverLength / 2);
 	ValidPosnTime.ValidPosnSrcTime := LapTrig1.timestamp;
 	MergeQueue.AddObjToBuffer(RefObject := ValidPosnTime.ValidPosnSrcTime);
 	GapClearTail.IN	:= FALSE;

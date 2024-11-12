@@ -6,8 +6,8 @@
 TYPE E_MergeMode :
 (
 	BlockedWait := 0,
-	ChaseTailStatic := 1, //also 'window'
-	MergeInAhead := 2 // KeepGoing or from Standstill
+	Follow := 1,
+	Lead := 2
 );
 END_TYPE]]></Declaration>
   </DUT>

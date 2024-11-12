@@ -345,7 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="RingBuffer">
-      <Resolution>RingBuffer, 1.5.4.999 (Amazon)</Resolution>
+      <Resolution>RingBuffer, 1.5.5.999 (Amazon)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Mc3PlanarMotion">
       <Resolution>Tc3_Mc3PlanarMotion, 0.3.30.0 (Beckhoff Automation GmbH)</Resolution>

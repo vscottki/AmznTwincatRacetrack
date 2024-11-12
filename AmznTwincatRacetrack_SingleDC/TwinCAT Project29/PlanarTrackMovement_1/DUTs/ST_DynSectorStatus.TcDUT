@@ -9,10 +9,12 @@ STRUCT
 	TrackSectorBndryTail			: LREAL;
 	TrackSectorCenterHead			: LREAL;
 	TrackSectorCenterTail			: LREAL;	
-	PartSectorBndryHead				: LREAL;
-	PartSectorBndryTail				: LREAL;
+	PartSectorBndryHeadF			: LREAL;
+	PartSectorBndryTailF			: LREAL;
 	PartSectorCenterHead			: LREAL;
-	PartSectorCenterTail			: LREAL;	
+	PartSectorCenterTail			: LREAL;
+	PartSectorBndryHeadR			: LREAL;
+	PartSectorBndryTailR			: LREAL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

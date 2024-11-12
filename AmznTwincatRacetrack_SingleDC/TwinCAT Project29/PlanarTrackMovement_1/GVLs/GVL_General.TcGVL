@@ -30,7 +30,7 @@ VAR_GLOBAL
 	
 	DivertQueue						: FB_DivertQueue;
 	HistoryDivertQueue		: FB_DivertQueue;
-	MergeQueue						: RingBuffer.RingBufferULINT;
+	MergeQueue						: RingBuffer.RingBufferMoverMerge;
 	
 	TempMoverIndex							: UDINT;
 	DivertingMoverIndex					: UDINT := GC.nNumMinMovers;
