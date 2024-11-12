@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="FB_AllVoidSectors" Id="{e116675b-ae16-0e1f-1a3b-c540b59d6b4a}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_AllVoidSectors
+  <POU Name="FB_AllExpMovers" Id="{e116675b-ae16-0e1f-1a3b-c540b59d6b4a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AllExpMovers
 VAR_INPUT
-	HeadRef							: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_DynamicSector;
-	TailRef							: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_DynamicSector;
+	HeadRef							: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
+	TailRef							: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
 	TrackSectorsRef			: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;		
 END_VAR
 VAR_OUTPUT

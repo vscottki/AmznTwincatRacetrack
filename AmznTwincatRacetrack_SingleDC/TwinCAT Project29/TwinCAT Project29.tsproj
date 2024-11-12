@@ -2374,6 +2374,89 @@ External Setpoint Generation:
 			</Properties>
 		</DataType>
 		<DataType>
+			<Name GUID="{6E814ACD-1DD8-4E30-80DB-648BE0A7193D}" Namespace="MC">MC_PLANAR_TRACK_OPERATION_MODE</Name>
+			<Comment><![CDATA[Indicates the state of an enabled PlanarTrack, i.e. how PlanarMovers currently interact with the PlanarTrack.]]></Comment>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Invalid]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Indicates no or invalid information, e.g. no connection or component not yet ready.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Uninitialized]]></Text>
+				<Enum>201</Enum>
+				<Comment><![CDATA[Indicates that there is no finalized gemetric path yet.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Standing]]></Text>
+				<Enum>202</Enum>
+				<Comment><![CDATA[All PlanarMovers on the PlanarTrack are standing.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Configuring]]></Text>
+				<Enum>203</Enum>
+				<Comment><![CDATA[At least one PlanarMover is joining/leaving the track or crossing it in free movement mode.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Moving]]></Text>
+				<Enum>204</Enum>
+				<Comment><![CDATA[At least one PlanarMover on the PlanarTrack is busy (moving).]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC" TcBaseType="true">CDT_MCTOPLC_PLANAR_TRACK</Name>
+			<Comment><![CDATA[CDT provides current planar track information.]]></Comment>
+			<BitSize>160</BitSize>
+			<SubItem>
+				<Name>TrackOID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<Comment><![CDATA[Object id of the planar track.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>GroupOID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<Comment><![CDATA[Object id of the planar group the track is in.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>State</Name>
+				<Type GUID="{6D2B99B2-A9F2-44AF-A298-4BB7A08AE294}" Namespace="MC">MC_PLANAR_STATE</Type>
+				<Comment><![CDATA[State of the planar track, e.g. disabled.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>OperationMode</Name>
+				<Type GUID="{6E814ACD-1DD8-4E30-80DB-648BE0A7193D}" Namespace="MC">MC_PLANAR_TRACK_OPERATION_MODE</Type>
+				<Comment><![CDATA[Operation mode of the planar track, e.g. moving.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MoverCountOnTrack</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<Comment><![CDATA[Number of movers coupled to this track.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MovingMoverCount</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<Comment><![CDATA[Number of movers having a movement planned that includes this track.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
 			<Name GUID="{FAE6DCD6-33EF-4275-8592-10BCED19E1EA}" Namespace="MC">MC_PLANAR_MOVER_COMMAND_MODE</Name>
 			<Comment><![CDATA[Indicates the command mode of an enabled PlanarMover, i.e. how setpoints are currently produced.]]></Comment>
 			<BitSize>16</BitSize>
@@ -2846,89 +2929,6 @@ External Setpoint Generation:
 						<Value>MC</Value>
 					</Property>
 				</Properties>
-			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{6E814ACD-1DD8-4E30-80DB-648BE0A7193D}" Namespace="MC">MC_PLANAR_TRACK_OPERATION_MODE</Name>
-			<Comment><![CDATA[Indicates the state of an enabled PlanarTrack, i.e. how PlanarMovers currently interact with the PlanarTrack.]]></Comment>
-			<BitSize>16</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
-			<EnumInfo>
-				<Text><![CDATA[Invalid]]></Text>
-				<Enum>0</Enum>
-				<Comment><![CDATA[Indicates no or invalid information, e.g. no connection or component not yet ready.]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[Uninitialized]]></Text>
-				<Enum>201</Enum>
-				<Comment><![CDATA[Indicates that there is no finalized gemetric path yet.]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[Standing]]></Text>
-				<Enum>202</Enum>
-				<Comment><![CDATA[All PlanarMovers on the PlanarTrack are standing.]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[Configuring]]></Text>
-				<Enum>203</Enum>
-				<Comment><![CDATA[At least one PlanarMover is joining/leaving the track or crossing it in free movement mode.]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[Moving]]></Text>
-				<Enum>204</Enum>
-				<Comment><![CDATA[At least one PlanarMover on the PlanarTrack is busy (moving).]]></Comment>
-			</EnumInfo>
-			<Properties>
-				<Property>
-					<Name>plcAttribute_qualified_only</Name>
-				</Property>
-			</Properties>
-		</DataType>
-		<DataType>
-			<Name GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC" TcBaseType="true">CDT_MCTOPLC_PLANAR_TRACK</Name>
-			<Comment><![CDATA[CDT provides current planar track information.]]></Comment>
-			<BitSize>160</BitSize>
-			<SubItem>
-				<Name>TrackOID</Name>
-				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
-				<Comment><![CDATA[Object id of the planar track.]]></Comment>
-				<BitSize>32</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>GroupOID</Name>
-				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
-				<Comment><![CDATA[Object id of the planar group the track is in.]]></Comment>
-				<BitSize>32</BitSize>
-				<BitOffs>32</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>State</Name>
-				<Type GUID="{6D2B99B2-A9F2-44AF-A298-4BB7A08AE294}" Namespace="MC">MC_PLANAR_STATE</Type>
-				<Comment><![CDATA[State of the planar track, e.g. disabled.]]></Comment>
-				<BitSize>16</BitSize>
-				<BitOffs>64</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>OperationMode</Name>
-				<Type GUID="{6E814ACD-1DD8-4E30-80DB-648BE0A7193D}" Namespace="MC">MC_PLANAR_TRACK_OPERATION_MODE</Type>
-				<Comment><![CDATA[Operation mode of the planar track, e.g. moving.]]></Comment>
-				<BitSize>16</BitSize>
-				<BitOffs>80</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>MoverCountOnTrack</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
-				<Comment><![CDATA[Number of movers coupled to this track.]]></Comment>
-				<BitSize>32</BitSize>
-				<BitOffs>96</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>MovingMoverCount</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
-				<Comment><![CDATA[Number of movers having a movement planned that includes this track.]]></Comment>
-				<BitSize>32</BitSize>
-				<BitOffs>128</BitOffs>
 			</SubItem>
 		</DataType>
 		<DataType>
@@ -6067,7 +6067,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement_1" PrjFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.plcproj" TmcFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{FC97AB74-8A1B-1B5B-6546-03171F1DE740}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{5ABC3BCB-3BBB-9FD6-5093-62E20C8920D3}">
 					<Name>PlanarTrackMovement_1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -6087,6 +6087,21 @@ External Setpoint Generation:
 						<Var>
 							<Name>GVL_General.SwitchMagnet.pwm.ModuleState</Name>
 							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc3.MC_Tracks[1].MCTOPLC_STD</Name>
+							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
+							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc3.MC_Tracks[2].MCTOPLC_STD</Name>
+							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
+							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc3.MC_Tracks[3].MCTOPLC_STD</Name>
+							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
+							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Mc3.fbPlanarXtsMover[1]._McPlanarMover.MCTOPLC</Name>
@@ -6167,21 +6182,6 @@ External Setpoint Generation:
 							<Name>GVL_Mc3.fbPlanarXtsMover[16]._McPlanarMover.MCTOPLC</Name>
 							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
 							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Mc3.MC_Tracks[1].MCTOPLC_STD</Name>
-							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
-							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Mc3.MC_Tracks[2].MCTOPLC_STD</Name>
-							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
-							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Mc3.MC_Tracks[3].MCTOPLC_STD</Name>
-							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
-							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -6520,7 +6520,7 @@ External Setpoint Generation:
 				</Instance>
 			</Project>
 			<Project GUID="{23F3AAC5-D2AC-4B6B-826F-C638329B5E0D}" Name="SaftyPLC_1" PrjFilePath="SaftyPLC_1\SaftyPLC_1.plcproj" TmcFilePath="SaftyPLC_1\SaftyPLC_1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="SaftyPLC_1\SaftyPLC_1.tmc" TmcHash="{1B8D1371-C099-E50E-ADEE-6ACE6ACD8E1B}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="SaftyPLC_1\SaftyPLC_1.tmc" TmcHash="{585DA2F2-3926-62F9-594A-C9A9C913CF86}">
 					<Name>SaftyPLC_1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">

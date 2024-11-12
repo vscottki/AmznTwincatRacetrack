@@ -4,9 +4,9 @@
     <Declaration><![CDATA[VAR_GLOBAL	
 {warning <'bundle FB_Track'>}
 	TrackSectors				: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
-	HeadVoidSectors			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF  FB_DynamicSector;
-	TailVoidSectors			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF  FB_DynamicSector;
-	AllVoidSectors			: FB_AllVoidSectors;
+	HeadVoidMovers			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF  FB_ExpandedMover;
+	TailVoidMovers			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF  FB_ExpandedMover;
+//	AllVoidSectors			: FB_AllVoidSectors;
 	AllTrackSectors			: FB_AllTrackSectors;
 	
 	MC_Tracks    		    : ARRAY[GC.nNumMinTracks..GC.nNumMaxTracks] OF Tc3_Mc3PlanarMotion.MC_PlanarTrack;

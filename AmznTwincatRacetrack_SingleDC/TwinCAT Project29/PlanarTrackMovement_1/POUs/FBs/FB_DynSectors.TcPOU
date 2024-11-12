@@ -9,7 +9,7 @@ VAR
 //Configurations
 	astSectorConfig							: ARRAY[GC.nNumMinMovers..GVL_General.nNumMovers] OF ST_DynSectorConfig;
 
-	afbSector								: ARRAY[GC.nNumMinMovers..GVL_General.nNumMovers] OF FB_DynamicSector;
+	afbSector								: ARRAY[GC.nNumMinMovers..GVL_General.nNumMovers] OF FB_ExpandedMovere;
 END_VAR
 VAR_IN_OUT
 	MoverIndex								: UDINT;

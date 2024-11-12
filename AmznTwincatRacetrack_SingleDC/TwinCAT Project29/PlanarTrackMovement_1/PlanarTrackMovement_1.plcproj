@@ -93,7 +93,7 @@
     <Compile Include="POUs\FBs\FB_AllTrackSectors.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\FB_AllVoidSectors.TcPOU">
+    <Compile Include="POUs\FBs\FB_AllExpMovers.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\FB_Debounce.TcPOU">
@@ -103,7 +103,7 @@
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
-    <Compile Include="POUs\FBs\FB_DynamicSector.TcPOU">
+    <Compile Include="POUs\FBs\FB_ExpandedMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\FB_Merge.TcPOU">
@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="POUs\FBs\FB_DynSectors.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\FBs\ReadTcCom.TcPOU">
       <SubType>Code</SubType>
@@ -344,7 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="RingBuffer">
-      <Resolution>RingBuffer, 1.5.3.999 (Amazon)</Resolution>
+      <Resolution>RingBuffer, 1.5.4.999 (Amazon)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Mc3PlanarMotion">
       <Resolution>Tc3_Mc3PlanarMotion, 0.3.30.0 (Beckhoff Automation GmbH)</Resolution>
@@ -363,9 +364,6 @@
   </ItemGroup>
   <ItemGroup>
     <SubObject Include="FB_AllTrackSectors._M_VARINOUT_TroubleshootingJunk">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </SubObject>
-    <SubObject Include="FB_DynamicSector.FB_init">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
     <SubObject Include="FB_PlanarXtsMover.IsCommandedInShortcut">

@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="FB_DynamicSector" Id="{8d5ed951-fbb1-003d-3542-110cb93ddd55}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_DynamicSector
+  <POU Name="FB_ExpandedMover" Id="{8d5ed951-fbb1-003d-3542-110cb93ddd55}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ExpandedMover
 VAR_INPUT
 	MoverRef		: REFERENCE TO FB_PlanarXtsMover;
 END_VAR
 VAR
 //	stDynSectorConfig		: ST_DynSectorConfig; // the configuration of the mover "sector"
 	stDynSectorStatus		: ST_DynSectorStatus;
+	stXtsDataInit				: Tc3_XTS_Utility.ST_PositionInfo; 
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,8 +20,15 @@ END_VAR
         <ST><![CDATA[//stDynSectorStatus.HasInterference := ; 
 IF ADR(MoverRef) <> 0 THEN
 	//stDynSectorConfig.stStatConfig.PartObjectId := MoverRef.P_XtsPositionInfo.nPartObjectid;
-	stDynSectorStatus.SectorBndryHead 		:= MoverRef.P_XtsPositionInfo.fPartPosition + GC.SHUTTLE_LENGTH_PADDED;
-	stDynSectorStatus.SectorBndryTail			:= MoverRef.P_XtsPositionInfo.fPartPosition - GC.SHUTTLE_LENGTH_PADDED;
+	stDynSectorStatus.XtsRefData 							:= MoverRef.P_XtsPositionInfo;
+	stDynSectorStatus.TrackSectorBndryHead 		:= stDynSectorStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.WindowLength + GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.TrackSectorBndryTail		:= stDynSectorStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.WindowLength - GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.TrackSectorCenterHead 	:= stDynSectorStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.WindowLength/2 + GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.TrackSectorCenterTail		:= stDynSectorStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.WindowLength/2 - GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.PartSectorBndryHead 		:= stDynSectorStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.WindowLength + GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.PartSectorBndryTail			:= stDynSectorStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.WindowLength - GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.PartSectorCenterHead 		:= stDynSectorStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.WindowLength/2 + GC.SHUTTLE_LENGTH/2;
+	stDynSectorStatus.PartSectorCenterTail		:= stDynSectorStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.WindowLength/2 - GC.SHUTTLE_LENGTH/2;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -32,7 +40,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[stDynSectorConfig.stStatConfig REF= SUPER^.stSectorConfig;]]></ST>
+        <ST><![CDATA[stDynSectorStatus.XtsRefData REF= stXtsDataInit;]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_DynSectorStatus" Id="{23770526-a57b-0779-2341-38528fb65358}">

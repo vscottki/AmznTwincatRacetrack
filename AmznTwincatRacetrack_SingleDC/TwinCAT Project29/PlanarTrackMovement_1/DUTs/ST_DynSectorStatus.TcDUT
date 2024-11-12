@@ -3,9 +3,16 @@
   <DUT Name="ST_DynSectorStatus" Id="{a98e7ea4-f570-0414-0e88-a9faaf2729e3}">
     <Declaration><![CDATA[TYPE ST_DynSectorStatus :
 STRUCT
-	SectorBndryHead				: LREAL;
-	SectorBndryTail				: LREAL;
-	HasInterference				: BOOL;
+	XtsRefData								: REFERENCE TO Tc3_XTS_Utility.ST_PositionInfo;
+	HasInterference						: BOOL;
+	TrackSectorBndryHead			: LREAL;
+	TrackSectorBndryTail			: LREAL;
+	TrackSectorCenterHead			: LREAL;
+	TrackSectorCenterTail			: LREAL;	
+	PartSectorBndryHead				: LREAL;
+	PartSectorBndryTail				: LREAL;
+	PartSectorCenterHead			: LREAL;
+	PartSectorCenterTail			: LREAL;	
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

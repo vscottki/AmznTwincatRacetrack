@@ -281,9 +281,9 @@ CASE nCase OF
 			TrackSectors[nForCounter](MoverIndex := nForCounter);
 			AllTrackSectors(TrackSectorsRef := GVL_Mc3.TrackSectors);
 			
-			HeadVoidSectors[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
-			TailVoidSectors[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
-			AllVoidSectors(HeadRef := HeadVoidSectors, TailRef := TailVoidSectors);
+			HeadVoidMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
+			TailVoidMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
+//			AllVoidSectors(HeadRef := HeadVoidSectors, TailRef := TailVoidSectors);
 			
 			fbPlanarXtsMover[nForCounter]();
 			
