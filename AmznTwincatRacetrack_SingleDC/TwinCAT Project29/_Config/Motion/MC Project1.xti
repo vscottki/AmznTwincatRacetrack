@@ -35947,7 +35947,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x05110110" Disabled="true">
+		<Axis Id="#x05110110">
 			<Name>MC_Mover 17</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
@@ -38170,7 +38170,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x05110120" Disabled="true">
+		<Axis Id="#x05110120">
 			<Name>MC_Mover 18</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">

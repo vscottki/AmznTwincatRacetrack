@@ -17,7 +17,7 @@ VAR
 	dynamics				    : INT;
 
 //Status
-	xSimulation					: BOOL := TRUE;
+	xSimulation					: BOOL;
 	SystemEnabled				: BOOL;
 
 	IsMoverInBlockingArea		: BOOL;
