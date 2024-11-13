@@ -3,6 +3,7 @@
   <POU Name="MAIN" Id="{66ade15a-bef8-4e71-a124-c2e5978c50eb}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	ManMergeGate			: BOOL;
 	bAllDone					: BOOL;
 	bStopSequence				: BOOL;
 	                    		
@@ -35,7 +36,6 @@ VAR
 	Voltage1	AT%I*			: UDINT;
 	Voltage2	AT%I*			: UDINT;
 	                        	
-	MergeController					: FB_Merge;
 	TcRestart 					: Tc2_Utilities.TC_Restart;
 	Restart 					: BOOL;
 	busy 						: BOOL;
@@ -281,14 +281,11 @@ CASE nCase OF
 			TrackSectors[nForCounter](MoverIndex := nForCounter);
 			AllTrackSectors(TrackSectorsRef := GVL_Mc3.TrackSectors);
 			
-			HeadVoidMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
-			TailVoidMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
-//			AllVoidSectors(HeadRef := HeadVoidSectors, TailRef := TailVoidSectors);
+			HeadExpMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
+			TailExpMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
+			AllExpMovers(HeadRef := HeadExpMovers, TailRef := TailExpMovers, TrackSectorsRef := TrackSectors);
 			
 			fbPlanarXtsMover[nForCounter]();
-			
-			MergeController(SectorValue := AllTrackSectors.P_AMoverIsOnSector);
-			MergeController.M_EvaluateStatus();
 			
 			CASE nMoveState[nForCounter] OF
 				
@@ -391,7 +388,7 @@ CASE nCase OF
 					
 				61:
 				IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_MERGE_COMMAND].stSectorStatus.MoverEnteredSector.Q THEN
-					IF MergeController.Mode = E_MergeMode.Lead THEN
+					IF ManMergeGate THEN
 						nMoveState[nForCounter] := 68;
 					ELSE
 						nMoveState[nForCounter] := 65;
@@ -399,7 +396,7 @@ CASE nCase OF
 				END_IF
 					
 				65:// Permissive to Merge
-					IF MoverFeedback[nForCounter].Done AND (MergeController.Mode = E_MergeMode.Follow) OR (MergeController.Mode = E_MergeMode.Lead) THEN
+					IF ManMergeGate THEN
 						nMoveState[nForCounter] := 68;
 					END_IF
 
@@ -444,7 +441,7 @@ CASE nCase OF
 			nCase := 120;
 		
 		120:	
-			nActStopPos := UDINT_TO_UINT(GC.nNumMaxMovers-nNumMovers+1);
+			nActStopPos := UDINT_TO_UINT(GC.nNumMaxMovers-GVL_General.nNumMovers+1);
 			FOR nForCounter:=1 TO nNumMovers DO
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.StoppingVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 				nMoveState[nForCounter] := 0;
@@ -453,7 +450,7 @@ CASE nCase OF
 
 			nCase:= 130; 
 		130:
-			FOR nForCounter:=1 TO GC.nNumMaxMovers - (nNumMovers-GC.nNumMaxMovers)  DO
+			FOR nForCounter:=1 TO GC.nNumMaxMovers - (GVL_General.nNumMovers-GC.nNumMaxMovers)  DO
 				CASE nMoveState[nForCounter] OF
 					0:								
 						

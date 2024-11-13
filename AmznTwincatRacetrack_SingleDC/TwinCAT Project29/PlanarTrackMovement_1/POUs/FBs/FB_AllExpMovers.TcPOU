@@ -7,8 +7,6 @@ VAR_INPUT
 	TailRef							: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
 	TrackSectorsRef			: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;		
 END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
 	MoverIndex					: UDINT;
 	ForCounterExit 			: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF UDINT;
@@ -17,7 +15,7 @@ VAR
 	LapGap							: ST_MergeWindow;
 	WindowClearDebounce : TIME;
 	GapClearTail				: Tc2_Standard.TON;
-	ValidPosnTime				: ST_PosnTime;
+	ValidMergeObject		: ST_MoverMerge;
 	AMoverIsOnVoid			:	ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
 END_VAR
 VAR CONSTANT
@@ -25,10 +23,25 @@ VAR CONSTANT
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[_M_Configuration();]]></ST>
     </Implementation>
-    <Method Name="_M_EvaluateStatus" Id="{44e0cc83-293d-0d9c-2381-994debd354e2}">
+    <Method Name="_M_Configuration" Id="{236b3e92-f6bc-03b8-0065-f6a0e2b8201b}">
+      <Declaration><![CDATA[METHOD PRIVATE _M_Configuration]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR MoverIndex := GC.nNumMinMovers TO GC.nNumMaxMovers DO
+	HeadRef[MoverIndex].P_ExpMoverConfig := RingBuffer.E_ExpMover.Head;
+	TailRef[MoverIndex].P_ExpMoverConfig := RingBuffer.E_ExpMover.Tail;
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_M_EvaluateStatus" Id="{19b0e65e-a05f-096f-265a-b0e2b7cf8b15}">
       <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateStatus]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_M_EvaluateStatus1" Id="{44e0cc83-293d-0d9c-2381-994debd354e2}">
+      <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateStatus1]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ADR(TrackSectorsRef) <> 0 THEN // pointer validity check
 	FOR MoverIndex := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
@@ -96,13 +109,10 @@ GapClearTail(PT := WindowClearDebounce);]]></ST>
     <Method Name="_M_EvaluateWindow" Id="{70d44e2b-75f6-0653-032e-9e64a1433a4c}">
       <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateWindow
 VAR_INST
-//	TimeDeltaTemp 	: ULINT;
-//	TimeDelta				: LREAL;
-TrigAdd : BOOL;
-TrigRem : BOOL;
+	TrigAdd : BOOL;
+	TrigRem : BOOL;
 	DistanceDeltaFromMerge : LREAL;
 	TempCalc : LREAL;
-	TargetTimeForLastTPosnAtMerge : ULINT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -122,18 +132,16 @@ END_IF
 
 IF GapClearTail.Q AND NOT LapGap.Latch THEN
 	// Position to match with merging mover
-	ValidPosnTime.ValidPosnSrc :=
-			 TrackSectorsRef[GC.nNumMinMovers].P_SectorConfig[GC.OUTER_FINISH_LAPTRIG].PartSectorStartPosn - (stTrackGlobalConfig.ExpMoverLength / 2);
-	ValidPosnTime.ValidPosnSrcTime := LapTrig1.timestamp;
-	MergeQueue.AddObjToBuffer(RefObject := ValidPosnTime.ValidPosnSrcTime);
+	LapTrig1.timestamp;
+//	MergeQueue.AddObjToBuffer(RefObject := );
 	GapClearTail.IN	:= FALSE;
 END_IF
 
-DistanceDeltaFromMerge := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - ValidPosnTime.ValidPosnSrc;
+//DistanceDeltaFromMerge := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - ValidPosnTime.ValidPosnSrc;
 IF (stMoverConfig.NormalVelo - stMoverConfig.VeloComp) <> 0 THEN 
 	TempCalc 	:= 1000* (DistanceDeltaFromMerge / (stMoverConfig.NormalVelo - stMoverConfig.VeloComp));
 END_IF
-TargetTimeForLastTPosnAtMerge	:= MergeQueue.P_LastObjectRemoved + LREAL_TO_ULINT(TempCalc * CONVERT_MS_100NS_COUNT);  //ms to count of 100ns intervals
+//TargetTimeForLastTPosnAtMerge	:= MergeQueue.P_LastObjectRemoved + LREAL_TO_ULINT(TempCalc * CONVERT_MS_100NS_COUNT);  //ms to count of 100ns intervals
 
 //ValidPosnTime.ValidTargetDestTime := MergeQueue.P_LastObjectRemoved + ;
 
@@ -144,7 +152,7 @@ END_IF
 
 IF TrigAdd THEN
 	TrigAdd	:= FALSE;
-	MergeQueue.AddObjToBuffer(RefObject := ValidPosnTime.ValidPosnSrcTime);	
+	MergeQueue.AddObjToBuffer(RefObject := ValidMergeObject);	
 END_IF
 
 //Make a dynamic sector that follows the "virtual" position; could be used as a PermIntlk for violation of the sector by a real mover;]]></ST>

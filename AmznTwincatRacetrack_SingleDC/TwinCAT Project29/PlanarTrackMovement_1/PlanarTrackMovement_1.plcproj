@@ -36,9 +36,6 @@
     <Compile Include="DUTs\ST_Debounce.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_DynSectorConfig.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DUTs\ST_MergeWindow.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -48,10 +45,7 @@
     <Compile Include="DUTs\ST_DivertConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_DynSectorStatus.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\ST_PosnTime.TcDUT">
+    <Compile Include="DUTs\ST_ExpMoverStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_SwitchStatus.TcDUT">
@@ -96,17 +90,11 @@
     <Compile Include="POUs\FBs\FB_AllExpMovers.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\FB_Debounce.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\FBs\FB_DivertQueue.TcPOU">
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\FBs\FB_ExpandedMover.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FBs\FB_Merge.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\FB_PlanarXtsMover.TcPOU">
@@ -123,10 +111,6 @@
     </Compile>
     <Compile Include="POUs\FBs\FB_TrackSectors.TcPOU">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FBs\FB_DynSectors.TcPOU">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\FBs\ReadTcCom.TcPOU">
       <SubType>Code</SubType>
@@ -363,6 +347,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <SubObject Include="FB_AllExpMovers._M_EvaluateStatus1">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
     <SubObject Include="FB_AllTrackSectors._M_VARINOUT_TroubleshootingJunk">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>

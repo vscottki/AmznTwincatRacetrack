@@ -7,7 +7,7 @@ STRUCT
 	StopPosPowermat										: LREAL := 7611; // Track Ref; Part Ref ~ 3750 (mm)
 	MergeWaitFinishDistance 					: LREAL := 1570;
 	ShortcutShuttleFullyInPosn 				: LREAL := 1500; // Part Reference (not Track)
-	ExpMoverLength										: LREAL := 1200; //Upstream Sector; roughly 2X SHUTTLE_LENGTH
+	ExpMoverLength										: LREAL := 1200; // roughly 2X SHUTTLE_LENGTH
 	MaxLagDistance										: LREAL := 100;
 	MergeCollisionRegionDeltaFromL		: LREAL := 1715;
 END_STRUCT

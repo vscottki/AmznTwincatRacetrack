@@ -6,55 +6,55 @@ VAR_INPUT
 	MoverRef		: REFERENCE TO FB_PlanarXtsMover;
 END_VAR
 VAR
-//	stDynSectorConfig		: ST_DynSectorConfig; // the configuration of the mover "sector"
-	stDynSectorStatus		: ST_DynSectorStatus;
-	stXtsDataInit				: Tc3_XTS_Utility.ST_PositionInfo; 
+	eExpMoverConfig		: RingBuffer.E_ExpMover;
+	stExpMoverStatus		: ST_ExpMoverStatus;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[_M_UpdateSectorStatus();]]></ST>
+      <ST><![CDATA[_M_UpdatePositions();]]></ST>
     </Implementation>
-    <Method Name="_M_UpdateSectorStatus" Id="{5b6a388a-1a04-02ed-024b-cd6b9a534ebd}">
-      <Declaration><![CDATA[METHOD PROTECTED _M_UpdateSectorStatus]]></Declaration>
+    <Method Name="_M_UpdatePositions" Id="{5b6a388a-1a04-02ed-024b-cd6b9a534ebd}">
+      <Declaration><![CDATA[METHOD PROTECTED _M_UpdatePositions]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//stDynSectorStatus.HasInterference := ; 
-IF ADR(MoverRef) <> 0 THEN
-	stDynSectorStatus.XtsRefData 							:= MoverRef.P_XtsPositionInfo;
-//	stDynSectorStatus.TrackSectorBndryHead 		:= stDynSectorStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.WindowLength + GC.SHUTTLE_LENGTH/2;
-//	stDynSectorStatus.TrackSectorBndryTail		:= stDynSectorStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.WindowLength - GC.SHUTTLE_LENGTH/2;
-//	stDynSectorStatus.TrackSectorCenterHead 	:= stDynSectorStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.WindowLength/2 + GC.SHUTTLE_LENGTH/2;
-//	stDynSectorStatus.TrackSectorCenterTail		:= stDynSectorStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.WindowLength/2 - GC.SHUTTLE_LENGTH/2;
-
-	stDynSectorStatus.PartSectorBndryHeadF 		:= stDynSectorStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength + GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.PartSectorBndryHeadR 		:= stDynSectorStatus.XTSRefData.fPartPosition + GC.SHUTTLE_LENGTH/2;
-	
-	stDynSectorStatus.PartSectorCenterHead 		:= stDynSectorStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength/2 + GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.PartSectorCenterTail		:= stDynSectorStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength/2 - GC.SHUTTLE_LENGTH/2;
-
-	stDynSectorStatus.PartSectorBndryTailF			:= stDynSectorStatus.XTSRefData.fPartPosition - GC.SHUTTLE_LENGTH/2;
-	stDynSectorStatus.PartSectorBndryTailR			:= stDynSectorStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength - GC.SHUTTLE_LENGTH/2;
+        <ST><![CDATA[IF ADR(MoverRef) <> 0 THEN
+	stExpMoverStatus.XtsRefData 							 REF= MoverRef.P_XtsPositionInfo;
+	IF eExpMoverConfig = RingBuffer.E_ExpMover.Head THEN
+		stExpMoverStatus.TrackSectorBndryHeadF 		:= stExpMoverStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.ExpMoverLength + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.TrackSectorCenterHead 		:= stExpMoverStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.ExpMoverLength/2 + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.TrackSectorBndryHeadR 		:= stExpMoverStatus.XTSRefData.fTrackPosition + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorBndryHeadF 		:= stExpMoverStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorCenterHead 		:= stExpMoverStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength/2 + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorBndryHeadR 		:= stExpMoverStatus.XTSRefData.fPartPosition + GC.SHUTTLE_LENGTH/2;
+	ELSIF eExpMoverConfig = RingBuffer.E_ExpMover.Tail THEN
+		stExpMoverStatus.TrackSectorBndryTailF		:= stExpMoverStatus.XTSRefData.fTrackPosition - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.TrackSectorCenterTail		:= stExpMoverStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.ExpMoverLength/2 - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.TrackSectorBndryTailR		:= stExpMoverStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.ExpMoverLength - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorBndryTailF			:= stExpMoverStatus.XTSRefData.fPartPosition - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorCenterTail			:= stExpMoverStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength/2 - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorBndryTailR			:= stExpMoverStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength - GC.SHUTTLE_LENGTH/2;
+	END_IF
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="FB_init" Id="{21eb1326-a843-0de0-1c1e-2b7842e3607a}">
-      <Declaration><![CDATA[METHOD FB_init : BOOL
-VAR_INPUT
-	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
-	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+    <Property Name="P_ExpMoverConfig" Id="{c0725f29-9d1f-06a4-2082-37da9e21d02a}">
+      <Declaration><![CDATA[PROPERTY P_ExpMoverConfig : REFERENCE TO RingBuffer.E_ExpMover]]></Declaration>
+      <Get Name="Get" Id="{1639b134-c26b-063d-11f3-a7cd1be13c72}">
+        <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[stDynSectorStatus.XtsRefData REF= stXtsDataInit;]]></ST>
-      </Implementation>
-    </Method>
-    <Property Name="P_DynSectorStatus" Id="{23770526-a57b-0779-2341-38528fb65358}">
-      <Declaration><![CDATA[PROPERTY P_DynSectorStatus : REFERENCE TO ST_DynSectorStatus]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_ExpMoverConfig REF= eExpMoverConfig;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_ExpMoverStatus" Id="{23770526-a57b-0779-2341-38528fb65358}">
+      <Declaration><![CDATA[PROPERTY P_ExpMoverStatus : REFERENCE TO ST_ExpMoverStatus]]></Declaration>
       <Get Name="Get" Id="{0873d419-8a66-07f8-0d4d-4521e7e958d7}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_DynSectorStatus REF= stDynSectorStatus;]]></ST>
+          <ST><![CDATA[P_ExpMoverStatus REF= stExpMoverStatus;]]></ST>
         </Implementation>
       </Get>
     </Property>
