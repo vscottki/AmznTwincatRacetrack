@@ -17,21 +17,27 @@ END_VAR
       <Declaration><![CDATA[METHOD PROTECTED _M_UpdatePositions]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ADR(MoverRef) <> 0 THEN
-	stExpMoverStatus.XtsRefData 							 REF= MoverRef.P_XtsPositionInfo;
+	stExpMoverStatus.XtsBaseRefData 							 REF= MoverRef.P_XtsPositionInfo;
+	stExpMoverStatus.XtsAdjustedData.nPartObjectid	:= stExpMoverStatus.XtsBaseRefData.nPartObjectid;
+	stExpMoverStatus.XtsAdjustedData.nTrackObjectid	:= stExpMoverStatus.XtsBaseRefData.nTrackObjectid;
 	IF eExpMoverConfig = RingBuffer.E_ExpMover.Head THEN
-		stExpMoverStatus.TrackSectorBndryHeadF 		:= stExpMoverStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.ExpMoverLength + GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.TrackSectorCenterHead 		:= stExpMoverStatus.XTSRefData.fTrackPosition + stTrackGlobalConfig.ExpMoverLength/2 + GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.TrackSectorBndryHeadR 		:= stExpMoverStatus.XTSRefData.fTrackPosition + GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.PartSectorBndryHeadF 		:= stExpMoverStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength + GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.PartSectorCenterHead 		:= stExpMoverStatus.XTSRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength/2 + GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.PartSectorBndryHeadR 		:= stExpMoverStatus.XTSRefData.fPartPosition + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.TrackSectorBndryHeadF 		:= stExpMoverStatus.XtsBaseRefData.fTrackPosition + stTrackGlobalConfig.ExpMoverLength + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.TrackSectorCenterHead 		:= stExpMoverStatus.XtsBaseRefData.fTrackPosition + stTrackGlobalConfig.ExpMoverLength/2 + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.XtsAdjustedData.fTrackPosition	:= stExpMoverStatus.TrackSectorCenterHead;
+		stExpMoverStatus.TrackSectorBndryHeadR 		:= stExpMoverStatus.XtsBaseRefData.fTrackPosition + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorBndryHeadF 		:= stExpMoverStatus.XtsBaseRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorCenterHead 		:= stExpMoverStatus.XtsBaseRefData.fPartPosition + stTrackGlobalConfig.ExpMoverLength/2 + GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.XtsAdjustedData.fPartPosition	:= stExpMoverStatus.PartSectorCenterHead;
+		stExpMoverStatus.PartSectorBndryHeadR 		:= stExpMoverStatus.XtsBaseRefData.fPartPosition + GC.SHUTTLE_LENGTH/2;
 	ELSIF eExpMoverConfig = RingBuffer.E_ExpMover.Tail THEN
-		stExpMoverStatus.TrackSectorBndryTailF		:= stExpMoverStatus.XTSRefData.fTrackPosition - GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.TrackSectorCenterTail		:= stExpMoverStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.ExpMoverLength/2 - GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.TrackSectorBndryTailR		:= stExpMoverStatus.XTSRefData.fTrackPosition - stTrackGlobalConfig.ExpMoverLength - GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.PartSectorBndryTailF			:= stExpMoverStatus.XTSRefData.fPartPosition - GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.PartSectorCenterTail			:= stExpMoverStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength/2 - GC.SHUTTLE_LENGTH/2;
-		stExpMoverStatus.PartSectorBndryTailR			:= stExpMoverStatus.XTSRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.TrackSectorBndryTailF		:= stExpMoverStatus.XtsBaseRefData.fTrackPosition - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.TrackSectorCenterTail		:= stExpMoverStatus.XtsBaseRefData.fTrackPosition - stTrackGlobalConfig.ExpMoverLength/2 - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.XtsAdjustedData.fTrackPosition	:= stExpMoverStatus.TrackSectorCenterTail;
+		stExpMoverStatus.TrackSectorBndryTailR		:= stExpMoverStatus.XtsBaseRefData.fTrackPosition - stTrackGlobalConfig.ExpMoverLength - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorBndryTailF			:= stExpMoverStatus.XtsBaseRefData.fPartPosition - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.PartSectorCenterTail			:= stExpMoverStatus.XtsBaseRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength/2 - GC.SHUTTLE_LENGTH/2;
+		stExpMoverStatus.XtsAdjustedData.fPartPosition	:= stExpMoverStatus.PartSectorCenterTail;
+		stExpMoverStatus.PartSectorBndryTailR			:= stExpMoverStatus.XtsBaseRefData.fPartPosition - stTrackGlobalConfig.ExpMoverLength - GC.SHUTTLE_LENGTH/2;
 	END_IF
 END_IF]]></ST>
       </Implementation>

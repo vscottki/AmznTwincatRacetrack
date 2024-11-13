@@ -3,41 +3,50 @@
   <POU Name="FB_AllExpMovers" Id="{e116675b-ae16-0e1f-1a3b-c540b59d6b4a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_AllExpMovers
 VAR_INPUT
-	HeadRef							: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
-	TailRef							: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
-	TrackSectorsRef			: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;		
+	HeadMoversRef					: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
+	TailMoversRef					: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
+	HeadTrackSectorsRef		: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
+	TailTrackSectorsRef		: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;		
 END_VAR
 VAR
 	MoverIndex					: UDINT;
 	ForCounterExit 			: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF UDINT;
 	SectorIndex 				: UDINT;
-	LapTrig1						: ST_MergeWindow;
-	LapGap							: ST_MergeWindow;
-	WindowClearDebounce : TIME;
-	GapClearTail				: Tc2_Standard.TON;
+//	LapTrig1						: ST_MergeWindow;
+//	LapGap							: ST_MergeWindow;
+//	WindowClearDebounce : TIME;
+//	GapClearTail				: Tc2_Standard.TON;
 	ValidMergeObject		: ST_MoverMerge;
-	AMoverIsOnVoid			:	ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
+//	AMoverIsOnVoid			:	ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
 END_VAR
 VAR CONSTANT
 	CONVERT_MS_100NS_COUNT	: LREAL := 1E4;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[_M_Configuration();]]></ST>
+      <ST><![CDATA[_M_Configuration();
+
+_M_EvaluateStatus();]]></ST>
     </Implementation>
     <Method Name="_M_Configuration" Id="{236b3e92-f6bc-03b8-0065-f6a0e2b8201b}">
       <Declaration><![CDATA[METHOD PRIVATE _M_Configuration]]></Declaration>
       <Implementation>
         <ST><![CDATA[FOR MoverIndex := GC.nNumMinMovers TO GC.nNumMaxMovers DO
-	HeadRef[MoverIndex].P_ExpMoverConfig := RingBuffer.E_ExpMover.Head;
-	TailRef[MoverIndex].P_ExpMoverConfig := RingBuffer.E_ExpMover.Tail;
+	HeadMoversRef[MoverIndex].P_ExpMoverConfig := RingBuffer.E_ExpMover.Head;
+	TailMoversRef[MoverIndex].P_ExpMoverConfig := RingBuffer.E_ExpMover.Tail;
 END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_EvaluateStatus" Id="{19b0e65e-a05f-096f-265a-b0e2b7cf8b15}">
       <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateStatus]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[FOR MoverIndex := GC.nNumMinMovers TO GC.nNumMaxMovers DO
+	IF HeadTrackSectorsRef[MoverIndex].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverEnteredSector.Q THEN
+		//
+	ELSIF TailTrackSectorsRef[MoverIndex].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q THEN
+		//
+	END_IF
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_EvaluateStatus1" Id="{44e0cc83-293d-0d9c-2381-994debd354e2}">

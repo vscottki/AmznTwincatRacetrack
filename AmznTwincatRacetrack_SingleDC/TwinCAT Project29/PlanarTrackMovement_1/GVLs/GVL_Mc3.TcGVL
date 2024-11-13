@@ -4,8 +4,11 @@
     <Declaration><![CDATA[VAR_GLOBAL	
 {warning <'bundle FB_Track'>}
 	TrackSectors					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
-	HeadExpMovers					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF  FB_ExpandedMover;
-	TailExpMovers					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF  FB_ExpandedMover;
+	HeadTrackSectors			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
+	TailTrackSectors			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
+	
+	HeadExpMovers					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
+	TailExpMovers					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
 	AllExpMovers					: FB_AllExpMovers;
 	AllTrackSectors				: FB_AllTrackSectors;
 	

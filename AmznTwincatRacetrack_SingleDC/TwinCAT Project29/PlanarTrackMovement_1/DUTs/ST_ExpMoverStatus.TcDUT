@@ -3,7 +3,7 @@
   <DUT Name="ST_ExpMoverStatus" Id="{a98e7ea4-f570-0414-0e88-a9faaf2729e3}">
     <Declaration><![CDATA[TYPE ST_ExpMoverStatus :
 STRUCT
-	XtsRefData								: REFERENCE TO Tc3_XTS_Utility.ST_PositionInfo;
+	XtsBaseRefData						: REFERENCE TO Tc3_XTS_Utility.ST_PositionInfo;
 	HasInterference						: BOOL;
 	TrackSectorBndryHeadF			: LREAL;
 	TrackSectorBndryTailF			: LREAL;
@@ -17,6 +17,7 @@ STRUCT
 	PartSectorCenterTail			: LREAL;
 	PartSectorBndryHeadR			: LREAL;
 	PartSectorBndryTailR			: LREAL;
+	XtsAdjustedData						: Tc3_XTS_Utility.ST_PositionInfo;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

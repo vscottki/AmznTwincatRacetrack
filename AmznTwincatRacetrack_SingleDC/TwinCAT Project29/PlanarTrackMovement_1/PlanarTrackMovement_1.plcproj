@@ -350,6 +350,9 @@
     <SubObject Include="FB_AllExpMovers._M_EvaluateStatus1">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
+    <SubObject Include="FB_AllExpMovers._M_EvaluateWindow">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
     <SubObject Include="FB_AllTrackSectors._M_VARINOUT_TroubleshootingJunk">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>

@@ -278,12 +278,14 @@ CASE nCase OF
 				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut - 1;
 			END_IF
 		
-			TrackSectors[nForCounter](MoverIndex := nForCounter);
+			TrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := fbPlanarXtsMover[nForCounter].P_XtsPositionInfo);
+			HeadTrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := HeadExpMovers[nForCounter].stExpMoverStatus.XtsAdjustedData);
+			TailTrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := TailExpMovers[nForCounter].stExpMoverStatus.XtsAdjustedData);			
 			AllTrackSectors(TrackSectorsRef := GVL_Mc3.TrackSectors);
 			
 			HeadExpMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
 			TailExpMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
-			AllExpMovers(HeadRef := HeadExpMovers, TailRef := TailExpMovers, TrackSectorsRef := TrackSectors);
+			AllExpMovers(HeadMoversRef := HeadExpMovers, TailMoversRef := TailExpMovers, HeadTrackSectorsRef := HeadTrackSectors, TailTrackSectorsRef := TailTrackSectors);
 			
 			fbPlanarXtsMover[nForCounter]();
 			
@@ -401,6 +403,7 @@ CASE nCase OF
 					END_IF
 
 				68://Merge from Inner to Outer
+						ManMergeGate := FALSE;
 						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
