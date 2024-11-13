@@ -25,9 +25,9 @@ ELSE
 	InitDone	:= TRUE;
 END_IF
 
-//IF InitDone THEN
+IF InitDone THEN
 	_M_UpdateSectorStatus();
-//END_IF]]></ST>
+END_IF]]></ST>
     </Implementation>
     <Method Name="_M_EnteredSectorBoundary" Id="{0a3cca6a-e759-04fb-3dcc-374b74b3c321}">
       <Declaration><![CDATA[METHOD PROTECTED _M_EnteredSectorBoundary : BOOL]]></Declaration>

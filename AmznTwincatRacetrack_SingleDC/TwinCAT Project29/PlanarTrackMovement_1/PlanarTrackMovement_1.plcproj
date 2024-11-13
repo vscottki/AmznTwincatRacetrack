@@ -23,6 +23,9 @@
     <Compile Include="DUTs\E_MergeMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\E_MergeType.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\E_SwitchOpMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -34,9 +37,6 @@
       <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="DUTs\ST_Debounce.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\ST_MergeWindow.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_PlanarTrackConfig.TcDUT">
@@ -119,6 +119,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FUNs\F_PosnInitial.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FUNs\F_t_SL2a.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FUNs\F_t_v0.TcPOU">

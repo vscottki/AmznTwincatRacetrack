@@ -8,17 +8,18 @@ VAR_INPUT
 END_VAR
 
 VAR
-	nMoverId			    	: UDINT;
+	nMoverId			    		: UDINT;
 
 	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	_PlanarTrail    			: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
 
 	stXtsPositionInfo			: Tc3_XTS_Utility.ST_PositionInfo;
 	
-	MoverPhysics				: Tc3_Physics.PositionXYC;
+	MoverPhysics					: Tc3_Physics.PositionXYC;
 
-	Mover				        : MoverSort;
-	CmdDivert						: BOOL;
+	Mover				        	: MoverSort;
+	CmdDivert							: BOOL;
+	eMerge								: E_MergeType;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -83,6 +84,17 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[P_CmdDivert	REF= CmdDivert;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_eMerge" Id="{5698d2c6-a9ba-0594-1fa9-f7ecaefdee80}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_eMerge : REFERENCE TO E_MergeType]]></Declaration>
+      <Get Name="Get" Id="{b80825a0-b14e-0969-14a3-bf841bda528e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_eMerge	REF= eMerge;]]></ST>
         </Implementation>
       </Get>
     </Property>

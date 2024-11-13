@@ -4,6 +4,8 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_AllTrackSectors
 VAR_INPUT
 	TrackSectorsRef				: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
+	HeadTrackSectorsRef		: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;
+	TailTrackSectorsRef		: REFERENCE TO ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_TrackSectors;		
 END_VAR
 //VAR_IN_OUT CONSTANT //not writeable by this FB
 //		TrackSectorsRef				: ARRAY[*] OF FB_TrackSectors;
@@ -17,7 +19,11 @@ VAR
 	AllSectorStatus	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_StaticSectorStatus;
 	LowerOut : DINT;
 	UpperOut : DINT;
-	AMoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
+	RealMoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
+	TempMergeObject		: ST_MoverMerge;
+	MoverIdMergeOnSector		: UDINT;
+	
+	TimeForShortcutMergingMover : LREAL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//LowerOut := LOWER_BOUND(TrackSectorsRef, 1);
@@ -28,28 +34,62 @@ END_VAR]]></Declaration>
 //END_IF]]></ST>
     </Implementation>
     <Method Name="_M_EvaluateStatus" Id="{cdab348b-40a1-098a-037b-f73262f9331f}">
-      <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateStatus]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateStatus
+VAR_INST
+	MoverInDecelSector : BOOL;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF ADR(TrackSectorsRef) <> 0 THEN // pointer validity check
 	FOR MoverIndex := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+		
 		FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT BY 1 DO
 			//Note!: VAR_IN_OUT (REF) Arrays are O-Based! 
 			AllSectorStatus[MoverIndex][SectorIndex] := TrackSectorsRef[(MoverIndex)].SectorStatus[(SectorIndex)];
-	
 		END_FOR
+
+		IF TrackSectorsRef[MoverIndex].SectorStatus[GC.SHORTCUT_MERGE_CALC_EXACT].MoverEnteredSector.Q AND NOT MoverInDecelSector THEN
+			MoverIdMergeOnSector 	:= MoverIndex;
+			MoverInDecelSector		:= TRUE;
+		END_IF
+
 	END_FOR
 END_IF
 
-//Merge
+//Calculate t if mover is between the start and end of this sector; this t is used to relate the constant velocity region on the outer loop
+IF MoverIdMergeOnSector <> 0 THEN
+	IF TrackSectorsRef[MoverIdMergeOnSector].SectorStatus[GC.SHORTCUT_MERGE_CALC_EXACT].MoverIsOnSector AND MoverInDecelSector THEN
+		//This is only calculated for one mover at once
+		TimeForShortcutMergingMover := F_t_SL2a(SectorLength := TrackSectorsRef[MoverIdMergeOnSector].SectorStatus[GC.SHORTCUT_MERGE_CALC_EXACT].MoverDistanceFromEnd, 
+																						Acceleration := stMoverConfig.MaxDecel);
+	END_IF
+	
+	IF TrackSectorsRef[MoverIdMergeOnSector].SectorStatus[GC.SHORTCUT_MERGE_CALC_EXACT].MoverExitedSector.Q AND MoverInDecelSector THEN
+		MoverInDecelSector		:= FALSE;
+	END_IF
+END_IF
+
+//Merge - 'If Any'
 FOR ForCounterExit[GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
 	IF AllSectorStatus[ForCounterExit[GC.OUTER_SHORTCUT_PROJECTION]][GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] := TRUE;
+			RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] := TRUE;
 			EXIT;
 		ELSIF NOT AllSectorStatus[ForCounterExit[GC.OUTER_SHORTCUT_PROJECTION]][GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN
-			AMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] := FALSE;
+			RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] := FALSE;
 		END_IF
 END_FOR
-]]></ST>
+
+//Checking Expanded Movers against real mover locations; adding valid references to buffer
+FOR MoverIndex := GC.nNumMinMovers TO GC.nNumMaxMovers DO
+	IF HeadTrackSectorsRef[MoverIndex].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverEnteredSector.Q AND NOT RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
+		TempMergeObject.MoverID 	:= MoverIndex;
+		TempMergeObject.ExpMoverType := E_ExpMover.Head;
+		MergeQueue.AddObjToBuffer(RefObject := TempMergeObject);
+	ELSIF TailTrackSectorsRef[MoverIndex].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q AND NOT RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
+		TempMergeObject.MoverID 	:= MoverIndex;
+		TempMergeObject.ExpMoverType := E_ExpMover.Tail;
+		MergeQueue.AddObjToBuffer(RefObject := TempMergeObject);
+	END_IF
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_VARINOUT_TroubleshootingJunk" Id="{ea69075c-a9ec-0830-0636-202b848c0db0}">
@@ -88,7 +128,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_AMoverIsOnSector REF= AMoverIsOnSector;]]></ST>
+          <ST><![CDATA[P_AMoverIsOnSector REF= RealMoverIsOnSector;]]></ST>
         </Implementation>
       </Get>
     </Property>

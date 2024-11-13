@@ -281,11 +281,11 @@ CASE nCase OF
 			TrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := fbPlanarXtsMover[nForCounter].P_XtsPositionInfo);
 			HeadTrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := HeadExpMovers[nForCounter].stExpMoverStatus.XtsAdjustedData);
 			TailTrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := TailExpMovers[nForCounter].stExpMoverStatus.XtsAdjustedData);			
-			AllTrackSectors(TrackSectorsRef := GVL_Mc3.TrackSectors);
+			AllTrackSectors(TrackSectorsRef := GVL_Mc3.TrackSectors, HeadTrackSectorsRef := HeadTrackSectors, TailTrackSectorsRef := TailTrackSectors);
 			
 			HeadExpMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
 			TailExpMovers[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
-			AllExpMovers(HeadMoversRef := HeadExpMovers, TailMoversRef := TailExpMovers, HeadTrackSectorsRef := HeadTrackSectors, TailTrackSectorsRef := TailTrackSectors);
+			AllExpMovers(HeadMoversRef := HeadExpMovers, TailMoversRef := TailExpMovers);
 			
 			fbPlanarXtsMover[nForCounter]();
 			

@@ -219,9 +219,7 @@ END_FOR
     <Method Name="_M_UpdateStatus" Id="{7fe5605e-c7f4-08a0-2975-b47f8373ba34}">
       <Declaration><![CDATA[METHOD PROTECTED _M_UpdateStatus]]></Declaration>
       <Implementation>
-        <ST><![CDATA[_M_UpdateSingularSectors();
-
-//_M_UpdateMultiSectors();]]></ST>
+        <ST><![CDATA[_M_UpdateSingularSectors();]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_SectorConfig" Id="{ce3410f7-df14-06f9-06cc-e42f221e6feb}">
