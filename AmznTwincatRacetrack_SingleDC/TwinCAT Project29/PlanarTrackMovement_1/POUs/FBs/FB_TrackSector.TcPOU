@@ -25,9 +25,9 @@ ELSE
 	InitDone	:= TRUE;
 END_IF
 
-IF InitDone THEN
+//IF InitDone THEN
 	_M_UpdateSectorStatus();
-END_IF]]></ST>
+//END_IF]]></ST>
     </Implementation>
     <Method Name="_M_EnteredSectorBoundary" Id="{0a3cca6a-e759-04fb-3dcc-374b74b3c321}">
       <Declaration><![CDATA[METHOD PROTECTED _M_EnteredSectorBoundary : BOOL]]></Declaration>
@@ -117,7 +117,15 @@ ELSE // by parts
 END_IF
 
 stSectorStatus.MoverEnteredSector(CLK := stSectorStatus.MoverIsOnSector);
-stSectorStatus.MoverExitedSector(CLK := stSectorStatus.MoverIsOnSector);]]></ST>
+stSectorStatus.MoverExitedSector(CLK := stSectorStatus.MoverIsOnSector);
+
+stSectorStatus.SectorLength := stSectorConfig.PartSectorEndPosn - stSectorConfig.PartSectorStartPosn;
+
+IF stSectorStatus.MoverIsOnSector THEN
+	stSectorStatus.MoverDistanceFromEnd := stSectorConfig.PartSectorEndPosn - refXtsMover.fPartPosition;
+ELSE
+	stSectorStatus.MoverDistanceFromEnd	:= 0;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_PlanarMover" Id="{c0ac9430-b382-04fd-3b6a-1962bd5a1c7e}">

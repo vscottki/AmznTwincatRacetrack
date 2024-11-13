@@ -6067,7 +6067,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement_1" PrjFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.plcproj" TmcFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{1519C23C-9EA0-B2C3-763C-7CBBC53D35B7}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{637FC7B4-06E8-9CF3-F56F-4CE9DFD246CC}">
 					<Name>PlanarTrackMovement_1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -6083,10 +6083,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>MAIN.Voltage2</Name>
 							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_General.SwitchMagnet.pwm.ModuleState</Name>
-							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Mc3.MC_Tracks[1].MCTOPLC_STD</Name>
@@ -6183,6 +6179,10 @@ External Setpoint Generation:
 							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
 							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
 						</Var>
+						<Var>
+							<Name>GVL_General.SwitchMagnet.pwm.ModuleState</Name>
+							<Type>UINT</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
@@ -6213,18 +6213,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>MAIN.Emergency</Name>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_General.SwitchMagnet.pwm.Control</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_General.SwitchMagnet.pwm.TargetTorque</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_General.stSwitchStatus.MagnetValue</Name>
-							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Mc3.fbPlanarXtsMover[1]._McPlanarMover.PLCTOMC</Name>
@@ -6305,6 +6293,18 @@ External Setpoint Generation:
 							<Name>GVL_Mc3.fbPlanarXtsMover[16]._McPlanarMover.PLCTOMC</Name>
 							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
 							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_General.SwitchMagnet.pwm.Control</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_General.SwitchMagnet.pwm.TargetTorque</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_General.stSwitchStatus.MagnetValue</Name>
+							<Type>INT</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2024-10-18T14:59:32">

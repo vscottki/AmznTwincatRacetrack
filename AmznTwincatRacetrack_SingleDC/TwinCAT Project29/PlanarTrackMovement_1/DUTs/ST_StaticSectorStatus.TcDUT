@@ -7,6 +7,8 @@ STRUCT
 	MoverCountOnSector		: UDINT;
 	MoverEnteredSector		: Tc2_Standard.R_TRIG;
 	MoverExitedSector		: Tc2_Standard.F_TRIG;
+	SectorLength				: LREAL;
+	MoverDistanceFromEnd	: LREAL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>
