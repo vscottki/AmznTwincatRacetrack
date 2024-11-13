@@ -120,12 +120,12 @@ END_IF
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorStartPosn					   	:= 0;
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorEndPosn 					 	:= 0;
                                                                             
-//	astSectorConfig[GC.OUTER_MERGE_COLLISION].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
-//	astSectorConfig[GC.OUTER_MERGE_COLLISION].PartSectorStartPosn			 	 				:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := (GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeCollisionRegionDeltaFromL));
-//	astSectorConfig[GC.OUTER_MERGE_COLLISION].PartSectorEndPosn			 	 	 				:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeCollisionRegionDeltaFromL;
-//	astSectorConfig[GC.OUTER_MERGE_COLLISION].TrackSectorStartPosn			 				:= 0;
-//	astSectorConfig[GC.OUTER_MERGE_COLLISION].TrackSectorEndPosn 			 					:= 0;
-//	astSectorConfig[GC.OUTER_MERGE_COLLISION].SectorSpansBoundary 			 				:= FALSE;
+	astSectorConfig[GC.OUTER_MERGE_COLLISION].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_MERGE_COLLISION].PartSectorStartPosn			 	 				:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := (GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.MergeCollisionRegionDeltaFromL));
+	astSectorConfig[GC.OUTER_MERGE_COLLISION].PartSectorEndPosn			 	 	 				:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
+	astSectorConfig[GC.OUTER_MERGE_COLLISION].TrackSectorStartPosn			 				:= 0;
+	astSectorConfig[GC.OUTER_MERGE_COLLISION].TrackSectorEndPosn 			 					:= 0;
+	astSectorConfig[GC.OUTER_MERGE_COLLISION].SectorSpansBoundary 			 				:= FALSE;
 	
 	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartObjectId						 	 		:= GVL_General.XtsPartOuterFinish;
 	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartSectorStartPosn			 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].PartSectorStartPosn;

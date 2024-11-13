@@ -389,21 +389,16 @@ CASE nCase OF
 					nMoveState[nForCounter] := 61;
 					
 				61:
-				IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_MERGE_COMMAND].stSectorStatus.MoverEnteredSector.Q THEN
-					IF ManMergeGate THEN
-						nMoveState[nForCounter] := 68;
-					ELSE
-						nMoveState[nForCounter] := 65;
-					END_IF
+				IF MoverFeedback[nForCounter].Done THEN
+					nMoveState[nForCounter] := 62;
 				END_IF
 					
-				65:// Permissive to Merge
-					IF ManMergeGate THEN
+				62:// Permissive to Merge
+					IF NOT AllTrackSectors.P_AMoverIsOnSector[GC.OUTER_MERGE_COLLISION] THEN
 						nMoveState[nForCounter] := 68;
 					END_IF
 
 				68://Merge from Inner to Outer
-						ManMergeGate := FALSE;
 						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,

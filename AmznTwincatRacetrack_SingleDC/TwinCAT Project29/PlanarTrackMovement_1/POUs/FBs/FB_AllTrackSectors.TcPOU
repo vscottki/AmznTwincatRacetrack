@@ -129,9 +129,28 @@ END_IF]]></ST>
 	END_FOR
 END_IF
 
+//If Config.EvaluateStaticRegionOnly
+_M_StaticSectorClear();
+// ELSIF Config.UseExpandedMovers THEN
+
+//Do all this
 _M_CalculateTCompForMerge();
 
 _M_BufferValidMergeRefs();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_M_StaticSectorClear" Id="{84bd337c-c2f6-0b56-0a3d-563d2eecfbb2}">
+      <Declaration><![CDATA[METHOD PRIVATE _M_StaticSectorClear]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Checking Expanded Movers against real mover locations; adding valid references to buffer
+FOR ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_MERGE_COLLISION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
+	IF AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_MERGE_COLLISION]][GC.OUTER_MERGE_COLLISION].MoverIsOnSector THEN
+			RealMoverIsOnSector[GC.OUTER_MERGE_COLLISION] := TRUE;
+			EXIT;
+		ELSIF NOT AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_MERGE_COLLISION]][GC.OUTER_MERGE_COLLISION].MoverIsOnSector THEN
+			RealMoverIsOnSector[GC.OUTER_MERGE_COLLISION] := FALSE;
+		END_IF
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_VARINOUT_TroubleshootingJunk" Id="{ea69075c-a9ec-0830-0636-202b848c0db0}">
