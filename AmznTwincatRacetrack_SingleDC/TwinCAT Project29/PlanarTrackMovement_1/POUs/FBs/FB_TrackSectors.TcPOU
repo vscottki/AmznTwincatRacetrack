@@ -129,7 +129,7 @@ END_IF
 	
 	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartObjectId						 	 		:= GVL_General.XtsPartOuterFinish;
 	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartSectorStartPosn			 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].PartSectorStartPosn;
-	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartSectorEndPosn			 	 	 	:= astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartSectorStartPosn + stMoverConfig.NormalMoverGap + 50; // comp factor to prevent overlaps
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartSectorEndPosn			 	 	 	:= astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartSectorStartPosn + stMoverConfig.NormalMoverGap + 80; // comp factor to prevent overlaps
 	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].TrackSectorStartPosn			 	:= 0;
 	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].TrackSectorEndPosn 			 			:= 0;
 	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].SectorSpansBoundary 			 	:= FALSE;
