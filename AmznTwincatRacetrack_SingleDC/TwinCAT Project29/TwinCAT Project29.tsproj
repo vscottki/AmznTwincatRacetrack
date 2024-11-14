@@ -6062,7 +6062,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement_1" PrjFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.plcproj" TmcFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{6D1D716D-231F-E63B-1FCF-3CE6668E15D2}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{7790C3C4-33DC-2ADE-E26B-83C83733BDBE}">
 					<Name>PlanarTrackMovement_1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -6685,7 +6685,6 @@ External Setpoint Generation:
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07113052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1809 16Ch. Dig. Input 24V, 3ms" Desc="EL1809" PortABoxInfo="#x01000001">
 							<SyncMan>001002000000010004000000000000000200001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
 								<Entry Name="Input" Index="#x6000" Sub="#x01">
@@ -6775,7 +6774,6 @@ External Setpoint Generation:
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03fa3052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1018 8Ch. Dig. Input 24V, 10µs" Desc="EL1018" PortABoxInfo="#x01000002">
 							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
 								<Entry Name="Input" Index="#x6000" Sub="#x01">
@@ -6826,7 +6824,6 @@ External Setpoint Generation:
 							<SyncMan>000f01004400010003000000000000000100000f44090000</SyncMan>
 							<SyncMan>010f01004400010003000000000000000100010f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
 								<Entry Name="Output" Index="#x7000" Sub="#x01">
@@ -6921,7 +6918,6 @@ External Setpoint Generation:
 							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<Pdo Name="AI Standard Channel 1" Index="#x1a00" Flags="#x0010" SyncMan="3">
 								<ExcludePdo>#x1a01</ExcludePdo>
@@ -7133,7 +7129,6 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<Pdo Name="TC Inputs Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6000" Sub="#x01">
@@ -7324,7 +7319,6 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000a0860100000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -7366,7 +7360,6 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Fmmu>0000000000000000001900010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -8697,7 +8690,6 @@ Bit 8 - 15 : reserved]]></Comment>
 							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<MBoxUserCmdData>004003000c0000000000000003000000000000000000000000000000000000002081f001040000000000160000</MBoxUserCmdData>
 							<Pdo Name="BCT Inputs" Index="#x1a00" Flags="#x0010" SyncMan="3">
@@ -8752,7 +8744,6 @@ Bit 8 - 15 : reserved]]></Comment>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x24c23052" RevisionNo="#x00110000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9410 E-Bus Power Supplier  (Diagnostics)" Desc="EL9410" PortABoxInfo="#x01000009">
 							<SyncMan>001001000000010004000000000000000000001000000000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<Pdo Name="Status Us" Index="#x1a00" Flags="#x0011" SyncMan="0">
 								<Entry Name="Undervoltage" Index="#x6000" Sub="#x01">
@@ -8778,7 +8769,6 @@ Bit 8 - 15 : reserved]]></Comment>
 							<Fmmu>0000000000000000001900010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<Pdo Name="TxPDO" Index="#x1a00" Flags="#x0090" SyncMan="3">
 								<Entry Name="FSOE__FSoE Slave CMD" Index="#x6000" Sub="#x01">
@@ -8847,7 +8837,6 @@ Bit 8 - 15 : reserved]]></Comment>
 							<Fmmu>0000000000000000001900010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<SuName>XL-Task</SuName>
 							<SuTask>#x02010020</SuTask>
 							<Pdo Name="TxPDO" Index="#x1a00" Flags="#x0090" SyncMan="3">
 								<Entry Name="FSOE__FSoE Slave CMD" Index="#x6000" Sub="#x01">
@@ -8922,9 +8911,9 @@ Bit 8 - 15 : reserved]]></Comment>
 							<Fmmu>0000000000000000000000010000000002000000060000000500010000000000</Fmmu>
 							<Fmmu>0000000000000000fa2f00020100000001000000060000000600020000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<SuName>XL-Task</SuName>
-							<SuName>XL-Task</SuName>
-							<SuName>XL-Task</SuName>
+							<SuName></SuName>
+							<SuName></SuName>
+							<SuName></SuName>
 							<SuName></SuName>
 							<SuTask>#x02010020</SuTask>
 							<SuTask>#x00000000</SuTask>
@@ -9842,7 +9831,6 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Fmmu>0000000000000000001900010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<DcData>0003000000000000000000000000000001000000000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
 						<DcMode>4443494e00000000000000000000000044432d53796e6368726f6e2028696e7075742062617365642900000000000000000000007cfcffff00000000000000030100000000000000000001000000000000000000000000000000000000000000</DcMode>
@@ -9992,7 +9980,7 @@ Bit 8 - 15 : reserved]]></Comment>
 						<CoeProfile ProfileNo="62919561" DisplayName="AX8000 Power supply"/>
 					</EtherCAT>
 				</Box>
-				<EtherCAT ManualDcSelect="true" DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120"/>
+				<EtherCAT ManualDcSelect="true" DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120" DcSyncTask="2"/>
 			</Device>
 			<Device Id="8" DevType="111" DevFlags="#x0003" AmsPort="28680" AmsNetId="192.168.8.178.9.1" RemoteName="Device 8 (EtherCAT)" InfoImageId="9">
 				<Name>Device 8 (EtherCAT)</Name>
@@ -10013,12 +10001,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001440002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001442002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -10193,7 +10180,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -10304,12 +10295,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001440002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001442002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -10484,7 +10474,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -10595,12 +10589,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -10772,7 +10765,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -10883,12 +10880,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -11060,7 +11056,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -11171,12 +11171,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -11348,7 +11347,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -11459,12 +11462,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143b002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143d002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -11628,7 +11630,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -11739,12 +11745,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -11916,7 +11921,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -12027,12 +12036,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -12204,7 +12212,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -12315,12 +12327,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -12492,7 +12503,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -12603,12 +12618,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -12780,7 +12794,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -12891,12 +12909,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -13068,7 +13085,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -13179,12 +13200,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -13356,7 +13376,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -13467,12 +13491,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -13644,7 +13667,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -13755,12 +13782,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -13932,7 +13958,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -14043,12 +14073,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -14220,7 +14249,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -14331,12 +14364,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -14508,7 +14540,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -14619,12 +14655,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -14796,7 +14831,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -14907,12 +14946,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -15084,7 +15122,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -15195,12 +15237,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -15372,7 +15413,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -15483,12 +15528,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001431002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001433002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -15651,7 +15695,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -15762,12 +15810,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001431002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001433002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -15930,7 +15977,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -16041,12 +16092,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001431002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001433002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -16209,7 +16259,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -16320,12 +16374,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001431002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001433002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -16488,7 +16541,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -16599,12 +16656,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001431002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001433002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -16767,7 +16823,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -16878,12 +16938,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001431002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001433002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -17046,7 +17105,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -17157,12 +17220,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -17334,7 +17396,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -17445,12 +17511,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -17622,7 +17687,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -17733,12 +17802,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -17910,7 +17978,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -18021,12 +18093,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -18198,7 +18269,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -18309,12 +18384,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -18486,7 +18560,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -18597,12 +18675,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001440002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001442002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -18777,7 +18854,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -18888,12 +18969,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001440002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001442002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -19068,7 +19148,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -19172,7 +19256,7 @@ Bit 8 - 15 : reserved]]></Comment>
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<EtherCAT EpMacAddr="020105800000" ManualDcSelect="true" DcSyncMode="3" EpIpAddr="-1442927874" EpMaxCon="16" EpFirstConAddr="57344" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120" MaxSwitchMACs="100"/>
+				<EtherCAT EpMacAddr="020105800000" ManualDcSelect="true" DcSyncMode="3" EpIpAddr="-1442927874" EpMaxCon="16" EpFirstConAddr="57344" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120" MaxSwitchMACs="100" DcSyncTask="2"/>
 			</Device>
 			<Device Id="4" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.8.178.5.1" RemoteName="Device 4 (EtherCAT)" InfoImageId="11">
 				<Name>Device 4 (EtherCAT)</Name>
@@ -19193,12 +19277,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001440002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001442002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -19373,7 +19456,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -19484,12 +19571,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001440002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001442002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -19664,7 +19750,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -19775,12 +19865,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -19952,7 +20041,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -20063,12 +20156,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -20240,7 +20332,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -20351,12 +20447,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -20528,7 +20623,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -20639,12 +20738,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -20816,7 +20914,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -20927,12 +21029,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -21104,7 +21205,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -21215,12 +21320,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -21392,7 +21496,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -21503,12 +21611,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -21680,7 +21787,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -21791,12 +21902,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -21968,7 +22078,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -22079,12 +22193,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -22256,7 +22369,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -22367,12 +22484,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -22544,7 +22660,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -22655,12 +22775,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -22832,7 +22951,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -22943,12 +23066,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -23120,7 +23242,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -23231,12 +23357,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -23408,7 +23533,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -23519,12 +23648,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -23696,7 +23824,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -23807,12 +23939,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -23984,7 +24115,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -24095,12 +24230,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -24272,7 +24406,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -24383,12 +24521,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -24560,7 +24697,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -24671,12 +24812,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -24848,7 +24988,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -24959,12 +25103,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -25136,7 +25279,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -25247,12 +25394,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -25424,7 +25570,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -25535,12 +25685,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -25712,7 +25861,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -25823,12 +25976,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -26000,7 +26152,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -26111,12 +26267,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -26288,7 +26443,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -26399,12 +26558,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -26576,7 +26734,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -26687,12 +26849,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -26864,7 +27025,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -26975,12 +27140,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -27152,7 +27316,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -27263,12 +27431,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -27440,7 +27607,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -27551,12 +27722,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>00143c002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>00143e002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -27728,7 +27898,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -27839,12 +28013,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001440002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001442002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -28019,7 +28192,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -28130,12 +28307,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
 						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
 						<SyncMan>001210002400010003000000000000000c00001224010000</SyncMan>
-						<SyncMan>001440002000010004000000000000003000001420010000</SyncMan>
+						<SyncMan>001442002000010004000000000000003000001420010000</SyncMan>
 						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
 						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
 						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 						<BootStrapData>0010f400f410f400</BootStrapData>
-						<SuName>XL-Task</SuName>
 						<SuTask>#x02010020</SuTask>
 						<DcData>0007000024f4000000000000000000000000ffff000000000000000000000000</DcData>
 						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e00000000000000000000000000000000000000000024f400000000000000000000ffff00070000000000000000000000000000000000000000000000000000000000000000</DcMode>
@@ -28310,7 +28486,11 @@ Bit 8 - 15 : reserved]]></Comment>
 						<Pdo Name="SAFETY Function Block Info Data" Index="#x1a31" Flags="#x0080"/>
 						<Pdo Name="SAFETY Connection Info Data" Index="#x1a36" Flags="#x0080"/>
 						<Pdo Name="SAFETY Group Info Data" Index="#x1a38" Flags="#x0080"/>
-						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080"/>
+						<Pdo Name="SAFETY Device Info Data" Index="#x1a3b" Flags="#x0080" SyncMan="3">
+							<Entry Name="Project CRC" BitLen="16" Index="#xf980" Sub="#x03">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
 						<Pdo Name="FSLOGIC Inputs" Index="#x1a3f" Flags="#x0091" SyncMan="3">
 							<Entry Name="FSOE__Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 								<Type>USINT</Type>
@@ -28414,7 +28594,7 @@ Bit 8 - 15 : reserved]]></Comment>
 						</Slot>
 					</EtherCAT>
 				</Box>
-				<EtherCAT ManualDcSelect="true" DcSyncMode="2"/>
+				<EtherCAT ManualDcSelect="true" DcSyncMode="2" DcSyncTask="2"/>
 			</Device>
 		</Io>
 		<SymbolWatch>
@@ -28549,6 +28729,9 @@ Bit 8 - 15 : reserved]]></Comment>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 18 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 18 (AT5100-0100) - Module 1 (SAFETY)_71 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 19 (AT5100-0100)">
+				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 19 (AT5100-0100) - Module 1 (SAFETY)_76 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 22 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 22 (AT5100-0100) - Module 1 (SAFETY)_79 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -28882,7 +29065,6 @@ Bit 8 - 15 : reserved]]></Comment>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 13 (EL2912)">
 				<Link VarA="Box 18 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4" VarB="ConnectionInputs^TwinSafeGroup1.Box 18 (AT5100-0100) - Module 1 (SAFETY)_71 TxPDO"/>
 				<Link VarA="Box 19 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4" VarB="ConnectionInputs^TwinSafeGroup1.Box 19 (AT5100-0100) - Module 1 (SAFETY)_76 TxPDO"/>
-				<Link VarA="Box 19 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 19 (AT5100-0100) - Module 1 (SAFETY)_76 RxPDO"/>
 				<Link VarA="Box 20 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4" VarB="ConnectionInputs^TwinSafeGroup1.Box 20 (AT5100-0100) - Module 1 (SAFETY)_77 TxPDO"/>
 				<Link VarA="Box 20 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 20 (AT5100-0100) - Module 1 (SAFETY)_77 RxPDO"/>
 				<Link VarA="Box 21 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4" VarB="ConnectionInputs^TwinSafeGroup1.Box 21 (AT5100-0100) - Module 1 (SAFETY)_78 TxPDO"/>

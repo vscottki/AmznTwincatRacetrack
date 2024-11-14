@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TargetSystemConfig Crc="1394838" Version="1.5">
+<TargetSystemConfig Crc="2563444483" Version="1.5">
   <TargetSystemType>HSafetyPLC</TargetSystemType>
   <TargetSystemSubType>EL2912</TargetSystemSubType>
   <IsExternalDevice>false</IsExternalDevice>
   <TargetSystemObjectId>50462733</TargetSystemObjectId>
   <TargetSystemObjectName>Term 13 (EL2912)</TargetSystemObjectName>
-  <SoftwareVersion />
-  <SerialNumber />
+  <SoftwareVersion>01 (V01.04)     </SoftwareVersion>
+  <SerialNumber>4075320</SerialNumber>
   <ProjectCRC>63684</ProjectCRC>
   <MapProjectCRC>false</MapProjectCRC>
   <MapSerialNumber>false</MapSerialNumber>
   <VersionNumber>1</VersionNumber>
   <FSOEAddress>20</FSOEAddress>
-  <DipSwitch />
+  <DipSwitch>20</DipSwitch>
   <AmsNetID>192.168.8.178.2.1</AmsNetID>
   <AmsPort>1012</AmsPort>
   <ConnectionInfoDataConfigOld>false</ConnectionInfoDataConfigOld>
