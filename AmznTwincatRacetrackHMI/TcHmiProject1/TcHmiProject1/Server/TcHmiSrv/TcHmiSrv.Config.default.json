@@ -2540,6 +2540,214 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_General.stMoverConfig.NormalVelo": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stMoverConfig::NormalVelo",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stMoverConfig.VeloComp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stMoverConfig::VeloComp",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Platooning Vars",
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.MagnetEndPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::MagnetEndPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "mm",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.MagnetStartPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::MagnetStartPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "mm",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.PosnCoilResponseTimeCoeffNominal": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::PosnCoilResponseTimeCoeffNominal",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.SwitchCurrentNominal": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::SwitchCurrentNominal",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "A (See function for computation)",
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffA": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::SwitchModeHMI::CurrentFunctionCoeffA",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::SwitchModeHMI::CurrentFunctionCoeffB",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffC": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::SwitchModeHMI::CurrentFunctionCoeffC",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.MaxAllowedDivertCount": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::SwitchModeHMI::MaxAllowedDivertCount",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/UDINT"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchConfig::UseNominalCurrentVeloSetpoints",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stSwitchStatus.CurrentOutputMax": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stSwitchStatus::CurrentOutputMax",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.MAIN.MoverStop": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2579,16 +2787,6 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.Switchcounter": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::Switchcounter",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/DINT"
-            },
-            "USEMAPPING": true
-        },
         "PLC1.MAIN.bStartSequence": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2616,75 +2814,6 @@
             "MAPPING": "PLC1::MAIN::nCase",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/INT"
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.stMoverConfig.NormalVelo": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::stMoverConfig::NormalVelo",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/LREAL"
-                    },
-                    {
-                        "propertyOrder": 7
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.stSwitchConfig.ShuttleCountToDivert": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::stSwitchConfig::ShuttleCountToDivert",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/USINT"
-                    },
-                    {
-                        "propertyOrder": 9
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.stSwitchConfig.SwitchCurrent": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::stSwitchConfig::SwitchCurrent",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/INT"
-                    },
-                    {
-                        "comment": "4.0A does crash",
-                        "propertyOrder": 1
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.MAIN.stSwitchConfig.SwitchMode": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::stSwitchConfig::SwitchMode",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:server#/definitions/PLC1.E_SwitchOpMode"
-                    },
-                    {
-                        "propertyOrder": 8
-                    }
-                ]
             },
             "USEMAPPING": true
         },
@@ -3656,6 +3785,18 @@
                 "Login": 3,
                 "Logout": 3,
                 "PLC1.GVL_General.nNumMovers": 3,
+                "PLC1.GVL_General.stMoverConfig.NormalVelo": 3,
+                "PLC1.GVL_General.stMoverConfig.VeloComp": 3,
+                "PLC1.GVL_General.stSwitchConfig.MagnetEndPosition": 3,
+                "PLC1.GVL_General.stSwitchConfig.MagnetStartPosition": 3,
+                "PLC1.GVL_General.stSwitchConfig.PosnCoilResponseTimeCoeffNominal": 3,
+                "PLC1.GVL_General.stSwitchConfig.SwitchCurrentNominal": 3,
+                "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffA": 3,
+                "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffB": 3,
+                "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffC": 3,
+                "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.MaxAllowedDivertCount": 3,
+                "PLC1.GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints": 3,
+                "PLC1.GVL_General.stSwitchStatus.CurrentOutputMax": 3,
                 "PLC1.MAIN.MaxVelo": 3,
                 "PLC1.MAIN.MoverStop": 3,
                 "PLC1.MAIN.Restart": 3,
