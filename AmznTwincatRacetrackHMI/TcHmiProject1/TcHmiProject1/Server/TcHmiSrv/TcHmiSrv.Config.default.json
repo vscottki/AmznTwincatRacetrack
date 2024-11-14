@@ -2540,6 +2540,93 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_General.stMoverConfig.MaxAccel": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stMoverConfig::MaxAccel",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 10
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stMoverConfig.MaxDecel": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stMoverConfig::MaxDecel",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stMoverConfig.NormalAccel": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stMoverConfig::NormalAccel",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Acceleration (mm/s^2)",
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stMoverConfig.NormalDecel": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stMoverConfig::NormalDecel",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "comment": "Deceleration (mm/s^2)",
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_General.stMoverConfig.NormalMoverGap": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::stMoverConfig::NormalMoverGap",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 16
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.GVL_General.stMoverConfig.NormalVelo": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3785,6 +3872,11 @@
                 "Login": 3,
                 "Logout": 3,
                 "PLC1.GVL_General.nNumMovers": 3,
+                "PLC1.GVL_General.stMoverConfig.MaxAccel": 3,
+                "PLC1.GVL_General.stMoverConfig.MaxDecel": 3,
+                "PLC1.GVL_General.stMoverConfig.NormalAccel": 3,
+                "PLC1.GVL_General.stMoverConfig.NormalDecel": 3,
+                "PLC1.GVL_General.stMoverConfig.NormalMoverGap": 3,
                 "PLC1.GVL_General.stMoverConfig.NormalVelo": 3,
                 "PLC1.GVL_General.stMoverConfig.VeloComp": 3,
                 "PLC1.GVL_General.stSwitchConfig.MagnetEndPosition": 3,
