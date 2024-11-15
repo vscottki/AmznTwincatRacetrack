@@ -6,9 +6,9 @@ STRUCT
  	SwitchOpMode         						: E_SwitchOpMode;
 	IntervalToDivert							: UDINT := 1;
 	MaxAllowedDivertCount						: UDINT := 0;
-	CurrentFunctionCoeffA						: LREAL := 0.63;
-	CurrentFunctionCoeffB						: LREAL := 0.62;
-	CurrentFunctionCoeffC						: LREAL := 5;
+	CurrentFunctionCoeffA						: LREAL := 0.50;
+	CurrentFunctionCoeffB						: LREAL := 0.19;
+	CurrentFunctionCoeffC						: LREAL := 3;
 END_STRUCT
 END_TYPE;]]></Declaration>
   </DUT>

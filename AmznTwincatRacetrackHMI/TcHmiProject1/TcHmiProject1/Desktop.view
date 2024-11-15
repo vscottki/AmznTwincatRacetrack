@@ -150,7 +150,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiSpinboxInput_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="162" data-tchmi-left-unit="px" data-tchmi-max-value="18" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="558" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-step="1" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.MaxAllowedDivertCount|BindingMode=TwoWay%/s%">
+<div id="TcHmiSpinboxInput_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="162" data-tchmi-left-unit="px" data-tchmi-max-value="1" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="558" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-step="1" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.MaxAllowedDivertCount|BindingMode=TwoWay%/s%">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -621,5 +621,7 @@
   }
 ]
 </script>
+</div>
+<div id="TcHmiIFrame" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiIFrame" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="793" data-tchmi-left-unit="px" data-tchmi-top="32" data-tchmi-top-unit="px" data-tchmi-width="465" data-tchmi-width-unit="px" data-tchmi-src="%s%PLC1.GVL_General.GraphPage%/s%">
 </div>
 </div>

@@ -2530,6 +2530,23 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_General.GraphPage": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_General::GraphPage",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "maxLength": 255
+                    },
+                    {
+                        "$ref": "tchmi:general#/definitions/String"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.GVL_General.nNumMovers": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3871,6 +3888,7 @@
                 "LocalizeText": 3,
                 "Login": 3,
                 "Logout": 3,
+                "PLC1.GVL_General.GraphPage": 3,
                 "PLC1.GVL_General.nNumMovers": 3,
                 "PLC1.GVL_General.stMoverConfig.MaxAccel": 3,
                 "PLC1.GVL_General.stMoverConfig.MaxDecel": 3,
