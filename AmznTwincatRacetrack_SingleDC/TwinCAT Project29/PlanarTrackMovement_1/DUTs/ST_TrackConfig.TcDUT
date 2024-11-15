@@ -11,8 +11,8 @@ STRUCT
 	ShortcutShuttleFullyInPosn 				: LREAL := 1500; // Part Reference (not Track)
 	ExpMoverLength										: LREAL := 1200; // roughly 2X SHUTTLE_LENGTH
 	MaxLagDistance										: LREAL := 100;
-	MergeCollisionRegionDeltaFromL		: LREAL := 2300; // 1715
-	MergeCollisionAdvance				: LREAL;
+	MergeCollisionRegionDeltaFromL		: LREAL := 2800; // 1715
+	MergeCollisionAdvance				: LREAL := 200;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

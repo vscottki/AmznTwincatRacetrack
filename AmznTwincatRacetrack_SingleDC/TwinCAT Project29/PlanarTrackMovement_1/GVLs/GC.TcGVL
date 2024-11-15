@@ -5,7 +5,7 @@
 VAR_GLOBAL CONSTANT
 //Movers-PLC
 	nNumMinMovers					: UDINT :=1;
-	nNumMaxMovers 					: UDINT :=2; //See General (Persistent, non-constant)
+	nNumMaxMovers 					: UDINT :=14; //See General (Persistent, non-constant)
 
 //Movers-MC
 	nNumMinMCAxes					: UDINT	:=1;
@@ -43,7 +43,7 @@ VAR_GLOBAL CONSTANT
 	MAX_SECTOR_CT					: USINT	:= 16;
 	
 	MIN_TRACKSECTORS_REF : USINT := 1;
-	TRACK_SECTORS_REG : USINT := 1;
+	TRACK_SECTORS_STD : USINT := 1;
 	TRACK_SECTORS_HEAD : USINT := 2;
 	TRACK_SECTORS_TAIL : USINT := 3;
 	MAX_TRACKSECTORS_REF : USINT := 3;

@@ -43,11 +43,11 @@ VAR_INST
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Merge - 'If Any'
-FOR ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_SHORTCUT_PROJECTION]][GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN
+FOR ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+	IF AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_SHORTCUT_PROJECTION]][GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN
 			RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] := TRUE;
 			EXIT;
-		ELSIF NOT AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_SHORTCUT_PROJECTION]][GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN
+		ELSIF NOT AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_SHORTCUT_PROJECTION]][GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN
 			RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] := FALSE;
 		END_IF
 END_FOR
@@ -148,11 +148,11 @@ _M_BufferValidMergeRefs();]]></ST>
       <Declaration><![CDATA[METHOD PRIVATE _M_StaticSectorClear]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Checking Expanded Movers against real mover locations; adding valid references to buffer
-FOR ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_MERGE_COLLISION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
-	IF AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_MERGE_COLLISION]][GC.OUTER_MERGE_COLLISION].MoverIsOnSector THEN
+FOR ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_MERGE_COLLISION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
+	IF AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_MERGE_COLLISION]][GC.OUTER_MERGE_COLLISION].MoverIsOnSector THEN
 			RealMoverIsOnSector[GC.OUTER_MERGE_COLLISION] := TRUE;
 			EXIT;
-		ELSIF NOT AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_MERGE_COLLISION]][GC.OUTER_MERGE_COLLISION].MoverIsOnSector THEN
+		ELSIF NOT AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_MERGE_COLLISION]][GC.OUTER_MERGE_COLLISION].MoverIsOnSector THEN
 			RealMoverIsOnSector[GC.OUTER_MERGE_COLLISION] := FALSE;
 		END_IF
 END_FOR]]></ST>
@@ -185,6 +185,28 @@ END_VAR
 //AllSectorStatus[16][GC.OUTER_MERGE_COMBINED] 				:= TrackSectorsRef[16].SectorStatus[(GC.OUTER_MERGE_COMBINED)].MoverIsOnSector;
 //	END_FOR
 //END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_UpdateSectorCounts" Id="{bcca1521-f485-009e-290d-fed7937432b1}">
+      <Declaration><![CDATA[METHOD M_UpdateSectorCounts
+VAR_INPUT
+	SectorNr : UDINT; 
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stSwitchStatus.ShuttleCountOnShortcut := 0;
+IF ADR(TrackSectorsRef) <> 0 THEN // pointer validity check
+	FOR ForCounterExit[GC.TRACK_SECTORS_STD][SectorNr] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+
+		stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut + TrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_STD][SectorNr]].SectorStatus[SectorNr].MoverCountOnSector;
+
+	END_FOR
+END_IF
+
+//			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverEnteredSector.Q THEN
+//				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut + 1;
+//			ELSIF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverExitedSector.Q THEN
+//				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut - 1;
+//			END_IF]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_AMoverIsOnSector" Id="{aa8e3eac-0684-095a-1a33-a2f73cae8290}">

@@ -272,11 +272,11 @@ CASE nCase OF
 				stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
 			END_IF
 			
-			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverEnteredSector.Q THEN
-				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut + 1;
-			ELSIF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverExitedSector.Q THEN
-				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut - 1;
-			END_IF
+//			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverEnteredSector.Q THEN
+//				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut + 1;
+//			ELSIF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverExitedSector.Q THEN
+//				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut - 1;
+//			END_IF
 		
 			TrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := fbPlanarXtsMover[nForCounter].P_XtsPositionInfo);
 			HeadTrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := HeadExpMovers[nForCounter].stExpMoverStatus.XtsAdjustedData);
@@ -321,6 +321,7 @@ CASE nCase OF
 						GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig		:= GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig +1; //always MODing this; don't need to decrement
 						TempMoverIndex	:= ((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1); // capture the index
 						DivertingMoverIndex := fbPlanarXtsMover[nForCounter].P_MoverId;
+						AllTrackSectors.M_UpdateSectorCounts(SectorNr := GC.SHORTCUT_CALC_SECTOR_IPART);
 						DivertQueue.M_UpdateAtTrig();
 						nMoveState[nForCounter] 	:= 12;
 					END_IF

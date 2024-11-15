@@ -3,7 +3,7 @@
   <POU Name="FB_DivertQueue" Id="{6d05417c-3e76-051c-28a5-89303f3d9e18}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_DivertQueue EXTENDS RingBuffer.RingBufferMoverDivert
 VAR
-	nForCounterInterval			: UDINT;
+//	nForCounterInterval			: UDINT;
 	MoverDivert							: RingBuffer.ST_MoverDivert;
 END_VAR
 ]]></Declaration>
@@ -20,11 +20,12 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Increment counter, mark each mover for divert interval
-FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
+//FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 	
+	stMoverDivert.MoverID								:= DivertingMoverIndex; // regardless of the command to divert, log the MoverID
+
 	IF (stSwitchStatus.ShuttleQueueCount + stSwitchStatus.ShuttleCountOnShortcut) <
 		GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
-			stMoverDivert.MoverID								:= DivertingMoverIndex;
 			stMoverDivert.Divert								:= RingBuffer.E_Divert.Divert;
 		IF (TempMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
 			stMoverDivert.DivertOnInterval			:= TRUE;
@@ -36,7 +37,7 @@ FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			stMoverDivert		:= stMoverDivertInit;
 	END_IF
 
-END_FOR]]></ST>
+//END_FOR]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_MoverDivert" Id="{e439b90e-d481-0d68-25d8-af764ed57bd8}">
