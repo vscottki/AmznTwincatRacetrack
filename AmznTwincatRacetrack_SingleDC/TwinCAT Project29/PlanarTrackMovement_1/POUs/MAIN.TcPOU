@@ -257,7 +257,7 @@ CASE nCase OF
 			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_HD_SECTION].MoverIsOnSector THEN
 				//Increase dynamics on Inner Shortcut
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.MaxJerk);
-				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
+//				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
 			ELSE
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.NormalMoverGap;
@@ -395,21 +395,21 @@ CASE nCase OF
 					
 				62:// Permissive to Merge
 					IF NOT AllTrackSectors.P_AMoverIsOnSector[GC.OUTER_MERGE_COLLISION] THEN
-						nMoveState[nForCounter] := 68;
+						nMoveState[nForCounter] := 63;
 					END_IF
 
-				68://Merge from Inner to Outer
+				63://Merge from Inner to Outer
 						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																			constraint := aDynamics[nForCounter],
 																			options := aMoveOnTrackOptions[nForCounter]);
-						nMoveState[nForCounter] := 69;
+						nMoveState[nForCounter] := 64;
 				
-				69: //Reset Command On Exit
-						IF TrackSectors[nForCounter].afbSector[GC.INNER_MERGE_TO_FINISH].stSectorStatus.MoverEnteredSector.Q THEN
+				64: //Reset Command On Exit
+						IF TrackSectors[nForCounter].afbSector[GC.INNER_MERGE_TO_FINISH].stSectorStatus.MoverIsOnSector THEN
 							nMoveState[nForCounter] := 5;
-						END_IF
+						END_IF				
 
 				70:
 					IF MoverFeedback[nForCounter].Done THEN

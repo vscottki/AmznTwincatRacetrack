@@ -7,6 +7,7 @@ STRUCT
 	StopPosPowermat										: LREAL := 7611; // Track Ref; Part Ref ~ 3750 (mm)
 	MergeWaitFinishDistance 					: LREAL := 1570;
 	MergeWaitAccelDistance						: LREAL; // distance to achieve v_max on the shortcut HD motor region
+	ShortcutHDRegionDistance					: LREAL := 2000;
 	ShortcutShuttleFullyInPosn 				: LREAL := 1500; // Part Reference (not Track)
 	ExpMoverLength										: LREAL := 1200; // roughly 2X SHUTTLE_LENGTH
 	MaxLagDistance										: LREAL := 100;

@@ -51,7 +51,6 @@ VAR_GLOBAL CONSTANT
 	
 // Global Position Constants
 	SHUTTLE_LENGTH						: LREAL := 600; //mm
-	SHUTTLE_LENGTH_PADDED				: LREAL := 900; //mm
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
