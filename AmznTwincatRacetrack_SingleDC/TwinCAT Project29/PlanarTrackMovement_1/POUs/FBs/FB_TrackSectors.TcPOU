@@ -108,7 +108,7 @@ END_IF
 	astSectorConfig[GC.SHORTCUT_EXIT_HALF_IPART].TrackSectorEndPosn 				:= 0;
 
 	astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].PartObjectId										:= GVL_General.XtsPartInnerFinish;
-	astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].PartSectorStartPosn					:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance));
+	astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].PartSectorStartPosn					:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-stTrackGlobalConfig.MergeWaitAccelDistance));
 	astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].PartSectorEndPosn						:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance + (GC.SHUTTLE_LENGTH /2);
 	astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].TrackSectorStartPosn					:= 0;
 	astSectorConfig[GC.SHORTCUT_MERGE_COMMAND].TrackSectorEndPosn 					:= 0;
@@ -121,7 +121,7 @@ END_IF
 	astSectorConfig[GC.SHORTCUT_MERGE_CALC_EXACT].TrackSectorEndPosn 					:= 0;
 	
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].PartObjectId						   				 := GVL_General.XtsPartInnerFinish;
-	astSectorConfig[GC.INNER_MERGE_TO_FINISH].PartSectorStartPosn					    := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance + GC.SHUTTLE_LENGTH;
+	astSectorConfig[GC.INNER_MERGE_TO_FINISH].PartSectorStartPosn					    := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-stTrackGlobalConfig.MergeWaitAccelDistance + GC.SHUTTLE_LENGTH;
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].PartSectorEndPosn			 				:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength();
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorStartPosn					   	:= 0;
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorEndPosn 					 	:= 0;

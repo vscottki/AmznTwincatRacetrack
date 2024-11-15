@@ -121,6 +121,9 @@
     <Compile Include="POUs\FUNs\F_PosnInitial.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FUNs\F_PosnDisp.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FUNs\F_t_SL2a.TcPOU">
       <SubType>Code</SubType>
     </Compile>

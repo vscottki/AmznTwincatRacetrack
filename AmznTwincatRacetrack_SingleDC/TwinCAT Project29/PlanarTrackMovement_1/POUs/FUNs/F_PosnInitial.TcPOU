@@ -12,7 +12,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Accel <> 0 THEN
+      <ST><![CDATA[IF ((2*Accel) + PosnFinal) <> 0 THEN
 	F_PosnInitial := ((EXPT(VeloFinal,2) - EXPT(VeloInit,2)) / (2*Accel)) + PosnFinal;
 END_IF
 ]]></ST>

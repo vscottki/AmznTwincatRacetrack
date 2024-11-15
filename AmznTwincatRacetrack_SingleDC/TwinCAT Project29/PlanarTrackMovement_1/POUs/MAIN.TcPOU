@@ -3,7 +3,6 @@
   <POU Name="MAIN" Id="{66ade15a-bef8-4e71-a124-c2e5978c50eb}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	ManMergeGate			: BOOL;
 	bAllDone					: BOOL;
 	bStopSequence				: BOOL;
 	                    		
@@ -57,6 +56,7 @@ END_VAR
       <ST><![CDATA[fbXtsEnvironment.Init(bExecute := TRUE);
 //Cyclic
 M_WritePlanarTrackConfig();
+M_UpdateConfigurations();
 IF xSimulation THEN
 	SystemEnabled	:= TRUE;
 ELSE
@@ -382,7 +382,7 @@ CASE nCase OF
 				60: // Move to MergeWait Position
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
-																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance,
+																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-stTrackGlobalConfig.MergeWaitAccelDistance,
 																		constraint := aDynamics[nForCounter],
 																		options := aMoveOnTrackOptions[nForCounter]);
 
@@ -513,6 +513,16 @@ IF FaultReset.Q THEN
 END_IF
 ]]></ST>
     </Implementation>
+    <Method Name="M_UpdateConfigurations" Id="{a2ceac5e-77e7-0f47-0d73-bb03330328f9}">
+      <Declaration><![CDATA[METHOD M_UpdateConfigurations
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stTrackGlobalConfig.MergeWaitAccelDistance := 
+F_PosnDisp(Accel := stMoverConfig.MaxAccel, 
+								VeloFinal := stMoverConfig.NormalVelo, 
+								VeloInit := 0);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="M_WritePlanarTrackConfig" Id="{0295121c-55f9-0613-05f6-3ba76e5df670}">
       <Declaration><![CDATA[METHOD M_WritePlanarTrackConfig]]></Declaration>
       <Implementation>
