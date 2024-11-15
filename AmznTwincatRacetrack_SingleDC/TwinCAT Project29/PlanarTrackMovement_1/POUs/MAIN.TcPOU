@@ -17,7 +17,7 @@ VAR
 	dynamics				    : INT;
 
 //Status
-	xSimulation					: BOOL;
+	xSimulation					: BOOL := TRUE;
 	SystemEnabled				: BOOL;
 
 	IsMoverInBlockingArea		: BOOL;
@@ -254,8 +254,8 @@ CASE nCase OF
 	100:
 
 		FOR nForCounter:= GC.nNumMinMovers TO GVL_General.nNumMovers DO
-			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_COMPLETE].MoverIsOnSector THEN
-				//Increase dynamics on Shortcut
+			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_HD_SECTION].MoverIsOnSector THEN
+				//Increase dynamics on Inner Shortcut
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.MaxJerk);
 				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
 			ELSE

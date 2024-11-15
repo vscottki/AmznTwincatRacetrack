@@ -10,9 +10,8 @@ END_VAR
 //VAR_IN_OUT CONSTANT //not writeable by this FB
 //		TrackSectorsRef				: ARRAY[*] OF FB_TrackSectors;
 //END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
+	DynamicMergeEvaluation : BOOL;
 	MoverIndex			: UDINT;
 	ForCounterExit : ARRAY[GC.MIN_TRACKSECTORS_REF..GC.MAX_TRACKSECTORS_REF] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF UDINT; // 1 to 3 are normal, Head, Tail TrackSectorsRef
 	SectorIndex : UDINT;
@@ -39,7 +38,9 @@ END_VAR]]></Declaration>
     </Implementation>
     <Method Name="_M_BufferValidMergeRefs" Id="{3fb3bb7a-b125-0ba7-003e-4d7d398ed301}">
       <Declaration><![CDATA[METHOD _M_BufferValidMergeRefs
-]]></Declaration>
+VAR_INST
+	RealMoverEnteredSector : Tc2_Standard.R_TRIG;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Merge - 'If Any'
 FOR ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
@@ -51,32 +52,32 @@ FOR ForCounterExit[GC.TRACK_SECTORS_REG][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNu
 		END_IF
 END_FOR
 
-//Checking Expanded Movers against real mover locations; adding valid references to buffer
+//Checking Expanded Movers against real mover locations
 FOR ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
 	IF NOT RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
 		IF HeadTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverEnteredSector.Q THEN 
 			ValidMerge.MoverID 			:= ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION];
 			ValidMerge.ExpMoverType 	:= E_ExpMover.Head;
-			ValidMergeTrig								:= TRUE;
-			EXIT;
-		ELSE
-			ValidMergeTrig								:= FALSE;
+			ValidMerge.MergeWindowStartPosn	:= HeadExpMovers[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
+		END_IF
+	ELSIF RealMoverEnteredSector.Q OR HeadTrackSectorsRef[ValidMerge.MoverID].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q THEN
+		IF HeadTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN 
+			ValidMerge.MoverID 			:= ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION];
+			ValidMerge.ExpMoverType 	:= E_ExpMover.Head;
+			ValidMerge.MergeWindowEndPosn	:= HeadExpMovers[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
 		END_IF
 	END_IF
 END_FOR
 
-FOR ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
-	IF NOT RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
-		IF TailTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q THEN 
-			ValidMerge.MoverID 			:= ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION];
-			ValidMerge.ExpMoverType 	:= E_ExpMover.Tail;
-			ValidMergeTrig								:= TRUE;
-			EXIT;
-		ELSE
-			ValidMergeTrig								:= FALSE;
-		END_IF
-	END_IF
-END_FOR
+//FOR ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
+//	IF NOT RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
+//		IF TailTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q THEN
+//			ValidMerge.MoverID 			:= ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION];
+//			ValidMerge.ExpMoverType 	:= E_ExpMover.Tail;
+//			ValidMerge.MergeWindowEndPosn	:= TailExpMovers[ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION]].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
+//		END_IF
+//	END_IF
+//END_FOR
 
 IF ValidMergeTrig AND (ValidMerge.MoverID <> TempMerge.MoverID) AND (ValidMerge.ExpMoverType <> TempMerge.ExpMoverType) THEN
 	TempMerge	:= ValidMerge;
@@ -87,7 +88,8 @@ END_IF
 
 //Delete queue objects when they reach the merge position
 //IF fbPlanarXtsMover[].P_XtsPositionInfo.fPartPosition = 
-]]></ST>
+
+RealMoverEnteredSector(CLK := RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION]);]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_CalculateTCompForMerge" Id="{34611b27-9299-0562-1fae-7552a25f6f25}">
@@ -114,6 +116,7 @@ END_IF]]></ST>
         <ST><![CDATA[IF ADR(TrackSectorsRef) <> 0 THEN // pointer validity check
 	FOR MoverIndex := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
 		
+	//Write All Sector Status
 		FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT BY 1 DO
 			//Note!: VAR_IN_OUT (REF) Arrays are O-Based! 
 			AllRealSectorStatus[MoverIndex][SectorIndex] := TrackSectorsRef[(MoverIndex)].SectorStatus[(SectorIndex)];
@@ -129,9 +132,11 @@ END_IF]]></ST>
 	END_FOR
 END_IF
 
-//If Config.EvaluateStaticRegionOnly
-_M_StaticSectorClear();
-// ELSIF Config.UseExpandedMovers THEN
+IF NOT DynamicMergeEvaluation THEN
+	_M_StaticSectorClear();
+ELSE
+	// // ELSIF Config.UseExpandedMovers
+END_IF
 
 //Do all this
 _M_CalculateTCompForMerge();
