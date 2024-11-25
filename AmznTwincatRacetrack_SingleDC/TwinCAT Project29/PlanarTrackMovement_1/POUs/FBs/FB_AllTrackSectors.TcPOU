@@ -14,6 +14,7 @@ VAR
 	DynamicMergeEvaluation : BOOL;
 	MoverIndex			: UDINT;
 	ForCounterExit : ARRAY[GC.MIN_TRACKSECTORS_REF..GC.MAX_TRACKSECTORS_REF] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF UDINT; // 1 to 3 are normal, Head, Tail TrackSectorsRef
+	ForCounterDuringClear : UDINT;
 	SectorIndex : UDINT;
 	AllRealSectorStatus	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_StaticSectorStatus;
 	AllHeadSectorStatus : ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_StaticSectorStatus;
@@ -22,11 +23,12 @@ VAR
 	UpperOut : DINT;
 	RealMoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
 	ValidMerge				: RingBuffer.ST_MoverMerge;
-	TempMerge					: RingBuffer.ST_MoverMerge;
+	TempWindowStartPosn		: LREAL;
 	MoverIdMergeOnSector		: UDINT;
 	MoverInDecelSector			: BOOL;
 	TimeForShortcutMergingMover : LREAL;
 	ValidMergeTrig				: BOOL;
+	ClearZone				: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//LowerOut := LOWER_BOUND(TrackSectorsRef, 1);
@@ -55,33 +57,32 @@ END_FOR
 //Checking Expanded Movers against real mover locations
 FOR ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
 	IF NOT RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
-		IF HeadTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverEnteredSector.Q THEN 
+		IF HeadTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverEnteredSector.Q AND NOT ClearZone THEN 
 			ValidMerge.MoverID 			:= ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION];
 			ValidMerge.ExpMoverType 	:= E_ExpMover.Head;
-			ValidMerge.MergeWindowStartPosn	:= HeadExpMovers[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
-		END_IF
-	ELSIF RealMoverEnteredSector.Q OR HeadTrackSectorsRef[ValidMerge.MoverID].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q THEN
-		IF HeadTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN 
-			ValidMerge.MoverID 			:= ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION];
-			ValidMerge.ExpMoverType 	:= E_ExpMover.Head;
-			ValidMerge.MergeWindowEndPosn	:= HeadExpMovers[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
+			ValidMerge.MergeWindowStartPosn	:= HeadExpMovers[ValidMerge.MoverID].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
+			ClearZone	 := TRUE;
+			EXIT;
 		END_IF
 	END_IF
 END_FOR
 
-//FOR ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
-//	IF NOT RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
-//		IF TailTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q THEN
-//			ValidMerge.MoverID 			:= ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION];
-//			ValidMerge.ExpMoverType 	:= E_ExpMover.Tail;
-//			ValidMerge.MergeWindowEndPosn	:= TailExpMovers[ForCounterExit[GC.TRACK_SECTORS_TAIL][GC.OUTER_SHORTCUT_PROJECTION]].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
-//		END_IF
-//	END_IF
-//END_FOR
+FOR ForCounterDuringClear := GC.nNumMinMovers TO GC.nNumMaxMovers DO
+	IF ValidMerge.MoverID <> 0 THEN
+		
+		IF ClearZone AND HeadTrackSectorsRef[ValidMerge.MoverID].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q THEN
+			ValidMerge.MergeWindowEndPosn	:= HeadExpMovers[ValidMerge.MoverID].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
+			ValidMergeTrig := TRUE;
+		ELSIF RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
+			ClearZone 	:= FALSE;
+		END_IF
+		
+	END_IF
+END_FOR
 
-IF ValidMergeTrig AND (ValidMerge.MoverID <> TempMerge.MoverID) AND (ValidMerge.ExpMoverType <> TempMerge.ExpMoverType) THEN
-	TempMerge	:= ValidMerge;
+IF ValidMergeTrig AND ValidMerge.MergeWindowStartPosn <> TempWindowStartPosn THEN
 	MergeQueue.AddObjToBuffer(RefObject := ValidMerge);
+	TempWindowStartPosn	:= ValidMerge.MergeWindowStartPosn;
 	ValidMergeTrig	:= FALSE;
 END_IF
 

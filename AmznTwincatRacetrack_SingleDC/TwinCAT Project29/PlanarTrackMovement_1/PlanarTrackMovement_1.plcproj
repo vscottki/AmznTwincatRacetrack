@@ -162,7 +162,7 @@
         </Parameter>
         <Parameter ListName="PARAM_RINGBUFFER">
           <Key>MAX_NUMBER_OBJECTS</Key>
-          <Value>50</Value>
+          <Value>4</Value>
         </Parameter>
       </Parameters>
     </PlaceholderReference>

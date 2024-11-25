@@ -254,15 +254,22 @@ CASE nCase OF
 	100:
 
 		FOR nForCounter:= GC.nNumMinMovers TO GVL_General.nNumMovers DO
+			
+		//increased accel on shortcut
 			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_HD_SECTION].MoverIsOnSector THEN
 				//Increase dynamics on Inner Shortcut
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.MaxJerk);
-//				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
 			ELSE
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
+			END_IF
+			
+			//Tight merge
+			IF TrackSectors[nForCounter].SectorStatus[GC.OUTER_GAP_REDUCTION_ZONE].MoverIsOnSector OR
+			TrackSectors[nForCounter].SectorStatus[GC.INNER_MERGE_TO_FINISH].MoverIsOnSector THEN
+				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
+			ELSE
 				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.NormalMoverGap;
 			END_IF
-
 			//Adjust the first mover parameters to induce a platoon
 			aDynamics[GC.nNumMinMovers].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 
