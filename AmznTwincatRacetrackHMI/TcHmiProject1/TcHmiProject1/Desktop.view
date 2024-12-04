@@ -282,7 +282,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiSpinboxInput_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="24" data-tchmi-height-unit="px" data-tchmi-left="701" data-tchmi-left-unit="px" data-tchmi-max-value="25" data-tchmi-min-value="3" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="102" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-step="0.5" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffC|BindingMode=TwoWay|SubscriptionMode=Change%/s%">
+<div id="TcHmiSpinboxInput_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="24" data-tchmi-height-unit="px" data-tchmi-left="701" data-tchmi-left-unit="px" data-tchmi-max-value="25" data-tchmi-min-value="2" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="102" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-step="0.5" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffC|BindingMode=TwoWay|SubscriptionMode=Change%/s%">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
