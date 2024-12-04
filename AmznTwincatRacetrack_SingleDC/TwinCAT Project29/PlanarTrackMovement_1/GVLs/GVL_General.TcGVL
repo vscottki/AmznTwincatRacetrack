@@ -7,6 +7,8 @@
 END_VAR
 
 VAR_GLOBAL
+	GraphPage					: Tc2_System.T_MaxString := 'https://www.desmos.com/calculator';	
+
 	aStopPositions 									: ARRAY [GC.nNumMinMovers..GC.nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
 
 //Configuration
