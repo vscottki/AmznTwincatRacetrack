@@ -48,13 +48,14 @@ workspace/*.bootinfo_guids
 #*.tmcRefac
 #*.library #We shall include the libraries in the commit.
 *.project.~u
+*.tsproj
 *.tsproj.bak
 *.xti.bak
 LineIDs.dbg
 LineIDs.dbg.bak
 _Boot/
 _CompileInfo/
-#_Libraries/  #We shall include the libraries in the commit.
+_Libraries/  #We shall include the libraries in the commit.
 _ModuleInstall/
 
 
