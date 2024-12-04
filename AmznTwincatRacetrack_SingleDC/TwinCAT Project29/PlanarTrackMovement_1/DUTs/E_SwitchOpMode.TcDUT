@@ -6,7 +6,7 @@
 TYPE E_SwitchOpMode :
 (
   DivertSpecifiedCount	:= 0,
-  DivertAllIfPossible	:= 1
+  DivertAll	:= 1
 );
 END_TYPE
 ]]></Declaration>

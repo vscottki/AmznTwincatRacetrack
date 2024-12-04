@@ -44,15 +44,10 @@ VAR_INST
 	RealMoverEnteredSector : Tc2_Standard.R_TRIG;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Merge - 'If Any'
-FOR ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
-	IF AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_SHORTCUT_PROJECTION]][GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN
-			RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] := TRUE;
-			EXIT;
-		ELSIF NOT AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_STD][GC.OUTER_SHORTCUT_PROJECTION]][GC.OUTER_SHORTCUT_PROJECTION].MoverIsOnSector THEN
-			RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] := FALSE;
-		END_IF
-END_FOR
+        <ST><![CDATA[//Do FOR loop for all of the sectors later
+_M_IsRealMoverOnSector(SectorID := GC.OUTER_SHORTCUT_PROJECTION);
+_M_IsRealMoverOnSector(SectorID := GC.OUTER_BIGTRACK_COMPLETE);
+
 
 //Checking Expanded Movers against real mover locations
 FOR ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION] := GC.nNumMinMovers TO GC.nNumMaxMovers DO
@@ -86,9 +81,16 @@ IF ValidMergeTrig AND ValidMerge.MergeWindowStartPosn <> TempWindowStartPosn THE
 	ValidMergeTrig	:= FALSE;
 END_IF
 
+IF MergeQueue.P_ObjectAdded THEN
+	MergeQueue.RemoveObjFromBuffer();
+END_IF
 
 //Delete queue objects when they reach the merge position
-//IF fbPlanarXtsMover[].P_XtsPositionInfo.fPartPosition = 
+IF MergeQueue.P_LastObjectRemoved.MoverID <> 0 THEN
+	IF fbPlanarXtsMover[MergeQueue.P_LastObjectRemoved.MoverID].P_XtsPositionInfo.fPartPosition = GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() THEN
+		MergeQueue.ClearLastRemoved();
+	END_IF
+END_IF
 
 RealMoverEnteredSector(CLK := RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION]);]]></ST>
       </Implementation>
@@ -143,6 +145,25 @@ END_IF
 _M_CalculateTCompForMerge();
 
 _M_BufferValidMergeRefs();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_M_IsRealMoverOnSector" Id="{f010274a-39f6-0392-3786-c1f6196902a8}">
+      <Declaration><![CDATA[METHOD PRIVATE _M_IsRealMoverOnSector
+VAR_INPUT
+	SectorID : UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Merge - 'If Any'
+FOR ForCounterExit[GC.TRACK_SECTORS_STD][SectorID] := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+	IF AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_STD][SectorID]][SectorID].MoverIsOnSector THEN
+			RealMoverIsOnSector[SectorID] := TRUE;
+			EXIT;
+		ELSIF NOT AllRealSectorStatus[ForCounterExit[GC.TRACK_SECTORS_STD][SectorID]][SectorID].MoverIsOnSector THEN
+			RealMoverIsOnSector[SectorID] := FALSE;
+		END_IF
+	
+END_FOR]]></ST>
       </Implementation>
     </Method>
     <Method Name="_M_StaticSectorClear" Id="{84bd337c-c2f6-0b56-0a3d-563d2eecfbb2}">

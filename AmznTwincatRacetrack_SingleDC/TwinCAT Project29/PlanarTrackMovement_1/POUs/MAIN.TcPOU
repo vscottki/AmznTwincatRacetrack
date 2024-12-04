@@ -388,6 +388,16 @@ CASE nCase OF
 					END_IF
 					
 				60: // Move to MergeWait Position
+				IF NOT AllTrackSectors.P_AMoverIsOnSector[GC.OUTER_BIGTRACK_COMPLETE] AND 
+					stSwitchConfig.SwitchModeInternal.IntervalToDivert = 1 AND stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount = GVL_General.nNumMovers THEN
+					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
+																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
+																		constraint := aDynamics[nForCounter],
+																		options := aMoveOnTrackOptions[nForCounter]);
+
+					nMoveState[nForCounter] := 64;					
+				ELSE
 					fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-stTrackGlobalConfig.MergeWaitAccelDistance,
@@ -395,6 +405,7 @@ CASE nCase OF
 																		options := aMoveOnTrackOptions[nForCounter]);
 
 					nMoveState[nForCounter] := 61;
+				END_IF
 					
 				61:
 				IF MoverFeedback[nForCounter].Done THEN

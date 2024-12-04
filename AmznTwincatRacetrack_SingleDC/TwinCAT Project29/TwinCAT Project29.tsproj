@@ -6062,7 +6062,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement_1" PrjFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.plcproj" TmcFilePath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{75B3DB18-12EE-4BBD-85F0-E75BCC331954}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement_1\PlanarTrackMovement_1.tmc" TmcHash="{3CA1F246-E2F9-D002-9334-30DB2E88FF24}">
 					<Name>PlanarTrackMovement_1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
