@@ -9,6 +9,7 @@ STRUCT
 	MoverExitedSector		: Tc2_Standard.F_TRIG;
 	SectorLength				: LREAL;
 	MoverDistanceFromEnd	: LREAL;
+	PercentOfSectorTraversed	: LREAL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

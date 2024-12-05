@@ -4040,7 +4040,7 @@
 				</Value>
 				<Value>
 					<Name>OperationMode</Name>
-					<EnumText>Normal</EnumText>
+					<EnumText>Simulation</EnumText>
 				</Value>
 				<Value>
 					<Name>MoverType</Name>
@@ -5380,35 +5380,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>780</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>780</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>784</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>782</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>795</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -5876,35 +5876,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>718</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>718</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>722</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>720</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>733</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -6372,35 +6372,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>656</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>656</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>660</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>658</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>671</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -6868,35 +6868,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>594</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>594</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>598</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>596</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>609</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -7364,35 +7364,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>532</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>532</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>536</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>534</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>547</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -7860,35 +7860,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>470</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>470</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>474</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>472</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>485</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -8356,35 +8356,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>408</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>408</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>412</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>410</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>423</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -8852,35 +8852,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>346</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>346</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>350</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>348</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>361</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -9348,35 +9348,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>284</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>284</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>288</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>286</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>299</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -9844,35 +9844,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>222</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>222</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>226</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>224</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>237</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -10340,35 +10340,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>156</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>156</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>160</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>158</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>175</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -10836,35 +10836,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>90</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>90</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>94</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>92</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>109</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -11332,35 +11332,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2040</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2040</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2044</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2042</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2059</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -11828,35 +11828,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1974</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1974</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1978</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1976</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1993</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -12324,35 +12324,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1912</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1912</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1916</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1914</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1927</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -12820,35 +12820,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1850</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1850</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1854</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1852</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1865</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -13316,35 +13316,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1788</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1788</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1792</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1790</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1803</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -13812,35 +13812,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1726</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1726</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1730</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1728</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1741</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -14308,35 +14308,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1664</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1664</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1668</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1666</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1679</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -14804,35 +14804,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1613</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1613</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1617</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1615</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1617</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -15300,35 +15300,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1562</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1562</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1566</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1564</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1566</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -15796,35 +15796,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1412</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1412</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1416</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1414</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1416</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -16292,35 +16292,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1361</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1361</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1365</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1363</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1365</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -16788,35 +16788,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1310</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1310</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1314</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1312</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1314</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -17609,35 +17609,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>842</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>842</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>846</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>844</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>857</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -18105,35 +18105,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1400</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1400</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1404</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1402</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1415</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -18601,35 +18601,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1338</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1338</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1342</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1340</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1353</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -19097,35 +19097,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1276</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1276</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1280</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1278</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1291</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -19593,35 +19593,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1214</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1214</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1218</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1216</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1229</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -20089,35 +20089,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1152</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1152</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1156</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1154</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1167</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -20585,35 +20585,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1090</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1090</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1094</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1092</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1105</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -21081,35 +21081,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1028</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1028</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1032</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1030</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1043</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -21577,35 +21577,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>966</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>966</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>970</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>968</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>981</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -22073,35 +22073,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>904</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>904</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>908</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>906</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>919</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -22569,35 +22569,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1197</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1197</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1201</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1199</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1212</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -23065,35 +23065,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1135</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1135</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1139</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1137</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1150</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -23561,35 +23561,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1073</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1073</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1077</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1075</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1088</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -24057,35 +24057,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1011</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1011</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1015</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1013</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1026</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -24553,35 +24553,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>949</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>949</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>953</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>951</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>964</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -25049,35 +25049,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>887</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>887</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>891</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>889</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>902</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -25545,35 +25545,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>825</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>825</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>829</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>827</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>840</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -26041,35 +26041,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>763</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>763</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>767</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>765</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>778</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -26537,35 +26537,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>701</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>701</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>705</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>703</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>716</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -27033,35 +27033,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1259</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1259</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1263</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1261</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1263</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -27854,35 +27854,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>639</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>639</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>643</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>641</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>654</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -28350,35 +28350,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>577</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>577</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>581</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>579</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>592</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -28846,35 +28846,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>515</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>515</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>519</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>517</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>530</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -29342,35 +29342,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>453</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>453</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>457</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>455</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>468</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -29838,35 +29838,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>392</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>392</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>396</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>394</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>406</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -30334,35 +30334,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>330</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>330</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>334</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>332</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>345</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -30830,35 +30830,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>268</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>268</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>272</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>270</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>283</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -31326,35 +31326,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>206</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>206</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>210</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>208</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>221</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -31822,35 +31822,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>140</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>140</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>144</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>142</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>159</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -32318,35 +32318,35 @@
 							<Name>Status</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>74</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>74</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>78</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>76</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x03040080</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>93</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -32814,35 +32814,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2124</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2124</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2128</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2126</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2143</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -33310,35 +33310,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2058</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2058</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2062</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2060</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2077</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -33806,35 +33806,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1996</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1996</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2000</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1998</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>2011</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -34302,35 +34302,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1934</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1934</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1938</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1936</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1949</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -34798,35 +34798,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1872</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1872</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1876</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1874</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1887</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -35294,35 +35294,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1810</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1810</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1814</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1812</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1825</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -35790,35 +35790,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1748</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1748</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1752</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1750</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1763</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -36286,35 +36286,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1686</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1686</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1690</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1688</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1701</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -36782,35 +36782,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1624</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1624</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1628</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1626</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1639</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>
@@ -37278,35 +37278,35 @@
 							<Name>Status</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1562</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Control</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1562</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>CommutationAngle</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1566</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>Torque</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>1</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1564</ByteOffs>
 							<ByteSize>2</ByteSize>
 						</Value>
 						<Value>
 							<Name>HallSensorValues</Name>
 							<OTCID>#x030400a0</OTCID>
 							<AreaNo>0</AreaNo>
-							<ByteOffs>0</ByteOffs>
+							<ByteOffs>1577</ByteOffs>
 							<ByteSize>36</ByteSize>
 						</Value>
 					</DataPointerValues>

@@ -39,6 +39,9 @@
     <Compile Include="DUTs\ST_Debounce.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_MoverOptions.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_PlanarTrackConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -152,6 +155,16 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="HelperFunctions">
+      <DefaultResolution>HelperFunctions, * (Amazon)</DefaultResolution>
+      <Parameters>
+        <Parameter ListName="PARAM_HELPERFUNCTIONS" xmlns="">
+          <Key>HOURDELTAFROMUTC</Key>
+          <Value>-7</Value>
+        </Parameter>
+      </Parameters>
+      <Namespace>HelperFunctions</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="RingBuffer">
       <DefaultResolution>RingBuffer, * (Amazon)</DefaultResolution>
       <Namespace>RingBuffer</Namespace>
@@ -334,6 +347,9 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderResolution Include="HelperFunctions">
+      <Resolution>HelperFunctions, 1.0.2.0 (Amazon)</Resolution>
+    </PlaceholderResolution>
     <PlaceholderResolution Include="RingBuffer">
       <Resolution>RingBuffer, 1.5.6.999 (Amazon)</Resolution>
     </PlaceholderResolution>

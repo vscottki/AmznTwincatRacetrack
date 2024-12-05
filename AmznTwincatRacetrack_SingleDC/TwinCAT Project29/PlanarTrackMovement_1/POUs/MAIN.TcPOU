@@ -16,7 +16,7 @@ VAR
 	dynamics				    : INT;
 
 //Status
-	xSimulation					: BOOL;
+	xSimulation					: BOOL := TRUE;
 	SystemEnabled				: BOOL;
 
 	IsMoverInBlockingArea		: BOOL;
@@ -245,8 +245,8 @@ CASE nCase OF
 	80:	
 		FOR nForCounter:=GC.nNumMinMovers TO GVL_General.nNumMovers DO
 			nMoveState[nForCounter] := 0;
-			aMoveOnTrackOptions[nForCounter].direction := MC_Direction.mcDirectionPositive;
-			aMoveOnTrackOptions[nForCounter].gapMode := MC_GAP_MODE_ON_TRACK.Fast1D;
+			fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions.direction := MC_Direction.mcDirectionPositive;
+			fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions.gapMode := MC_GAP_MODE_ON_TRACK.Fast1D;
 		END_FOR
 		
 		nCase := 100;
@@ -264,12 +264,21 @@ CASE nCase OF
 			END_IF
 			
 			//Tight merge
-			IF TrackSectors[nForCounter].SectorStatus[GC.OUTER_GAP_REDUCTION_ZONE].MoverIsOnSector OR
+			IF TrackSectors[nForCounter].SectorStatus[GC.OUTER_TIGHTGAP_ZONE].MoverIsOnSector OR
 			TrackSectors[nForCounter].SectorStatus[GC.INNER_MERGE_TO_FINISH].MoverIsOnSector THEN
-				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
+				fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions.gap := stMoverConfig.TightMoverGap;
+			ELSIF TrackSectors[nForCounter].SectorStatus[GC.OUTER_PRE_TG_ZONE].MoverIsOnSector THEN
+				fbPlanarXtsMover[nForCounter].P_MoverOptions.TempGap := HelperFunctions.F_MapLReal(x := TrackSectors[nForCounter].SectorStatus[GC.OUTER_PRE_TG_ZONE].PercentOfSectorTraversed,
+																	in_min := 0.0, in_max := 1.0, out_min := stMoverConfig.NormalMoverGap, out_max := stMoverConfig.TightMoverGap);
+				fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions.gap := fbPlanarXtsMover[nForCounter].P_MoverOptions.TempGap;
+			ELSIF TrackSectors[nForCounter].SectorStatus[GC.OUTER_POST_TG_ZONE].MoverIsOnSector THEN
+				fbPlanarXtsMover[nForCounter].P_MoverOptions.TempGap := HelperFunctions.F_MapLReal(x := TrackSectors[nForCounter].SectorStatus[GC.OUTER_POST_TG_ZONE].PercentOfSectorTraversed,
+																	in_min := 0.0, in_max := 1.0, out_min := stMoverConfig.TightMoverGap, out_max := stMoverConfig.NormalMoverGap);
+				fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions.gap := fbPlanarXtsMover[nForCounter].P_MoverOptions.TempGap;
 			ELSE
-				aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.NormalMoverGap;
+				fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions.gap := stMoverConfig.NormalMoverGap;
 			END_IF
+			
 			//Adjust the first mover parameters to induce a platoon
 			aDynamics[GC.nNumMinMovers].SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 
@@ -278,12 +287,6 @@ CASE nCase OF
 				TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_ENTRY_HALF_IPART].MoverIsOnSector THEN
 				stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
 			END_IF
-			
-//			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverEnteredSector.Q THEN
-//				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut + 1;
-//			ELSIF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_CALC_SECTOR_IPART].MoverExitedSector.Q THEN
-//				stSwitchStatus.ShuttleCountOnShortcut		:= stSwitchStatus.ShuttleCountOnShortcut - 1;
-//			END_IF
 		
 			TrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := fbPlanarXtsMover[nForCounter].P_XtsPositionInfo);
 			HeadTrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := HeadExpMovers[nForCounter].stExpMoverStatus.XtsAdjustedData);
@@ -304,14 +307,14 @@ CASE nCase OF
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																			constraint := aDynamics[nForCounter],
-																			options := aMoveOnTrackOptions[nForCounter]);
+																			options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 						 nMoveState[nForCounter] 	:= 20;
-					ELSIF fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_General.PlanarTrackOuterStart THEN
+					ELSIF (fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_General.PlanarTrackOuterStart) THEN
 						fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																			constraint := aDynamics[nForCounter],
-																			options := aMoveOnTrackOptions[nForCounter]);
+																			options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 						 nMoveState[nForCounter] 	:= 10;
 					END_IF
 					
@@ -320,7 +323,7 @@ CASE nCase OF
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);
+																		options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 					 nMoveState[nForCounter] 	:= 10;
 
 				10: //Trig state for decision to divert
@@ -343,7 +346,7 @@ CASE nCase OF
 																				targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																				targetPositionOnTrack := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength() - GC.SHUTTLE_LENGTH) / 2, // midpoint of shortcut
 																				constraint := aDynamics[nForCounter],
-																				options := aMoveOnTrackOptions[nForCounter]);
+																				options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 							nMoveState[nForCounter] 	:= 30; //Diverting Mover
 						ELSIF NOT fbPlanarXtsMover[nForCounter].P_CmdDivert THEN
 							nMoveState[nForCounter] 	:= 15;
@@ -357,7 +360,7 @@ CASE nCase OF
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);
+																		options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 					 nMoveState[nForCounter] 	:= 20;				
 					
 				20:
@@ -394,7 +397,7 @@ CASE nCase OF
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);
+																		options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 
 					nMoveState[nForCounter] := 64;					
 				ELSE
@@ -402,7 +405,7 @@ CASE nCase OF
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-stTrackGlobalConfig.MergeWaitAccelDistance,
 																		constraint := aDynamics[nForCounter],
-																		options := aMoveOnTrackOptions[nForCounter]);
+																		options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 
 					nMoveState[nForCounter] := 61;
 				END_IF
@@ -422,7 +425,7 @@ CASE nCase OF
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																			constraint := aDynamics[nForCounter],
-																			options := aMoveOnTrackOptions[nForCounter]);
+																			options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 						nMoveState[nForCounter] := 64;
 				
 				64: //Reset Command On Exit
@@ -462,7 +465,7 @@ CASE nCase OF
 			FOR nForCounter:=1 TO nNumMovers DO
 				aDynamics[nForCounter].SetValuesVADJ(V := stMoverConfig.StoppingVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 				nMoveState[nForCounter] := 0;
-				fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.Main], 300, aDynamics[nForCounter],aMoveOnTrackOptions[nForCounter]);
+				fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(MoverFeedback[nForCounter], GVL_Mc3.MC_Tracks[E_TrackNum.Main], 300, aDynamics[nForCounter], fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 			END_FOR
 
 			nCase:= 130; 
@@ -472,12 +475,12 @@ CASE nCase OF
 					0:								
 						
 						IF GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.MoverPos < 300 AND GVL_Mc3.fbPlanarXtsMover[nForCounter].P_PlanarMover.TrackID = GVL_Mc3.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID THEN
-							aMoveOnTrackOptions[nForCounter].gap:= stMoverConfig.TightMoverGap;
+							fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions.gap:= stMoverConfig.TightMoverGap;
 							fbPlanarXtsMover[nForCounter].McPlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																				targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
 																				targetPositionOnTrack := aStopPositions[nActStopPos],
 																				constraint := aDynamics[nForCounter],
-																				options := aMoveOnTrackOptions[nForCounter]);									
+																				options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);									
 							nActStopPos := nActStopPos + 1;
 							nMoveState[nForCounter] := 10;
 						END_IF

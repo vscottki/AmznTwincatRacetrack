@@ -8,6 +8,8 @@ VAR_INPUT
 END_VAR
 
 VAR
+	BaseMoveOptions				: Tc3_Mc3PlanarMotion.ST_MoveOnTrackOptions;
+	stMoverOptions				: ST_MoverOptions;
 	nMoverId			    		: UDINT;
 
 	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
@@ -20,12 +22,24 @@ VAR
 	Mover				        	: MoverSort;
 	CmdDivert							: BOOL;
 	eMerge								: E_MergeType;
+	LastKnownPosn					: LREAL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Folder Name="Methods" Id="{497e6300-3e6d-49b8-a318-13b94b960f56}" />
     <Folder Name="Properties" Id="{bafe569f-b5f0-4de9-ae48-854cd11ccd2e}" />
+    <Method Name="FB_init" Id="{4b084dbd-ec42-0e10-3862-f9a7de67a652}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stMoverOptions.BaseMoveOptions REF= BaseMoveOptions;]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="IsCommandedInShortcut" Id="{e5e69e7e-f163-4728-82da-b10e582ce622}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY IsCommandedInShortcut : BOOL]]></Declaration>
       <Get Name="Get" Id="{7a71ba46-249d-415a-b1f4-f1c52c07bed0}">
@@ -98,6 +112,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="P_LastKnownPosn" Id="{5da264c0-8271-0658-046e-d7a966c354d4}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_LastKnownPosn : REFERENCE TO LREAL]]></Declaration>
+      <Get Name="Get" Id="{1fd1b59e-5a9b-00bc-2bd7-eb1305b399a3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_LastKnownPosn REF= LastKnownPosn;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="P_MoverId" Id="{033bc7d6-a908-0af3-1630-2fc499f56ad8}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_MoverId : UDINT]]></Declaration>
       <Get Name="Get" Id="{c0e5d564-a073-06e0-3bca-52836c21275c}">
@@ -116,6 +141,17 @@ END_VAR
           <ST><![CDATA[nMoverId := P_MoverId;]]></ST>
         </Implementation>
       </Set>
+    </Property>
+    <Property Name="P_MoverOptions" Id="{fb098007-5ff7-07f5-0b7d-758e50c8b22a}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_MoverOptions : REFERENCE TO ST_MoverOptions]]></Declaration>
+      <Get Name="Get" Id="{9944f816-4bb0-07d5-02b6-9a4f523da06d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_MoverOptions REF= stMoverOptions;]]></ST>
+        </Implementation>
+      </Get>
     </Property>
     <Property Name="P_MoverPhysics" Id="{056b1259-392a-0821-097b-b08bee10a569}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_MoverPhysics : REFERENCE TO Tc3_Physics.PositionXYC]]></Declaration>

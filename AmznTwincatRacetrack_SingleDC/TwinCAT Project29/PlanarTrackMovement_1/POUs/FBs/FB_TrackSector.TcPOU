@@ -125,6 +125,12 @@ IF stSectorStatus.MoverIsOnSector THEN
 	stSectorStatus.MoverDistanceFromEnd := stSectorConfig.PartSectorEndPosn - refXtsMover.fPartPosition;
 ELSE
 	stSectorStatus.MoverDistanceFromEnd	:= 0;
+END_IF
+
+IF stSectorStatus.MoverIsOnSector THEN
+	IF stSectorStatus.SectorLength <> 0 THEN
+		stSectorStatus.PercentOfSectorTraversed	:= (refXtsMover.fPartPosition - stSectorConfig.PartSectorStartPosn) / stSectorStatus.SectorLength;
+	END_IF
 END_IF]]></ST>
       </Implementation>
     </Method>

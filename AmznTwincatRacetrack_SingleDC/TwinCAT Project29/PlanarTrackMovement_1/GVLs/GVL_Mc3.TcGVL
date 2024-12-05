@@ -22,7 +22,7 @@
 	aiXpuXtsMover       	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 	
 	aDynamics							: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_Physics.DynamicConstraint_PathXY;
-	aMoveOnTrackOptions  	: ARRAY[GC.nNumMinMCAxes..GC.nNumMaxMCAxes] OF Tc3_Mc3PlanarMotion.ST_MoveOnTrackOptions;
+//	aMoveOnTrackOptions  	: ARRAY[GC.nNumMinMCAxes..GC.nNumMaxMCAxes] OF ST_MoverOptions;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
