@@ -15,6 +15,8 @@ VAR
 	MC_PlanarFeedbackGearInPosOnTrackWithMasterMover : Tc3_Mc3PlanarMotion.MC_PlanarFeedbackGearInPosOnTrackWithMasterMover;
 		
 	nMoverId			    				: UDINT;
+	
+	MoverFeedback							: Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
 
 	_McPlanarMover						: Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	_McPlanarTrackTrail    		: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
@@ -198,7 +200,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_InSync REF= MC_PlanarFeedbackInSync.inSync;]]></ST>
+          <ST><![CDATA[P_InSync REF= MC_PlanarFeedbackGearInPosOnTrackWithMasterMover.inSync;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -210,6 +212,17 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[P_MC_PlanarMover REF= _McPlanarMover;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_MoverFeedback" Id="{02ef7bc1-889e-07f7-3c27-62976c319346}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_MoverFeedback : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarFeedback]]></Declaration>
+      <Get Name="Get" Id="{159a251f-157e-010b-1c51-0b1d7364f59a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_MoverFeedback REF= MoverFeedback;]]></ST>
         </Implementation>
       </Get>
     </Property>

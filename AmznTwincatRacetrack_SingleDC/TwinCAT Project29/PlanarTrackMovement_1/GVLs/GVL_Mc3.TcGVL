@@ -14,15 +14,11 @@
 	
 {warning <'bundle FB_PlanarMover'>}
 	fbPlanarXtsMover			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_PlanarXtsMover;
-	MoverFeedback		    	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_Mc3PlanarMotion.MC_PlanarFeedback;
 	aiXpuXtsMover       	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 
 	HeadExpMover					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
 	TailExpMover					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;
 	AllExpMovers					: FB_AllExpMovers;
-	
-//	aDynamics							: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_Physics.DynamicConstraint_PathXY;
-//	aMoveOnTrackOptions  	: ARRAY[GC.nNumMinMCAxes..GC.nNumMaxMCAxes] OF ST_MoverOptions;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
