@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_RobMover" Id="{198fd53d-d7b4-4fcb-b2eb-8f7ae59664d7}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_assign'}
+FUNCTION_BLOCK FB_RobMover IMPLEMENTS I_Mover
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	fbPlanarMover : MC_PlanarMover;
+	fbPlanarFeedback: MC_PlanarFeedback;
+	CmdFeedback :  XtsCommandFeedback;
+	bIsInitialized: BOOL;
+	ipXtsMover:   I_XtsXlMover1;
+	ipXtsProcessingUnit:  I_XtsProcessingUnit1;
+	trackTrail: MC_PlanarTrackTrail;
+	nextMcTrackOid: OTCID;
+	stMoveOnTrackOptions: ST_MoveOnTrackOptions;
+	_stDynamics: DynamicConstraint_PathXY;
+	_TargetTrack : UDINT;
+	_ReWork : BOOL;
+	partConfig1: UINT;
+	SyncMoverFeedback: Tc3_Mc3PlanarMotion.MC_PlanarFeedbackGearInPosOnTrackWithMasterMover;
+	_InSync :BOOL; 
+	options: Tc3_Mc3PlanarMotion.ST_GearInPosOnTrackWithMasterMoverOptions;
+	syncTrail : MC_PlanarTrackTrail; 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CycleUpdate" Id="{f03058aa-6296-4ef4-9484-d5b71f801a75}">
+      <Declaration><![CDATA[METHOD CycleUpdate : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT bIsInitialized THEN
+	RETURN;
+END_IF
+
+fbPlanarMover.GetTrackTrailInformation(trackTrail);
+
+
+fbPlanarMover.Update();
+
+
+fbPlanarFeedback.Update();
+SyncMoverFeedback.Update(); 
+_InSync := SyncMoverFeedback.inSync; 
+
+UpdateXtsTrack();
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Init" Id="{64dda721-646a-4cf1-ab7d-9993c2a9294b}">
+      <Declaration><![CDATA[METHOD Init : BOOL
+VAR_INPUT
+
+	XtsMover:   I_XtsXlMover1;
+	XtsProcessingUnit :  I_XtsProcessingUnit1;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+
+
+ipXtsMover:= XtsMover;
+ipXtsProcessingUnit :=  XtsProcessingUnit;
+
+stMoveOnTrackOptions.direction := MC_Direction.mcDirectionPositive;
+stMoveOnTrackOptions.gapMode := MC_GAP_MODE_ON_TRACK.Fast1D;
+stMoveOnTrackOptions.gap:= 800;
+
+syncTrail.AddTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Small]); 
+syncTrail.AddTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main]); 
+
+
+//_stDynamics.SetValuesVADJ(500, 4000, 4000, 10000);
+
+bIsInitialized := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="JoinNearestTrack" Id="{7049d311-b9c1-401e-88ee-2d1a43482209}">
+      <Declaration><![CDATA[METHOD JoinNearestTrack : BOOL
+
+
+VAR_INST
+	nForCounter: UINT;
+	mcTrackOid: OTCID;
+	partOid: OTCID;
+	cmdFeedback					: 	XtsCommandFeedback;
+	objectInfo: PlanarObjectInfo;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[partOid := ipXtsMover.GetPositionInfo_partObjectId(cmdFeedback);
+
+IF partOid = 0 THEN
+	RETURN;
+END_IF
+
+IF cmdFeedback.IsDone THEN
+	mcTrackOid := ipXtsProcessingUnit.XlPartWithOid(partOid, cmdFeedback).GetMcTrackOid(cmdFeedback);
+	
+	FOR nForCounter := 1 TO GVL_MC.nTrackCount DO
+		objectInfo := GVL_MC.Mc_Tracks[nForCounter].GetPlanarObjectInfo();
+		IF objectInfo.Id = mcTrackOid THEN
+			fbPlanarMover.JoinTrack(fbPlanarFeedback, GVL_MC.Mc_Tracks[nForCounter], _stDynamics, 0); 
+			RETURN;
+		END_IF
+	END_FOR
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LeaveSystemAt" Id="{6b5686b0-ff62-458e-8370-b6983356eb85}">
+      <Declaration><![CDATA[METHOD LeaveSystemAt : BOOL
+VAR_INPUT
+	ConnectionOut: REFERENCE TO MC_PlanarTrackConnectionOut;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbPlanarMover.LeaveSystemAt(fbPlanarFeedback, ConnectionOut,  _stDynamics,0);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MoveOnTrack" Id="{5cb1162f-8066-466b-a4ab-0b247e872c60}">
+      <Declaration><![CDATA[METHOD MoveOnTrack : BOOL
+VAR_INPUT
+	
+	track: REFERENCE TO MC_PlanarTrack;	
+	targetPos: LREAL;
+	gap : LREAL; 
+	velo : LREAL; 
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stMoveonTrackOptions.gap := gap; 
+THIS^.P_Dynamics.V := velo; 
+fbPlanarMover.MoveOnTrack(fbPlanarFeedback, track, targetPos, _stDynamics, stMoveOnTrackOptions);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="MoverOTCID" Id="{ce0ba360-bc0d-42ad-8903-9adb5e1a2946}">
+      <Declaration><![CDATA[PROPERTY MoverOTCID : OTCID]]></Declaration>
+      <Get Name="Get" Id="{a733eb2e-4725-4fae-8b53-d7ad00301aeb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MoverOTCID := fbPlanarMover.MCTOPLC.STD.MoverOID;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{a8747004-1787-4f6c-bddb-2c962f88e71a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="MoverStopped" Id="{04d60936-8878-4099-a93e-51ae708d75d9}">
+      <Declaration><![CDATA[PROPERTY MoverStopped : BOOL]]></Declaration>
+      <Get Name="Get" Id="{064d5973-e89a-43ae-90ce-60ae06c69f1e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MoverStopped := (fbPlanarMover.MCTOPLC.SETONTRACK.SetVelo < 20);
+
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{a5e4e336-0f0e-4ab2-a460-e503af47a90c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="P_Dynamics" Id="{1ecca715-6941-4f72-8708-bfc5f157ffb4}">
+      <Declaration><![CDATA[PROPERTY P_Dynamics : REFERENCE TO DynamicConstraint_PathXY;]]></Declaration>
+      <Get Name="Get" Id="{b6d402ab-3e13-4cdb-b750-c7fcc6129af4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[
+P_Dynamics REF= _stDynamics; ]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{46a429c7-5874-4bf4-9a1c-c1cbfa753f9c}">
+        <Declaration><![CDATA[PUBLIC 
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_stDynamics := P_Dynamics;  ]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="P_InSync" Id="{d85f38ed-ffc5-44d4-bfc1-afe7972a3eda}">
+      <Declaration><![CDATA[PROPERTY P_InSync : Bool]]></Declaration>
+      <Get Name="Get" Id="{28310d05-e0ea-47ee-9110-56e3087a7b08}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_InSync := _InSync; ]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_PlanarFeedback" Id="{21da37fd-6f26-475d-beab-c040fa3e1691}">
+      <Declaration><![CDATA[PROPERTY P_PlanarFeedback : REFERENCE TO MC_PlanarFeedback]]></Declaration>
+      <Get Name="Get" Id="{f89ddc18-b0ec-4284-b9a5-c602ea9db8a5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_PlanarFeedback REF= fbPlanarFeedback;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_PlanarMover" Id="{ade24b6b-bd49-4670-bd83-4d8ea4dd5ac9}">
+      <Declaration><![CDATA[PROPERTY P_PlanarMover :   REFERENCE TO  MC_PlanarMover]]></Declaration>
+      <Get Name="Get" Id="{555c8d63-81b0-481e-a5c5-9af9e5afcd1b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_PlanarMover REF= fbPlanarMover;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_TargetTrack" Id="{aa403c76-568e-4bf9-873b-2566a88e0af2}">
+      <Declaration><![CDATA[PROPERTY P_TargetTrack : UDINT
+]]></Declaration>
+      <Get Name="Get" Id="{d7e83720-ad11-43b6-a93a-5970f60b18e3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_TargetTrack := _TargetTrack ;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{07fbef88-5289-4395-9e85-feba3016f2a4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_TargetTrack := P_TargetTrack; ]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Rework" Id="{0e60f93b-c652-4b1d-8202-d7b886cfe370}">
+      <Declaration><![CDATA[PROPERTY Rework : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{1fb76204-42ce-467c-93e7-21f3ed6324b1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Rework := _Rework;
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{200ae587-5d0f-4fe5-9521-0437cfc860f9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_Rework := Rework;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="SyncToOtherMover" Id="{9903c21e-709d-4928-99f6-93578aa23443}">
+      <Declaration><![CDATA[METHOD SyncToOtherMover : BOOL
+VAR_INPUT
+	masterSyncPos : LREAL; // Position on the master track
+	followerSyncPos : LREAL; // position on the follower track
+	PlanarMoverToFollow: REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarMover;
+	masterTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack; 
+	followerTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack; 
+	velo : LREAL; 
+END_VAR
+
+VAR
+	trail: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
+
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Options.allowedSlaveSyncDirections := MC_SYNC_DIRECTIONS.Positive; 
+options.directionMasterSyncPosition := MC_DIRECTION.mcDirectionNonModulo; 
+options.directionSlaveSyncPosition := MC_DIRECTION.mcDirectionNonModulo;  
+options.followMover := FALSE; 
+options.gap := 0; // elimnate gap funciton 
+options.inSyncToleranceDistance :=0; 
+options.moduloToleranceMasterSyncPosition := 0; 
+options.moduloToleranceSlaveSyncPosition := 0;  
+_stDynamics.V := velo; 
+
+fbPlanarMover.GearInPosOnTrackWithMasterMover(
+	commandFeedback:=  SyncMoverFeedback , 
+	masterMover:= PlanarMoverToFollow , 
+	trackTrail:= syncTrail, // may need to give a trail maybe not
+	masterSyncPosition:= masterSyncPos, 
+	masterSyncPositionTrack:= MasterTrack , 
+	slaveSyncPosition:= followerSyncPos, 
+	slaveSyncPositionTrack:= followerTrack, 
+	constraint:=_stDynamics , 
+	options:=options );
+	]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="UpdateXtsTrack" Id="{21f4b176-5457-4b67-bca0-ab7203ad0675}">
+      <Declaration><![CDATA[METHOD PUBLIC UpdateXtsTrack
+VAR_INPUT
+END_VAR
+VAR_STAT
+	nTrackCount: UINT;
+	oid1: OTCID;
+	oid2: OTCID;
+	
+	nForCounter: UINT;
+	nPartConfigCount: UINT;
+	
+	partConfig1: OTCID;
+	partConfig2: OTCID;
+	
+	mcTrackOid1: OTCID;
+	mcTrackOid2: OTCID;
+	trackOid: OTCID;
+	
+	nTrackTrailCount: UDINT;
+	actTrackOid: OTCID;
+	nIndexInTrail: UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[nTrackTrailCount := trackTrail.TrackCount;
+actTrackOid := fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID;
+
+IF nTrackTrailCount <= 1 THEN
+	RETURN;
+END_IF
+
+FOR nForCounter := 1 TO UDINT_TO_UINT(nTrackTrailCount) DO
+	oid1 := trackTrail.GetTrackOidAt(nForCounter);
+	IF oid1 = actTrackOid THEN
+		IF nForCounter < nTrackTrailCount THEN
+			oid2 := trackTrail.GetTrackOidAt(nForCounter + 1);
+			EXIT;
+		ELSE
+			RETURN; //last one ine track trail
+		END_IF
+	END_IF
+END_FOR
+
+IF oid2 = nextMcTrackOid AND   ipXtsMover.GetPositionInfo_partPosition(CmdFeedback) < 600THEN //no change
+	RETURN;
+END_IF
+
+nTrackCount := ipXtsProcessingUnit.TrackCount();
+
+FOR nForCounter := 1 TO nTrackCount DO
+	nPartConfigCount := ipXtsProcessingUnit.Track(nForCounter, CmdFeedback).PartConfigCount(); 
+	
+	IF nPartConfigCount >= 2  THEN
+		partConfig1 := ipXtsProcessingUnit.Track(nForCounter, CmdFeedback).GetPartConfigOidAt(1, 0);
+		partConfig2 := ipXtsProcessingUnit.Track(nForCounter, CmdFeedback).GetPartConfigOidAt(2, 0);
+//
+		
+		IF partConfig1 = 0 OR partConfig2 = 0 THEN
+			CONTINUE;
+		END_IF
+		
+		mcTrackOid1 := ipXtsProcessingUnit.XlPartWithOid(partConfig1, CmdFeedback).GetMcTrackOid(0);
+		mcTrackOid2 := ipXtsProcessingUnit.XlPartWithOid(partConfig2, CmdFeedback).GetMcTrackOid(0);
+		IF mcTrackOid1 = oid1 AND mcTrackOid2 = oid2   THEN
+			trackOid := ipXtsProcessingUnit.Track(nForCounter, CmdFeedback).GetObjectId();
+			ipXtsMover.SetActiveTrackObjectId(trackOid, CmdFeedback);
+			
+			IF CmdFeedback.IsDone THEN
+				nextMcTrackOid := oid2;
+			END_IF
+			
+			RETURN;
+		END_IF
+	END_IF
+END_FOR
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="XlProcessingUnit" Id="{c937fd04-ede7-4a06-bb80-d96e27dc80d2}">
+      <Declaration><![CDATA[PROPERTY XlProcessingUnit : I_XtsProcessingUnit1]]></Declaration>
+      <Get Name="Get" Id="{dc3e27e2-132a-4b07-a64b-39afc3ce4e53}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XlProcessingUnit := ipXtsProcessingUnit;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="XtsComFeed" Id="{77a11faf-2343-4c02-8b32-d650545bd2e9}">
+      <Declaration><![CDATA[PROPERTY XtsComFeed : REFERENCE TO  XtsCommandFeedback]]></Declaration>
+      <Get Name="Get" Id="{83dcf1f5-6adf-48c2-84ea-4fbea3e5545d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XtsComFeed REF= CmdFeedback;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="XtsXlMover" Id="{70d89129-e56a-44f9-bf01-7348e90e5b05}">
+      <Declaration><![CDATA[PROPERTY XtsXlMover : I_XtsXlMover1]]></Declaration>
+      <Get Name="Get" Id="{b2c80709-1069-490b-8f8c-a0a6c1b85cb7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[XtsXlMover := ipXtsMover;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

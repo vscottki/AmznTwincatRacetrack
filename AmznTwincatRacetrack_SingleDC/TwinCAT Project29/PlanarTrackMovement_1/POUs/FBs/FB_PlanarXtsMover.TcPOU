@@ -25,8 +25,12 @@ VAR
 	Dynamics									: Tc3_Physics.DynamicConstraint_PathXY;
 
 	Mover				        			: MoverSort;
+	
+	SyncTrail 								: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail; 
+	
 	CmdDivert									: BOOL;
-//	eMerge										: E_MergeType;
+	eMerge										: E_MergeType;
+	//InSync										: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -42,7 +46,48 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[stMoverOptions.BaseMoveOptions REF= BaseMoveOptions;
-stMoverOptions.GearInMasterMoverOptions	REF= GearInMasterMoverOptions;]]></ST>
+stMoverOptions.GearInMasterMoverOptions	REF= GearInMasterMoverOptions;
+
+//Most options already initialized
+//GearInMasterMoverOptions.allowedSlaveSyncDirections 				:= MC_SYNC_DIRECTIONS.Positive;
+//GearInMasterMoverOptions.directionMasterSyncPosition				:= Tc3_Mc3PlanarMotion.MC_DIRECTION.mcDirectionNonModulo;
+//GearInMasterMoverOptions.directionSlaveSyncPosition					:= Tc3_Mc3PlanarMotion.MC_DIRECTION.mcDirectionNonModulo;
+//GearInMasterMoverOptions.followMover												:= FALSE;
+GearInMasterMoverOptions.gap 																:= BaseMoveOptions.gap;
+//GearInMasterMoverOptions.inSyncToleranceDistance						:= 0;
+//GearInMasterMoverOptions.moduloToleranceMasterSyncPosition	:= 0;
+//GearInMasterMoverOptions.moduloToleranceSlaveSyncPosition		:= 0;
+
+syncTrail.AddTrack(track:= GVL_Mc3.MC_Tracks[E_TrackNum.Small]); 
+syncTrail.AddTrack(track:= GVL_Mc3.MC_Tracks[E_TrackNum.Main]); ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Init" Id="{6ea09207-c20a-09f4-120c-5892eef487d3}">
+      <Declaration><![CDATA[METHOD Init : BOOL
+VAR_INPUT
+
+	XtsMover:   I_XtsXlMover1;
+	XtsProcessingUnit :  I_XtsProcessingUnit1;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+
+
+ipXtsMover:= XtsMover;
+ipXtsProcessingUnit :=  XtsProcessingUnit;
+
+stMoveOnTrackOptions.direction := MC_Direction.mcDirectionPositive;
+stMoveOnTrackOptions.gapMode := MC_GAP_MODE_ON_TRACK.Fast1D;
+stMoveOnTrackOptions.gap:= 800;
+
+syncTrail.AddTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Small]); 
+syncTrail.AddTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main]); 
+
+
+//_stDynamics.SetValuesVADJ(500, 4000, 4000, 10000);
+
+bIsInitialized := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Property Name="IsCommandedInShortcut" Id="{e5e69e7e-f163-4728-82da-b10e582ce622}" FolderPath="Properties\">
@@ -146,6 +191,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="P_InSync" Id="{2df9b0c6-84c0-0064-0364-e2a3e9418875}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_InSync : REFERENCE TO BOOL]]></Declaration>
+      <Get Name="Get" Id="{d847e18f-6401-0e3b-14bd-4b43c4d4c8c5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_InSync REF= MC_PlanarFeedbackInSync.inSync;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="P_MC_PlanarMover" Id="{79d72b75-52b9-47c8-886e-5e60276bf5f1}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_MC_PlanarMover : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarMover]]></Declaration>
       <Get Name="Get" Id="{71cad725-c4c4-49c5-9410-cee17b681f5a}">
@@ -220,6 +276,17 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="P_SyncTrail" Id="{317f6011-5dc7-037e-1a7f-22f5a06871b8}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_SyncTrail : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail]]></Declaration>
+      <Get Name="Get" Id="{19b14c75-2123-015f-13bf-ec8c0b82eace}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_SyncTrail REF= SyncTrail;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="P_TrackConfig" Id="{e32b61fd-1607-0d8a-3b00-a92d697c1e42}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_TrackConfig : REFERENCE TO ST_TrackConfig]]></Declaration>
       <Get Name="Get" Id="{f2020383-ba74-08e6-01f4-c80f3d2580af}">
@@ -242,14 +309,56 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Method Name="SyncToOtherMover" Id="{f3ce074a-da58-0d33-2eed-617bf65f1455}">
+      <Declaration><![CDATA[METHOD SyncToOtherMover : BOOL
+VAR_INPUT
+	masterSyncPos : LREAL; // Position on the master track
+	followerSyncPos : LREAL; // position on the follower track
+	PlanarMoverToFollow: REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarMover;
+	masterTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack; 
+	followerTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack; 
+	velo : LREAL; 
+END_VAR
+
+VAR
+	trail: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
+
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Options.allowedSlaveSyncDirections := MC_SYNC_DIRECTIONS.Positive; 
+//options.directionMasterSyncPosition := MC_DIRECTION.mcDirectionNonModulo; 
+//options.directionSlaveSyncPosition := MC_DIRECTION.mcDirectionNonModulo;  
+//options.followMover := FALSE; 
+//options.gap := 0; // elimnate gap funciton 
+//options.inSyncToleranceDistance :=0; 
+//options.moduloToleranceMasterSyncPosition := 0; 
+//options.moduloToleranceSlaveSyncPosition := 0;  
+//_stDynamics.V := velo; 
+
+fbPlanarMover.GearInPosOnTrackWithMasterMover(
+//	commandFeedback:=  SyncMoverFeedback , 
+//	masterMover:= PlanarMoverToFollow , 
+//	trackTrail:= syncTrail, // may need to give a trail maybe not
+//	masterSyncPosition:= masterSyncPos, 
+//	masterSyncPositionTrack:= MasterTrack , 
+//	slaveSyncPosition:= followerSyncPos, 
+//	slaveSyncPositionTrack:= followerTrack, 
+//	constraint:=_stDynamics , 
+//	options:=options );]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Update" Id="{2a189ea7-97f2-4dc0-980a-fdde9c091766}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD Update : PVOID]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF iTcIoXtsXpuMover <> Tc3_Module.NULL THEN
+        <ST><![CDATA[IF iTcIoXtsXpuMover <> 0 THEN
   stXtsPositionInfo	:= iTcIoXtsXpuMover.GetPositionInfo();
 END_IF
 
 _mcPlanarMover.Update();
+
+IF eMerge <> E_MergeType.NoMerge THEN
+	MC_PlanarFeedbackGearInPosOnTrackWithMasterMover.Update();
+END_IF
 
 _mcPlanarMover.GetTrackTrailInformation(_McPlanarTrackTrail);
 
@@ -265,7 +374,7 @@ IF _McPlanarTrackTrail.Error OR _McPlanarTrackTrail.Size <= 1 THEN
    RETURN;
 END_IF
 
-IF iTcIoXtsXpuMover <> Tc3_Module.NULL THEN
+IF iTcIoXtsXpuMover <> 0 THEN
   //SmallCircle
   IF _McPlanarTrackTrail.GetTrackOidAt(1) = MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID   THEN
     iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsCompleteTrackInnerOID);

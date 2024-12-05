@@ -62,7 +62,7 @@ END_IF
 
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartObjectId						    := GVL_General.XtsPartOuterStart;
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn			    	:= GVL_General.stSwitchConfig.MagnetStartPosition*GVL_General.stSwitchStatus.PosnCurrentCoeff;
-	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorEndPosn			 	    := GVL_General.stSwitchConfig.MagnetEndPosition*GVL_General.stSwitchStatus.PosnCurrentCoeff;
+	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorEndPosn			 	    := GVL_General.stSwitchConfig.MagnetEndPosition(**GVL_General.stSwitchStatus.PosnCurrentCoeff*);
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].TrackSectorStartPosn			    := 0;
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].TrackSectorEndPosn 			 		:= 0;
 

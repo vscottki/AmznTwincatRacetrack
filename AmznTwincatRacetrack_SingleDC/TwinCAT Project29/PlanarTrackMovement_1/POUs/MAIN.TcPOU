@@ -99,7 +99,7 @@ END_IF
 
 IF NOT MoverStop AND NOT MoverStopDone THEN
 	FOR nForCounter:=1 TO nNumMovers DO
-		fbPlanarXtsMover[nForCounter].P_Dynamics.SetValuesVADJ(V := stMoverConfig.MaxVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.MaxJerk);
+		fbPlanarXtsMover[nForCounter].P_Dynamics.SetValuesVADJ(V := stMoverConfig.MaxVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.HighJerk);
 		nCase := 140;
 		//fbPlanarMover[nForCounter].McPlanarMover.Halt(MoverFeedback[nForCounter], fbPlanarXtsMover[nForCounter].P_Dynamics);
 	END_FOR		
@@ -267,7 +267,7 @@ CASE nCase OF
 		//increased accel on shortcut
 			IF TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_HD_SECTION].MoverIsOnSector THEN
 				//Increase dynamics on Inner Shortcut
-				fbPlanarXtsMover[nForCounter].P_Dynamics.SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.MaxJerk);
+				fbPlanarXtsMover[nForCounter].P_Dynamics.SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.HighJerk);
 			ELSE
 				fbPlanarXtsMover[nForCounter].P_Dynamics.SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 			END_IF
@@ -317,6 +317,7 @@ CASE nCase OF
 				5: // In Recirc - from Big to Main Track - departing Gap Transition Zone - this Move command could be cyclic
 					IF TempSysTime = 0 XOR TempSysTime = Tc2_System.F_GetSystemTime() THEN
 						TempSysTime := Tc2_System.F_GetSystemTime() + (CfgIntervalExec * nCycleTime); //next valid clock to issue move command again
+						fbPlanarXtsMover[nForCounter].P_eMerge		:= E_MergeType.NoMerge;
 						fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
@@ -324,7 +325,7 @@ CASE nCase OF
 																		options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 					END_IF
 																		
-					//Continuously call the above move command while GapInTransition TRUE (otherwise it's a one-shot)
+					//Continuously call the above move command while GapInTransition TRUE (otherwise it's a one-shot command)
 					IF NOT fbPlanarXtsMover[nForCounter].P_MoverOptions.GapInTransition THEN
 						TempSysTime								:= 0;
 						nMoveState[nForCounter] 	:= 10;
@@ -426,12 +427,12 @@ CASE nCase OF
 					END_IF
 
 				63://Merge from Inner to Outer
-						fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
-																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
-																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
-																			constraint := fbPlanarXtsMover[nForCounter].P_Dynamics,
-																			options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
-						nMoveState[nForCounter] := 64;
+//						fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := MoverFeedback[nForCounter],
+//																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
+//																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
+//																			constraint := fbPlanarXtsMover[nForCounter].P_Dynamics,
+//																			options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
+//						nMoveState[nForCounter] := 64;
 				
 				64: //Reset Command On Exit
 						IF TrackSectors[nForCounter].afbSector[GC.INNER_MERGE_TO_FINISH].stSectorStatus.MoverIsOnSector THEN
@@ -439,27 +440,40 @@ CASE nCase OF
 						END_IF
 						
 				69: // Merge - Gear In
-					fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.GearInPosOnTrackWithMasterMover(
-							commandFeedback:= fbPlanarXtsMover[nForCounter].P_PlanarFeedbackGearMM, 
-							masterMover:= fbPlanarXtsMover[nForCounter].P_MC_PlanarMover, 
-							trackTrail:= GVL_Mc3.TrackTrail, 
-							masterSyncPosition:= fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fPartPosition, 
-							masterSyncPositionTrack:= GVL_Mc3.MC_Tracks[E_TrackNum.Big], 
-							slaveSyncPosition:= fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fPartPosition,
-							slaveSyncPositionTrack:= GVL_Mc3.MC_Tracks[E_TrackNum.Small], 
-							constraint:= fbPlanarXtsMover[nForCounter].P_Dynamics, 
-							options:= fbPlanarXtsMover[nForCounter].P_MoverOptions.GearInMasterMoverOptions);
-		
-//				fbPlanarXtsMover[nForCounter].McPlanarMover.GearInPosOnTrack(
-//							commandFeedback:= , 
-//							masterAxis:= , 
-//							trackTrail:= , 
-//							masterSyncPosition:= , 
-//							slaveSyncPosition:= , 
-//							slaveSyncPositionTrack:= , 
-//							constraint:= fbPlanarXtsMover[nForCounter].P_Dynamics, 
-//							options:= fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
-			
+ //merge with gap zero
+					//issue commmand to sync 
+//					masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-100;
+//					masterPosAtSync := Mover[moverInFront].MoverPos; 
+//					followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-1000;
+//					followerPosAtSync :=Mover[1].MoverPos; 
+//					fbMover[nForCounter].SyncToOtherMover( 
+//						masterSyncPos := masterSyncPos,
+//						masterTrack := GVL_Mc.MC_Tracks[E_TrackNum.Big],
+//						followerSyncPos := followSyncPos,
+//						followerTrack := GVL_Mc.MC_Tracks[e_TrackNum.Small],
+//						PlanarMoverToFollow := fbMover[moverInFront].P_PlanarMover,
+//						velo:= velo);
+//						nMoveState[nForCounter] := 80; 
+//					aggressiveDynamics.SetValuesVADJ(4000,4000,8000,400000); 
+//					fbMover[nForCounter].P_Dynamics := aggressiveDynamics;
+					//fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,900,velo);				
+				
+//					IF fbPlanarXtsMover[nForCounter].P_eMerge <> E_MergeType.NoMerge THEN
+						fbPlanarXtsMover[nForCounter].P_Dynamics.SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.MaxAccel, D := stMoverConfig.MaxDecel, J := stMoverConfig.MergeJerk);
+						
+						fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.GearInPosOnTrackWithMasterMover(
+								commandFeedback:= fbPlanarXtsMover[nForCounter].P_PlanarFeedbackGearMM, 
+								masterMover:= fbPlanarXtsMover[nForCounter].P_MC_PlanarMover, // Pull in Master Mover Reference
+								trackTrail:= fbPlanarXtsMover[nForCounter].P_SyncTrail,
+								masterSyncPosition:= fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fTrackPosition, // Pull in Master Sync Position
+								masterSyncPositionTrack:= GVL_Mc3.MC_Tracks[E_TrackNum.Big], 
+								slaveSyncPosition:= fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fTrackPosition,
+								slaveSyncPositionTrack:= GVL_Mc3.MC_Tracks[E_TrackNum.Small], 
+								constraint:= fbPlanarXtsMover[nForCounter].P_Dynamics, 
+								options:= fbPlanarXtsMover[nForCounter].P_MoverOptions.GearInMasterMoverOptions);
+								nMoveState[nForCounter] := 64;
+//					END_IF
+
 				70:
 					IF MoverFeedback[nForCounter].Done THEN
 						StartTimer[nForCounter] := TRUE;
@@ -469,7 +483,7 @@ CASE nCase OF
 				80:
 					IF 	StopTimer[nForCounter].Q THEN
 						StartTimer[nForCounter] := FALSE;
-						nMoveState[nForCounter] := 60;	
+						nMoveState[nForCounter] := 60;
 					END_IF
 				END_CASE
 		

@@ -22,6 +22,7 @@
   <ItemGroup>
     <Compile Include="DUTs\E_MergeMode.TcDUT">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="DUTs\E_MergeType.TcDUT">
       <SubType>Code</SubType>
@@ -84,6 +85,9 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="ITFs\I_Mover.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -99,6 +103,10 @@
     </Compile>
     <Compile Include="POUs\FBs\FB_ExpandedMover.TcPOU">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FBs\FB_RobMover.TcPOU">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\FBs\FB_PlanarXtsMover.TcPOU">
       <SubType>Code</SubType>
@@ -149,6 +157,7 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="ITFs" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\FUNs" />
     <Folder Include="VISUs" />
@@ -378,10 +387,13 @@
     <SubObject Include="FB_AllTrackSectors._M_VARINOUT_TroubleshootingJunk">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
+    <SubObject Include="FB_PlanarXtsMover.Init">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
     <SubObject Include="FB_PlanarXtsMover.IsCommandedInShortcut">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
-    <SubObject Include="FB_PlanarXtsMover.P_eMerge">
+    <SubObject Include="FB_PlanarXtsMover.SyncToOtherMover">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
     <SubObject Include="FB_SwitchMagnet._M_EvaluatePermIntlk" />

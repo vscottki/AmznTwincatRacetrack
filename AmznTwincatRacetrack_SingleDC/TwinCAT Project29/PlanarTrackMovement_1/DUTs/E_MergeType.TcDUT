@@ -5,9 +5,10 @@
 {attribute 'strict'}
 TYPE E_MergeType :
 (
-	NoSlowdown := 0,
-	StartFromMergeWaitStatic := 1,
-	Decelerating := 2 
+	NoMerge 	:= 0,
+	FlyingMerge_Vmax := 1,
+	StartFromMergeWaitStatic := 2,
+	IntermediateV := 3
 );
 END_TYPE
 ]]></Declaration>
