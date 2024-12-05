@@ -29,7 +29,7 @@ _M_UpdateStatus();
 
 FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT DO
 	//Planar Mover
-	afbSector[SectorIndex].P_PlanarMover			:= GVL_Mc3.fbPlanarXtsMover[MoverIndex].P_PlanarMover;
+	afbSector[SectorIndex].P_MoverSort			:= GVL_Mc3.fbPlanarXtsMover[MoverIndex].P_MoverSort;
 
 	//XTS Mover Reference
 	afbSector[SectorIndex].P_XtsPositionInfo		:= XtsDataRef;

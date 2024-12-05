@@ -55,7 +55,7 @@ FOR ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION] := GC.nN
 		IF HeadTrackSectorsRef[ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION]].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverEnteredSector.Q AND NOT ClearZone THEN 
 			ValidMerge.MoverID 			:= ForCounterExit[GC.TRACK_SECTORS_HEAD][GC.OUTER_SHORTCUT_PROJECTION];
 			ValidMerge.ExpMoverType 	:= E_ExpMover.Head;
-			ValidMerge.MergeWindowStartPosn	:= HeadExpMovers[ValidMerge.MoverID].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
+			ValidMerge.MergeWindowStartPosn	:= HeadExpMover[ValidMerge.MoverID].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
 			ClearZone	 := TRUE;
 			EXIT;
 		END_IF
@@ -66,7 +66,7 @@ FOR ForCounterDuringClear := GC.nNumMinMovers TO GC.nNumMaxMovers DO
 	IF ValidMerge.MoverID <> 0 THEN
 		
 		IF ClearZone AND HeadTrackSectorsRef[ValidMerge.MoverID].SectorStatus[GC.OUTER_SHORTCUT_PROJECTION].MoverExitedSector.Q THEN
-			ValidMerge.MergeWindowEndPosn	:= HeadExpMovers[ValidMerge.MoverID].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
+			ValidMerge.MergeWindowEndPosn	:= HeadExpMover[ValidMerge.MoverID].P_ExpMoverStatus.XtsAdjustedData.fPartPosition;
 			ValidMergeTrig := TRUE;
 		ELSIF RealMoverIsOnSector[GC.OUTER_SHORTCUT_PROJECTION] THEN
 			ClearZone 	:= FALSE;

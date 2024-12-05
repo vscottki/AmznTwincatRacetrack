@@ -8,28 +8,32 @@ VAR_INPUT
 END_VAR
 
 VAR
-	BaseMoveOptions				: Tc3_Mc3PlanarMotion.ST_MoveOnTrackOptions;
-	stMoverOptions				: ST_MoverOptions;
-	nMoverId			    		: UDINT;
-
-	_McPlanarMover				: Tc3_Mc3PlanarMotion.MC_PlanarMover;
-	_PlanarTrail    			: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
-
-	stXtsPositionInfo			: Tc3_XTS_Utility.ST_PositionInfo;
+	stMoverOptions						: ST_MoverOptions;
+	BaseMoveOptions						: Tc3_Mc3PlanarMotion.ST_MoveOnTrackOptions;
+	GearInMasterMoverOptions	: Tc3_Mc3PlanarMotion.ST_GearInPosOnTrackWithMasterMoverOptions;
 	
-	MoverPhysics					: Tc3_Physics.PositionXYC;
+	MC_PlanarFeedbackGearInPosOnTrackWithMasterMover : Tc3_Mc3PlanarMotion.MC_PlanarFeedbackGearInPosOnTrackWithMasterMover;
+		
+	nMoverId			    				: UDINT;
 
-	Mover				        	: MoverSort;
-	CmdDivert							: BOOL;
-	eMerge								: E_MergeType;
-	LastKnownPosn					: LREAL;
+	_McPlanarMover						: Tc3_Mc3PlanarMotion.MC_PlanarMover;
+	_McPlanarTrackTrail    		: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail;
+                        		
+	stXtsPositionInfo					: Tc3_XTS_Utility.ST_PositionInfo;
+	                      		
+	Physics										: Tc3_Physics.PositionXYC;
+	Dynamics									: Tc3_Physics.DynamicConstraint_PathXY;
+
+	Mover				        			: MoverSort;
+	CmdDivert									: BOOL;
+//	eMerge										: E_MergeType;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Folder Name="Methods" Id="{497e6300-3e6d-49b8-a318-13b94b960f56}" />
     <Folder Name="Properties" Id="{bafe569f-b5f0-4de9-ae48-854cd11ccd2e}" />
-    <Method Name="FB_init" Id="{4b084dbd-ec42-0e10-3862-f9a7de67a652}">
+    <Method Name="FB_init" Id="{4b084dbd-ec42-0e10-3862-f9a7de67a652}" FolderPath="Methods\">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
@@ -37,7 +41,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[stMoverOptions.BaseMoveOptions REF= BaseMoveOptions;]]></ST>
+        <ST><![CDATA[stMoverOptions.BaseMoveOptions REF= BaseMoveOptions;
+stMoverOptions.GearInMasterMoverOptions	REF= GearInMasterMoverOptions;]]></ST>
       </Implementation>
     </Method>
     <Property Name="IsCommandedInShortcut" Id="{e5e69e7e-f163-4728-82da-b10e582ce622}" FolderPath="Properties\">
@@ -79,17 +84,35 @@ END_VAR]]></Declaration>
         <ST><![CDATA[_McPlanarMover.JoinTrack(feedback, track, 0, 0);]]></ST>
       </Implementation>
     </Method>
-    <Property Name="McPlanarMover" Id="{79d72b75-52b9-47c8-886e-5e60276bf5f1}" FolderPath="Properties\">
-      <Declaration><![CDATA[PROPERTY McPlanarMover : REFERENCE TO MC_PlanarMover]]></Declaration>
-      <Get Name="Get" Id="{71cad725-c4c4-49c5-9410-cee17b681f5a}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[McPlanarMover REF= _McPlanarMover;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
+    <Method Name="M_EvaluateGap" Id="{fcb9e531-850f-006f-2c28-ec403292155f}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD M_EvaluateGap
+VAR_INPUT
+	MoverIndex	: UDINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_TIGHTGAP_ZONE].MoverIsOnSector OR
+TrackSectors[MoverIndex].SectorStatus[GC.INNER_MERGE_TO_FINISH].MoverIsOnSector THEN
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := stMoverConfig.TightMoverGap;
+ELSIF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_PRE_TG_ZONE].MoverIsOnSector THEN
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap := HelperFunctions.F_MapLReal(x := TrackSectors[MoverIndex].SectorStatus[GC.OUTER_PRE_TG_ZONE].PercentOfSectorTraversed,
+														in_min := 0.0, in_max := 1.0, out_min := stMoverConfig.NormalMoverGap, out_max := stMoverConfig.TightMoverGap);
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap;
+ELSIF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_POST_TG_ZONE].MoverIsOnSector THEN
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap := HelperFunctions.F_MapLReal(x := TrackSectors[MoverIndex].SectorStatus[GC.OUTER_POST_TG_ZONE].PercentOfSectorTraversed,
+														in_min := 0.0, in_max := 1.0, out_min := stMoverConfig.TightMoverGap, out_max := stMoverConfig.NormalMoverGap);
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap;
+ELSE
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := stMoverConfig.NormalMoverGap;
+END_IF
+
+IF fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap = stMoverConfig.NormalMoverGap OR
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap = stMoverConfig.TightMoverGap THEN
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.GapInTransition := FALSE;
+ELSE
+	fbPlanarXtsMover[MoverIndex].P_MoverOptions.GapInTransition := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="P_CmdDivert" Id="{8cede827-2b25-094d-2c84-715767aaf20f}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_CmdDivert : REFERENCE TO BOOL]]></Declaration>
       <Get Name="Get" Id="{ee22a2e2-25c9-085f-3a80-3e499cb6195c}">
@@ -98,6 +121,17 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[P_CmdDivert	REF= CmdDivert;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_Dynamics" Id="{012820e2-39fa-01ed-0dfe-860675d63f58}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_Dynamics : REFERENCE TO Tc3_Physics.DynamicConstraint_PathXY]]></Declaration>
+      <Get Name="Get" Id="{985c286c-7fa7-0076-0f00-c12e68aed781}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_Dynamics	REF= Dynamics;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -112,14 +146,14 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="P_LastKnownPosn" Id="{5da264c0-8271-0658-046e-d7a966c354d4}" FolderPath="Properties\">
-      <Declaration><![CDATA[PROPERTY P_LastKnownPosn : REFERENCE TO LREAL]]></Declaration>
-      <Get Name="Get" Id="{1fd1b59e-5a9b-00bc-2bd7-eb1305b399a3}">
+    <Property Name="P_MC_PlanarMover" Id="{79d72b75-52b9-47c8-886e-5e60276bf5f1}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_MC_PlanarMover : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarMover]]></Declaration>
+      <Get Name="Get" Id="{71cad725-c4c4-49c5-9410-cee17b681f5a}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_LastKnownPosn REF= LastKnownPosn;]]></ST>
+          <ST><![CDATA[P_MC_PlanarMover REF= _McPlanarMover;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -153,25 +187,36 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="P_MoverPhysics" Id="{056b1259-392a-0821-097b-b08bee10a569}" FolderPath="Properties\">
-      <Declaration><![CDATA[PROPERTY P_MoverPhysics : REFERENCE TO Tc3_Physics.PositionXYC]]></Declaration>
-      <Get Name="Get" Id="{e7ba31e5-6730-0d69-35c1-51b7d57fd5fd}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[P_MoverPhysics	REF= MoverPhysics;]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
-    <Property Name="P_PlanarMover" Id="{a5ac8d37-9108-0740-305c-d3b342270158}" FolderPath="Properties\">
-      <Declaration><![CDATA[PROPERTY P_PlanarMover : REFERENCE TO MoverSort]]></Declaration>
+    <Property Name="P_MoverSort" Id="{a5ac8d37-9108-0740-305c-d3b342270158}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_MoverSort : REFERENCE TO MoverSort]]></Declaration>
       <Get Name="Get" Id="{bae1975d-f945-0652-3748-976b73c4f7d6}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_PlanarMover	REF= Mover;]]></ST>
+          <ST><![CDATA[P_MoverSort	REF= Mover;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_Physics" Id="{056b1259-392a-0821-097b-b08bee10a569}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_Physics : REFERENCE TO Tc3_Physics.PositionXYC]]></Declaration>
+      <Get Name="Get" Id="{e7ba31e5-6730-0d69-35c1-51b7d57fd5fd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_Physics	REF= Physics;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_PlanarFeedbackGearMM" Id="{d729f8fd-3179-0343-3353-ddd710f91bdd}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_PlanarFeedbackGearMM : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarFeedbackGearInPosOnTrackWithMasterMover]]></Declaration>
+      <Get Name="Get" Id="{2b88ac50-2312-0cef-1014-00a094a686f4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_PlanarFeedbackGearMM REF= MC_PlanarFeedbackGearInPosOnTrackWithMasterMover;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -206,7 +251,7 @@ END_IF
 
 _mcPlanarMover.Update();
 
-_mcPlanarMover.GetTrackTrailInformation(_PlanarTrail);
+_mcPlanarMover.GetTrackTrailInformation(_McPlanarTrackTrail);
 
 Mover.MoverNumber 	:= nMoverId;
 Mover.MoverPos    	:= _McPlanarMover.MCTOPLC.SETONTRACK.SetPos;
@@ -216,16 +261,16 @@ Mover.TrackID     	:= _McPlanarMover.MCTOPLC.SETONTRACK.TrackOID;
 {warning <'Method Not Called'>}
 //_M_UpdateStatus();
 
-IF _PlanarTrail.Error OR _PlanarTrail.Size <= 1 THEN
+IF _McPlanarTrackTrail.Error OR _McPlanarTrackTrail.Size <= 1 THEN
    RETURN;
 END_IF
 
 IF iTcIoXtsXpuMover <> Tc3_Module.NULL THEN
   //SmallCircle
-  IF _PlanarTrail.GetTrackOidAt(1) = MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID   THEN
+  IF _McPlanarTrackTrail.GetTrackOidAt(1) = MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.TrackOID   THEN
     iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsCompleteTrackInnerOID);
   //BigCircle
-  ELSIF _PlanarTrail.GetTrackOidAt(1) =MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN
+  ELSIF _McPlanarTrackTrail.GetTrackOidAt(1) =MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN
     iTcIoXtsXpuMover.SetActiveTrackObjectId(XtsCompleteTrackOuterOID);
   END_IF
 END_IF

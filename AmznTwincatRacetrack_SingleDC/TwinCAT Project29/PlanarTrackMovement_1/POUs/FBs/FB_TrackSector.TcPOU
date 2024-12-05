@@ -134,14 +134,14 @@ IF stSectorStatus.MoverIsOnSector THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Property Name="P_PlanarMover" Id="{c0ac9430-b382-04fd-3b6a-1962bd5a1c7e}">
-      <Declaration><![CDATA[PROPERTY P_PlanarMover : REFERENCE TO MoverSort]]></Declaration>
+    <Property Name="P_MoverSort" Id="{c0ac9430-b382-04fd-3b6a-1962bd5a1c7e}">
+      <Declaration><![CDATA[PROPERTY P_MoverSort : REFERENCE TO MoverSort]]></Declaration>
       <Get Name="Get" Id="{804e0c8f-06ff-09a3-09d5-b11c0f048c58}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[P_PlanarMover	REF= refPlanarMover;]]></ST>
+          <ST><![CDATA[P_MoverSort	REF= refPlanarMover;]]></ST>
         </Implementation>
       </Get>
     </Property>

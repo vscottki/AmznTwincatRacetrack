@@ -381,6 +381,9 @@
     <SubObject Include="FB_PlanarXtsMover.IsCommandedInShortcut">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>
+    <SubObject Include="FB_PlanarXtsMover.P_eMerge">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
     <SubObject Include="FB_SwitchMagnet._M_EvaluatePermIntlk" />
   </ItemGroup>
   <ProjectExtensions>
