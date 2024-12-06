@@ -81,13 +81,9 @@ IF ValidMergeTrig AND ValidMerge.MergeWindowStartPosn <> TempWindowStartPosn THE
 	ValidMergeTrig	:= FALSE;
 END_IF
 
-IF MergeQueue.P_ObjectAdded THEN
-	MergeQueue.RemoveObjFromBuffer();
-END_IF
-
 //Delete queue objects when they reach the merge position
 IF MergeQueue.P_LastObjectRemoved.MoverID <> 0 THEN
-	IF fbPlanarXtsMover[MergeQueue.P_LastObjectRemoved.MoverID].P_XtsPositionInfo.fPartPosition = GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() THEN
+	IF HeadTrackSectorsRef[MergeQueue.P_LastObjectRemoved.MoverID].SectorStatus[GC.OUTER_BIGTRACK_MOVE_END].MoverEnteredSector.Q THEN
 		MergeQueue.ClearLastRemoved();
 	END_IF
 END_IF

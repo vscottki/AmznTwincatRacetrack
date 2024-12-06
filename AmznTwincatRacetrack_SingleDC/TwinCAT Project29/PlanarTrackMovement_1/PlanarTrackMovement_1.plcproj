@@ -360,7 +360,7 @@
       <Resolution>HelperFunctions, 1.0.2.0 (Amazon)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="RingBuffer">
-      <Resolution>RingBuffer, 1.5.6.999 (Amazon)</Resolution>
+      <Resolution>RingBuffer, 1.5.7.999 (Amazon)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Mc3PlanarMotion">
       <Resolution>Tc3_Mc3PlanarMotion, 0.3.30.0 (Beckhoff Automation GmbH)</Resolution>
