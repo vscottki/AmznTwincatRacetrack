@@ -7,7 +7,7 @@
 END_VAR
 
 VAR_GLOBAL
-	GraphPage					: Tc2_System.T_MaxString := 'https://www.desmos.com/calculator';	
+	GraphPage												: Tc2_System.T_MaxString := 'https://www.desmos.com/calculator';	
 
 	aStopPositions 									: ARRAY [GC.nNumMinMovers..GC.nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
 
@@ -25,23 +25,22 @@ VAR_GLOBAL
 	XtsPartOuterStart								: OTCID := 16#01010020;
 	XtsPartInnerFinish							: OTCID := 16#01010170;
 	XtsPartOuterFinish							: OTCID := 16#010102C0;
-
 //Planar
 	PlanarTrackOuterStart						: OTCID := 16#05120030;
 	PlanarTrackInnerFinish					: OTCID := 16#05120020;
 	PlanarTrackOuterFinish					: OTCID := 16#05120010;
-	
+
+//Divert
 	DivertQueue											: FB_DivertQueue; // Buffer for Divert Requests
 	HistoryDivertQueue							: FB_DivertQueue; // Log of all that went through the trigger point
-	MergeQueue											: RingBuffer.RingBufferMoverMerge; // Buffer for Merge events
-	
 	TempMoverIndex									: UDINT;
 	DivertingMoverIndex							: UDINT := GC.nNumMinMovers;
 	SwitchMagnet										: FB_SwitchMagnet;
 	MagnetControlledByOtherMover		: BOOL;
-
-//Status
 	stSwitchStatus        		    	: ST_SwitchStatus;
+
+//Merge
+	MergeQueue											: RingBuffer.RingBufferMoverMerge; // Buffer for Merge events
 
 END_VAR]]></Declaration>
   </GVL>

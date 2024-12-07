@@ -14,21 +14,19 @@ VAR
 	nForCounter					: UDINT;
 	M,N,T,Tr					: UDINT;
 	dynamics				    : INT;
+	nExitAMoverIsUsingMagnet : UDINT;
 
 //Status
 	xSimulation					: BOOL := TRUE;
 	SystemEnabled				: BOOL;
-	nTaskIdx						: DINT;
-	nCycleTime					: UDINT;
-	TempSysTime					: ULINT;
-	CfgIntervalExec			: UDINT := 2; //x 1 ms task time
+	stPlcSystem					: ST_PlcSystem;
 
 	IsMoverInBlockingArea		: BOOL;
 	nActStopPos					: UINT := 1;
 	Fp_error 					: Tc2_Standard.R_TRIG;
 	FaultReset					: Tc2_Standard.R_TRIG;
 	MoverStop 	AT%I* 			: BOOL;
-    ResetSafetyLight AT%Q*      : BOOL;
+  ResetSafetyLight AT%Q*      : BOOL;
 	MoverStopDone AT%Q*			: BOOL;
 	Info 		AT%Q*			: BOOL;
 	Operating	AT%Q*			: BOOL;
@@ -67,9 +65,10 @@ ELSE
 	SystemEnabled	:= (MoverStop (* SafetyOK *) AND NOT Fault);
 END_IF
 
-nTaskIdx := GETCURTASKINDEXEX();
-IF nTaskIdx > 0 THEN
-	nCycleTime := _TaskInfo[nTaskIdx].CycleTime;
+stPlcSystem.nTaskIdx := GETCURTASKINDEXEX();
+IF stPlcSystem.nTaskIdx > 0 THEN
+	stPlcSystem.nCycleTime := _TaskInfo[stPlcSystem.nTaskIdx].CycleTime;
+	stPlcSystem.SysTime 	:= Tc2_System.F_GetSystemTime();
 END_IF
 
 //Command Diverting to Magnet for any designated mover
@@ -127,8 +126,8 @@ END_IF
 //IsMoverCommandedInShortcut := FALSE;
 IsMoverInBlockingArea := FALSE;
 
-	bAllDone:= TRUE;
-FOR M := GC.nNumMinMovers TO nNumMovers DO///Movers
+bAllDone:= TRUE;
+FOR M := GC.nNumMinMovers TO GVL_General.nNumMovers DO///Movers
 	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
 	GVL_Mc3.fbPlanarXtsMover[M].P_MoverId := M;
 	GVL_Mc3.fbPlanarXtsMover[M].P_MoverSort.MoverNumber	:= GVL_Mc3.fbPlanarXtsMover[M].nMoverId;
@@ -168,6 +167,16 @@ END_FOR
 FOR T := GC.nNumMinTracks TO GC.nNumMaxTracks DO 
 	MC_Tracks[T].Update();
 	MC_Trackfeedback[T].Update();
+END_FOR
+
+//Check if any Mover using Magnet;
+FOR nExitAMoverIsUsingMagnet :=  GC.nNumMinMovers TO GVL_General.nNumMovers DO
+	IF fbPlanarXtsMover[nExitAMoverIsUsingMagnet].P_IsUsingMagnet THEN
+		MagnetControlledByOtherMover		:= TRUE;
+		EXIT;
+	ELSE
+		MagnetControlledByOtherMover		:= FALSE;
+	END_IF
 END_FOR
 
 CASE nCase OF
@@ -314,8 +323,8 @@ CASE nCase OF
 					END_IF
 					
 				5: // In Recirc - from Big to Main Track - departing Gap Transition Zone - this Move command could be cyclic
-					IF TempSysTime = 0 XOR TempSysTime = Tc2_System.F_GetSystemTime() THEN
-						TempSysTime := Tc2_System.F_GetSystemTime() + (CfgIntervalExec * nCycleTime); //next valid clock to issue move command again
+					IF stPlcSystem.TempSysTime = 0 XOR stPlcSystem.TempSysTime = stPlcSystem.SysTime THEN
+						stPlcSystem.TempSysTime := stPlcSystem.SysTime + (stPlcSystem.CfgIntervalExec * stPlcSystem.nCycleTime); //next valid clock to issue move command again
 						fbPlanarXtsMover[nForCounter].P_eMerge		:= E_MergeType.NoMerge;
 						fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[nForCounter].P_MoverFeedback,
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
@@ -326,7 +335,7 @@ CASE nCase OF
 																		
 					//Continuously call the above move command while GapInTransition TRUE (otherwise it's a one-shot command)
 					IF NOT fbPlanarXtsMover[nForCounter].P_MoverOptions.GapInTransition THEN
-						TempSysTime								:= 0;
+						stPlcSystem.TempSysTime		:= 0;
 						nMoveState[nForCounter] 	:= 10;
 					END_IF
 
@@ -344,7 +353,7 @@ CASE nCase OF
 					IF (stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount > 0) THEN
 						IF (stSwitchStatus.ShuttleQueueCount > 0) AND NOT MagnetControlledByOtherMover THEN
 							DivertQueue.RemoveObjFromBuffer();
-							MagnetControlledByOtherMover	:= TRUE;
+//							MagnetControlledByOtherMover	:= TRUE;
 							// Divert Move command
 							fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[nForCounter].P_MoverFeedback,
 																				targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
@@ -377,45 +386,50 @@ CASE nCase OF
 						SwitchMagnet.M_EvaluateInlineCommands();
 					END_IF
 					IF NOT MagnetControlledByOtherMover THEN
-						nMoveState[nForCounter] 	:= 40;
+						nMoveState[nForCounter] 	:= 35;
 					END_IF
 					
-				40: // Confirm the shuttle is diverting
+				35: // Confirm the shuttle is diverting
 					IF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_ENTRY_SECTOR_IPART].stSectorStatus.MoverExitedSector.Q THEN
-						nMoveState[nForCounter] := 45;
+						nMoveState[nForCounter] := 40;
 					END_IF
 			
-				45: // Route through shortcut
-					IF stTrackShortcutConfig.TestPowerMat THEN
+				40: // Route through shortcut
+					IF stTrackShortcutConfig.StopAtPowerMat THEN
 						IF TrackSectors[nForCounter].afbSector[GC.LOAD_STOP_SECTOR_IPART].stSectorStatus.MoverEnteredSector.Q THEN
-							nMoveState[nForCounter] := 70;
+							nMoveState[nForCounter] := 90;
 						END_IF
 					ELSE		
-						nMoveState[nForCounter] := 60;
+						nMoveState[nForCounter] := 50;
 					END_IF
 					
-				60: // Move to MergeWait Position
-				IF NOT AllTrackSectors.P_AMoverIsOnSector[GC.OUTER_BIGTRACK_COMPLETE] AND 
-					stSwitchConfig.SwitchModeInternal.IntervalToDivert = 1 AND stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount = GVL_General.nNumMovers THEN
+				50: //Pre-Merge state
+				IF NOT AllTrackSectors.P_AMoverIsOnSector[GC.OUTER_BIGTRACK_COMPLETE] AND stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount = GVL_General.nNumMovers THEN
+					fbPlanarXtsMover[nForCounter].P_eMerge := E_MergeType.FlyingMergeMoveOnTrack;
+
 					fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[nForCounter].P_MoverFeedback,
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 																		constraint := fbPlanarXtsMover[nForCounter].P_Dynamics,
 																		options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 
-					nMoveState[nForCounter] := 64;					
-				ELSE
+					nMoveState[nForCounter] := 75;
+				ELSIF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_MERGE_COMMAND_FLYING].stSectorStatus.MoverEnteredSector.Q THEN
+					//
+				ELSIF TrackSectors[nForCounter].afbSector[GC.SHORTCUT_MERGE_COMMAND_WAIT].stSectorStatus.MoverEnteredSector.Q AND NOT fbPlanarXtsMover[nForCounter].P_InSync THEN
+					fbPlanarXtsMover[nForCounter].P_eMerge := E_MergeType.MergeFromStaticSyncd;
+					
 					fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[nForCounter].P_MoverFeedback,
 																		targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																		targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-stTrackGlobalConfig.MergeWaitAccelDistance,
 																		constraint := fbPlanarXtsMover[nForCounter].P_Dynamics,
 																		options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 
-					nMoveState[nForCounter] := 61;
+//					nMoveState[nForCounter] := 60;
 				END_IF
-				
 
-				61:
+
+				60:
 				IF fbPlanarXtsMover[nForCounter].P_MoverFeedback.Done THEN
 					nMoveState[nForCounter] := 62;
 				END_IF
@@ -431,10 +445,10 @@ CASE nCase OF
 //																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
 //																			constraint := fbPlanarXtsMover[nForCounter].P_Dynamics,
 //																			options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
-//						nMoveState[nForCounter] := 64;
+//						nMoveState[nForCounter] := 75;
 				
-				64: //Reset Command On Exit
-						IF TrackSectors[nForCounter].afbSector[GC.INNER_MERGE_TO_FINISH].stSectorStatus.MoverIsOnSector THEN
+				75: //Reset Command On Exit
+						IF TrackSectors[nForCounter].afbSector[GC.INNER_MERGE_TO_FINISH].stSectorStatus.MoverEnteredSector.Q THEN
 							nMoveState[nForCounter] := 5;
 						END_IF
 						
@@ -470,17 +484,17 @@ CASE nCase OF
 								slaveSyncPositionTrack:= GVL_Mc3.MC_Tracks[E_TrackNum.Small], 
 								constraint:= fbPlanarXtsMover[nForCounter].P_Dynamics, 
 								options:= fbPlanarXtsMover[nForCounter].P_MoverOptions.GearInMasterMoverOptions);
-								nMoveState[nForCounter] := 64;
+								nMoveState[nForCounter] := 75;
 //					END_IF
 
-				70:
+				90:
 					IF fbPlanarXtsMover[nForCounter].P_MoverFeedback.Done THEN
 						StartTimer[nForCounter] := TRUE;
-						nMoveState[nForCounter] := 80;
+						nMoveState[nForCounter] := 100;
 					END_IF
 					
-				80:
-					IF 	StopTimer[nForCounter].Q THEN
+				100:
+					IF StopTimer[nForCounter].Q THEN
 						StartTimer[nForCounter] := FALSE;
 						nMoveState[nForCounter] := 60;
 					END_IF

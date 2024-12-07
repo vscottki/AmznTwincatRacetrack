@@ -20,14 +20,7 @@
     <CombineIds>true</CombineIds>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\E_MergeMode.TcDUT">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
     <Compile Include="DUTs\E_MergeType.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\E_SwitchOpMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\E_TrackNum.TcDUT">
@@ -50,6 +43,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_ExpMoverStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_PlcSystem.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_SwitchStatus.TcDUT">
@@ -378,6 +374,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <SubObject Include="FB_AllExpMovers._M_EvaluateStatus">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
     <SubObject Include="FB_AllExpMovers._M_EvaluateStatus1">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </SubObject>

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="E_MergeType" Id="{5f2b2829-d5cc-006a-38b4-db1394be2037}">
+  <DUT Name="E_MergeType" Id="{11ff7a5b-35c4-03c5-123c-fd6e3f92afba}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
 TYPE E_MergeType :
 (
-	NoMerge 	:= 0,
-	FlyingMerge_Vmax := 1,
-	StartFromMergeWaitStatic := 2,
-	IntermediateV := 3
+	NoMerge := 0,
+	FlyingMergeMoveOnTrack,
+	FlyingMergeMoveSyncd,
+	MergeFromStaticSyncd
 );
 END_TYPE
 ]]></Declaration>

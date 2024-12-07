@@ -28,6 +28,8 @@ VAR
 
 	Mover				        			: MoverSort;
 	
+	IsUsingMagnet							: BOOL;
+	
 	SyncTrail 								: Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail; 
 	
 	CmdDivert									: BOOL;
@@ -182,9 +184,9 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="P_eMerge" Id="{5698d2c6-a9ba-0594-1fa9-f7ecaefdee80}" FolderPath="Properties\">
+    <Property Name="P_eMerge" Id="{be0f5c50-f213-0889-23c4-c4fcbeab4fa5}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_eMerge : REFERENCE TO E_MergeType]]></Declaration>
-      <Get Name="Get" Id="{b80825a0-b14e-0969-14a3-bf841bda528e}">
+      <Get Name="Get" Id="{66234f7d-d091-0373-12fe-cd3e27348925}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -201,6 +203,17 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[P_InSync REF= MC_PlanarFeedbackGearInPosOnTrackWithMasterMover.inSync;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_IsUsingMagnet" Id="{31e2809a-aa4a-0171-27be-c598d48a7c45}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_IsUsingMagnet : REFERENCE TO BOOL]]></Declaration>
+      <Get Name="Get" Id="{9610ce52-ef14-0a98-0673-802dac7b33e6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_IsUsingMagnet REF= IsUsingMagnet;]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -369,7 +382,7 @@ END_IF
 
 _mcPlanarMover.Update();
 
-IF eMerge <> E_MergeType.NoMerge THEN
+IF eMerge = E_MergeType.FlyingMergeMoveSyncd OR eMerge = E_MergeType.MergeFromStaticSyncd THEN
 	MC_PlanarFeedbackGearInPosOnTrackWithMasterMover.Update();
 END_IF
 

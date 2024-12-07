@@ -24,7 +24,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[_M_Configuration();
 
-_M_EvaluateStatus();]]></ST>
+//_M_EvaluateStatus();]]></ST>
     </Implementation>
     <Method Name="_M_Configuration" Id="{236b3e92-f6bc-03b8-0065-f6a0e2b8201b}">
       <Declaration><![CDATA[METHOD PRIVATE _M_Configuration]]></Declaration>

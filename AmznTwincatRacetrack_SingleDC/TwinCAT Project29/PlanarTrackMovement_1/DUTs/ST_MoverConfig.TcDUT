@@ -8,14 +8,14 @@ STRUCT
 	NormalVelo		: LREAL := 2700;
 	StoppingVelo	: LREAL := 400;
 //Acceleration (mm/s^2)
-	NormalAccel		: LREAL := 4000;
-	MaxAccel		: LREAL := 12000;
+	NormalAccel		: LREAL := MaxVelo;
+	MaxAccel		: LREAL := 3*NormalAccel;
 //Deceleration (mm/s^2)
-	NormalDecel		: LREAL := 3000;	
-	MaxDecel		: LREAL := 12000;
+	NormalDecel		: LREAL := MaxVelo;	
+	MaxDecel		: LREAL := 3*NormalDecel;
 //Jerk (mm/s^3)
-	NormalJerk		: LREAL := 10000;
-	HighJerk			: LREAL := 20000;
+	NormalJerk		: LREAL := MaxAccel;
+	HighJerk			: LREAL := 2*NormalJerk;
 	MergeJerk 		: LREAL := 400000;
 //Platooning Vars
 	VeloComp		: LREAL := 200;

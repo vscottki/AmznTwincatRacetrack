@@ -3,7 +3,7 @@
   <DUT Name="ST_ShortcutConfig" Id="{26fa2e14-a928-012c-3abf-7a0b030ea531}">
     <Declaration><![CDATA[TYPE ST_ShortcutConfig :
 STRUCT
-	TestPowerMat  						: BOOL;
+	StopAtPowerMat  						: BOOL;
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

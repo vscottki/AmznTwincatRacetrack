@@ -84,7 +84,7 @@ END_IF
 //Delete queue objects when they reach the merge position
 IF MergeQueue.P_LastObjectRemoved.MoverID <> 0 THEN
 	IF HeadTrackSectorsRef[MergeQueue.P_LastObjectRemoved.MoverID].SectorStatus[GC.OUTER_BIGTRACK_MOVE_END].MoverEnteredSector.Q THEN
-		MergeQueue.ClearLastRemoved();
+//		MergeQueue.ClearLastRemoved();
 	END_IF
 END_IF
 

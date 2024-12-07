@@ -73,12 +73,13 @@ END_IF]]></ST>
 	IF (DivertQueue.P_LastObjectRemoved.Divert = RingBuffer.E_Divert.Divert) AND DivertQueue.P_LastObjectRemoved.DivertOnInterval AND
 			GVL_Mc3.TrackSectors[DivertQueue.P_LastObjectRemoved.MoverID].SectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
 		Command		:= TRUE;
+		fbPlanarXtsMover[DivertQueue.P_LastObjectRemoved.MoverID].P_IsUsingMagnet := TRUE;
 	ELSIF GVL_Mc3.TrackSectors[DivertQueue.P_LastObjectRemoved.MoverID].SectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
 		Command		:= FALSE;
-		fbPlanarXtsMover[DivertQueue.P_LastObjectRemoved.MoverID].P_CmdDivert		:= FALSE;
+		fbPlanarXtsMover[DivertQueue.P_LastObjectRemoved.MoverID].P_CmdDivert			:= FALSE;
+		fbPlanarXtsMover[DivertQueue.P_LastObjectRemoved.MoverID].P_IsUsingMagnet := FALSE;
 		DivertQueue.ClearLastRemoved();
 		stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount -1;
-		MagnetControlledByOtherMover		:= FALSE;
 	END_IF
 END_IF]]></ST>
       </Implementation>

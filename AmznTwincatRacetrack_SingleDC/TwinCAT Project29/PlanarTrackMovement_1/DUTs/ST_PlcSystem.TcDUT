@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_PlcSystem" Id="{5ba1c9f4-deb1-0e0c-14d7-4c27494b0e3f}">
+    <Declaration><![CDATA[TYPE ST_PlcSystem :
+STRUCT
+	nTaskIdx						: DINT;
+	nCycleTime					: UDINT;
+	TempSysTime					: ULINT;
+	SysTime							: ULINT;
+	CfgIntervalExec			: UDINT := 2; //x 1 ms task time
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
