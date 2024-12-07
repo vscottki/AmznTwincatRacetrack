@@ -128,7 +128,7 @@ END_IF
 	astSectorConfig[GC.SHORTCUT_MERGE_CALC_EXACT].TrackSectorEndPosn 					:= 0;
 	
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].PartObjectId						   				 := GVL_General.XtsPartInnerFinish;
-	astSectorConfig[GC.INNER_MERGE_TO_FINISH].PartSectorStartPosn					    := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength()-stTrackGlobalConfig.MergeWaitFinishDistance-stTrackGlobalConfig.MergeWaitAccelDistance + GC.SHUTTLE_LENGTH;
+	astSectorConfig[GC.INNER_MERGE_TO_FINISH].PartSectorStartPosn					    := F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength());
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].PartSectorEndPosn			 				:= GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength();
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorStartPosn					   	:= 0;
 	astSectorConfig[GC.INNER_MERGE_TO_FINISH].TrackSectorEndPosn 					 	:= 0;
@@ -140,12 +140,19 @@ END_IF
 	astSectorConfig[GC.OUTER_MERGE_COLLISION].TrackSectorEndPosn 			 					:= 0;
 	astSectorConfig[GC.OUTER_MERGE_COLLISION].SectorSpansBoundary 			 				:= FALSE;
 	
-	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartObjectId						 	 		:= GVL_General.XtsPartOuterFinish;
-	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartSectorStartPosn			 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND_WAIT].PartSectorStartPosn - stTrackGlobalConfig.ExpMoverLength;
-	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND_WAIT].PartSectorStartPosn;
-	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].TrackSectorStartPosn			 	:= 0;
-	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].TrackSectorEndPosn 			 			:= 0;
-	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTION].SectorSpansBoundary 			 	:= FALSE;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONFLY].PartObjectId						 	 		:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONFLY].PartSectorStartPosn			 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND_WAIT].PartSectorStartPosn - stTrackGlobalConfig.ExpMoverLength;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONFLY].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND_WAIT].PartSectorStartPosn;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONFLY].TrackSectorStartPosn			 	:= 0;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONFLY].TrackSectorEndPosn 			 			:= 0;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONFLY].SectorSpansBoundary 			 	:= FALSE;
+	
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONSTAT].PartObjectId						 	 		:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONSTAT].PartSectorStartPosn			 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND_WAIT].PartSectorStartPosn - stTrackGlobalConfig.ExpMoverLength;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONSTAT].PartSectorEndPosn			 	 	 	:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - astSectorConfig[GC.SHORTCUT_MERGE_COMMAND_WAIT].PartSectorStartPosn;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONSTAT].TrackSectorStartPosn			 	:= 0;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONSTAT].TrackSectorEndPosn 			 			:= 0;
+	astSectorConfig[GC.OUTER_SHORTCUT_PROJECTIONSTAT].SectorSpansBoundary 			 	:= FALSE;
 	
 //Multi
 	astSectorConfig[GC.OUTER_TIGHTGAP_ZONE].PartObjectIdEnt						 	:= GVL_General.XtsPartOuterFinish;
@@ -177,12 +184,12 @@ END_IF
 	astSectorConfig[GC.OUTER_BIGTRACK_END].TrackSectorEndPosn 			 				:= 0;
 	astSectorConfig[GC.OUTER_BIGTRACK_END].SectorSpansBoundary					:= FALSE;
 	
-	astSectorConfig[GC.OUTER_BIGTRACK_COMPLETE].PartObjectId						 	 			:= GVL_General.XtsPartOuterFinish;
-	astSectorConfig[GC.OUTER_BIGTRACK_COMPLETE].PartSectorStartPosn			 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
-	astSectorConfig[GC.OUTER_BIGTRACK_COMPLETE].PartSectorEndPosn			 	 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
-	astSectorConfig[GC.OUTER_BIGTRACK_COMPLETE].TrackSectorStartPosn			 			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
-	astSectorConfig[GC.OUTER_BIGTRACK_COMPLETE].TrackSectorEndPosn 			 				:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();                                                
-	astSectorConfig[GC.OUTER_BIGTRACK_COMPLETE].SectorSpansBoundary					:= FALSE;
+	astSectorConfig[GC.OUTER_BIGTRACK_LSMALL].PartObjectId						 	 			:= GVL_General.XtsPartOuterFinish;
+	astSectorConfig[GC.OUTER_BIGTRACK_LSMALL].PartSectorStartPosn			 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength();
+	astSectorConfig[GC.OUTER_BIGTRACK_LSMALL].PartSectorEndPosn			 	 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();
+	astSectorConfig[GC.OUTER_BIGTRACK_LSMALL].TrackSectorStartPosn			 			:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength();
+	astSectorConfig[GC.OUTER_BIGTRACK_LSMALL].TrackSectorEndPosn 			 				:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength();                                                
+	astSectorConfig[GC.OUTER_BIGTRACK_LSMALL].SectorSpansBoundary					:= FALSE;
 
 	astSectorConfig[GC.OUTER_BIGTRACK_MOVE_END].PartObjectId						 	 		:= GVL_General.XtsPartOuterFinish;
 	astSectorConfig[GC.OUTER_BIGTRACK_MOVE_END].PartSectorStartPosn			 	 		:= GVL_Mc3.MC_Tracks[E_TrackNum.Big].GetLength() - stTrackGlobalConfig.TargetPosnBeforeTrackEnd;
@@ -190,14 +197,6 @@ END_IF
 	astSectorConfig[GC.OUTER_BIGTRACK_MOVE_END].TrackSectorStartPosn			 			:= 0;
 	astSectorConfig[GC.OUTER_BIGTRACK_MOVE_END].TrackSectorEndPosn 			 				:= 0;
 	astSectorConfig[GC.OUTER_BIGTRACK_MOVE_END].SectorSpansBoundary					:= FALSE;
-
-//	astSectorConfig[GC.OUTER_FINISH_MOVERTOFOLLOW].PartObjectId						 	 					:= GVL_General.XtsPartOuterFinish;
-//	astSectorConfig[GC.OUTER_FINISH_MOVERTOFOLLOW].PartSectorStartPosn			 	 		:= astSectorConfig[GC.OUTER_FINISH_LAPTRIG].PartSectorEndPosn + ((GC.SHUTTLE_LENGTH - stTrackGlobalConfig.MaxLagDistance) / 2);
-//	astSectorConfig[GC.OUTER_FINISH_MOVERTOFOLLOW].PartSectorEndPosn			 	 	 		:= astSectorConfig[GC.OUTER_FINISH_MOVERTOFOLLOW].PartSectorStartPosn + ((GC.SHUTTLE_LENGTH + stTrackGlobalConfig.MaxLagDistance) / 2);
-//	astSectorConfig[GC.OUTER_FINISH_MOVERTOFOLLOW].TrackSectorStartPosn			 			:= 0;
-//	astSectorConfig[GC.OUTER_FINISH_MOVERTOFOLLOW].TrackSectorEndPosn 			 				:= 0;
-//	astSectorConfig[GC.OUTER_FINISH_MOVERTOFOLLOW].SectorSpansBoundary					:= FALSE;
-
 END_IF
 
 ]]></ST>

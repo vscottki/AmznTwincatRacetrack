@@ -217,6 +217,28 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <Property Name="P_MasterSyncId" Id="{757befa9-5bd3-04d0-2121-1ceb668ef508}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_MasterSyncId : REFERENCE TO UDINT]]></Declaration>
+      <Get Name="Get" Id="{7837c813-2a65-0516-08b0-2ac85a1a692d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_MasterSyncId REF= stMoverOptions.MasterMoverID;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_MasterSyncPosition" Id="{9eea6ee0-9ba3-0fa1-12f6-44da7efc9338}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY P_MasterSyncPosition : REFERENCE TO LREAL]]></Declaration>
+      <Get Name="Get" Id="{586505d9-7b5e-0683-1a31-d41fed34883b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_MasterSyncPosition REF= stMoverOptions.MasterSyncPosition;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="P_MC_PlanarMover" Id="{79d72b75-52b9-47c8-886e-5e60276bf5f1}" FolderPath="Properties\">
       <Declaration><![CDATA[PROPERTY P_MC_PlanarMover : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarMover]]></Declaration>
       <Get Name="Get" Id="{71cad725-c4c4-49c5-9410-cee17b681f5a}">
