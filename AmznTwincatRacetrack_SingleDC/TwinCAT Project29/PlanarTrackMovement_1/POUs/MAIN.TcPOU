@@ -422,11 +422,13 @@ CASE nCase OF
 					IF MergeQueue.P_LastObjectRemoved.MoverID <> 0 THEN
 					fbPlanarXtsMover[nForCounter].P_eMerge				:= E_MergeType.FlyingMergeMoveSyncd;
 						fbPlanarXtsMover[nForCounter].P_MasterSyncId := MergeQueue.P_LastObjectRemoved.MoverID;
-						IF MergeQueue.P_LastObjectRemoved.ExpMoverType = E_ExpMover.Head THEN
-							fbPlanarXtsMover[nForCounter].P_MasterSyncPosition	:= HeadExpMover[fbPlanarXtsMover[nForCounter].P_MasterSyncId].stExpMoverStatus.TrackSectorCenterHead;
-						ELSIF MergeQueue.P_LastObjectRemoved.ExpMoverType = E_ExpMover.Tail THEN
-							fbPlanarXtsMover[nForCounter].P_MasterSyncPosition	:= TailExpMover[fbPlanarXtsMover[nForCounter].P_MasterSyncId].stExpMoverStatus.TrackSectorCenterTail;
-						END_IF
+//						IF MergeQueue.P_LastObjectRemoved.ExpMoverType = E_ExpMover.Head THEN
+//							fbPlanarXtsMover[nForCounter].P_MasterSyncPosition	:= HeadExpMover[fbPlanarXtsMover[nForCounter].P_MasterSyncId].stExpMoverStatus.TrackSectorCenterHead;
+//						ELSIF MergeQueue.P_LastObjectRemoved.ExpMoverType = E_ExpMover.Tail THEN
+//							fbPlanarXtsMover[nForCounter].P_MasterSyncPosition	:= TailExpMover[fbPlanarXtsMover[nForCounter].P_MasterSyncId].stExpMoverStatus.TrackSectorCenterTail;
+//						END_IF
+							// use raw mover reference; likely need some position compensation, i.e, stTrackGlobalConfig.ExpMoverLength;
+							fbPlanarXtsMover[nForCounter].P_MasterSyncPosition	:= fbPlanarXtsMover[fbPlanarXtsMover[nForCounter].P_MasterSyncId].P_XtsPositionInfo.fTrackPosition;							
 						MergeQueue.ClearLastRemoved(); // master sync data consumed by slave
 						nMoveState[nForCounter] := 60;					
 					END_IF

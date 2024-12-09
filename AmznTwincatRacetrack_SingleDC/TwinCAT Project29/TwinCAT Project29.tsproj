@@ -3214,7 +3214,7 @@ External Setpoint Generation:
 		<ImageData Id="1018">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000074120000741200000000000000000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000000000000000000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1019">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff8e8582b1a9a5ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3bebbaea9a659565355524f5755525a58555e5b5862605d6764616d6a6772706d817f7cff00ffff00ffff00ffff00ff7e7875e1dddca1a09e7673707b7875817f7c817f7d85838084827f84817e827e7c52504d777472ff00ffff00ffff00ff4845428b89886a686b7c78769693909a979599959398969497969395918f73706e5e5b595e5b58acaaa7ff00ffff00ff45423f53504d94908dff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff7e7a7764625f989693ff00ffff00ff474441534f4ca5a19eff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff9793915f5c59989592ff00ffff00ff524e4b4d4a484f4d4aff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff565451625f5caaa8a5ff00ffff00ffff00ff464442504e4b55535054524f5653505755525755525655515554515a58555b5956726f6cff00ffff00ffff00ffff00ffff00ff5653504443404946434a48454c49474e4b484e4b49504e4b514e4b757370ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{2C908431-BA47-423A-AF4F-887E2E229EBE}" Target64Bit="true" RelativeTargetNetId="true" RelativeIpAddresses="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{2C908431-BA47-423A-AF4F-887E2E229EBE}" TargetNetId="11.200.5.30.1.1" Target64Bit="true" RelativeTargetNetId="true" RelativeIpAddresses="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings MaxCpus="4" NonWinCpus="2" RouterMemory="134217728" MaxStackSize="128">
 				<Cpu CpuId="1" BaseTime="5000"/>
@@ -5078,7 +5078,7 @@ External Setpoint Generation:
 		</System>
 		<Motion>
 			<NC>
-				<SafTask Priority="4" CycleTime="20000" AmsPort="501" Affinity="#x00000004" IoAtBegin="true" SafTaskInfo="256">
+				<SafTask Priority="4" CycleTime="20000" AmsPort="501" Affinity="#x00000004" IoAtBegin="true" AmsNetId="192.168.8.178.1.1" SafTaskInfo="256">
 					<Name>NC-Task 1 SAF</Name>
 					<Vars VarGrpType="1" InsertType="1">
 						<Name>Inputs</Name>
@@ -6651,7 +6651,7 @@ External Setpoint Generation:
 			<Project File="Modules.xti"/>
 		</Safety>
 		<Io>
-			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="192.168.8.178.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="3">
+			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="11.200.5.30.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="3">
 				<Name>Device 1 (EtherCAT)</Name>
 				<AddressInfo>
 					<Ccat>
@@ -9449,7 +9449,7 @@ Bit 8 - 15 : reserved]]></Comment>
 					<Box Id="95" BoxType="9099" BoxFlags="#x00000020">
 						<Name>Term 95 (EL6695)</Name>
 						<ImageId>1016</ImageId>
-						<EtherCAT SlaveType="3" AdsServerAddress="c0a808b20260f603" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="63" EoeType="1" FoeType="1" VendorId="#x00000002" ProductCode="#x1a273052" RevisionNo="#x00060000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" DcTimeLoopControlOnly="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6695 EtherCAT Bridge terminal (Primary)" Desc="EL6695" PortABoxInfo="#x0200000e">
+						<EtherCAT SlaveType="3" AdsServerAddress="0bc8051e0260f603" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="63" EoeType="1" FoeType="1" VendorId="#x00000002" ProductCode="#x1a273052" RevisionNo="#x00060000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" DcTimeLoopControlOnly="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6695 EtherCAT Bridge terminal (Primary)" Desc="EL6695" PortABoxInfo="#x0200000e">
 							<SyncMan>0010000426000100010000008000da050004001026010000</SyncMan>
 							<SyncMan>0016000422000100020000008000da050004001622010000</SyncMan>
 							<SyncMan>001c00006400000003000000000000000000001c64010000</SyncMan>
@@ -9988,7 +9988,7 @@ Bit 8 - 15 : reserved]]></Comment>
 				</Box>
 				<EtherCAT ManualDcSelect="true" DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120" DcSyncTask="2"/>
 			</Device>
-			<Device Id="8" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28680" AmsNetId="192.168.8.178.9.1" RemoteName="Device 8 (EtherCAT)" InfoImageId="9">
+			<Device Id="8" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28680" AmsNetId="11.200.5.30.9.1" RemoteName="Device 8 (EtherCAT)" InfoImageId="9">
 				<Name>Device 8 (EtherCAT)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -19264,7 +19264,7 @@ Bit 8 - 15 : reserved]]></Comment>
 				</Box>
 				<EtherCAT EpMacAddr="020105800000" ManualDcSelect="true" DcSyncMode="3" EpIpAddr="-1442927874" EpMaxCon="16" EpFirstConAddr="57344" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120" MaxSwitchMACs="100" DcSyncTask="2"/>
 			</Device>
-			<Device Id="4" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.8.178.5.1" RemoteName="Device 4 (EtherCAT)" InfoImageId="11">
+			<Device Id="4" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="11.200.5.30.5.1" RemoteName="Device 4 (EtherCAT)" InfoImageId="11">
 				<Name>Device 4 (EtherCAT)</Name>
 				<AddressInfo>
 					<Pnp>
