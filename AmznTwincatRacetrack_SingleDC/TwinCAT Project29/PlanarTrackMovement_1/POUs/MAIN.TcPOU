@@ -288,7 +288,7 @@ CASE nCase OF
 			fbPlanarXtsMover[GC.nNumMinMovers].P_Dynamics.SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 
 			// allow updating the config per the HMI, when it will not jeopardize the system
-			IF NOT TrackSectors[nForCounter].SectorStatus[GC.MAG_TRIG_SECTOR_OPART_END].MoverIsOnSector AND NOT 
+			IF NOT TrackSectors[nForCounter].SectorStatus[GC.DIVERTQ_SECTOR_OPART].MoverIsOnSector AND NOT 
 				TrackSectors[nForCounter].SectorStatus[GC.SHORTCUT_ENTRY_HALF_IPART].MoverIsOnSector THEN
 				stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
 			END_IF
@@ -343,32 +343,39 @@ CASE nCase OF
 					END_IF
 
 				10: //Trig state for decision to divert
-					IF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stSectorStatus.MoverEnteredSector.Q THEN
+					IF TrackSectors[nForCounter].afbSector[GC.DIVERTQ_SECTOR_OPART].stSectorStatus.MoverEnteredSector.Q THEN
 						GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig		:= GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig +1; //always MODing this; don't need to decrement
-						TempMoverIndex	:= ((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1); // capture the index
-						DivertingMoverIndex := fbPlanarXtsMover[nForCounter].P_MoverId;
+						TempItvlMoverIndex	:= ((GVL_General.stSwitchStatus.ShuttleCountAtDivertTrig MOD GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) +1); // capture the index
 						AllTrackSectors.M_UpdateSectorCounts(SectorNr := GC.SHORTCUT_CALC_SECTOR_IPART);
+						MoverIndexDivertTrig			:= fbPlanarXtsMover[nForCounter].P_MoverId;
 						DivertQueue.M_UpdateAtTrig();
 						nMoveState[nForCounter] 	:= 12;
 					END_IF
 					
-				12:
-					IF (stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount > 0) THEN
-						IF (stSwitchStatus.ShuttleQueueCount > 0) AND NOT MagnetControlledByOtherMover THEN
-							DivertQueue.RemoveObjFromBuffer();
+				12: // Command to move needs to be given this early
+					IF TrackSectors[nForCounter].afbSector[GC.DIVERTQ_SECTOR_OPART].stSectorStatus.MoverIsOnSector THEN
+						DivertQueue.RemoveObjFromBuffer();
+						stDivertingMover		:= stMoverDivertInit; // clear this after logged to buffer	
+						nMoveState[nForCounter] 	:= 13;
+					END_IF
+				
+				13:
+//				IF DivertQueue.P_ObjectRemoved THEN
+					IF (DivertQueue.P_LastObjectRemoved.Divert = RingBuffer.E_Divert.Divert) AND (DivertQueue.P_LastObjectRemoved.MoverID <> 0) AND 
+						(stDivertingMover.MoverID = 0) AND SwitchMagnet.P_PermIntlkOK  AND NOT MagnetControlledByOtherMover THEN
+						stDivertingMover := DivertQueue.P_LastObjectRemoved; // hand over data from RingBuffer
 							// Divert Move command
-							fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[nForCounter].P_MoverFeedback,
+							fbPlanarXtsMover[stDivertingMover.MoverID].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[stDivertingMover.MoverID].P_MoverFeedback,
 																				targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Small],
 																				targetPositionOnTrack := (GVL_Mc3.MC_Tracks[E_TrackNum.Small].GetLength() - GC.SHUTTLE_LENGTH) / 2, // midpoint of shortcut
-																				constraint := fbPlanarXtsMover[nForCounter].P_Dynamics,
-																				options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
+																				constraint := fbPlanarXtsMover[stDivertingMover.MoverID].P_Dynamics,
+																				options := fbPlanarXtsMover[stDivertingMover.MoverID].P_MoverOptions.BaseMoveOptions);
+							DivertQueue.ClearLastRemoved();											
 							nMoveState[nForCounter] 	:= 30; //Diverting Mover
-						ELSIF NOT fbPlanarXtsMover[nForCounter].P_CmdDivert THEN
+					ELSE
 							nMoveState[nForCounter] 	:= 15;
-						END_IF
-					ELSIF TrackSectors[nForCounter].afbSector[GC.MAG_TRIG_SECTOR_OPART_END].stSectorStatus.MoverIsOnSector THEN
-						 nMoveState[nForCounter] 	:= 15;
 					END_IF
+//				END_IF
 	
 				15: // In Recirc - from Main to Big Track
 					fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[nForCounter].P_MoverFeedback,

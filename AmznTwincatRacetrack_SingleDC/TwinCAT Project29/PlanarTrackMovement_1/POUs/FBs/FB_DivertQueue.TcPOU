@@ -11,31 +11,24 @@ END_VAR
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Method Name="M_UpdateAtTrig" Id="{6ebfa865-70ed-099f-252e-a28cbe294425}">
-      <Declaration><![CDATA[METHOD M_UpdateAtTrig
-VAR_INST
-	stMoverDivert : RingBuffer.ST_MoverDivert;
-END_VAR
-VAR
-	stMoverDivertInit : RingBuffer.ST_MoverDivert;
-END_VAR]]></Declaration>
+      <Declaration><![CDATA[METHOD M_UpdateAtTrig]]></Declaration>
       <Implementation>
         <ST><![CDATA[//Increment counter, mark each mover for divert interval
 //FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
-	
-	stMoverDivert.MoverID								:= DivertingMoverIndex; // regardless of the command to divert, log the MoverID
 
-	IF (stSwitchStatus.ShuttleQueueCount + stSwitchStatus.ShuttleCountOnShortcut) <
-		GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
-			stMoverDivert.Divert								:= RingBuffer.E_Divert.Divert;
-		IF (TempMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
-			stMoverDivert.DivertOnInterval			:= TRUE;
-			fbPlanarXtsMover[DivertingMoverIndex].P_CmdDivert		:= TRUE;
-			DivertQueue.AddObjToBuffer(RefObject := stMoverDivert);
-			stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount + 1;
-		END_IF
-			HistoryDivertQueue.AddObjToBuffer(RefObject := stMoverDivert);
-			stMoverDivert		:= stMoverDivertInit;
+stDivertingMover.MoverID								:= MoverIndexDivertTrig; // regardless of the command to divert, log the MoverID
+
+IF (stSwitchStatus.ShuttleQueueCount + stSwitchStatus.ShuttleCountOnShortcut) <
+	GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
+		stDivertingMover.Divert								:= RingBuffer.E_Divert.Divert;
+	IF (TempItvlMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
+		stDivertingMover.DivertOnInterval			:= TRUE;
+		fbPlanarXtsMover[stDivertingMover.MoverID].P_CmdDivert		:= TRUE;
+		DivertQueue.AddObjToBuffer(RefObject := stDivertingMover);
+		stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount + 1;
 	END_IF
+		HistoryDivertQueue.AddObjToBuffer(RefObject := stDivertingMover);
+END_IF
 
 //END_FOR]]></ST>
       </Implementation>

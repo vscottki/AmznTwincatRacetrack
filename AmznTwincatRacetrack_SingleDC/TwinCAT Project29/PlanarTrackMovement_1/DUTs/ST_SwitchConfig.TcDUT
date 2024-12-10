@@ -3,9 +3,9 @@
   <DUT Name="ST_SwitchConfig" Id="{1b01e06e-3ad9-017e-0490-e818c7958e80}">
     <Declaration><![CDATA[TYPE ST_SwitchConfig :
 STRUCT
-	MagnetStartPosition				    	    : LREAL := 9860; // mm // a little early; 
-	MagnetEndPosition				    	    : LREAL := 10800; // 10695 - Length of Main Track // mm
-	OnInnerLoopOffMagnetPosn					: LREAL	:= 170; //mm
+	MagnetOnStartPosition				    : LREAL := 9860; // mm // a little early; 
+	MagnetOnEndPosition				    	: LREAL := 10695; // Length of Main Track // mm
+	OnInnerLoopOffMagnetPosn				: LREAL	:= 170; //mm
 	SwitchCurrentNominal						: LREAL := 5.8; // A (See function for computation)
 	CurrentMultFactor							: LREAL := 1310; // Scaling factor for 10V output=25.0A
     UseNominalCurrentVeloSetpoints              : BOOL;

@@ -8,8 +8,11 @@ VAR_INPUT
 	ShuttleVelocity				: REFERENCE TO LREAL := GVL_General.stMoverConfig.NormalVelo;
 	SafetyPermIntlk				: REFERENCE TO BOOL;
 END_VAR
+//VAR_IN_OUT
+//	MoverRef						: 
+//END_VAR
 VAR
-	TimeoutTime					: TIME := T#2S;
+	TimeoutTime					: TIME := T#3S;
 	pwm							: FB_PWM;
 	Command	 		  			: BOOL;
 	Timeout						: TON;
@@ -67,19 +70,21 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_EvaluateInlineCommands" Id="{76dc13a7-b013-0892-3e05-7bb942654e1e}">
-      <Declaration><![CDATA[METHOD M_EvaluateInlineCommands]]></Declaration>
+      <Declaration><![CDATA[METHOD M_EvaluateInlineCommands
+VAR
+	stMoverDivertInit : RingBuffer.ST_MoverDivert;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF DivertQueue.P_LastObjectRemoved.MoverID <> 0 THEN
-	IF (DivertQueue.P_LastObjectRemoved.Divert = RingBuffer.E_Divert.Divert) AND DivertQueue.P_LastObjectRemoved.DivertOnInterval AND
-			GVL_Mc3.TrackSectors[DivertQueue.P_LastObjectRemoved.MoverID].SectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
-		Command		:= TRUE;
-		fbPlanarXtsMover[DivertQueue.P_LastObjectRemoved.MoverID].P_IsUsingMagnet := TRUE;
-	ELSIF GVL_Mc3.TrackSectors[DivertQueue.P_LastObjectRemoved.MoverID].SectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
-		Command		:= FALSE;
-		fbPlanarXtsMover[DivertQueue.P_LastObjectRemoved.MoverID].P_CmdDivert			:= FALSE;
-		fbPlanarXtsMover[DivertQueue.P_LastObjectRemoved.MoverID].P_IsUsingMagnet := FALSE;
-		DivertQueue.ClearLastRemoved();
+        <ST><![CDATA[IF stDivertingMover.MoverID <> 0 THEN
+	IF GVL_Mc3.TrackSectors[stDivertingMover.MoverID].SectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
+		Command								:= TRUE;
+		fbPlanarXtsMover[stDivertingMover.MoverID].P_IsUsingMagnet := TRUE;
+	ELSIF GVL_Mc3.TrackSectors[stDivertingMover.MoverID].SectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
+		Command		:= FALSE; // Any mover exiting the Magnet drops the command
+		fbPlanarXtsMover[stDivertingMover.MoverID].P_CmdDivert			:= FALSE;
+		fbPlanarXtsMover[stDivertingMover.MoverID].P_IsUsingMagnet 	:= FALSE;
 		stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount -1;
+		stDivertingMover		:= stMoverDivertInit;
 	END_IF
 END_IF]]></ST>
       </Implementation>

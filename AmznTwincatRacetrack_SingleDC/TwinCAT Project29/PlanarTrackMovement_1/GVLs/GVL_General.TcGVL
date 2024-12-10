@@ -33,8 +33,10 @@ VAR_GLOBAL
 //Divert
 	DivertQueue											: FB_DivertQueue; // Buffer for Divert Requests
 	HistoryDivertQueue							: FB_DivertQueue; // Log of all that went through the trigger point
-	TempMoverIndex									: UDINT;
-	DivertingMoverIndex							: UDINT := GC.nNumMinMovers;
+	TempItvlMoverIndex							: UDINT;
+	MoverIndexDivertTrig							: UDINT := GC.nNumMinMovers;
+	stDivertingMover								: RingBuffer.ST_MoverDivert;
+	stMoverDivertInit 							: RingBuffer.ST_MoverDivert;
 	SwitchMagnet										: FB_SwitchMagnet;
 	MagnetControlledByOtherMover		: BOOL;
 	stSwitchStatus        		    	: ST_SwitchStatus;
