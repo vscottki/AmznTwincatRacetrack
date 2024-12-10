@@ -3,6 +3,7 @@
   <POU Name="MAIN" Id="{66ade15a-bef8-4e71-a124-c2e5978c50eb}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	ManMergeCmd				: BOOL;
 	bAllDone					: BOOL;
 	bStopSequence				: BOOL;
 	                    		
@@ -394,7 +395,9 @@ CASE nCase OF
 					IF SwitchMagnet.P_PermIntlkOK THEN
 						SwitchMagnet.M_EvaluateInlineCommands();
 					END_IF
+					
 					IF NOT MagnetControlledByOtherMover THEN
+						stDivertingMover		:= stMoverDivertInit;
 						nMoveState[nForCounter] 	:= 35;
 					END_IF
 					
@@ -491,7 +494,8 @@ CASE nCase OF
 						//fbPlanarXtsMover[nForCounter].P_InSync THEN				
 
 				61:
-				IF fbPlanarXtsMover[nForCounter].P_MoverFeedback.Done THEN
+				IF fbPlanarXtsMover[nForCounter].P_MoverFeedback.Done AND ManMergeCmd THEN
+					ManMergeCmd	:= FALSE;
 					nMoveState[nForCounter] := 62;
 				END_IF
 					

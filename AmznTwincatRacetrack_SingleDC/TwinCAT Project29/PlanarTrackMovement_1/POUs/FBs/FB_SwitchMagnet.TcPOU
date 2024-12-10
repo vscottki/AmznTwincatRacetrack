@@ -80,11 +80,10 @@ END_VAR]]></Declaration>
 		Command								:= TRUE;
 		fbPlanarXtsMover[stDivertingMover.MoverID].P_IsUsingMagnet := TRUE;
 	ELSIF GVL_Mc3.TrackSectors[stDivertingMover.MoverID].SectorStatus[GC.MAG_ON_SECTOR_OPART].MoverExitedSector.Q THEN
-		Command		:= FALSE; // Any mover exiting the Magnet drops the command
+		Command								:= FALSE; // Any mover exiting the Magnet drops the command
 		fbPlanarXtsMover[stDivertingMover.MoverID].P_CmdDivert			:= FALSE;
 		fbPlanarXtsMover[stDivertingMover.MoverID].P_IsUsingMagnet 	:= FALSE;
 		stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount -1;
-		stDivertingMover		:= stMoverDivertInit;
 	END_IF
 END_IF]]></ST>
       </Implementation>
