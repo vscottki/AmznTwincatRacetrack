@@ -28828,89 +28828,75 @@ Bit 8 - 15 : reserved]]></Comment>
 				<Link VarA="Box 79 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4" VarB="ConnectionInputs^TwinSafeGroup1.Box 79 (AT5100-0100) - Module 1 (SAFETY)_136 TxPDO"/>
 				<Link VarA="Box 81 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4" VarB="ConnectionInputs^TwinSafeGroup1.Box 81 (AT5100-0100) - Module 1 (SAFETY)_138 TxPDO"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 34">
-				<Link VarA="Box 50 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 50 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 50 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 50 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 50 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 1">
+				<Link VarA="Box 74 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 74 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 74 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 74 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 74 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 35">
-				<Link VarA="Box 51 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 51 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 51 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 51 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 51 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 2">
+				<Link VarA="Box 75 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 75 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 75 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 75 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 75 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 36">
-				<Link VarA="Box 52 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 52 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 52 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 52 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 52 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 3">
+				<Link VarA="Box 76 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 76 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 76 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 76 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 76 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 37">
-				<Link VarA="Box 53 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 53 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 53 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 53 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 53 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 4">
+				<Link VarA="Box 77 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 77 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 77 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 77 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 77 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 38">
-				<Link VarA="Box 54 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 54 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 54 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 54 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 54 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 46">
+				<Link VarA="Box 72 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 72 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 72 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 72 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 72 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 39">
-				<Link VarA="Box 55 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 55 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 55 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 55 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 55 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 47">
+				<Link VarA="Box 73 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 73 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 73 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 73 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 73 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 40">
-				<Link VarA="Box 56 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 56 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 56 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 56 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 56 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 5">
+				<Link VarA="Box 78 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 78 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 78 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 78 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 78 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 41">
-				<Link VarA="Box 57 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 57 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 57 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 57 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 57 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 6">
+				<Link VarA="Box 79 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 79 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 79 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 79 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 79 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 42">
-				<Link VarA="Box 58 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 58 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 58 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 58 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 58 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 7">
+				<Link VarA="Box 80 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 80 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 80 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 80 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 80 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 43">
-				<Link VarA="Box 59 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 59 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 59 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 59 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 59 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
-			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 44">
-				<Link VarA="Box 60 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 60 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 60 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 60 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 60 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
-			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 45">
-				<Link VarA="Box 61 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 61 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 61 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 61 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 61 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 8">
+				<Link VarA="Box 81 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 81 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 81 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 81 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 81 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
 			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 2^XL Module 48">
 				<Link VarA="Box 70 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
@@ -28982,75 +28968,89 @@ Bit 8 - 15 : reserved]]></Comment>
 				<Link VarA="Box 69 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
 				<Link VarA="Box 69 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 1">
-				<Link VarA="Box 74 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 74 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 74 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 74 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 74 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 34">
+				<Link VarA="Box 50 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 50 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 50 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 50 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 50 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 2">
-				<Link VarA="Box 75 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 75 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 75 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 75 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 75 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 35">
+				<Link VarA="Box 51 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 51 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 51 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 51 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 51 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 3">
-				<Link VarA="Box 76 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 76 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 76 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 76 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 76 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 36">
+				<Link VarA="Box 52 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 52 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 52 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 52 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 52 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 4">
-				<Link VarA="Box 77 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 77 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 77 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 77 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 77 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 37">
+				<Link VarA="Box 53 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 53 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 53 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 53 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 53 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 46">
-				<Link VarA="Box 72 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 72 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 72 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 72 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 72 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 38">
+				<Link VarA="Box 54 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 54 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 54 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 54 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 54 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 47">
-				<Link VarA="Box 73 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 73 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 73 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 73 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 73 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 39">
+				<Link VarA="Box 55 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 55 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 55 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 55 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 55 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 5">
-				<Link VarA="Box 78 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 78 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 78 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 78 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 78 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 40">
+				<Link VarA="Box 56 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 56 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 56 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 56 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 56 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 6">
-				<Link VarA="Box 79 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 79 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 79 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 79 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 79 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 41">
+				<Link VarA="Box 57 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 57 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 57 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 57 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 57 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 7">
-				<Link VarA="Box 80 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 80 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 80 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 80 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 80 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 42">
+				<Link VarA="Box 58 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 58 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 58 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 58 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 58 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 8">
-				<Link VarA="Box 81 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 81 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 81 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 81 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 81 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 43">
+				<Link VarA="Box 59 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 59 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 59 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 59 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 59 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			</OwnerB>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 44">
+				<Link VarA="Box 60 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 60 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 60 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 60 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 60 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			</OwnerB>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 45">
+				<Link VarA="Box 61 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 61 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 61 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 61 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 61 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIID^Device 8 (EtherCAT)">
@@ -29090,89 +29090,75 @@ Bit 8 - 15 : reserved]]></Comment>
 				<Link VarA="Box 47 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 47 (AT5100-0100) - Module 1 (SAFETY)_104 RxPDO"/>
 				<Link VarA="Box 49 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 49 (AT5100-0100) - Module 1 (SAFETY)_106 RxPDO"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 19">
-				<Link VarA="Box 38 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 38 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 38 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 38 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 38 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 10">
+				<Link VarA="Box 19 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 19 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 19 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 19 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 19 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 20">
-				<Link VarA="Box 39 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 39 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 39 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 39 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 39 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 11">
+				<Link VarA="Box 20 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 20 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 20 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 20 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 20 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 21">
-				<Link VarA="Box 40 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 40 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 40 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 40 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 40 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 12">
+				<Link VarA="Box 21 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 21 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 21 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 21 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 21 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 22">
-				<Link VarA="Box 41 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 41 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 41 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 41 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 41 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 13">
+				<Link VarA="Box 22 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 22 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 22 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 22 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 22 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 26">
-				<Link VarA="Box 42 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 42 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 42 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 42 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 42 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 14">
+				<Link VarA="Box 23 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 23 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 23 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 23 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 23 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 27">
-				<Link VarA="Box 43 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 43 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 43 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 43 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 43 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 15">
+				<Link VarA="Box 24 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 24 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 24 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 24 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 24 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 28">
-				<Link VarA="Box 44 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 44 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 44 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 44 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 44 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 16">
+				<Link VarA="Box 25 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 25 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 25 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 25 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 25 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 29">
-				<Link VarA="Box 45 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 45 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 45 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 45 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 45 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 17">
+				<Link VarA="Box 26 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 26 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 26 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 26 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 26 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 30">
-				<Link VarA="Box 46 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 46 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 46 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 46 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 46 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 18">
+				<Link VarA="Box 27 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 27 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 27 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 27 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 27 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 31">
-				<Link VarA="Box 47 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 47 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 47 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 47 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 47 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
-			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 32">
-				<Link VarA="Box 48 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 48 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 48 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 48 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 48 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
-			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 33">
-				<Link VarA="Box 49 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 49 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 49 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 49 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 49 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 1^XL Module 9">
+				<Link VarA="Box 18 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 18 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 18 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 18 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 18 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
 			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 2^XL Module 23">
 				<Link VarA="Box 37 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
@@ -29244,75 +29230,89 @@ Bit 8 - 15 : reserved]]></Comment>
 				<Link VarA="Box 36 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
 				<Link VarA="Box 36 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 10">
-				<Link VarA="Box 19 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 19 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 19 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 19 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 19 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 19">
+				<Link VarA="Box 38 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 38 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 38 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 38 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 38 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 11">
-				<Link VarA="Box 20 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 20 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 20 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 20 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 20 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 20">
+				<Link VarA="Box 39 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 39 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 39 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 39 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 39 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 12">
-				<Link VarA="Box 21 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 21 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 21 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 21 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 21 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 21">
+				<Link VarA="Box 40 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 40 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 40 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 40 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 40 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 13">
-				<Link VarA="Box 22 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 22 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 22 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 22 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 22 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 22">
+				<Link VarA="Box 41 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 41 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 41 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 41 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 41 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 14">
-				<Link VarA="Box 23 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 23 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 23 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 23 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 23 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 26">
+				<Link VarA="Box 42 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 42 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 42 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 42 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 42 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 15">
-				<Link VarA="Box 24 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 24 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 24 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 24 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 24 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 27">
+				<Link VarA="Box 43 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 43 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 43 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 43 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 43 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 16">
-				<Link VarA="Box 25 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 25 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 25 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 25 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 25 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 28">
+				<Link VarA="Box 44 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 44 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 44 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 44 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 44 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 17">
-				<Link VarA="Box 26 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 26 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 26 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 26 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 26 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 29">
+				<Link VarA="Box 45 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 45 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 45 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 45 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 45 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 18">
-				<Link VarA="Box 27 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 27 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 27 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 27 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 27 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 30">
+				<Link VarA="Box 46 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 46 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 46 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 46 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 46 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
-			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 9">
-				<Link VarA="Box 18 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
-				<Link VarA="Box 18 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
-				<Link VarA="Box 18 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
-				<Link VarA="Box 18 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
-				<Link VarA="Box 18 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 31">
+				<Link VarA="Box 47 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 47 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 47 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 47 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 47 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			</OwnerB>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 32">
+				<Link VarA="Box 48 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 48 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 48 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 48 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 48 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
+			</OwnerB>
+			<OwnerB Name="TIRC^TcCOM Objects^XTS ProcessingUnit 1^XL Part 3^XL Module 33">
+				<Link VarA="Box 49 (AT5100-0100)^DRV Commutation angle^Commutation angle" VarB="Data Pointer^CommutationAngle"/>
+				<Link VarA="Box 49 (AT5100-0100)^DRV Controlword^Controlword" VarB="Data Pointer^Control"/>
+				<Link VarA="Box 49 (AT5100-0100)^DRV Statusword^Statusword" VarB="Data Pointer^Status"/>
+				<Link VarA="Box 49 (AT5100-0100)^DRV Target torque^Target torque" VarB="Data Pointer^Torque"/>
+				<Link VarA="Box 49 (AT5100-0100)^XFB Inputs^Data" VarB="Data Pointer^HallSensorValues"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^PlanarTrackMovement_1^PlanarTrackMovement_1 Instance">
