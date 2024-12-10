@@ -38080,11 +38080,11 @@
 					<Parameter OnlineParameter="true" ShowSubItems="true" CreateSymbol="true" ReadOnly="true" Group="Info">
 						<Name>CurrentModuleObjectIDs</Name>
 						<Comment><![CDATA[Returns the object IDs of the current modules.]]></Comment>
-						<BitSize>32</BitSize>
+						<BitSize>0</BitSize>
 						<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
 						<ArrayInfo>
 							<LBound>0</LBound>
-							<Elements Min="0" MaxUnbounded="true">1</Elements>
+							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x03080208</PTCID>
 						<ContextId>1</ContextId>
@@ -38235,7 +38235,7 @@
 					</Value>
 					<Value>
 						<Name>ActiveTrackObjectId</Name>
-						<Value>16843904</Value>
+						<Value>16843920</Value>
 					</Value>
 					<Value>
 						<Name>IsCommutationInverted</Name>
@@ -38291,10 +38291,6 @@
 					</Value>
 					<Value>
 						<Name>CurrentModuleCount</Name>
-						<Value>0</Value>
-					</Value>
-					<Value>
-						<Name>CurrentModuleObjectIDs[0]</Name>
 						<Value>0</Value>
 					</Value>
 					<Value>
@@ -40457,16 +40453,16 @@
 					<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 						<Name>CurrentModuleObjectIDs</Name>
 						<Comment><![CDATA[Returns the object IDs of the current modules.]]></Comment>
-						<BitSize>32</BitSize>
+						<BitSize>0</BitSize>
 						<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
 						<ArrayInfo>
 							<LBound>0</LBound>
-							<Elements Min="0" MaxUnbounded="true">1</Elements>
+							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x03080208</PTCID>
 						<ContextId>1</ContextId>
 					</Parameter>
-					<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
+					<Parameter OnlineParameter="true" ShowSubItems="true" ReadOnly="true" Group="Info">
 						<Name>MeasuredModulePitches</Name>
 						<Comment><![CDATA[Returns the pitch of two active modules.]]></Comment>
 						<BitSize>128</BitSize>
@@ -40668,10 +40664,6 @@
 					</Value>
 					<Value>
 						<Name>CurrentModuleCount</Name>
-						<Value>0</Value>
-					</Value>
-					<Value>
-						<Name>CurrentModuleObjectIDs[0]</Name>
 						<Value>0</Value>
 					</Value>
 					<Value>

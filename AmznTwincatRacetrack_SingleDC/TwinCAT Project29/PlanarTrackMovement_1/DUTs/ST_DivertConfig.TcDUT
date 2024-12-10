@@ -3,10 +3,10 @@
   <DUT Name="ST_DivertConfig" Id="{f50f2845-a71f-0dc3-1470-052cc68dd787}">
     <Declaration><![CDATA[TYPE ST_DivertConfig :
 STRUCT
-	IntervalToDivert								: UDINT := 1;
-	MaxAllowedDivertCount						: UDINT := 6;
-	CurrentFunctionCoeffA						: LREAL := 0.55;
-	CurrentFunctionCoeffB						: LREAL := 0.16;
+	IntervalToDivert							: UDINT := 1;
+	MaxAllowedDivertCount						: UDINT := 0;
+	CurrentFunctionCoeffA						: LREAL := 0.5;
+	CurrentFunctionCoeffB						: LREAL := 0.17;
 	CurrentFunctionCoeffC						: LREAL := 3;
 END_STRUCT
 END_TYPE;]]></Declaration>

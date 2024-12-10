@@ -139,20 +139,20 @@ VAR_INPUT
 	MoverIndex	: UDINT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_TIGHTGAP_ZONE].MoverIsOnSector OR
-TrackSectors[MoverIndex].SectorStatus[GC.INNER_MERGE_TO_FINISH].MoverIsOnSector THEN
-	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := stMoverConfig.TightMoverGap;
-ELSIF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_PRE_TG_ZONE].MoverIsOnSector THEN
-	fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap := HelperFunctions.F_MapLReal(x := TrackSectors[MoverIndex].SectorStatus[GC.OUTER_PRE_TG_ZONE].PercentOfSectorTraversed,
-														in_min := 0.0, in_max := 1.0, out_min := stMoverConfig.NormalMoverGap, out_max := stMoverConfig.TightMoverGap);
-	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap;
-ELSIF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_POST_TG_ZONE].MoverIsOnSector THEN
-	fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap := HelperFunctions.F_MapLReal(x := TrackSectors[MoverIndex].SectorStatus[GC.OUTER_POST_TG_ZONE].PercentOfSectorTraversed,
-														in_min := 0.0, in_max := 1.0, out_min := stMoverConfig.TightMoverGap, out_max := stMoverConfig.NormalMoverGap);
-	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap;
-ELSE
+        <ST><![CDATA[//IF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_TIGHTGAP_ZONE].MoverIsOnSector OR
+//TrackSectors[MoverIndex].SectorStatus[GC.INNER_MERGE_TO_FINISH].MoverIsOnSector THEN
+//	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := stMoverConfig.TightMoverGap;
+//ELSIF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_PRE_TG_ZONE].MoverIsOnSector THEN
+//	fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap := HelperFunctions.F_MapLReal(x := TrackSectors[MoverIndex].SectorStatus[GC.OUTER_PRE_TG_ZONE].PercentOfSectorTraversed,
+//														in_min := 0.0, in_max := 1.0, out_min := stMoverConfig.NormalMoverGap, out_max := stMoverConfig.TightMoverGap);
+//	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap;
+//ELSIF TrackSectors[MoverIndex].SectorStatus[GC.OUTER_POST_TG_ZONE].MoverIsOnSector THEN
+//	fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap := HelperFunctions.F_MapLReal(x := TrackSectors[MoverIndex].SectorStatus[GC.OUTER_POST_TG_ZONE].PercentOfSectorTraversed,
+//														in_min := 0.0, in_max := 1.0, out_min := stMoverConfig.TightMoverGap, out_max := stMoverConfig.NormalMoverGap);
+//	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := fbPlanarXtsMover[MoverIndex].P_MoverOptions.TempGap;
+//ELSE
 	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap := stMoverConfig.NormalMoverGap;
-END_IF
+//END_IF
 
 IF fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap = stMoverConfig.NormalMoverGap OR
 	fbPlanarXtsMover[MoverIndex].P_MoverOptions.BaseMoveOptions.gap = stMoverConfig.TightMoverGap THEN

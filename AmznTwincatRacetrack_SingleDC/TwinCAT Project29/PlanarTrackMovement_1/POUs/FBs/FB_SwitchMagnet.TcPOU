@@ -47,7 +47,7 @@ END_IF
 pwm();
 
 //Use Magnet feedback to this timer; set preset time based on mover velocity
-Timeout(IN := MagnetIsOn, PT := T#2S);]]></ST>
+Timeout(IN := MagnetIsOn, PT := TimeoutTime);]]></ST>
     </Implementation>
     <Method Name="_M_EvaluateCommands" Id="{18a83905-5928-0097-0202-56fb98387126}">
       <Declaration><![CDATA[METHOD PRIVATE _M_EvaluateCommands

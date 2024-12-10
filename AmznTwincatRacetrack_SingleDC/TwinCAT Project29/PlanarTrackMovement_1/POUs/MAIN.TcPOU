@@ -280,9 +280,10 @@ CASE nCase OF
 				fbPlanarXtsMover[nForCounter].P_Dynamics.SetValuesVADJ(V := stMoverConfig.NormalVelo, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 			END_IF
 			
+
 			//Gap Control
 			fbPlanarXtsMover[nForCounter].M_EvaluateGap(MoverIndex := nForCounter);
-			
+
 			//Adjust the first mover parameters to induce a platoon
 			fbPlanarXtsMover[GC.nNumMinMovers].P_Dynamics.SetValuesVADJ(V := stMoverConfig.NormalVelo-stMoverConfig.VeloComp, A := stMoverConfig.NormalAccel, D := stMoverConfig.NormalDecel, J := stMoverConfig.NormalJerk);
 
