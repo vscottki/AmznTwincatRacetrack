@@ -54,11 +54,17 @@ END_FOR
 //	GVL_General.stSwitchStatus.PosnCurrentCoeff                                 := PositionF_CurrentCoeff(Current := GVL_General.stSwitchStatus.CurrentOutputMax);
 //END_IF
 
-	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].PartObjectId						:= GVL_General.XtsPartOuterStart;
-	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].PartSectorStartPosn			:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn)-GC.SHUTTLE_LENGTH;
-	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].PartSectorEndPosn			 	:= astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn;
-	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].TrackSectorStartPosn			:= 0; 
-	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].TrackSectorEndPosn 			:= 0;
+	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].PartObjectId								:= GVL_General.XtsPartOuterStart;
+	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].PartSectorStartPosn				:= astSectorConfig[GC.DIVERT_DECISION_OPART].PartSectorStartPosn - GC.SHUTTLE_LENGTH;
+	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].PartSectorEndPosn			 		:= astSectorConfig[GC.DIVERT_DECISION_OPART].PartSectorStartPosn;
+	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].TrackSectorStartPosn				:= 0; 
+	astSectorConfig[GC.DIVERTQ_SECTOR_OPART].TrackSectorEndPosn 				:= 0;
+
+	astSectorConfig[GC.DIVERT_DECISION_OPART].PartObjectId						:= GVL_General.XtsPartOuterStart;
+	astSectorConfig[GC.DIVERT_DECISION_OPART].PartSectorStartPosn			:= F_PosnInitial(VeloInit := GVL_General.stMoverConfig.NormalVelo, VeloFinal := 0, Accel := GVL_General.stMoverConfig.NormalDecel, PosnFinal := astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn);
+	astSectorConfig[GC.DIVERT_DECISION_OPART].PartSectorEndPosn			 	:= astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn;
+	astSectorConfig[GC.DIVERT_DECISION_OPART].TrackSectorStartPosn			:= 0; 
+	astSectorConfig[GC.DIVERT_DECISION_OPART].TrackSectorEndPosn 			:= 0;
 
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartObjectId						:= GVL_General.XtsPartOuterStart;
 	astSectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn			:= GVL_General.stSwitchConfig.MagnetOnStartPosition;

@@ -70,10 +70,7 @@ END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="M_EvaluateInlineCommands" Id="{76dc13a7-b013-0892-3e05-7bb942654e1e}">
-      <Declaration><![CDATA[METHOD M_EvaluateInlineCommands
-VAR
-	stMoverDivertInit : RingBuffer.ST_MoverDivert;
-END_VAR]]></Declaration>
+      <Declaration><![CDATA[METHOD M_EvaluateInlineCommands]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF stDivertingMover.MoverID <> 0 THEN
 	IF GVL_Mc3.TrackSectors[stDivertingMover.MoverID].SectorStatus[GC.MAG_ON_SECTOR_OPART].MoverIsOnSector THEN
@@ -83,7 +80,6 @@ END_VAR]]></Declaration>
 		Command								:= FALSE; // Any mover exiting the Magnet drops the command
 		fbPlanarXtsMover[stDivertingMover.MoverID].P_CmdDivert			:= FALSE;
 		fbPlanarXtsMover[stDivertingMover.MoverID].P_IsUsingMagnet 	:= FALSE;
-		stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount -1;
 	END_IF
 END_IF]]></ST>
       </Implementation>

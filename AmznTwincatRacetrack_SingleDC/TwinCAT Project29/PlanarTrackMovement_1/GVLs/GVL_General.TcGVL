@@ -36,9 +36,11 @@ VAR_GLOBAL
 	TempItvlMoverIndex							: UDINT;
 	MoverIndexDivertTrig							: UDINT := GC.nNumMinMovers;
 	stDivertingMover								: RingBuffer.ST_MoverDivert;
-	stMoverDivertInit 							: RingBuffer.ST_MoverDivert;
+	stMoverDivertInit 							: RingBuffer.ST_MoverDivert; // DO NOT write to this var
 	SwitchMagnet										: FB_SwitchMagnet;
+	nExitAMoverIsUsingMagnet				: UDINT;
 	MagnetControlledByOtherMover		: BOOL;
+	ftMagnetControlledByOtherMover	: Tc2_Standard.F_TRIG;
 	stSwitchStatus        		    	: ST_SwitchStatus;
 
 //Merge

@@ -11,26 +11,24 @@ END_VAR
       <ST><![CDATA[]]></ST>
     </Implementation>
     <Method Name="M_UpdateAtTrig" Id="{6ebfa865-70ed-099f-252e-a28cbe294425}">
-      <Declaration><![CDATA[METHOD M_UpdateAtTrig]]></Declaration>
+      <Declaration><![CDATA[METHOD M_UpdateAtTrig
+VAR_INST
+	stDivertLogMover								: RingBuffer.ST_MoverDivert;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Increment counter, mark each mover for divert interval
-//FOR nForCounterInterval := GC.nNumMinMovers TO GVL_General.nNumMovers DO
-
-stDivertingMover.MoverID								:= MoverIndexDivertTrig; // regardless of the command to divert, log the MoverID
-
-IF (stSwitchStatus.ShuttleQueueCount + stSwitchStatus.ShuttleCountOnShortcut) <
-	GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount THEN // command a mover to divert
-		stDivertingMover.Divert								:= RingBuffer.E_Divert.Divert;
+        <ST><![CDATA[stDivertLogMover.MoverID							:= MoverIndexDivertTrig;
+IF (stSwitchStatus.ShuttleQueueCount < GVL_General.stSwitchConfig.SwitchModeInternal.MaxAllowedDivertCount) THEN // permissives to allow a mover to divert
+		stDivertLogMover.Divert								:= RingBuffer.E_Divert.Divert;
 	IF (TempItvlMoverIndex = GVL_General.stSwitchConfig.SwitchModeInternal.IntervalToDivert) THEN
-		stDivertingMover.DivertOnInterval			:= TRUE;
-		fbPlanarXtsMover[stDivertingMover.MoverID].P_CmdDivert		:= TRUE;
-		DivertQueue.AddObjToBuffer(RefObject := stDivertingMover);
+		stDivertLogMover.DivertOnInterval													:= TRUE;
 		stSwitchStatus.ShuttleQueueCount := stSwitchStatus.ShuttleQueueCount + 1;
+		fbPlanarXtsMover[stDivertLogMover.MoverID].P_CmdDivert		:= (stDivertLogMover.Divert = RingBuffer.E_Divert.Divert) AND stDivertLogMover.DivertOnInterval;
+		HistoryDivertQueue.AddObjToBuffer(RefObject := stDivertLogMover);
 	END_IF
-		HistoryDivertQueue.AddObjToBuffer(RefObject := stDivertingMover);
 END_IF
 
-//END_FOR]]></ST>
+DivertQueue.AddObjToBuffer(RefObject := stDivertLogMover);
+stDivertLogMover					:= stMoverDivertInit;]]></ST>
       </Implementation>
     </Method>
     <Property Name="P_MoverDivert" Id="{e439b90e-d481-0d68-25d8-af764ed57bd8}">
