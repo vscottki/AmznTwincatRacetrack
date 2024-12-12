@@ -113,7 +113,7 @@ _M_IsOnXtsSector	:= ((refXtsMover.nTrackObjectid = stSectorConfig.TrackObjectId)
         <ST><![CDATA[IF stSectorConfig.SectorSpansBoundary THEN
 	_M_IsOnBoundarySector();
 ELSE // by parts
-	stSectorStatus.MoverIsOnSector	:= _M_IsOnXtsSector() OR _M_IsOnPlanarSector();
+	stSectorStatus.MoverIsOnSector	:= _M_IsOnXtsSector() ; //OR _M_IsOnPlanarSector(); this method works, but I believe the reference VAR_IN_OUT type is causing problems (duplication) here
 END_IF
 
 stSectorStatus.MoverEnteredSector(CLK := stSectorStatus.MoverIsOnSector);
