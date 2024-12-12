@@ -351,19 +351,20 @@ CASE nCase OF
 					//	AllTrackSectors.M_UpdateSectorCounts(SectorNr := GC.SHORTCUT_CALC_SECTOR_IPART);
 						MoverIndexDivertTrig			:= fbPlanarXtsMover[nForCounter].P_MoverId; // regardless of the command to divert, log the MoverID
 						DivertQueue.M_UpdateAtTrig();
-						DivertQueue.ClearLastRemoved();
 						nMoveState[nForCounter] 	:= 12;
 					END_IF
 					
 				12: // Command to move needs to be given early
-					IF TrackSectors[nForCounter].afbSector[GC.DIVERT_DECISION_OPART].stSectorStatus.MoverIsOnSector THEN
+					IF TrackSectors[nForCounter].afbSector[GC.DIVERT_DECISION_OPART].stSectorStatus.MoverEnteredSector.Q THEN
 						DivertQueue.RemoveObjFromBuffer();
 						nMoveState[nForCounter] 	:= 13;
 					END_IF
 				
 				13:				
-				IF (DivertQueue.P_LastObjectRemoved.MoverID <> 0) THEN
-					IF SwitchMagnet.P_PermIntlkOK AND NOT MagnetControlledByOtherMover AND fbPlanarXtsMover[DivertQueue.P_LastObjectRemoved.MoverID].P_CmdDivert AND_THEN (stDivertingMover.SysTime <> DivertQueue.P_LastObjectRemoved.SysTime) THEN
+				IF (DivertQueue.P_LastObjectRemoved.MoverID <> 0) THEN // Valid MoverID must be obtained by Remove op in previous step
+					IF SwitchMagnet.P_PermIntlkOK AND NOT MagnetControlledByOtherMover AND fbPlanarXtsMover[nForCounter].P_CmdDivert AND 
+						(fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fPartPosition < GVL_Mc3.TrackSectors[nForCounter].P_SectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn)
+						AND (stDivertingMover.SysTime <> DivertQueue.P_LastObjectRemoved.SysTime) THEN
 							// Divert Move command
 							stDivertingMover	:= DivertQueue.P_LastObjectRemoved;
 							fbPlanarXtsMover[stDivertingMover.MoverID].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[stDivertingMover.MoverID].P_MoverFeedback,
@@ -372,7 +373,7 @@ CASE nCase OF
 																				constraint := fbPlanarXtsMover[stDivertingMover.MoverID].P_Dynamics,
 																				options := fbPlanarXtsMover[stDivertingMover.MoverID].P_MoverOptions.BaseMoveOptions);									
 							nMoveState[nForCounter] 	:= 30; //Diverting Mover
-					ELSE
+					ELSIF NOT fbPlanarXtsMover[nForCounter].P_CmdDivert THEN
 							nMoveState[nForCounter] 	:= 15;
 					END_IF
 				END_IF
