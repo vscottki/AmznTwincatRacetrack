@@ -100,6 +100,9 @@
     <Compile Include="POUs\FBs\FB_ExpandedMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FBs\FB_MoveState.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FBs\FB_RobMover.TcPOU">
       <SubType>Code</SubType>
       <ExcludeFromBuild>true</ExcludeFromBuild>
