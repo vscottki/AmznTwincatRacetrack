@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_PlanarXtsMover" Id="{e98e5f10-cdde-43fc-96da-1ae5f511366a}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_PlanarXtsMover
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PlanarXtsMover IMPLEMENTS I_Mover
 
 VAR_INPUT
 	iTcIoXtsXpuMover			: REFERENCE TO Tc3_XTS_Utility.I_TcIoXtsXpuMover;

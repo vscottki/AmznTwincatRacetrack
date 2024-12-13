@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_Mover" Id="{b268cb59-d99c-43ca-ba0f-41461eab83e4}">
-    <Declaration><![CDATA[
-INTERFACE I_Mover
-]]></Declaration>
+    <Declaration><![CDATA[INTERFACE I_Mover]]></Declaration>
     <Method Name="CycleUpdate" Id="{48e7b414-8a52-4904-8a2c-941ff8cf97f0}">
       <Declaration><![CDATA[METHOD CycleUpdate : BOOL
 VAR_INPUT
@@ -93,6 +91,15 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
       <Set Name="Set" Id="{d595508e-dce0-4463-ba46-7e3d11bc7415}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="P_TrackSectors" Id="{8f6f58ac-81db-097c-25c8-6ceec18f51bf}">
+      <Declaration><![CDATA[PROPERTY P_TrackSectors : REFERENCE TO FB_TrackSectors]]></Declaration>
+      <Get Name="Get" Id="{4ea1e69d-504c-0d85-1553-c3e4e163e42d}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{55b7d8bd-81f4-01da-143c-adf46a14de4e}">
         <Declaration><![CDATA[]]></Declaration>
       </Set>
     </Property>
