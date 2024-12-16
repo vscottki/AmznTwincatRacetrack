@@ -14,6 +14,7 @@
 	
 {warning <'bundle FB_PlanarMover'>}
 	fbPlanarXtsMover			: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_PlanarXtsMover;
+	iMover								: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF RingBuffer.I_MoverBase;
 	aiXpuXtsMover       	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF Tc3_XTS_Utility.I_TcIoXtsXpuMover;
 
 	HeadExpMover					: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF FB_ExpandedMover;

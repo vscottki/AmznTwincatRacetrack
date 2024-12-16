@@ -294,15 +294,16 @@ CASE nCase OF
 				stSwitchConfig.SwitchModeInternal		:= 						stSwitchConfig.SwitchModeHMI;
 			END_IF
 		
-			TrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := fbPlanarXtsMover[nForCounter].P_XtsPositionInfo);
-			HeadTrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := HeadExpMover[nForCounter].stExpMoverStatus.XtsAdjustedData);
-			TailTrackSectors[nForCounter](MoverIndex := nForCounter, XtsDataRef := TailExpMover[nForCounter].stExpMoverStatus.XtsAdjustedData);			
+			TrackSectors[nForCounter](MoverIndex := nForCounter, MoverRef := iMover[nForCounter]);
+//			HeadTrackSectors[nForCounter](MoverIndex := nForCounter, MoverRef := HeadExpMover[nForCounter]);
+//			TailTrackSectors[nForCounter](MoverIndex := nForCounter, MoverRef := TailExpMover[nForCounter]);			
 			AllTrackSectors(TrackSectorsRef := GVL_Mc3.TrackSectors, HeadTrackSectorsRef := HeadTrackSectors, TailTrackSectorsRef := TailTrackSectors);
 			
 			HeadExpMover[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
 			TailExpMover[nForCounter](MoverRef := fbPlanarXtsMover[nForCounter]);
 			AllExpMovers(HeadMoversRef := HeadExpMover, TailMoversRef := TailExpMover);
 			
+			iMover[nForCounter]	:= fbPlanarXtsMover[nForCounter];
 			fbPlanarXtsMover[nForCounter]();
 			
 			CASE nMoveState[nForCounter] OF

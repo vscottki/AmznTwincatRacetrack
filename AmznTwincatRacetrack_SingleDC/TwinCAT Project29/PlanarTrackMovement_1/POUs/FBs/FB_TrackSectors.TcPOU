@@ -3,19 +3,22 @@
   <POU Name="FB_TrackSectors" Id="{cea668e4-bd5b-031f-3b1e-5ca5fef41ef1}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_TrackSectors
 VAR_INPUT
-	XtsDataRef								: REFERENCE TO Tc3_XTS_Utility.ST_PositionInfo;
-END_VAR
-VAR
-//	InitDone								: BOOL;
-	SectorIndex								: UDINT;
-
-//Configurations
-	astSectorConfig							: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorConfig;
-
+	MoverRef						: REFERENCE TO RingBuffer.I_MoverBase; // I_Mover
+END_VAR                
+VAR                    
+//	InitDone						: BOOL;
+	SectorIndex						: UDINT;
+                       
+//Configurations       
+	astSectorConfig					: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorConfig;
+                       
 	afbSector								: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF FB_TrackSector;
+	
+	LinkedMoveList 				: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF RingBuffer.RingBufferLinkedListEntry;
+	iMover								: RingBuffer.ST_IDLinkedListEntry;
 END_VAR
 VAR_IN_OUT
-	MoverIndex								: UDINT;
+	MoverIndex						: UDINT;
 END_VAR
 VAR_OUTPUT
 	SectorStatus					: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_StaticSectorStatus;
@@ -25,14 +28,21 @@ END_VAR]]></Declaration>
 	_M_Configurations();
 //END_IF
 
+iMover.iMover := MoverRef;
+
 _M_UpdateStatus();
 
 FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT DO
+	//SectorLists
+	LinkedMoveList[SectorIndex]();	
+
 	//Planar Mover
 	afbSector[SectorIndex].P_MoverSort			:= GVL_Mc3.fbPlanarXtsMover[MoverIndex].P_MoverSort;
 
 	//XTS Mover Reference
-	afbSector[SectorIndex].P_XtsPositionInfo		:= XtsDataRef;
+	IF MoverRef <> 0 THEN
+		afbSector[SectorIndex].P_XtsPositionInfo		:= MoverRef.P_XtsPositionInfo;
+	END_IF
 	
 	//Sector Configuration
 	afbSector[SectorIndex].P_TrackSectorConfig	:= astSectorConfig[SectorIndex];
@@ -230,8 +240,10 @@ END_VAR]]></Declaration>
 FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT DO
     IF afbSector[SectorIndex].P_SectorStatus.MoverEnteredSector.Q THEN
         afbSector[SectorIndex].P_SectorStatus.MoverCountOnSector	:= afbSector[SectorIndex].P_SectorStatus.MoverCountOnSector +1;
+				LinkedMoveList[SectorIndex].AddObjToBuffer(RefObject := iMover);
     ELSIF afbSector[SectorIndex].P_SectorStatus.MoverExitedSector.Q THEN
         afbSector[SectorIndex].P_SectorStatus.MoverCountOnSector	:= afbSector[SectorIndex].P_SectorStatus.MoverCountOnSector -1;
+				LinkedMoveList[SectorIndex].RemoveObjFromBuffer();
     END_IF
 		
 		SectorStatus[SectorIndex]										:=  afbSector[SectorIndex].P_SectorStatus;

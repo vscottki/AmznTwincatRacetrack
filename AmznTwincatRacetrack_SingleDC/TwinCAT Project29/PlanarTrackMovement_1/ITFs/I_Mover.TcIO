@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <Itf Name="I_Mover" Id="{b268cb59-d99c-43ca-ba0f-41461eab83e4}">
-    <Declaration><![CDATA[INTERFACE I_Mover]]></Declaration>
+    <Declaration><![CDATA[INTERFACE I_Mover (*EXTENDS RingBuffer.I_MoverBase*)]]></Declaration>
     <Method Name="CycleUpdate" Id="{48e7b414-8a52-4904-8a2c-941ff8cf97f0}">
       <Declaration><![CDATA[METHOD CycleUpdate : BOOL
 VAR_INPUT
