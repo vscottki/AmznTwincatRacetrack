@@ -34,7 +34,7 @@ CASE nMoveState OF
 																			options := fbPlanarXtsMover.P_MoverOptions.BaseMoveOptions);
 						 nMoveState 	:= 20;
 					ELSIF (fbPlanarXtsMover.P_MoverSort.TrackID = GVL_General.PlanarTrackOuterStart) AND 
-								fbPlanarXtsMover.P_XtsPositionInfo.fPartPosition < TrackSectors.P_SectorConfig[GC.DIVERTQ_SECTOR_OPART].PartSectorStartPosn THEN
+								fbPlanarXtsMover.P_XtsPositionInfo.fPartPosition < TrackSectors.P_SectorsConfig[GC.DIVERTQ_SECTOR_OPART].PartSectorStartPosn THEN
 						fbPlanarXtsMover.P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover.P_MoverFeedback,
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
@@ -255,5 +255,12 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="FB_MoveState">
+      <LineId Id="230" Count="226" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_MoveState.M_EvaluateTrackTransition">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

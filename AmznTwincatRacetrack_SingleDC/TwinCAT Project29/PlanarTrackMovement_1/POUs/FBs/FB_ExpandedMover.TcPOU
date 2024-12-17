@@ -64,5 +64,18 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <LineIds Name="FB_ExpandedMover">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ExpandedMover._M_UpdatePositions">
+      <LineId Id="3" Count="22" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ExpandedMover.P_ExpMoverConfig.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ExpandedMover.P_ExpMoverStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

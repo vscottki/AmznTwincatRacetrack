@@ -15,7 +15,7 @@ VAR
 	UpperBoundPlanarTrackConfig		: DINT;
 	refXtsMover						: Tc3_XTS_Utility.ST_PositionInfo;
 	refPlanarMover					: MoverSort;
-	stSectorStatus				: ST_StaticSectorStatus;
+	stSectorStatus				: ST_SectorStatus;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -146,7 +146,7 @@ END_VAR
       </Get>
     </Property>
     <Property Name="P_SectorStatus" Id="{5f8e870d-e32a-0163-2da9-1a6a40e1a497}">
-      <Declaration><![CDATA[PROPERTY P_SectorStatus : REFERENCE TO ST_StaticSectorStatus]]></Declaration>
+      <Declaration><![CDATA[PROPERTY P_SectorStatus : REFERENCE TO ST_SectorStatus]]></Declaration>
       <Get Name="Get" Id="{de3ffc99-936a-0b5d-0ea1-4e9664bc445a}">
         <Declaration><![CDATA[VAR
 END_VAR
@@ -178,5 +178,49 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <LineIds Name="FB_TrackSector">
+      <LineId Id="3" Count="7" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector._M_EnteredSectorBoundary">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector._M_ExitedSectorBoundary">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector._M_Init">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector._M_IsOnBoundarySector">
+      <LineId Id="3" Count="15" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector._M_IsOnPlanarSector">
+      <LineId Id="3" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector._M_IsOnXtsSector">
+      <LineId Id="3" Count="7" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector._M_UpdateSectorStatus">
+      <LineId Id="3" Count="20" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector.P_MoverSort.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector.P_SectorStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector.P_TrackSectorConfig.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TrackSector.P_XtsPositionInfo.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

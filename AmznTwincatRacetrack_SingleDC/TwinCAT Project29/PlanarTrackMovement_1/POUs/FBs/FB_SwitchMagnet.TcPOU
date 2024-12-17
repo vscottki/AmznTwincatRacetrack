@@ -103,5 +103,26 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <LineIds Name="FB_SwitchMagnet">
+      <LineId Id="3" Count="27" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SwitchMagnet._M_EvaluateCommands">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SwitchMagnet._M_EvaluatePermIntlk">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SwitchMagnet.M_EvaluateInlineCommands">
+      <LineId Id="3" Count="8" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SwitchMagnet.P_PermIntlkOK.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SwitchMagnet.P_PermIntlkOK.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

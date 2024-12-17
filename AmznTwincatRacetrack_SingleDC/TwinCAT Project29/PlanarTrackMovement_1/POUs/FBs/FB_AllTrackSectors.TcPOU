@@ -11,14 +11,15 @@ END_VAR
 //		TrackSectorsRef				: ARRAY[*] OF FB_TrackSectors;
 //END_VAR
 VAR
+	iSectors				: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF I_MoverSector;
 	DynamicMergeEvaluation : BOOL;
 	MoverIndex			: UDINT;
 	ForCounterExit : ARRAY[GC.MIN_TRACKSECTORS_REF..GC.MAX_TRACKSECTORS_REF] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF UDINT; // 1 to 3 are normal, Head, Tail TrackSectorsRef
 	ForCounterDuringClear : UDINT;
 	SectorIndex : UDINT;
-	AllRealSectorStatus	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_StaticSectorStatus;
-	AllHeadSectorStatus : ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_StaticSectorStatus;
-	AllTailSectorStatus : ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_StaticSectorStatus;
+	AllRealSectorStatus	: ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorStatus;
+	AllHeadSectorStatus : ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorStatus;
+	AllTailSectorStatus : ARRAY[GC.nNumMinMovers..GC.nNumMaxMovers] OF ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF ST_SectorStatus;
 	LowerOut : DINT;
 	UpperOut : DINT;
 	RealMoverIsOnSector	: ARRAY[GC.MIN_SECTOR_CT..GC.MAX_SECTOR_CT] OF BOOL;
@@ -114,6 +115,8 @@ END_IF]]></ST>
       <Implementation>
         <ST><![CDATA[IF ADR(TrackSectorsRef) <> 0 THEN // pointer validity check
 	FOR MoverIndex := GC.nNumMinMovers TO GVL_General.nNumMovers BY 1 DO
+		
+		iSectors[MoverIndex]	:= TrackSectorsRef[MoverIndex];
 		
 	//Write All Sector Status
 		FOR SectorIndex := GC.MIN_SECTOR_CT TO GC.MAX_SECTOR_CT BY 1 DO
@@ -238,5 +241,42 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <LineIds Name="FB_AllTrackSectors">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllTrackSectors._M_BufferValidMergeRefs">
+      <LineId Id="3" Count="43" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllTrackSectors._M_CalculateTCompForMerge">
+      <LineId Id="3" Count="10" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllTrackSectors._M_EvaluateStatus">
+      <LineId Id="3" Count="2" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="6" Count="24" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllTrackSectors._M_IsRealMoverOnSector">
+      <LineId Id="3" Count="8" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllTrackSectors._M_StaticSectorClear">
+      <LineId Id="3" Count="7" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllTrackSectors._M_VARINOUT_TroubleshootingJunk">
+      <LineId Id="3" Count="19" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllTrackSectors.M_UpdateSectorCounts">
+      <LineId Id="3" Count="12" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllTrackSectors.P_AMoverIsOnSector.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

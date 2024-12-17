@@ -42,5 +42,15 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
+    <LineIds Name="FB_DivertQueue">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DivertQueue.M_UpdateAtTrig">
+      <LineId Id="3" Count="11" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DivertQueue.P_MoverDivert.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

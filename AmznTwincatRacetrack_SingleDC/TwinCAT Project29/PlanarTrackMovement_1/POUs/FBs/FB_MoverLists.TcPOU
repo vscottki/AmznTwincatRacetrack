@@ -22,5 +22,9 @@ END_FOR
 //
 ]]></ST>
     </Implementation>
+    <LineIds Name="FB_MoverLists">
+      <LineId Id="3" Count="6" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

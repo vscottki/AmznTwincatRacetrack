@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_PlanarXtsMover" Id="{e98e5f10-cdde-43fc-96da-1ae5f511366a}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_PlanarXtsMover IMPLEMENTS RingBuffer.I_MoverBase (*, I_Mover *)
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PlanarXtsMover IMPLEMENTS RingBuffer.I_MoverBase, I_MoverSector (*, I_Mover *)
 
 VAR_INPUT
 	iTcIoXtsXpuMover			: REFERENCE TO Tc3_XTS_Utility.I_TcIoXtsXpuMover;
@@ -39,6 +39,7 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Folder Name="Impl_I_MoverSector" Id="{8c95f41d-70b0-400a-b5a2-c9b3851933b4}" />
     <Folder Name="Methods" Id="{497e6300-3e6d-49b8-a318-13b94b960f56}" />
     <Folder Name="Properties" Id="{bafe569f-b5f0-4de9-ae48-854cd11ccd2e}" />
     <Method Name="FB_init" Id="{4b084dbd-ec42-0e10-3862-f9a7de67a652}" FolderPath="Methods\">
@@ -321,6 +322,32 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[P_PlanarFeedbackGearMM REF= MC_PlanarFeedbackGearInPosOnTrackWithMasterMover;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_SectorsConfig" Id="{b955fce5-3def-4e54-a0d8-b3b0cf4faadc}" FolderPath="Impl_I_MoverSector\">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_SectorsConfig : REFERENCE TO ST_SectorsConfig
+]]></Declaration>
+      <Get Name="Get" Id="{9a59c27c-cf38-4b24-a81d-8b4d8e3e271a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_SectorsStatus" Id="{4b53eaa4-2348-4e74-b077-77e11e430b40}" FolderPath="Impl_I_MoverSector\">
+      <Declaration><![CDATA[{warning 'Add property implementation'}
+PROPERTY P_SectorsStatus : REFERENCE TO ST_SectorsStatus
+]]></Declaration>
+      <Get Name="Get" Id="{e2e7d11c-4633-4e24-983e-d9f821a8e02f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
         </Implementation>
       </Get>
     </Property>

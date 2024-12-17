@@ -317,7 +317,7 @@ CASE nCase OF
 																			options := fbPlanarXtsMover[nForCounter].P_MoverOptions.BaseMoveOptions);
 						 nMoveState[nForCounter] 	:= 20;
 					ELSIF (fbPlanarXtsMover[nForCounter].P_MoverSort.TrackID = GVL_General.PlanarTrackOuterStart) AND 
-								fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fPartPosition < TrackSectors[nForCounter].P_SectorConfig[GC.DIVERTQ_SECTOR_OPART].PartSectorStartPosn THEN
+								fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fPartPosition < TrackSectors[nForCounter].P_SectorsConfig[GC.DIVERTQ_SECTOR_OPART].PartSectorStartPosn THEN
 						fbPlanarXtsMover[nForCounter].P_MC_PlanarMover.MoveOnTrack(commandFeedback := fbPlanarXtsMover[nForCounter].P_MoverFeedback,
 																			targetTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main],
 																			targetPositionOnTrack := GVL_Mc3.MC_Tracks[E_TrackNum.Main].GetLength()-stTrackGlobalConfig.TargetPosnBeforeTrackEnd,
@@ -364,7 +364,7 @@ CASE nCase OF
 				13:				
 				IF (DivertQueue.P_LastObjectRemoved.MoverID <> 0) THEN // Valid MoverID must be obtained by Remove op in previous step
 					IF SwitchMagnet.P_PermIntlkOK AND NOT MagnetControlledByOtherMover AND fbPlanarXtsMover[nForCounter].P_CmdDivert AND 
-						(fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fPartPosition < GVL_Mc3.TrackSectors[nForCounter].P_SectorConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn)
+						(fbPlanarXtsMover[nForCounter].P_XtsPositionInfo.fPartPosition < GVL_Mc3.TrackSectors[nForCounter].P_SectorsConfig[GC.MAG_ON_SECTOR_OPART].PartSectorStartPosn)
 						AND (stDivertingMover.SysTime <> DivertQueue.P_LastObjectRemoved.SysTime) THEN
 							// Divert Move command
 							stDivertingMover	:= DivertQueue.P_LastObjectRemoved;

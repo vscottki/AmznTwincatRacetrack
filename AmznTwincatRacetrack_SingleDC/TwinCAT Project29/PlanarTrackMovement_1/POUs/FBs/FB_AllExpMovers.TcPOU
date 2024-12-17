@@ -159,5 +159,24 @@ END_IF
 //Make a dynamic sector that follows the "virtual" position; could be used as a PermIntlk for violation of the sector by a real mover;]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="FB_AllExpMovers">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllExpMovers._M_Configuration">
+      <LineId Id="3" Count="2" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllExpMovers._M_EvaluateStatus">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllExpMovers._M_EvaluateStatus1">
+      <LineId Id="3" Count="59" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AllExpMovers._M_EvaluateWindow">
+      <LineId Id="3" Count="38" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
