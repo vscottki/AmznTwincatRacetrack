@@ -89,9 +89,9 @@ VAR
 	masterSyncPos: LREAL;
 	masterPosAtSync: LREAL;
 	followerPosAtSync: LREAL;
-	A : LREAL := 0.55;
-	B : LREAL := 0.15;
-	C : LREAL := 4;
+	A : LREAL := 0.6;
+	B : LREAL := 0.2	;
+	C : LREAL := 6;
 
 END_VAR
 ]]></Declaration>
