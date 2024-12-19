@@ -1,0 +1,3247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcModuleLibrary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2017/03/TcModuleLibrary">
+	<Vendor>
+		<Name>Beckhoff Automation GmbH</Name>
+	</Vendor>
+	<DataTypes>
+	</DataTypes>
+	<Licenses>
+		<License>
+			<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+			<DisplayName>TC3 Planar Motion Base</DisplayName>
+		</License>
+	</Licenses>
+	<Library>
+		<Name>Tc3_Mc3PlanarMotion</Name>
+		<Version>0.3.75.0</Version>
+		<Group>Motion</Group>
+		<POUs>
+			<!--MC_PlanarEnvironment-->
+			<POU Folder="POUs">
+				<Name GUID="{4FD172E2-07F6-4276-9BF1-6787FFA4EC1D}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarEnvironment</Name>
+				<Comment><![CDATA[A Planar Environment object specifies the environment that Planar Movers can move in. It contains information about the stator objects and boundaries of the movement area.]]></Comment>
+				<BitSize X64="384">288</BitSize>
+				<SubItem>
+					<Name>MCTOPLC_STD</Name>
+					<Type Namespace="MC">CDT_MCTOPLC_PLANAR_ENVIRONMENT</Type>
+					<Comment><![CDATA[Environment data that is transferred from the Planar Environment to this function block.]]></Comment>
+					<BitSize>128</BitSize>
+					<BitOffs X64="128">64</BitOffs>
+					<Properties>
+						<Property>
+							<Name>TcDataArea</Name>
+							<Value>Input</Value>
+						</Property>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Input</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Flag indicating a Planar Environment error.]]></Comment>
+					<BitOffs X64="256">192</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Error id indicating the Planar Environment error type.]]></Comment>
+					<BitOffs X64="288">224</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>Clear</Name>
+					<Comment><![CDATA[Clears the Planar Environment (stators and boundary).]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>AddStator</Name>
+					<Comment><![CDATA[Adds a stator to the Planar Environment.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>lowerX</Name>
+						<Comment><![CDATA[The lower x position [mm] of the stator.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>lowerY</Name>
+						<Comment><![CDATA[The lower y position [mm] of the stator.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>CreateBoundary</Name>
+					<Comment><![CDATA[Creates a boundary for the Planar Environment based on the previously added stator information or hardware information.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Update</Name>
+					<Comment><![CDATA[Updates internal state of the object, must be triggered each cycle.]]></Comment>
+				</Method>
+				<Method>
+					<Name>AddToGroup</Name>
+					<Comment><![CDATA[Adds the Planar Environment to the given Planar Group.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>group</Name>
+						<Comment><![CDATA[The Planar Group that the mover joins.]]></Comment>
+						<Type GUID="{D98481C1-D636-4004-82A5-F5AE1B2144C8}" Direction="inout" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarGroup</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>RemoveFromGroup</Name>
+					<Comment><![CDATA[Removes the Planar Environment from its current Planar Group, i.e. disables collision checks.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetPlanarObjectInfo</Name>
+					<Comment><![CDATA[Returns environment object info (type: environment, id: OID of nc environment).]]></Comment>
+					<ReturnType GUID="{29463DBB-43C2-43AB-ADE2-B70446C51EDF}" Namespace="Tc3_Mc3PlanarMotion">PlanarObjectInfo</ReturnType>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarPart-->
+			<POU Folder="POUs">
+				<Name GUID="{1B194D6F-DC64-4273-9AE6-1B97A68A1B73}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarPart</Name>
+				<Comment><![CDATA[A Planar Part object represents the area that Planar Movers can move on. It contains information about the stator objects.]]></Comment>
+				<BitSize X64="320">224</BitSize>
+				<SubItem>
+					<Name>PartOID</Name>
+					<Type>OTCID</Type>
+					<Comment><![CDATA[OID of the Planar Part.]]></Comment>
+					<BitOffs X64="64">32</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Flag indicating a Planar Part error.]]></Comment>
+					<BitOffs X64="96">64</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Error id indicating the Planar Part error type.]]></Comment>
+					<BitOffs X64="128">96</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<PropertyItem>
+					<Name NoSetter="true">IsInitialized</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Returns true, if this planar part was initialized correctly and has connection to the MC.]]></Comment>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_monitoring</Name>
+							<Value>call</Value>
+						</Property>
+					</Properties>
+				</PropertyItem>
+				<PropertyItem>
+					<Name NoSetter="true">State</Name>
+					<Type Namespace="MC">MC_PLANAR_STATE</Type>
+					<Comment><![CDATA[The planar state of the part (enabled, disabled, ...).]]></Comment>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_monitoring</Name>
+							<Value>call</Value>
+						</Property>
+					</Properties>
+				</PropertyItem>
+				<PropertyItem>
+					<Name NoSetter="true">IsDisableForced</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Is true, if the part is forced to disabled.]]></Comment>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_monitoring</Name>
+							<Value>call</Value>
+						</Property>
+					</Properties>
+				</PropertyItem>
+				<PropertyItem>
+					<Name NoSetter="true">PositionIndex</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Index of the active position of this mover.]]></Comment>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_monitoring</Name>
+							<Value>call</Value>
+						</Property>
+					</Properties>
+				</PropertyItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>Initialize</Name>
+					<Comment><![CDATA[Initialize the Planar Part, i.e. connecting it to the MC via its OID.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>partOID</Name>
+						<Comment><![CDATA[OID of the part.]]></Comment>
+						<Type Direction="in">OTCID</Type>
+					</Parameter>
+					<Parameter>
+						<Name>environment</Name>
+						<Comment><![CDATA[Environment the part is in.]]></Comment>
+						<Type GUID="{4FD172E2-07F6-4276-9BF1-6787FFA4EC1D}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarEnvironment</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>ActivatePosition</Name>
+					<Comment><![CDATA[Activates the position given by part position index.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>positionIndex</Name>
+						<Comment><![CDATA[Index of the position.]]></Comment>
+						<Type Direction="in">UDINT</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>ForceEnable</Name>
+					<Comment><![CDATA[Removes force disable and enables the part.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>AllowEnable</Name>
+					<Comment><![CDATA[From now on the part can be enabled until ForceDisablePart is called.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>ForceDisable</Name>
+					<Comment><![CDATA[Disables the part and keeps it disabled until AllowEnabledPart is called.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Reset</Name>
+					<Comment><![CDATA[Resets the part.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetPosition</Name>
+					<Comment><![CDATA[Sets the values of the given position to the parts position values.]]></Comment>
+					<Parameter>
+						<Name>position</Name>
+						<Comment><![CDATA[The position of the Planar Part.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarGroup-->
+			<POU Folder="POUs">
+				<Name GUID="{D98481C1-D636-4004-82A5-F5AE1B2144C8}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarGroup</Name>
+				<Comment><![CDATA[A Planar Group object. Planar Movers and other objects added to the group perform collision checks against each other.]]></Comment>
+				<BitSize X64="576">352</BitSize>
+				<SubItem>
+					<Name>MCTOPLC_STD</Name>
+					<Type Namespace="MC">CDT_MCTOPLC_GROUP_PLANAR</Type>
+					<Comment><![CDATA[Group data that is transferred from the Planar Group to this function block.]]></Comment>
+					<BitSize>96</BitSize>
+					<BitOffs X64="320">160</BitOffs>
+					<Properties>
+						<Property>
+							<Name>TcDataArea</Name>
+							<Value>Input</Value>
+						</Property>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Input</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Flag indicating a Planar Group error.]]></Comment>
+					<BitOffs X64="416">256</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Error id indicating the Planar Group error type.]]></Comment>
+					<BitOffs X64="448">288</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>Enable</Name>
+					<Comment><![CDATA[Starts enabling the Planar Group.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Disable</Name>
+					<Comment><![CDATA[Starts disabling the Planar Group.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Reset</Name>
+					<Comment><![CDATA[Starts resetting the Planar Group.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Update</Name>
+					<Comment><![CDATA[Updates internal state of the object, must be triggered each cycle.]]></Comment>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarTrack-->
+			<POU Folder="POUs">
+				<Name GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarTrack</Name>
+				<Comment><![CDATA[A track within a plane which Planar Movers can follow. Planar Movers on the track automatically avoid collisions with each other. The Planar Track can consist of several consecutive segments and be joined with other Planar Tracks at its start/end.]]></Comment>
+				<BitSize X64="640">416</BitSize>
+				<SubItem>
+					<Name>MCTOPLC_STD</Name>
+					<Type Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
+					<Comment><![CDATA[Track data that is transferred from the Planar Track to this function block.]]></Comment>
+					<BitSize>160</BitSize>
+					<BitOffs X64="320">160</BitOffs>
+					<Properties>
+						<Property>
+							<Name>TcDataArea</Name>
+							<Value>Input</Value>
+						</Property>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Input</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Flag indicating a Planar Track error.]]></Comment>
+					<BitOffs X64="480">320</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Error id indicating the Planar Track error type.]]></Comment>
+					<BitOffs X64="512">352</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>Clear</Name>
+					<Comment><![CDATA[Clears the geometric information of the Planar Track.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>AppendPosition</Name>
+					<Comment><![CDATA[Appends a position to the Planar Track.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>position</Name>
+						<Comment><![CDATA[Position that is the new endpoint of the Planar Track.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>AppendLine</Name>
+					<Comment><![CDATA[Appends a line to the Planar Track.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>start</Name>
+						<Comment><![CDATA[Start position of the line.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+					<Parameter>
+						<Name>end</Name>
+						<Comment><![CDATA[End position of the line, this position is the new endpoint of the Planar Track.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>AppendCircle</Name>
+					<Comment><![CDATA[Appends a circular arc to the Planar Track.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>start</Name>
+						<Comment><![CDATA[Start position of the circular arc.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+					<Parameter>
+						<Name>end</Name>
+						<Comment><![CDATA[End position of the circular arc, this position is the new endpoint of the Planar Track.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+					<Parameter>
+						<Name>center</Name>
+						<Comment><![CDATA[Center of the circular arc.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXY</Type>
+					</Parameter>
+					<Parameter>
+						<Name>clockwise</Name>
+						<Comment><![CDATA[Indicates if the clockwise circle is appended.]]></Comment>
+						<Type Direction="in">BOOL</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>CloseLoop</Name>
+					<Comment><![CDATA[Closes the loop of the Planar Track, no further part can be appended.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>StartFromTrack</Name>
+					<Comment><![CDATA[Sets the other Planar Track's endpoint as start point of this Planar Track, transition is smooth. The other Planar Track is blocked for further changes (until it is cleared).]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>track</Name>
+						<Comment><![CDATA[The other Planar Track.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Direction="inout" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarTrack</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>EndAtTrack</Name>
+					<Comment><![CDATA[Appends a smooth transition from the end of this Planar Track to the other Planar Track's start point. The Planar Track is blocked for further changes (until it is cleared).]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>track</Name>
+						<Comment><![CDATA[The other Planar Track.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Direction="inout" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarTrack</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>StartFromTrackAdvanced</Name>
+					<Comment><![CDATA[Sets the other Planar Track's endpoint as start point of this Planar Track, transition is smooth. The other Planar Track is blocked for further geometrical changes (until it is cleared).]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>track</Name>
+						<Comment><![CDATA[The other Planar Track.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Direction="inout" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarTrack</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the connection, i.e. which connections are closed.]]></Comment>
+						<Type GUID="{BFAEC56B-EA59-4E6C-80D6-CFD454740FA4}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_StartFromTrackAdvancedOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>EndAtTrackAdvanced</Name>
+					<Comment><![CDATA[Appends a smooth transition from the end of this Planar Track to the other Planar Track's start point. The Planar Track is blocked for further geometrical changes (until it is cleared).]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>track</Name>
+						<Comment><![CDATA[The other Planar Track.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Direction="inout" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarTrack</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the connection, i.e. which connections are closed.]]></Comment>
+						<Type GUID="{BF8474CD-E31A-4854-97DD-B0AB77EF6586}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_EndAtTrackAdvancedOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Enable</Name>
+					<Comment><![CDATA[Starts enabling the Planar Track.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Disable</Name>
+					<Comment><![CDATA[Starts disabling the Planar Track.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Reset</Name>
+					<Comment><![CDATA[Starts resetting the Planar Track.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetArcLengthClosestTo</Name>
+					<Comment><![CDATA[Calculate the arc length value [mm] where the Planar Track is closest to the given position.]]></Comment>
+					<ReturnType>LREAL</ReturnType>
+					<Parameter>
+						<Name>position</Name>
+						<Comment><![CDATA[The position to check the arc length for.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetPositionAt</Name>
+					<Comment><![CDATA[Get a position on the Planar Track at a specific arc length value.]]></Comment>
+					<Parameter>
+						<Name>arcLength</Name>
+						<Comment><![CDATA[Arc length value where the position is evaluated.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>position</Name>
+						<Comment><![CDATA[The position at the specified arc parameter.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetLength</Name>
+					<Comment><![CDATA[Returns the Planar Track's length [mm], -1 return value indicates no connection to Nc Track.]]></Comment>
+					<ReturnType>LREAL</ReturnType>
+				</Method>
+				<Method>
+					<Name>GetPlanarObjectInfo</Name>
+					<Comment><![CDATA[Returns track object info (type: track, id: OID of nc track).]]></Comment>
+					<ReturnType GUID="{29463DBB-43C2-43AB-ADE2-B70446C51EDF}" Namespace="Tc3_Mc3PlanarMotion">PlanarObjectInfo</ReturnType>
+				</Method>
+				<Method>
+					<Name>Update</Name>
+					<Comment><![CDATA[Updates internal state of the object, must be triggered each cycle.]]></Comment>
+				</Method>
+				<Method>
+					<Name>AddToGroup</Name>
+					<Comment><![CDATA[Adds the Planar Track to the given Planar Group.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>group</Name>
+						<Comment><![CDATA[The Planar Group that the mover joins.]]></Comment>
+						<Type GUID="{D98481C1-D636-4004-82A5-F5AE1B2144C8}" Direction="inout" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarGroup</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>RemoveFromGroup</Name>
+					<Comment><![CDATA[Removes the Planar Track from its current Planar Group, i.e. disables collision checks.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarTrackConnectionOut-->
+			<POU Folder="POUs">
+				<Name GUID="{7D36CEFC-68D4-4104-82AB-795F0F178084}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarTrackConnectionOut</Name>
+				<Comment><![CDATA[A track connection at which Planar Movers can leave the system. The track connection is an endpoint of a planar track network at which at least one track ends.]]></Comment>
+				<BitSize X64="256">160</BitSize>
+				<SubItem>
+					<Name>MCTOPLC_STD</Name>
+					<Type Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK_CONNECTION_OUT</Type>
+					<Comment><![CDATA[Track connection out data that is transferred from the Planar Track Connection Out to this function block.]]></Comment>
+					<BitSize>32</BitSize>
+					<BitOffs X64="64">32</BitOffs>
+					<Properties>
+						<Property>
+							<Name>TcDataArea</Name>
+							<Value>Input</Value>
+						</Property>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Input</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Flag indicating a Planar Track Connection Out error.]]></Comment>
+					<BitOffs X64="96">64</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Error id indicating the Planar Track Connection Out error type.]]></Comment>
+					<BitOffs X64="128">96</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>GetPosition</Name>
+					<Comment><![CDATA[Get the position of the Planar Track Connection Out.]]></Comment>
+					<Parameter>
+						<Name>position</Name>
+						<Comment><![CDATA[The position to be set.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarTrackConnectionIn-->
+			<POU Folder="POUs">
+				<Name GUID="{00D50B80-EAB2-45BF-97F9-972EA557E461}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarTrackConnectionIn</Name>
+				<Comment><![CDATA[A track connection at which Planar Movers can enter the system. The track connection is a startpoint of a planar track network at which at least one track starts.]]></Comment>
+				<BitSize X64="256">192</BitSize>
+				<SubItem>
+					<Name>MCTOPLC_STD</Name>
+					<Type Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK_CONNECTION_IN</Type>
+					<Comment><![CDATA[Track connection in data that is transferred from the Planar Track Connection In to this function block.]]></Comment>
+					<BitSize>64</BitSize>
+					<BitOffs X64="64">32</BitOffs>
+					<Properties>
+						<Property>
+							<Name>TcDataArea</Name>
+							<Value>Input</Value>
+						</Property>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Input</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Flag indicating a Planar Track Connection In error.]]></Comment>
+					<BitOffs X64="128">96</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Error id indicating the Planar Track Connection In error type.]]></Comment>
+					<BitOffs X64="160">128</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>PopFirstMoverInQueue</Name>
+					<Comment><![CDATA[Returns the OTCID of the first mover in the queue of incomming movers and removes it from the queue. Returns zero when the queue is emtpy or if there is any error.]]></Comment>
+					<ReturnType>OTCID</ReturnType>
+				</Method>
+				<Method>
+					<Name>GetPosition</Name>
+					<Comment><![CDATA[Get the position of the Planar Track Connection In.]]></Comment>
+					<Parameter>
+						<Name>position</Name>
+						<Comment><![CDATA[The position to be set.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarTrackTrail-->
+			<POU Folder="POUs">
+				<Name GUID="{10A90CF0-2E9F-4049-9544-D7C6D53EA899}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarTrackTrail</Name>
+				<Comment><![CDATA[A list of distinct tracks each starting at the ending vertex of its predecessor.]]></Comment>
+				<BitSize X64="512">288</BitSize>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Flag indicating a TrackTrail error.]]></Comment>
+					<BitOffs X64="64">32</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Error id indicating the TrackTrail error type.]]></Comment>
+					<BitOffs X64="96">64</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Size</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Number of tracks stored in this trail.]]></Comment>
+					<BitOffs X64="128">96</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+				<PropertyItem>
+					<Name NoSetter="true">TrackCount</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Returns the number of tracks in this trail.]]></Comment>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_monitoring</Name>
+							<Value>call</Value>
+						</Property>
+					</Properties>
+				</PropertyItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>Clear</Name>
+					<Comment><![CDATA[Clears the TrackTrail.]]></Comment>
+				</Method>
+				<Method>
+					<Name>AddTrack</Name>
+					<Comment><![CDATA[Adds a track to the TrackTrail. The track should start at the end vertex of the currently last track.]]></Comment>
+					<Parameter>
+						<Name>track</Name>
+						<Comment><![CDATA[The track to be added to the end of the TrackTrail.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarTrack</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetTrackOidAt</Name>
+					<Comment><![CDATA[Returns the oid of the track at the specified index [1, ..., size] in the trail. Zero is returned on error.]]></Comment>
+					<ReturnType>OTCID</ReturnType>
+					<Parameter>
+						<Name>index</Name>
+						<Comment><![CDATA[Index of the track in the trail [1, ..., size].]]></Comment>
+						<Type Direction="in">UDINT</Type>
+					</Parameter>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarMover-->
+			<POU Folder="POUs">
+				<Name GUID="{B588CEFD-D650-400A-A2C7-352C8ECAD6A2}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarMover</Name>
+				<Comment><![CDATA[A Planar Mover object capable of moving within a plane. Limited movement vertical to the plane is available.]]></Comment>
+				<BitSize X64="1088">576</BitSize>
+				<SubItem>
+					<Name>PLCTOMC</Name>
+					<Type GUID="{0FD45376-89CE-4D41-87B5-C009E54908A1}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+					<Comment><![CDATA[Mover data that is transferred from the Planar Mover to this function block.]]></Comment>
+					<BitOffs X64="64">32</BitOffs>
+					<Properties>
+						<Property>
+							<Name>TcDataArea</Name>
+							<Value>Output</Value>
+						</Property>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Input</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>MCTOPLC</Name>
+					<Type GUID="{EA1F10AA-0C64-4FA5-978B-F78C44393D9A}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+					<Comment><![CDATA[Mover data that is transferred from the Planar Mover to this function block.]]></Comment>
+					<BitOffs X64="128">64</BitOffs>
+					<Properties>
+						<Property>
+							<Name>TcDataArea</Name>
+							<Value>Input</Value>
+						</Property>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Input</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Flag indicating a Planar Mover error.]]></Comment>
+					<BitOffs X64="960">480</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Error id indicating the Planar Mover error type.]]></Comment>
+					<BitOffs X64="992">512</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<PropertyItem>
+					<Name NoSetter="true">MoverHardwareOid</Name>
+					<Type>OTCID</Type>
+					<Comment><![CDATA[If a hardware mover is connected (no simulation mode), its OID is showed here.]]></Comment>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_monitoring</Name>
+							<Value>call</Value>
+						</Property>
+					</Properties>
+				</PropertyItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>MoveToPosition</Name>
+					<Comment><![CDATA[Initiates a direct movement to the specified position.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetPosition</Name>
+						<Comment><![CDATA[Target position for the movement.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the movement.]]></Comment>
+						<Type GUID="{370F6D14-8A00-4DA3-B28C-5E648E8318EE}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_MoveToPositionOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>JoinTrack</Name>
+					<Comment><![CDATA[Initiates a direct movement to the specified track. At the end of the movement the mover joins the track.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetTrack</Name>
+						<Comment><![CDATA[Target track for the movement.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarTrack</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the movement.]]></Comment>
+						<Type GUID="{4F0F6069-E474-4F1D-AA55-745B4EFFC9D8}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_JoinTrackOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>LeaveTrack</Name>
+					<Comment><![CDATA[Initiates a direct movement to the specified position. At the beginning of the movement the track is left.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetPosition</Name>
+						<Comment><![CDATA[Target position for the movement.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the movement.]]></Comment>
+						<Type GUID="{143DAE7C-6701-4927-9629-961CD3D036A4}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_LeaveTrackOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>MoveOnTrack</Name>
+					<Comment><![CDATA[Initiates a movement on the track to the specified position.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetTrack</Name>
+						<Comment><![CDATA[Target track for the movement. If none is specified, this defaults to the current track.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Namespace="Tc3_Mc3PlanarMotion" ReferenceTo="1" Direction="in">MC_PlanarTrack</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetPositionOnTrack</Name>
+						<Comment><![CDATA[Target position [mm] on the target track.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Constraint on maximal dynamics during the movement (V,A,D,J).]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">DynamicConstraint_PathXY</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the movement.]]></Comment>
+						<Type GUID="{0B666056-872B-424E-B64A-F49609B0E127}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_MoveOnTrackOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>LeaveSystemAt</Name>
+					<Comment><![CDATA[Initiates a movement on the track to the specified out connection, leaving the system there.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetTrackConnectionOut</Name>
+						<Comment><![CDATA[Target track connection at which the mover leaves the system.]]></Comment>
+						<Type GUID="{7D36CEFC-68D4-4104-82AB-795F0F178084}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarTrackConnectionOut</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Constraint on maximal dynamics during the movement (V,A,D,J).]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">DynamicConstraint_PathXY</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the movement.]]></Comment>
+						<Type GUID="{C6A07FB1-3B0D-45EF-A554-4338A9041997}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_LeaveSystemAt</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GearInPosOnTrack</Name>
+					<Comment><![CDATA[Initiates a GearInPos movement along a specified trail.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The command specific feedback object for the command.]]></Comment>
+						<Type GUID="{F158324E-0A51-4943-9362-0CA2B1509377}" Namespace="Tc3_Mc3PlanarMotion" ReferenceTo="1" Direction="in">MC_PlanarFeedbackGearInPosOnTrack</Type>
+					</Parameter>
+					<Parameter>
+						<Name>masterAxis</Name>
+						<Comment><![CDATA[Master axis being followed.]]></Comment>
+						<Type Direction="in">OTCID</Type>
+					</Parameter>
+					<Parameter>
+						<Name>trackTrail</Name>
+						<Comment><![CDATA[Track trail determining along which tracks the GearInPos movement is allowed to proceed.]]></Comment>
+						<Type GUID="{10A90CF0-2E9F-4049-9544-D7C6D53EA899}" Namespace="Tc3_Mc3PlanarMotion" ReferenceTo="1" Direction="in">MC_PlanarTrackTrail</Type>
+					</Parameter>
+					<Parameter>
+						<Name>masterSyncPosition</Name>
+						<Comment><![CDATA[Position of the master axis (interpreted as [mm]) at which the slave is inSync.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>slaveSyncPosition</Name>
+						<Comment><![CDATA[Arc length [mm] on track given by slaveSyncPositionTrackOID at which the slave is inSync. Possibly interpreted in modulo fashion, depending on options.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>slaveSyncPositionTrack</Name>
+						<Comment><![CDATA[Track on which the slave is inSync.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarTrack</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Constraint on maximal dynamics during the movement (V,A,D,J).]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">DynamicConstraint_PathXY</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the movement.]]></Comment>
+						<Type GUID="{A0DE3DE9-FE75-437E-9C4F-12CEF8F28D2C}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_GearInPosOnTrackOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GearInPosOnTrackWithMasterMover</Name>
+					<Comment><![CDATA[Initiates a GearInPos movement along a specified trail, in which the master setpoints are provided by another PlanarMover.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The command specific feedback object for the command.]]></Comment>
+						<Type GUID="{4B8D8431-0C11-43EC-9075-5B575BCDCB20}" Namespace="Tc3_Mc3PlanarMotion" ReferenceTo="1" Direction="in">MC_PlanarFeedbackGearInPosOnTrackWithMasterMover</Type>
+					</Parameter>
+					<Parameter>
+						<Name>masterMover</Name>
+						<Comment><![CDATA[Master mover being followed.]]></Comment>
+						<Type GUID="{B588CEFD-D650-400A-A2C7-352C8ECAD6A2}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarMover</Type>
+					</Parameter>
+					<Parameter>
+						<Name>trackTrail</Name>
+						<Comment><![CDATA[Track trail determining along which tracks the GearInPos movement is allowed to proceed.]]></Comment>
+						<Type GUID="{10A90CF0-2E9F-4049-9544-D7C6D53EA899}" Namespace="Tc3_Mc3PlanarMotion" ReferenceTo="1" Direction="in">MC_PlanarTrackTrail</Type>
+					</Parameter>
+					<Parameter>
+						<Name>masterSyncPosition</Name>
+						<Comment><![CDATA[Position of the master axis (interpreted as [mm]) at which the slave is inSync.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>masterSyncPositionTrack</Name>
+						<Comment><![CDATA[Track on which the master is inSync.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarTrack</Type>
+					</Parameter>
+					<Parameter>
+						<Name>slaveSyncPosition</Name>
+						<Comment><![CDATA[Arc length on track [mm] given by slaveSyncPositionTrackOID at which the slave is inSync. Possibly interpreted in modulo fashion, depending on options.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>slaveSyncPositionTrack</Name>
+						<Comment><![CDATA[Track on which the slave is inSync.]]></Comment>
+						<Type GUID="{74E758BE-6022-49D5-A10C-BC66284579C4}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarTrack</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Constraint on maximal dynamics during the movement (V,A,D,J).]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">DynamicConstraint_PathXY</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the movement.]]></Comment>
+						<Type GUID="{5A8461CA-4052-4626-BC5D-1CE1B65683E0}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_GearInPosOnTrackWithMasterMoverOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>MoveZ</Name>
+					<Comment><![CDATA[Initiates a movement for the z component.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetPosition</Name>
+						<Comment><![CDATA[Target position [mm] for the movement.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>MoveA</Name>
+					<Comment><![CDATA[Initiates a movement for the a component.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetPosition</Name>
+						<Comment><![CDATA[Target position [deg] for the movement.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>MoveB</Name>
+					<Comment><![CDATA[Initiates a movement for the b component.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetPosition</Name>
+						<Comment><![CDATA[Target position [deg] for the movement.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>MoveC</Name>
+					<Comment><![CDATA[Initiates a movement for the c component.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>targetPosition</Name>
+						<Comment><![CDATA[Target position [deg] for the movement.]]></Comment>
+						<Type Direction="in">LREAL</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the rotation.]]></Comment>
+						<Type GUID="{3968D894-10B1-4E26-AC44-4464598EF32A}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_MoveCOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>AdoptTrackOrientation</Name>
+					<Comment><![CDATA[Initiates a movement for the c component.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the rotation.]]></Comment>
+						<Type GUID="{CD2F9911-3022-4AB6-AED2-36E00F18E2B6}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_AdoptTrackOrientationOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Halt</Name>
+					<Comment><![CDATA[Initiates a halt.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>constraint</Name>
+						<Comment><![CDATA[Dynamic constraints for this movement.]]></Comment>
+						<Type Direction="in" ReferenceTo="1" Namespace="Tc3_Physics">IPlcDynamicConstraint</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Enable</Name>
+					<Comment><![CDATA[Starts enabling the Planar Mover.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Disable</Name>
+					<Comment><![CDATA[Starts disabling the Planar Mover.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Reset</Name>
+					<Comment><![CDATA[Starts resetting the Planar Mover.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>Update</Name>
+					<Comment><![CDATA[Updates internal state of the object, must be triggered each cycle.]]></Comment>
+				</Method>
+				<Method>
+					<Name>SetPosition</Name>
+					<Comment><![CDATA[Sets the position of the Planar Mover. Only possible if the Planar Mover is disabled.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>position</Name>
+						<Comment><![CDATA[New position of the Planar Mover.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>StartExternalSetpointGeneration</Name>
+					<Comment><![CDATA[Starts the external setpoint generation, the user must supply setpoints from this PLC cycle on in every PLC cycle.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>options</Name>
+						<Comment><![CDATA[Options for the movement.]]></Comment>
+						<Type GUID="{4CE91F7A-02E8-44B7-AB0B-38A598B51531}" Direction="in" ReferenceTo="1" Namespace="Tc3_Mc3PlanarMotion">ST_ExternalSetpointGenerationOptions</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>StopExternalSetpointGeneration</Name>
+					<Comment><![CDATA[Ends the external setpoint generation, called after last SetExternalSetpoint (in the same PLC cycle).]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>SetExternalSetpoint</Name>
+					<Comment><![CDATA[Sets the external setpoint for the Planar Mover without ref sys id (for relative mode), must be called each PLC cycle during external setpoint generation.]]></Comment>
+					<Parameter>
+						<Name>setPosition</Name>
+						<Comment><![CDATA[Position that is send to the Planar Mover.]]></Comment>
+						<Type Direction="in" GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+					</Parameter>
+					<Parameter>
+						<Name>setVelocity</Name>
+						<Comment><![CDATA[Velocity that is send to the Planar Mover.]]></Comment>
+						<Type Direction="in" GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+					</Parameter>
+					<Parameter>
+						<Name>setAcceleration</Name>
+						<Comment><![CDATA[Acceleration that is send to the Planar Mover.]]></Comment>
+						<Type Direction="in" GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>SetExternalSetpointReferenceId</Name>
+					<Comment><![CDATA[Sets the external setpoint for the Planar Mover with corresponing reference system id, must be called each PLC cycle during external setpoint generation.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>setPosition</Name>
+						<Comment><![CDATA[Position that is send to the Planar Mover.]]></Comment>
+						<Type Direction="in" GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+					</Parameter>
+					<Parameter>
+						<Name>setVelocity</Name>
+						<Comment><![CDATA[Velocity that is send to the Planar Mover.]]></Comment>
+						<Type Direction="in" GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+					</Parameter>
+					<Parameter>
+						<Name>setAcceleration</Name>
+						<Comment><![CDATA[Acceleration that is send to the Planar Mover.]]></Comment>
+						<Type Direction="in" GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+					</Parameter>
+					<Parameter>
+						<Name>referenceSystemOid</Name>
+						<Comment><![CDATA[Part or coordinate system id.]]></Comment>
+						<Type Direction="in">OTCID</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>RaiseError</Name>
+					<Comment><![CDATA[Raises a Planar Mover error, changing the Planar Mover state to ErrorPending (and then Error).]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>errorId</Name>
+						<Comment><![CDATA[ErrorId of the Planar Mover error.]]></Comment>
+						<Type Direction="in">UDINT</Type>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>AddToGroup</Name>
+					<Comment><![CDATA[Adds the Planar Mover to the given Planar Group.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+					<Parameter>
+						<Name>group</Name>
+						<Comment><![CDATA[The Planar Group that the Planar Mover joins.]]></Comment>
+						<Type GUID="{D98481C1-D636-4004-82A5-F5AE1B2144C8}" Direction="inout" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarGroup</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>RemoveFromGroup</Name>
+					<Comment><![CDATA[Removes the Planar Mover from its current Planar Group, i.e. disables collision checks.]]></Comment>
+					<Parameter>
+						<Name>commandFeedback</Name>
+						<Comment><![CDATA[The feedback object for the command.]]></Comment>
+						<Type GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" ReferenceTo="1" Direction="in" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetPositionOnCurrentPart</Name>
+					<Comment><![CDATA[Sets the values of the given position to the movers position values on the current part.]]></Comment>
+					<Parameter>
+						<Name>position</Name>
+						<Comment><![CDATA[The position on the planar part.]]></Comment>
+						<Type Direction="inout" Namespace="Tc3_Physics">PositionXYC</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetTrackTrailInformation</Name>
+					<Comment><![CDATA[Sets the values of the given track trail to the movers internally planned track trail.]]></Comment>
+					<Parameter>
+						<Name>trackTrail</Name>
+						<Comment><![CDATA[Track trail determining along which tracks the mover will move with the current mvoement on track.]]></Comment>
+						<Type GUID="{10A90CF0-2E9F-4049-9544-D7C6D53EA899}" Namespace="Tc3_Mc3PlanarMotion" Direction="inout">MC_PlanarTrackTrail</Type>
+					</Parameter>
+				</Method>
+				<Method>
+					<Name>GetPlanarObjectInfo</Name>
+					<Comment><![CDATA[Returns mover object info (type: mover, id: OID of nc mover).]]></Comment>
+					<ReturnType GUID="{29463DBB-43C2-43AB-ADE2-B70446C51EDF}" Namespace="Tc3_Mc3PlanarMotion">PlanarObjectInfo</ReturnType>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarFeedbackBase-->
+			<POU Folder="POUs">
+				<Name GUID="{65B4EE67-C70B-4797-BE29-D64F1563200A}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedbackBase</Name>
+				<Comment><![CDATA[Displays general command status information for an associated command, given back by the MC Project.]]></Comment>
+				<BitSize X64="640">416</BitSize>
+				<SubItem>
+					<Name>Active</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Indicates an active command, i.e. command was accepted and is being executed.]]></Comment>
+					<BitOffs X64="80">48</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Busy</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Indicates a busy command, i.e. command is being processed, waiting for execution, or already executing (= also active).]]></Comment>
+					<BitOffs X64="88">56</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Aborted</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Indicates the command is aborted, i.e. execution of the command finished due the start of other commands.]]></Comment>
+					<BitOffs X64="96">64</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>Error</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Indicates the command has an error.]]></Comment>
+					<BitOffs X64="104">72</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ErrorId</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Indicates the error id of the command error.]]></Comment>
+					<BitOffs X64="128">96</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>objectInfo</Name>
+					<Type GUID="{29463DBB-43C2-43AB-ADE2-B70446C51EDF}" Namespace="Tc3_Mc3PlanarMotion">PlanarObjectInfo</Type>
+					<Comment><![CDATA[Indicates which object one would collide with.]]></Comment>
+					<BitSize>64</BitSize>
+					<BitOffs X64="192">160</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_hide</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarFeedback-->
+			<POU Folder="POUs">
+				<Name GUID="{67317754-B216-43C9-951F-BB8FBC792ED9}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedback</Name>
+				<Comment><![CDATA[Displays specific command status information for an associated command, given back by the MC Project.]]></Comment>
+				<BitSize X64="704">448</BitSize>
+				<ExtendsType GUID="{65B4EE67-C70B-4797-BE29-D64F1563200A}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedbackBase</ExtendsType>
+				<SubItem>
+					<Name>Done</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[Indicates the command is done, i.e. execution of the command finished successfully.]]></Comment>
+					<BitOffs X64="640">416</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>Update</Name>
+					<Comment><![CDATA[Updates internal state of the object.]]></Comment>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarFeedbackInSync-->
+			<POU Folder="POUs">
+				<Name GUID="{B8300A8B-DACB-4111-8560-39CD0A51A605}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedbackInSync</Name>
+				<Comment><![CDATA[Base class for all specialized feedbacks featuring an inSync output.]]></Comment>
+				<BitSize X64="704">448</BitSize>
+				<ExtendsType GUID="{65B4EE67-C70B-4797-BE29-D64F1563200A}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedbackBase</ExtendsType>
+				<SubItem>
+					<Name>inSync</Name>
+					<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+					<Comment><![CDATA[Indicates whether the mover is currently in sync with the master (within tolerance specified in the command options).]]></Comment>
+					<BitSize>8</BitSize>
+					<BitOffs X64="640">416</BitOffs>
+					<Properties>
+						<Property>
+							<Name>ItemType</Name>
+							<Value>Output</Value>
+						</Property>
+					</Properties>
+				</SubItem>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_explicit_call' :='do not call this POU directly</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_hide</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarFeedbackGearInPosOnTrack-->
+			<POU Folder="POUs">
+				<Name GUID="{F158324E-0A51-4943-9362-0CA2B1509377}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedbackGearInPosOnTrack</Name>
+				<Comment><![CDATA[Displays specific command status information for an associated GearInPosOnTrack command, given back by the MC Project.]]></Comment>
+				<BitSize X64="704">448</BitSize>
+				<ExtendsType GUID="{B8300A8B-DACB-4111-8560-39CD0A51A605}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedbackInSync</ExtendsType>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>Update</Name>
+					<Comment><![CDATA[Updates internal state of the object.]]></Comment>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+			<!--MC_PlanarFeedbackGearInPosOnTrackWithMasterMover-->
+			<POU Folder="POUs">
+				<Name GUID="{4B8D8431-0C11-43EC-9075-5B575BCDCB20}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedbackGearInPosOnTrackWithMasterMover</Name>
+				<Comment><![CDATA[Displays specific command status information for an associated GearInPosOnTrack command, given back by the MC Project.]]></Comment>
+				<BitSize X64="704">448</BitSize>
+				<ExtendsType GUID="{B8300A8B-DACB-4111-8560-39CD0A51A605}" Namespace="Tc3_Mc3PlanarMotion">MC_PlanarFeedbackInSync</ExtendsType>
+				<Action>
+					<Name>MAIN</Name>
+				</Action>
+				<Method>
+					<Name>FB_init</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInitRetains</Name>
+						<Comment><![CDATA[ if TRUE, the retain variables are initialized (warm start / cold start)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the instance afterwards gets moved into the copy code (online change)]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_reinit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>FB_exit</Name>
+					<Comment>Internal method</Comment>
+					<ReturnType>BOOL</ReturnType>
+					<ReturnBitSize>8</ReturnBitSize>
+					<Parameter>
+						<Name>bInCopyCode</Name>
+						<Comment><![CDATA[ if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).]]></Comment>
+						<Type GUID="{18071995-0000-0000-0000-000000000030}" Direction="in">BOOL</Type>
+						<BitSize>8</BitSize>
+					</Parameter>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</Method>
+				<Method>
+					<Name>Update</Name>
+					<Comment><![CDATA[Updates internal state of the object.]]></Comment>
+				</Method>
+				<Properties>
+					<Property>
+						<Name>PouType</Name>
+						<Value>FunctionBlock</Value>
+					</Property>
+					<Property>
+						<Name>TcExternalPou</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_no_assign_warning</Name>
+					</Property>
+				</Properties>
+				<Licenses>
+					<License>
+						<LicenseId>{C2F58FAE-EB3E-4252-A3D4-E912569E6EFC}</LicenseId>
+					</License>
+				</Licenses>
+			</POU>
+		</POUs>
+		<DUTs>
+			<DUT Folder="DUTs">
+				<Name GUID="{3C90AE80-76AD-4E37-8E68-808BC0388761}" Namespace="Tc3_Mc3PlanarMotion">MC_SET_POSITION_MODE</Name>
+				<Comment><![CDATA[Indicates the external setpoint generation mode.]]></Comment>
+				<BitSize>16</BitSize>
+				<BaseType GUID="{C4BA2B11-27FE-4956-B736-B8F79E7E1624}" Namespace="MC">MC_EXTERNAL_SET_POSITION_MODE</BaseType>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_qualified_only</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_strict</Name>
+					</Property>
+					<Property>
+						<Name>plcAttribute_obsolete‘ :=‘Please use type MC_EXTERNAL_SET_POSITION_MODE instead</Name>
+					</Property>
+				</Properties>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{FA9CA56B-5BDF-42DB-BC74-B14868EB8B42}" Namespace="Tc3_Mc3PlanarMotion">MC_DIRECTION</Name>
+				<Comment><![CDATA[Indicates the movement direction of the Planar Mover on a Planar Track.]]></Comment>
+				<BitSize>16</BitSize>
+				<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+				<EnumInfo>
+					<Text>mcDirectionNonModulo</Text>
+					<Enum>0</Enum>
+					<Comment><![CDATA[The Planar Mover moves to the absolute value of the target position. Depending on the current position, this may induce forward or backward movement. On looped tracks, multiple passes are possible.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>mcDirectionPositive</Text>
+					<Enum>1</Enum>
+					<Comment><![CDATA[The Planar Mover moves to the target position in a forward direction. No backward movement is allowed.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>mcDirectionShortestWay</Text>
+					<Enum>2</Enum>
+					<Comment><![CDATA[The Planar Mover takes the shortest way to the target position. May induce forward or backward movement.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>mcDirectionNegative</Text>
+					<Enum>3</Enum>
+					<Comment><![CDATA[The Planar Mover moves to the target position in a backward direction. No forward movement is allowed.]]></Comment>
+				</EnumInfo>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_qualified_only</Name>
+					</Property>
+				</Properties>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{FB609C0C-2EEE-47C8-81DA-1811E3534906}" Namespace="Tc3_Mc3PlanarMotion">MC_SYNC_DIRECTIONS</Name>
+				<Comment><![CDATA[Directions in which a slave is allowed to move during synchronizing phase.]]></Comment>
+				<BitSize>16</BitSize>
+				<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+				<EnumInfo>
+					<Text>Invalid</Text>
+					<Enum>0</Enum>
+					<Comment><![CDATA[Indicates invalid information, e.g. no connection or component not yet ready.]]></Comment>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>Positive</Text>
+					<Enum>1</Enum>
+					<Comment><![CDATA[Movement is allowed only in positive direction while synchronizing.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>Negative</Text>
+					<Enum>2</Enum>
+					<Comment><![CDATA[Movement is allowed only in negative direction while synchronizing.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>Both</Text>
+					<Enum>3</Enum>
+					<Comment><![CDATA[Movement is allowed in any direction while synchronizing.]]></Comment>
+				</EnumInfo>
+				<Default>
+					<EnumText>Invalid</EnumText>
+				</Default>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_qualified_only</Name>
+					</Property>
+				</Properties>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{51EC8EBA-E260-4EDC-94C0-5ED02ABD2F9A}" Namespace="Tc3_Mc3PlanarMotion">MC_DYNAMIC_MODE_ON_TRACK</Name>
+				<Comment><![CDATA[Indicates the way in which dynamics are planned when moving on track.]]></Comment>
+				<BitSize>16</BitSize>
+				<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+				<EnumInfo>
+					<Text>Fast</Text>
+					<Enum>0</Enum>
+					<Comment><![CDATA[The Planar Mover interpretes the given dynamic limits in a one-dimeniosal fashiond, with respect to the track's arclength. This way, the maximum velocity is aimed at even in curves.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>Adaptive</Text>
+					<Enum>1</Enum>
+					<Comment><![CDATA[The Planar Mover interpretes the given dynamic limits in a two-dimensional fashion, resulting in diminished velocity in curves. Produces the same behavior as the Fast mode when on a straight track.]]></Comment>
+				</EnumInfo>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_qualified_only</Name>
+					</Property>
+				</Properties>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{DE398E50-27EA-4FA1-BE14-404D7016D061}" Namespace="Tc3_Mc3PlanarMotion">MC_GAP_MODE_ON_TRACK</Name>
+				<Comment><![CDATA[Indicates the way in which gap control is done on track.]]></Comment>
+				<BitSize>16</BitSize>
+				<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+				<EnumInfo>
+					<Text>Standard1D</Text>
+					<Enum>1</Enum>
+					<Comment><![CDATA[The Planar Mover keeps a distance to its neighbours on track that is at least the sum of gap and stop distance.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>Fast1D</Text>
+					<Enum>2</Enum>
+					<Comment><![CDATA[The Planar Mover keeps a distance to its neighbours on track that is at least the gap.]]></Comment>
+				</EnumInfo>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_qualified_only</Name>
+					</Property>
+				</Properties>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{29463DBB-43C2-43AB-ADE2-B70446C51EDF}" Namespace="Tc3_Mc3PlanarMotion">PlanarObjectInfo</Name>
+				<Comment><![CDATA[Identifies a planar object uniquely by object id and type.]]></Comment>
+				<BitSize>64</BitSize>
+				<SubItem>
+					<Name>ObjectType</Name>
+					<Type GUID="{76890AE9-CB7E-444D-A716-1872FD85E0C0}" Namespace="Tc3_Mc3PlanarMotion">EPlanarObjectType</Type>
+					<Comment><![CDATA[Object type.]]></Comment>
+					<BitSize>16</BitSize>
+					<BitOffs>0</BitOffs>
+				</SubItem>
+				<SubItem>
+					<Name>Id</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Object id.]]></Comment>
+					<BitSize>32</BitSize>
+					<BitOffs>32</BitOffs>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{76890AE9-CB7E-444D-A716-1872FD85E0C0}" Namespace="Tc3_Mc3PlanarMotion">EPlanarObjectType</Name>
+				<Comment><![CDATA[Identifies a planar object type.]]></Comment>
+				<BitSize>16</BitSize>
+				<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+				<EnumInfo>
+					<Text>Invalid</Text>
+					<Enum>0</Enum>
+					<Comment><![CDATA[Indicates invalid information, e.g. no connection or component not yet ready.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>None</Text>
+					<Enum>301</Enum>
+					<Comment><![CDATA[No planar object.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>Mover</Text>
+					<Enum>302</Enum>
+					<Comment><![CDATA[Planar Mover.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>Track</Text>
+					<Enum>303</Enum>
+					<Comment><![CDATA[Planar Track.]]></Comment>
+				</EnumInfo>
+				<EnumInfo>
+					<Text>Environment</Text>
+					<Enum>304</Enum>
+					<Comment><![CDATA[Planar Environment.]]></Comment>
+				</EnumInfo>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_qualified_only</Name>
+					</Property>
+				</Properties>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{0FD45376-89CE-4D41-87B5-C009E54908A1}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Name>
+				<Comment><![CDATA[Contains the information of the Planar Mover passed from PLC to MC.]]></Comment>
+				<BitSize X64="64">32</BitSize>
+				<SubItem>
+					<Name>STD</Name>
+					<Type GUID="{BC77732B-A71D-4084-AA53-85A5016932F3}" ReferenceTo="1" Namespace="MC">CDT_PLCTOMC_PLANAR_MOVER_STD</Type>
+					<Comment><![CDATA[Mover standard data that is transferred from this function block to the Planar Mover.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_TcPointerMapping</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{EA1F10AA-0C64-4FA5-978B-F78C44393D9A}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Name>
+				<Comment><![CDATA[Contains the information of the Planar Mover passed from MC to PLC.]]></Comment>
+				<BitSize X64="320">160</BitSize>
+				<SubItem>
+					<Name>STD</Name>
+					<Type ReferenceTo="1" Namespace="MC">CDT_MCTOPLC_PLANAR_MOVER_STD</Type>
+					<Comment><![CDATA[Mover standard data that is transferred from the Planar Mover to this function block.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_TcPointerMapping</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>SET</Name>
+					<Type GUID="{D7D4F146-9962-4745-8631-17F5FB457164}" ReferenceTo="1" Namespace="MC">CDT_MCTOPLC_PLANAR_MOVER_SET</Type>
+					<Comment><![CDATA[Mover setpoint data that is transferred from the Planar Mover to this function block.]]></Comment>
+					<BitOffs X64="64">32</BitOffs>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_TcPointerMapping</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>ACT</Name>
+					<Type GUID="{F18FBB92-D68F-43D8-95AE-0E42EDCD14E2}" ReferenceTo="1" Namespace="MC">CDT_MCTOPLC_PLANAR_MOVER_ACT</Type>
+					<Comment><![CDATA[Mover actpoint data that is transferred from the Planar Mover to this function block.]]></Comment>
+					<BitOffs X64="128">64</BitOffs>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_TcPointerMapping</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>COORDMODE</Name>
+					<Type ReferenceTo="1" Namespace="MC">CDT_MCTOPLC_PLANAR_MOVER_COORDMODE</Type>
+					<Comment><![CDATA[Mover coordinate mode information that is transferred from the Planar Mover to this function block.]]></Comment>
+					<BitOffs X64="192">96</BitOffs>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_TcPointerMapping</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>SETONTRACK</Name>
+					<Type GUID="{DB4B14FF-1923-4ED2-A97C-3D3120BDBDAA}" ReferenceTo="1" Namespace="MC">CDT_MCTOPLC_PLANAR_MOVER_TRACK</Type>
+					<Comment><![CDATA[Mover busy information that is transferred from the Planar Mover to this function block.]]></Comment>
+					<BitOffs X64="256">128</BitOffs>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_TcPointerMapping</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{370F6D14-8A00-4DA3-B28C-5E648E8318EE}" Namespace="Tc3_Mc3PlanarMotion">ST_MoveToPositionOptions</Name>
+				<Comment><![CDATA[Options for the "MoveToPosition" command of the Planar Mover.]]></Comment>
+				<BitSize>8</BitSize>
+				<SubItem>
+					<Name>useOrientation</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[If true, the target orientation is also reached at the end of the movement.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<EnumText>TRUE</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{4F0F6069-E474-4F1D-AA55-745B4EFFC9D8}" Namespace="Tc3_Mc3PlanarMotion">ST_JoinTrackOptions</Name>
+				<Comment><![CDATA[Options for the "JoinTrack" command of the Planar Mover.]]></Comment>
+				<BitSize>8</BitSize>
+				<SubItem>
+					<Name>useOrientation</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[If true, the target orientation is also reached at the end of the movement.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<EnumText>TRUE</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{143DAE7C-6701-4927-9629-961CD3D036A4}" Namespace="Tc3_Mc3PlanarMotion">ST_LeaveTrackOptions</Name>
+				<Comment><![CDATA[Options for the "LeaveTrack" command of the Planar Mover.]]></Comment>
+				<BitSize>8</BitSize>
+				<SubItem>
+					<Name>useOrientation</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[If true, the target orientation is also reached at the end of the movement.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<EnumText>TRUE</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{0B666056-872B-424E-B64A-F49609B0E127}" Namespace="Tc3_Mc3PlanarMotion">ST_MoveOnTrackOptions</Name>
+				<Comment><![CDATA[Options for the "MoveOnTrack" command of the Planar Mover.]]></Comment>
+				<BitSize>256</BitSize>
+				<SubItem>
+					<Name>gap</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Minimal distance [mm] to next Planar Mover on track.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<Value>200.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>direction</Name>
+					<Type GUID="{FA9CA56B-5BDF-42DB-BC74-B14868EB8B42}" Namespace="Tc3_Mc3PlanarMotion">MC_DIRECTION</Type>
+					<Comment><![CDATA[Direction in which the target is approached.]]></Comment>
+					<BitOffs>64</BitOffs>
+					<Default>
+						<EnumText>MC_DIRECTION.mcDirectionNonModulo</EnumText>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>additionalTurns</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Addition turns to move in modulo movement (positive or negative).]]></Comment>
+					<BitOffs>96</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>moduloTolerance</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Tolerance "window" [mm] in modulo movement.]]></Comment>
+					<BitOffs>128</BitOffs>
+					<Default>
+						<Value>0.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>dynamicMode</Name>
+					<Type GUID="{51EC8EBA-E260-4EDC-94C0-5ED02ABD2F9A}" Namespace="Tc3_Mc3PlanarMotion">MC_DYNAMIC_MODE_ON_TRACK</Type>
+					<Comment><![CDATA[The way in which dynamics are planned on track.]]></Comment>
+					<BitOffs>192</BitOffs>
+					<Default>
+						<EnumText>MC_DYNAMIC_MODE_ON_TRACK.Fast</EnumText>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>gapMode</Name>
+					<Type GUID="{DE398E50-27EA-4FA1-BE14-404D7016D061}" Namespace="Tc3_Mc3PlanarMotion">MC_GAP_MODE_ON_TRACK</Type>
+					<Comment><![CDATA[The way in which gap control is done with all neighbours on track.]]></Comment>
+					<BitOffs>208</BitOffs>
+					<Default>
+						<EnumText>MC_GAP_MODE_ON_TRACK.Standard1D</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{C6A07FB1-3B0D-45EF-A554-4338A9041997}" Namespace="Tc3_Mc3PlanarMotion">ST_LeaveSystemAtOptions</Name>
+				<Comment><![CDATA[Options for the "LeaveSystemAt" command of the Planar Mover.]]></Comment>
+				<BitSize>128</BitSize>
+				<SubItem>
+					<Name>gap</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Minimal distance [mm] to next Planar Mover on track.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<Value>200.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>dynamicMode</Name>
+					<Type GUID="{51EC8EBA-E260-4EDC-94C0-5ED02ABD2F9A}" Namespace="Tc3_Mc3PlanarMotion">MC_DYNAMIC_MODE_ON_TRACK</Type>
+					<Comment><![CDATA[The way in which dynamics are planned on track.]]></Comment>
+					<BitOffs>64</BitOffs>
+					<Default>
+						<EnumText>MC_DYNAMIC_MODE_ON_TRACK.Fast</EnumText>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>gapMode</Name>
+					<Type GUID="{DE398E50-27EA-4FA1-BE14-404D7016D061}" Namespace="Tc3_Mc3PlanarMotion">MC_GAP_MODE_ON_TRACK</Type>
+					<Comment><![CDATA[The way in which gap control is done with all neighbours on track.]]></Comment>
+					<BitOffs>80</BitOffs>
+					<Default>
+						<EnumText>MC_GAP_MODE_ON_TRACK.Standard1D</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{A0DE3DE9-FE75-437E-9C4F-12CEF8F28D2C}" Namespace="Tc3_Mc3PlanarMotion">ST_GearInPosOnTrackOptions</Name>
+				<Comment><![CDATA[Options for the "GearInPosOnTrack" command of the Planar Mover.]]></Comment>
+				<BitSize>320</BitSize>
+				<SubItem>
+					<Name>gap</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Minimal distance [mm] to next Planar Mover on track.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<Value>200.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>inSyncToleranceDistance</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Tolerance in absolute value [mm] of position difference to master axis for inSync flag.]]></Comment>
+					<BitOffs>64</BitOffs>
+					<Default>
+						<Value>0.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>directionSlaveSyncPosition</Name>
+					<Type GUID="{FA9CA56B-5BDF-42DB-BC74-B14868EB8B42}" Namespace="Tc3_Mc3PlanarMotion">MC_DIRECTION</Type>
+					<Comment><![CDATA[Direction in which the slave sync position is approached.]]></Comment>
+					<BitOffs>128</BitOffs>
+					<Default>
+						<EnumText>MC_DIRECTION.mcDirectionNonModulo</EnumText>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>additionalTurnsSlaveSyncPosition</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Addition turns for slave sync position.]]></Comment>
+					<BitOffs>160</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>moduloToleranceSlaveSyncPosition</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Tolerance "window" [mm] for slave sync position.]]></Comment>
+					<BitOffs>192</BitOffs>
+					<Default>
+						<Value>0.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>allowedSlaveSyncDirections</Name>
+					<Type GUID="{FB609C0C-2EEE-47C8-81DA-1811E3534906}" Namespace="Tc3_Mc3PlanarMotion">MC_SYNC_DIRECTIONS</Type>
+					<Comment><![CDATA[Directions in which the slave is allowed to move while in synchronizing phase.]]></Comment>
+					<BitOffs>256</BitOffs>
+					<Default>
+						<EnumText>MC_SYNC_DIRECTIONS.Positive</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{5A8461CA-4052-4626-BC5D-1CE1B65683E0}" Namespace="Tc3_Mc3PlanarMotion">ST_GearInPosOnTrackWithMasterMoverOptions</Name>
+				<Comment><![CDATA[Options for the "GearInPosOnTrackWithMasterMover" command of the Planar Mover.]]></Comment>
+				<BitSize>448</BitSize>
+				<SubItem>
+					<Name>gap</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Minimal distance [mm] to next Planar Mover on track.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<Value>200.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>inSyncToleranceDistance</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Tolerance in absolute value [mm] of position difference to master axis for inSync flag.]]></Comment>
+					<BitOffs>64</BitOffs>
+					<Default>
+						<Value>0.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>directionSlaveSyncPosition</Name>
+					<Type GUID="{FA9CA56B-5BDF-42DB-BC74-B14868EB8B42}" Namespace="Tc3_Mc3PlanarMotion">MC_DIRECTION</Type>
+					<Comment><![CDATA[Direction in which the slave sync position is approached.]]></Comment>
+					<BitOffs>128</BitOffs>
+					<Default>
+						<EnumText>MC_DIRECTION.mcDirectionNonModulo</EnumText>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>additionalTurnsSlaveSyncPosition</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Addition turns for slave sync position.]]></Comment>
+					<BitOffs>160</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>moduloToleranceSlaveSyncPosition</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Tolerance "window" [mm] for slave sync position.]]></Comment>
+					<BitOffs>192</BitOffs>
+					<Default>
+						<Value>0.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>directionMasterSyncPosition</Name>
+					<Type GUID="{FA9CA56B-5BDF-42DB-BC74-B14868EB8B42}" Namespace="Tc3_Mc3PlanarMotion">MC_DIRECTION</Type>
+					<Comment><![CDATA[Direction in which the master sync position is approached.]]></Comment>
+					<BitOffs>256</BitOffs>
+					<Default>
+						<EnumText>MC_DIRECTION.mcDirectionNonModulo</EnumText>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>additionalTurnsMasterSyncPosition</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Addition turns for master sync position.]]></Comment>
+					<BitOffs>288</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+					<Properties>
+						<Property>
+							<Name>plcAttribute_hide</Name>
+						</Property>
+					</Properties>
+				</SubItem>
+				<SubItem>
+					<Name>moduloToleranceMasterSyncPosition</Name>
+					<Type>LREAL</Type>
+					<Comment><![CDATA[Tolerance "window" [mm] for master sync position.]]></Comment>
+					<BitOffs>320</BitOffs>
+					<Default>
+						<Value>0.0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>allowedSlaveSyncDirections</Name>
+					<Type GUID="{FB609C0C-2EEE-47C8-81DA-1811E3534906}" Namespace="Tc3_Mc3PlanarMotion">MC_SYNC_DIRECTIONS</Type>
+					<Comment><![CDATA[Directions in which the slave is allowed to move while in synchronizing phase.]]></Comment>
+					<BitOffs>384</BitOffs>
+					<Default>
+						<EnumText>MC_SYNC_DIRECTIONS.Positive</EnumText>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>followMover</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[If true, the slave PlanarMover will proceed to follow the master PlanarMover after the latter has traversed the masterSyncPosition. In this case the PlanarTrackTrail describes the slave's path towards the masterSyncPosition. If false, the slave moves exclusively on the PlanarTrackTrail specified.]]></Comment>
+					<BitOffs>400</BitOffs>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{4CE91F7A-02E8-44B7-AB0B-38A598B51531}" Namespace="Tc3_Mc3PlanarMotion">ST_ExternalSetpointGenerationOptions</Name>
+				<Comment><![CDATA[Options for the "ExternalSetpointGeneration" command of the Planar Mover.]]></Comment>
+				<BitSize>16</BitSize>
+				<SubItem>
+					<Name>mode</Name>
+					<Type GUID="{C4BA2B11-27FE-4956-B736-B8F79E7E1624}" Namespace="MC">MC_EXTERNAL_SET_POSITION_MODE</Type>
+					<Comment><![CDATA[Mode can be relative or absolute, relative can be used parallel to all other commands, absolute only alone.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<EnumText>MC_EXTERNAL_SET_POSITION_MODE.Absolute</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{3968D894-10B1-4E26-AC44-4464598EF32A}" Namespace="Tc3_Mc3PlanarMotion">ST_MoveCOptions</Name>
+				<Comment><![CDATA[Options for the "MoveC" command of the Planar Mover.]]></Comment>
+				<BitSize>64</BitSize>
+				<SubItem>
+					<Name>additionalTurns</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Addition turns to move in modulo movement (positive or negative).]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>direction</Name>
+					<Type GUID="{FA9CA56B-5BDF-42DB-BC74-B14868EB8B42}" Namespace="Tc3_Mc3PlanarMotion">MC_DIRECTION</Type>
+					<Comment><![CDATA[Direction in which the target is approached.]]></Comment>
+					<BitOffs>32</BitOffs>
+					<Default>
+						<EnumText>MC_DIRECTION.mcDirectionNonModulo</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{CD2F9911-3022-4AB6-AED2-36E00F18E2B6}" Namespace="Tc3_Mc3PlanarMotion">ST_AdoptTrackOrientationOptions</Name>
+				<Comment><![CDATA[Options for the "AdoptTrackOrientation" command of the Planar Mover.]]></Comment>
+				<BitSize>64</BitSize>
+				<SubItem>
+					<Name>additionalTurns</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[Addition turns to move in modulo movement (positive or negative).]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>direction</Name>
+					<Type GUID="{FA9CA56B-5BDF-42DB-BC74-B14868EB8B42}" Namespace="Tc3_Mc3PlanarMotion">MC_DIRECTION</Type>
+					<Comment><![CDATA[Direction in which the target is approached.]]></Comment>
+					<BitOffs>32</BitOffs>
+					<Default>
+						<EnumText>MC_DIRECTION.mcDirectionShortestWay</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{BFAEC56B-EA59-4E6C-80D6-CFD454740FA4}" Namespace="Tc3_Mc3PlanarMotion">ST_StartFromTrackAdvancedOptions</Name>
+				<Comment><![CDATA[Options for the "StartFromTrackAdvanced" command of the Planar Track.]]></Comment>
+				<BitSize>96</BitSize>
+				<SubItem>
+					<Name>thisTrackPartPositionIndex</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[The index of the position in which the part of this track is for track connection.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>otherTrackPartPositionIndex</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[The index of the position in which the part of the other track is for track connection.]]></Comment>
+					<BitOffs>32</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>linkOnlyInSpecifiedPartPositions</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[If false the tracks are connected not only in the given positions configuration of their parts but also in all other (geometrically compatible) locations, otherwise only the specified location is connected.]]></Comment>
+					<BitOffs>64</BitOffs>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+			<DUT Folder="DUTs">
+				<Name GUID="{BF8474CD-E31A-4854-97DD-B0AB77EF6586}" Namespace="Tc3_Mc3PlanarMotion">ST_EndAtTrackAdvancedOptions</Name>
+				<Comment><![CDATA[Options for the "EndAtTrackAdvanced" command of the Planar Track.]]></Comment>
+				<BitSize>96</BitSize>
+				<SubItem>
+					<Name>thisTrackPartPositionIndex</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[The index of the position in which the part of this track is for track connection.]]></Comment>
+					<BitOffs>0</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>otherTrackPartPositionIndex</Name>
+					<Type>UDINT</Type>
+					<Comment><![CDATA[The index of the position in which the part of the other track is for track connection.]]></Comment>
+					<BitOffs>32</BitOffs>
+					<Default>
+						<Value>0</Value>
+					</Default>
+				</SubItem>
+				<SubItem>
+					<Name>linkOnlyInSpecifiedPartPositions</Name>
+					<Type>BOOL</Type>
+					<Comment><![CDATA[If false the tracks are connected not only in the given positions configuration of their parts but also in all other (geometrically compatible) locations, otherwise only the specified location is connected.]]></Comment>
+					<BitOffs>64</BitOffs>
+					<Default>
+						<EnumText>FALSE</EnumText>
+					</Default>
+				</SubItem>
+			</DUT>
+		</DUTs>
+		<References>
+			<Library>
+				<LibraryId>Beckhoff Automation GmbH|Tc3_Physics|0.3.75.0</LibraryId>
+				<POU GUID="{94A53257-712C-4289-8A19-3DB09306B40A}" Namespace="Tc3_Physics">PositionXYC</POU>
+				<POU GUID="{119F8BEA-1CCE-4ACF-9F36-7E441D9751B8}" Namespace="Tc3_Physics">PositionXY</POU>
+				<POU GUID="{EA3D3C21-4B7E-4D6D-B9DA-2008E963DFF1}" Namespace="Tc3_Physics">IPlcDynamicConstraint</POU>
+				<POU GUID="{460D10D3-426A-4509-B2D2-78BBA97FD3E8}" Namespace="Tc3_Physics">DynamicConstraint_PathXY</POU>
+			</Library>
+		</References>
+		<Deployment>
+			<DependsOn>
+				<LibraryId>Beckhoff Automation GmbH|Tc3_Physics|0.3.75.0</LibraryId>
+			</DependsOn>
+		</Deployment>
+	</Library>
+</TcModuleLibrary>

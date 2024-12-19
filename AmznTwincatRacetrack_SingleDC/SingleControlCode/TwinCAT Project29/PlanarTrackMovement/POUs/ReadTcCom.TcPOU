@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ReadTcCom" Id="{7b852c01-01d9-4893-960e-546d636dddf6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ReadTcCom
+VAR_INPUT
+	
+END_VAR
+VAR_OUTPUT
+	bBusy 				: BOOL;
+	bDone 				: BOOL;
+	bError 				: BOOL;
+	bGetComObject	: BOOL;
+END_VAR
+VAR
+	
+	_nObjectId				: OTCID;
+	_ipComObject 			: ITComObject;
+	_nSoftDriveOid			: OTCID;
+	PID_Value	: PTCID := 	16#05030149;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="GetComObject" Id="{847516b2-1383-46e1-9c3b-b2cd76ab974f}">
+      <Declaration><![CDATA[METHOD GetComObject : BOOL
+VAR_INPUT
+	nObjectId	: OTCID;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF FW_ObjMgr_GetObjectInstance(	oid		:= nObjectId, 
+								iid		:= TC_GLOBAL_IID_LIST.IID_ITComObject, 
+								pipUnk	:= ADR(_ipComObject)) = 0
+THEN
+	GetComObject := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetValue" Id="{96b06229-2ddf-4b5b-b4f4-04335330dc5f}">
+      <Declaration><![CDATA[METHOD GetValue : ARRAY[1..nNumMaxMovers] OF OTCID
+VAR_INPUT
+	//PID_Value 		: otcid;
+END_VAR
+VAR
+	Value			: ARRAY[1..nNumMaxMovers] OF OTCID;
+	nData 			: UDINT := SIZEOF(Value);
+	pData 			: PVOID := ADR(Value);
+	stEventEntry	: TcEventEntry;
+	pstEventEntry	: REFERENCE TO TcEventEntry REF= stEventEntry;
+	
+END_VAR
+VAR_INST
+	hResult : HRESULT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _ipComObject <> 0  THEN
+	 hResult := _ipComObject.TcGetObjPara(
+				pid 	:= PID_Value,
+				nData 	:= nData,
+				pData 	:= pData,
+				pgp   	:=0) ;
+	IF hResult = 0	THEN
+		GetValue := Value;
+		bError := FALSE;
+	ELSE
+		bError := TRUE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="ReadTcCom">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="ReadTcCom.GetComObject">
+      <LineId Id="9" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="ReadTcCom.GetValue">
+      <LineId Id="71" Count="6" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="79" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

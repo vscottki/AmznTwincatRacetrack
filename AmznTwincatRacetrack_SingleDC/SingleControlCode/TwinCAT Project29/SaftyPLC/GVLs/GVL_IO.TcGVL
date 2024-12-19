@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_IO" Id="{2421609d-e10e-490e-a178-44160ddc8b31}">
+    <Declaration><![CDATA[
+VAR_GLOBAL
+	VoltageSet AT%Q*: REAL := 300;
+	VoltageAct AT%I*: REAL;
+	ControlDrive1121  AT%Q* : UINT;
+	StatusDrive1121 AT%I* :UINT;
+	ChargingResistor AT%Q* :BOOL;
+	up , down : BOOL;
+	start  : BOOL := TRUE;
+	HwReset: BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

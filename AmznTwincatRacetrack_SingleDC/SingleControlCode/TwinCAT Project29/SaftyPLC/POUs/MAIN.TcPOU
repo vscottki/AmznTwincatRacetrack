@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="MAIN" Id="{1b4dff48-5fc4-4640-872d-67c650f13b5e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	nCase 					: INT;
+	HwStart 		AT%I* 	: BOOL;
+	HwStop  		AT%I* 	: BOOL;
+	HwReset 		AT%I* 	: BOOL;
+	xOn 			AT%Q* 	: BOOL;
+	xRequestReset 	AT%Q* 	: BOOL;
+	xError 			AT%Q* 	: BOOL;
+		
+	VoltageSP 			  	: LREAL := 300;
+	rTrigSwitchon 		  	: R_trig;
+	fTrigSwitchOff		  	: F_trig;
+	Chargtimer 				: ton;
+	
+	SwitchOn				: BOOL;
+	
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+IF GVL_Safety.HWStart THEN
+	GVL_Safety.Run  := TRUE;
+	GVL_Safety.Start := TRUE;
+END_IF
+
+IF  NOT GVL_Safety.HWStop THEN
+	GVL_Safety.Run  := FALSE;
+	GVL_Safety.Start := FALSE;
+END_IF
+		
+
+
+IF gvl_safety.SaeftyOk THEN
+	gvl_safety.HWSafetyOk := TRUE;
+ELSE	
+	gvl_safety.HWSafetyOk := FALSE;
+END_IF
+
+IF NOT gvl_safety.SafetyInRun THEN
+	gvl_safety.HWerror := TRUE;
+ELSE	
+	gvl_safety.HWerror := FALSE;
+END_IF
+
+rTrigSwitchon(clk := HwStart );
+fTrigSwitchOff(clk:= HwStop );
+
+
+ Chargtimer(in := SwitchOn ,pt := T#1M, q=>GVL_IO.ChargingResistor);
+
+IF rTrigSwitchon.Q THEN
+	GVL_IO.VoltageSet := GVL_IO.VoltageAct;
+	SwitchOn := TRUE;
+ELSIF fTrigSwitchOff.Q THEN
+	SwitchOn := FALSE;
+	GVL_IO.VoltageSet :=   0;
+END_IF
+
+
+
+IF (VoltageSP-2) > GVL_IO.VoltageAct AND  GVL_IO.Voltageset <VoltageSP AND SwitchOn THEN
+	GVL_IO.VoltageSet := GVL_IO.VoltageSet +0.1;
+END_IF
+
+
+
+IF GVL_IO.hwReset OR HwReset THEN
+	GVL_IO.ControlDrive1121 := 16#FF;
+	GVL_Safety.Reset := TRUE;
+ELSE 	
+	GVL_IO.ControlDrive1121 := 16#0;
+	GVL_Safety.Reset := FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="43" Count="3" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="81" Count="4" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="114" Count="29" />
+      <LineId Id="113" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

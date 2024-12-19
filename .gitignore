@@ -48,7 +48,7 @@ workspace/*.bootinfo_guids
 *.tmcRefac
 #*.library #We shall include the libraries in the commit.
 *.project.~u
-*.tsproj
+#*.tsproj
 *.tsproj.bak
 *.xti.bak
 LineIDs.dbg
