@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="E_TrackNum" Id="{8c7b446a-e63b-4ff3-8581-b59315de87a2}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE e_TrackNum :
+	(
+	Big :=3,
+	Small :=2,
+	Main:=1	);	
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

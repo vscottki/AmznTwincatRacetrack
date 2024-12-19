@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Crc="406275465" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{b687843e-c740-431c-945c-676eb3319443}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TwinCAT3SafePlcProject</RootNamespace>
+    <AssemblyName>TwinCAT3SafePlcProject</AssemblyName>
+    <FileUpgradeFlags />
+    <UpgradeBackupLocation />
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetSystem>EL6900</TargetSystem>
+    <ProgrammingLanguage>Graphical Editor</ProgrammingLanguage>
+    <Worker>Administrator</Worker>
+    <IntProjName>Safety Master</IntProjName>
+    <IsNewCreated>false</IsNewCreated>
+    <SPlcProjVersion>1.8.0.0</SPlcProjVersion>
+    <NextSdsId>144</NextSdsId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="GVLs\GVL1.sgvl" />
+    <None Include="TwinSafeGroup1\Alias Devices\Error_Com.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Error_Other.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Error_out.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\E-StopReq.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 18 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 19 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 20 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 21 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 22 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 23 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 24 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 25 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 26 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 27 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 28 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 29 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 30 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 31 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 32 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 33 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 34 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 35 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 36 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 37 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 38 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 39 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 40 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 41 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 42 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 43 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 44 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 45 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 46 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 47 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 48 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 49 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 50 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 51 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 52 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 53 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 54 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 55 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 56 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 57 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 58 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 59 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 60 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 61 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 62 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 63 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 64 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 65 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 66 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 67 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 68 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 69 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 70 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 71 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 72 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 73 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 74 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 75 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 76 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 77 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 78 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 79 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 80 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Modules\Box 81 %28AT5100-0100%29 - Module 1 %28SAFETY%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\SafetyInRun.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\SafetyOk.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\STO.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\STO_Release.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Term 11 %28EL1904%29 - Module 1 %28FSOES%29.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Term 13 %28EL2912%29 - Module 1 %28FSOE%29.sds" />
+    <None Include="TwinSafeGroup1\TwinSafeGroup1.sal" />
+    <None Include="TwinSafeGroup1\TwinSafeGroup1.sal.diagram">
+      <DependentUpon>TwinSafeGroup1\TwinSafeGroup1.sal</DependentUpon>
+      <Visible>false</Visible>
+    </None>
+    <None Include="TargetSystemConfig.xml">
+      <Visible>false</Visible>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GVLs" />
+    <Folder Include="TwinSafeGroup1" />
+    <Folder Include="TwinSafeGroup1\Alias Devices" />
+    <Folder Include="TwinSafeGroup1\Alias Devices\Modules" />
+    <Folder Include="User FBs" />
+    <None Include="TwinSafeGroup1\Alias Devices\ErrorAcknowledgement.sds" />
+    <None Include="TwinSafeGroup1\Alias Devices\Run.sds" />
+  </ItemGroup>
+</Project>

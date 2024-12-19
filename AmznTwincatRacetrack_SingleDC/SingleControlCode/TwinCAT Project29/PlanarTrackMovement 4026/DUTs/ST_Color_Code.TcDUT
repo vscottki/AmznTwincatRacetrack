@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="ST_Color_Code" Id="{0ebbb323-0f58-4e03-9168-1c90dcb9dd81}">
+    <Declaration><![CDATA[TYPE ST_Color_Code :
+STRUCT
+	Pattern : UINT;
+	Red :USINT;
+	Green: USINT;
+	Blue : USINT; 
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

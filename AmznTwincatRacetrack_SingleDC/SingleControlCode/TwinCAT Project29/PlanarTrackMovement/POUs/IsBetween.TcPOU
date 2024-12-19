@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="IsBetween" Id="{068006e5-ff28-4dfb-8943-8706abd61fdb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION IsBetween : BOOL
+VAR_INPUT
+	value: 	LREAL;
+	minV:	LREAL;
+	maxV:	LREAL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IsBetween := value > minV AND value < maxV;]]></ST>
+    </Implementation>
+    <LineIds Name="IsBetween">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

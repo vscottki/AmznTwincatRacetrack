@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_General" Id="{027beb7e-728e-4aeb-a930-890d17a65a81}">
+    <Declaration><![CDATA[VAR_GLOBAL CONSTANT
+
+	nNumMaxMovers : UDINT :=16;
+	nNumMaxTracks : UDINT :=3;
+ 	fMagnetEntry : LREAL := 8750; //PLEASE ENTER THE MAGNET ENTRY!!!
+	fMagnetExit : LREAL := 9450; //PLEASE ENTER THE MAGNET EXIT!!!
+END_VAR
+
+VAR_GLOBAL
+	aStopPositions : ARRAY [1..nNumMaxMovers] OF LREAL;// := [2400, 1700, 1000, 300];
+	XtsOutterLoopOid: OTCID := 16#1010480;	
+	XtsShortcutOid: OTCID := 16#1010490;
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	nNumMovers: UDINT := 4;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

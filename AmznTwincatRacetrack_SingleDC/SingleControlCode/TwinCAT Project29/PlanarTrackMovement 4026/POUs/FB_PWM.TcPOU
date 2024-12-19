@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_PWM" Id="{82311c7a-93bc-4182-941a-cffd8912175a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PWM
+VAR_INPUT
+	Torque: INT;
+END_VAR
+
+VAR
+  	ModuleState AT %I* : UINT;
+	
+ 	Control AT %Q* :  UINT;
+ 	TargetTorque AT %Q*: INT; 	
+
+ 	State  : INT := 1;
+ 	PwmTimer : ton;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+CASE State OF 
+
+	1: 
+		Control := 6;
+		IF ModuleState = 40 OR ModuleState = 33 THEN
+			State := 5;
+		END_IF
+	5:
+		Control := 128;
+		IF ModuleState = 96 OR ModuleState = 33 OR ModuleState = 168 THEN
+			State := 10;
+		END_IF
+	10:
+		Control := 6;
+		IF ModuleState = 33 THEN
+			state := 15;
+		END_IF	
+	15:
+		Control := 7;
+		IF ModuleState = 35 OR ModuleState = 163 or ModuleState = 2083 THEN
+			State := 20;
+		END_IF	
+	20:	
+		Control := 15;
+		IF ModuleState = 4135 OR ModuleState = 4263THEN
+			state := 25;
+		END_IF
+	24:
+	  //IF Torque = 0  THEN
+			State := 25;
+	//	END_IF	
+		PwmTimer(in := FALSE,PT := T#30S);
+	25:
+		IF ModuleState = 40 THEN
+			State := 5;
+		END_IF
+		
+		IF Torque > 0 THEN
+			TargetTorque := Torque ;
+		ELSIF Torque = 0 AND TargetTorque > 0  THEN	
+			TargetTorque :=  TargetTorque - REAL_TO_INT((INT_TO_REAL(TargetTorque)*0.07));
+		END_IF	
+		
+		PwmTimer(in := TargetTorque > 300,PT := T#30S);
+		IF PwmTimer.Q  THEN
+			PwmTimer(in := FALSE,PT := T#30S);
+			State := 35;
+		END_IF 
+	35:
+		IF TargetTorque >0 THEN
+			TargetTorque := TargetTorque -4;
+		ELSIF 	TargetTorque = 0  THEN
+				State := 24;
+		END_IF	
+
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PWM">
+      <LineId Id="52" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="9" Count="27" />
+      <LineId Id="82" Count="1" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="54" Count="1" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="106" Count="3" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="61" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
