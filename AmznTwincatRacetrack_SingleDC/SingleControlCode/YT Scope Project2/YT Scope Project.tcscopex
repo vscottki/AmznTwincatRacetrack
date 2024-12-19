@@ -79,7 +79,7 @@
           <DataType>REAL64</DataType>
           <DisplayColor>Black</DisplayColor>
           <Enabled>true</Enabled>
-          <FileHandle>0</FileHandle>
+          <FileHandle>1</FileHandle>
           <ForceOversampling>false</ForceOversampling>
           <Guid>86d5a6c6-a479-4f77-af24-a524cbeab575</Guid>
           <IndexGroup>16843872</IndexGroup>
@@ -174,7 +174,7 @@
           <DataType>REAL64</DataType>
           <DisplayColor>Black</DisplayColor>
           <Enabled>true</Enabled>
-          <FileHandle>0</FileHandle>
+          <FileHandle>2</FileHandle>
           <ForceOversampling>false</ForceOversampling>
           <Guid>eeda2d12-a6f5-4f0c-a8d7-e39f975737a2</Guid>
           <IndexGroup>16843872</IndexGroup>
@@ -269,7 +269,7 @@
           <DataType>REAL64</DataType>
           <DisplayColor>Black</DisplayColor>
           <Enabled>true</Enabled>
-          <FileHandle>0</FileHandle>
+          <FileHandle>3</FileHandle>
           <ForceOversampling>false</ForceOversampling>
           <Guid>a684bd67-9823-4c28-a079-c161e2d8394c</Guid>
           <IndexGroup>16843872</IndexGroup>
@@ -364,7 +364,7 @@
           <DataType>INT16</DataType>
           <DisplayColor>Black</DisplayColor>
           <Enabled>true</Enabled>
-          <FileHandle>0</FileHandle>
+          <FileHandle>4</FileHandle>
           <ForceOversampling>false</ForceOversampling>
           <Guid>2fddddcd-2734-4a6b-a36a-e26c59e14d62</Guid>
           <IndexGroup>61488</IndexGroup>
@@ -459,7 +459,7 @@
           <DataType>INT16</DataType>
           <DisplayColor>Black</DisplayColor>
           <Enabled>true</Enabled>
-          <FileHandle>0</FileHandle>
+          <FileHandle>5</FileHandle>
           <ForceOversampling>false</ForceOversampling>
           <Guid>e39b5541-03da-44ee-8ba3-03087fed7bd0</Guid>
           <IndexGroup>61488</IndexGroup>
@@ -554,7 +554,7 @@
           <DataType>INT16</DataType>
           <DisplayColor>Black</DisplayColor>
           <Enabled>true</Enabled>
-          <FileHandle>0</FileHandle>
+          <FileHandle>6</FileHandle>
           <ForceOversampling>false</ForceOversampling>
           <Guid>6d6a84cd-8621-4ca8-8c10-9aed1357de2c</Guid>
           <IndexGroup>61488</IndexGroup>
@@ -649,7 +649,7 @@
           <DataType>INT16</DataType>
           <DisplayColor>Black</DisplayColor>
           <Enabled>true</Enabled>
-          <FileHandle>0</FileHandle>
+          <FileHandle>7</FileHandle>
           <ForceOversampling>false</ForceOversampling>
           <Guid>66ced47c-dda7-4606-8c11-156039e00f3e</Guid>
           <IndexGroup>61488</IndexGroup>
@@ -739,10 +739,10 @@
       <Comment />
       <ConnectedTimeMemberGuid>00000000-0000-0000-0000-000000000000</ConnectedTimeMemberGuid>
       <DefaultDisplayWidth>100000000</DefaultDisplayWidth>
-      <DisplayColor>-1118478</DisplayColor>
+      <DisplayColor>-13750738</DisplayColor>
       <DisplayOverwriteMode>false</DisplayOverwriteMode>
       <DurationLength>0</DurationLength>
-      <ForeColor>-14803426</ForeColor>
+      <ForeColor>-328966</ForeColor>
       <Guid>d30a22f3-3e08-45b3-a9c6-bed66663d262</Guid>
       <LayerEndConnectedTimeMemberGuid>00000000-0000-0000-0000-000000000000</LayerEndConnectedTimeMemberGuid>
       <LayerEndTimeRefreshMode>NoTime</LayerEndTimeRefreshMode>
@@ -757,7 +757,7 @@
         <AxisGroup AssemblyName="TwinCAT.Measurement.Scope.API.Model">
           <ChannelRelatedGuid>00000000-0000-0000-0000-000000000000</ChannelRelatedGuid>
           <Comment />
-          <DisplayColor>-657931</DisplayColor>
+          <DisplayColor>-14737633</DisplayColor>
           <Enabled>true</Enabled>
           <Guid>ab6bd506-a6b3-46b5-8b4a-6ea8d64297c3</Guid>
           <Name>Axis Group (1)</Name>
@@ -916,9 +916,9 @@
                   <ChannelRelatedGuid>00000000-0000-0000-0000-000000000000</ChannelRelatedGuid>
                   <ColorMode>CustomColor</ColorMode>
                   <Comment />
-                  <DisplayColor>-14803426</DisplayColor>
+                  <DisplayColor>-328966</DisplayColor>
                   <Grid>true</Grid>
-                  <GridColor>-14803426</GridColor>
+                  <GridColor>-328966</GridColor>
                   <GridDivisions>10</GridDivisions>
                   <GridLineWidth>1</GridLineWidth>
                   <Guid>843a97e4-ee9c-47de-8156-b76c8c2db4c5</Guid>
@@ -954,9 +954,9 @@
                   <ChannelRelatedGuid>00000000-0000-0000-0000-000000000000</ChannelRelatedGuid>
                   <ColorMode>CustomColor</ColorMode>
                   <Comment />
-                  <DisplayColor>-14803426</DisplayColor>
+                  <DisplayColor>-328966</DisplayColor>
                   <Grid>true</Grid>
-                  <GridColor>-14803426</GridColor>
+                  <GridColor>-328966</GridColor>
                   <GridDivisions>10</GridDivisions>
                   <GridLineWidth>1</GridLineWidth>
                   <Guid>0bfa7b2d-a953-409c-afa6-6ccd5cb37795</Guid>
@@ -989,8 +989,8 @@
         </AxisGroup>
         <OverviewChart AssemblyName="TwinCAT.Measurement.Scope.API.Model">
           <Comment />
-          <DisplayColor>-657931</DisplayColor>
-          <ForeColor>-14803426</ForeColor>
+          <DisplayColor>-14737633</DisplayColor>
+          <ForeColor>-328966</ForeColor>
           <Guid>33616252-136c-4c0d-876b-d9020e5b38bc</Guid>
           <Name>Overview Chart (1)</Name>
           <OverviewVisible>false</OverviewVisible>
@@ -1053,7 +1053,7 @@
         <AxisGroup AssemblyName="TwinCAT.Measurement.Scope.API.Model">
           <ChannelRelatedGuid>00000000-0000-0000-0000-000000000000</ChannelRelatedGuid>
           <Comment />
-          <DisplayColor>-657931</DisplayColor>
+          <DisplayColor>-14737633</DisplayColor>
           <Enabled>true</Enabled>
           <Guid>e401d270-2a04-4bed-801a-cb517e53379e</Guid>
           <Name>Axis Group</Name>
@@ -1211,9 +1211,9 @@
                   <ChannelRelatedGuid>00000000-0000-0000-0000-000000000000</ChannelRelatedGuid>
                   <ColorMode>CustomColor</ColorMode>
                   <Comment />
-                  <DisplayColor>-14803426</DisplayColor>
+                  <DisplayColor>-328966</DisplayColor>
                   <Grid>true</Grid>
-                  <GridColor>-14803426</GridColor>
+                  <GridColor>-328966</GridColor>
                   <GridDivisions>10</GridDivisions>
                   <GridLineWidth>1</GridLineWidth>
                   <Guid>a3791c74-80e6-43ee-b388-acc75d6458db</Guid>
@@ -1247,7 +1247,7 @@
         <AxisGroup AssemblyName="TwinCAT.Measurement.Scope.API.Model">
           <ChannelRelatedGuid>00000000-0000-0000-0000-000000000000</ChannelRelatedGuid>
           <Comment />
-          <DisplayColor>-657931</DisplayColor>
+          <DisplayColor>-14737633</DisplayColor>
           <Enabled>true</Enabled>
           <Guid>387297e7-a812-4767-8fcb-ebf5f3688c6b</Guid>
           <Name>Axis Group (2)</Name>
@@ -1405,9 +1405,9 @@
                   <ChannelRelatedGuid>00000000-0000-0000-0000-000000000000</ChannelRelatedGuid>
                   <ColorMode>CustomColor</ColorMode>
                   <Comment />
-                  <DisplayColor>-14803426</DisplayColor>
+                  <DisplayColor>-328966</DisplayColor>
                   <Grid>true</Grid>
-                  <GridColor>-14803426</GridColor>
+                  <GridColor>-328966</GridColor>
                   <GridDivisions>10</GridDivisions>
                   <GridLineWidth>1</GridLineWidth>
                   <Guid>de0864d8-3382-4b6a-8786-21a6079152ce</Guid>
