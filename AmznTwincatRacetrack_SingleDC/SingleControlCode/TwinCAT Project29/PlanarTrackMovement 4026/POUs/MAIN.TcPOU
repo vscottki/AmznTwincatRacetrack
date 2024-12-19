@@ -59,7 +59,7 @@ VAR
 	
 	FP_Counter : r_trig;
 	Switchcounter : DINT;
-	SwitchCurrent: INT :=12000; 
+	SwitchCurrent: REAL ; 
 	test : LREAL;
 	Horntimer : tp; 
 	R_trigHorn : R_trig;
@@ -89,6 +89,10 @@ VAR
 	masterSyncPos: LREAL;
 	masterPosAtSync: LREAL;
 	followerPosAtSync: LREAL;
+	A : LREAL := 0.63;
+	B : LREAL := 0.21;
+	C : LREAL := 6;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -465,9 +469,9 @@ FOR nForCounter:=1 TO nNumMovers DO
 END_FOR
 
 pwm();
-	
+SwitchCurrent := ((A*(((Velo/1000)*(Velo/1000))))+(B*(Velo/1000))+C);	
 IF bMagnetOn AND NOT Fault THEN
-	MagnetValue := SwitchCurrent*1310;
+	MagnetValue := TO_INT(SwitchCurrent*1310);
 ELSE
  	MagnetValue := 0;
 END_IF
