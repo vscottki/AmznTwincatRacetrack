@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.12" ClassName="CMcPrjDef" SubType="70">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.11" ClassName="CMcPrjDef" SubType="70">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Name>
@@ -22743,7 +22743,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x05110090" Disabled="true" ShareTmcDesc="true">
+		<Axis Id="#x05110090" ShareTmcDesc="true">
 			<Name>MC_Mover 9</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
@@ -24491,7 +24491,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x051100a0" Disabled="true">
+		<Axis Id="#x051100a0">
 			<Name>MC_Mover 10</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
@@ -27111,7 +27111,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x051100b0" Disabled="true">
+		<Axis Id="#x051100b0">
 			<Name>MC_Mover 11</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
@@ -29731,7 +29731,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x051100c0" Disabled="true">
+		<Axis Id="#x051100c0">
 			<Name>MC_Mover 12</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
@@ -32351,7 +32351,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x051100d0" Disabled="true">
+		<Axis Id="#x051100d0">
 			<Name>MC_Mover 13</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
@@ -34971,7 +34971,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x051100e0" Disabled="true">
+		<Axis Id="#x051100e0">
 			<Name>MC_Mover 14</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
@@ -37591,7 +37591,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x051100f0" Disabled="true">
+		<Axis Id="#x051100f0">
 			<Name>MC_Mover 15</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
@@ -40211,7 +40211,7 @@
 				</Module>
 			</Module>
 		</Axis>
-		<Axis Id="#x05110100" Disabled="true">
+		<Axis Id="#x05110100">
 			<Name>MC_Mover 16</Name>
 			<ImageId>1000</ImageId>
 			<TmcDesc GUID="{5FC17892-62EA-4736-9999-D79964E87717}" TcSmClass="TComMcPlanarMoverObj">
