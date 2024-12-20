@@ -34,7 +34,7 @@ VAR
 	IsMoverInBlockingArea: BOOL;
 	nActStopPos: UINT := 1;
 	Fp_error : R_Trig;
-	Velo : LREAL := 1200;
+
 	Switch : BOOL;
 	WithoutSwitch : BOOL := TRUE;
 	SwtichOnly: BOOL;
@@ -65,8 +65,7 @@ VAR
 	R_trigHorn : R_trig;
 	
 	TestPowerMat : BOOL;
-	StopPos : LREAL := 7611;
-	StopTime : TIME := T#8S;
+	StopTime : TIME := T#4S;
 	StopTimer :ARRAY[1..nMoverCount] OF ton;
 	StartTimer :ARRAY[1..nMoverCount] OF BOOL;
 	
@@ -76,22 +75,18 @@ VAR
 	TrackPos :ARRAY[1..nMoverCount] OF ARRAY[1..nMoverCount] OF PositionXYC;
 	
 	searchGap : F_SearchTheBigTrackForAHole; 
-	aMoverTrack : ARRAY[1..nMoverCount] OF otcid;
+	aMoverTrack : ARRAY[1..nMoverCount] OF Global.OTCID;
 	FirstMoverTrackPos : LREAL;
 	MoverGap : LREAL;
 	FTrigTrackCount : F_Trig;
 	MoverNo  : UDINT;
-	gapStart: LREAL := 5600;
-	gapLength: LREAL := 2000;
-	moverInFront: UDINT;
-	mover1FollowDist: LREAL;
-	followSyncPos: LREAL;
-	masterSyncPos: LREAL;
-	masterPosAtSync: LREAL;
-	followerPosAtSync: LREAL;
-	A : LREAL := 0.63;
-	B : LREAL := 0.21;
-	C : LREAL := 6;
+	stMoverConfigSlow	: ST_MoverConfig;
+	stMoverConfigNormal : ST_MoverConfig;
+	stMoverConfigFast  : ST_MoverConfig;
+	stMoverCfgAggressive : ST_MoverConfig;
+	
+	stMergeConfig		 : ST_MergeConfig;
+	SwitchConfig		 : ST_SwitchConfig;
 
 	nextMoverForSwitch: UDINT :=1;
 	moverInSwitchDoNotSendAnother: BOOL;
@@ -121,8 +116,18 @@ IF nCASE > 90 THEN
 ELSE 
 	Process := FALSE;	
 END_IF
-slowDynamics.SetValuesVADJ(1000, 4000, 4000, 16000);
-fastDynamics.SetValuesVADJ(4000, 4000, 4000, 16000);
+
+stMoverConfigSlow.Velo := 1000;
+stMoverConfigSlow.Accel := 4000;
+stMoverConfigSlow.Decel := 4000; 
+stMoverConfigSlow.Jerk := 16000;
+stMoverConfigFast.Velo := 4000;
+stMoverConfigFast.Accel := 4000;
+stMoverConfigFast.Decel := 4000; 
+stMoverConfigFast.Jerk := 16000;
+
+slowDynamics.SetValuesVADJ(stMoverConfigSlow.Velo,stMoverConfigSlow.Accel,stMoverConfigSlow.Decel,stMoverConfigSlow.Jerk);
+fastDynamics.SetValuesVADJ(stMoverConfigFast.Velo,stMoverConfigFast.Accel,stMoverConfigFast.Decel,stMoverConfigFast.Jerk);
 
 
 IF NOT MoverStop AND NOT MoverStopDone THEN
@@ -185,7 +190,7 @@ FOR M := 1 TO nMoverCount DO///Movers
 	
 	
 
-	IsMoverInBlockingArea := IsMoverInBlockingArea OR (Mover[M].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND IsBetween(Mover[M].MoverPos, fMagnetEntry - 100, fMagnetExit + 100));
+	IsMoverInBlockingArea := IsMoverInBlockingArea OR (Mover[M].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND IsBetween(Mover[M].MoverPos, SwitchConfig.MagnetStartPosition - 100, SwitchConfig.MagnetEndPosition + 100));
 
 //	Fp_error(clk := fbPlanarMover[M].McPlanarMover.Error);
 	IF Fp_error.Q THEN
@@ -309,7 +314,7 @@ CASE nCase OF
 			CASE nMoveState[nForCounter] OF
 				
 				0: // Track 3 Main Cycel 
-				fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,900,velo);
+				fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);				
 					nMoveState[nForCounter] := 10;
 					
 				10:
@@ -333,9 +338,8 @@ CASE nCase OF
 
 				
 				20:
-					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Big], GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-1000,900,velo);
+					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Big], GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-1000, stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
 					nMoveState[nForCounter] := 30;
-					
 				
 					
 				30:
@@ -351,7 +355,7 @@ CASE nCase OF
 				
 			
 				40:
-					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], 3500,900,velo);
+					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], 3500,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
 					nMoveState[nForCounter] := 45;
 	
 				45: 
@@ -370,7 +374,7 @@ CASE nCase OF
 					stopAndWait[nForCounter](); 
 					IF stopAndWait[nForCounter].Q THEN // send the mover to a sync Position 2.6m before the end of the track 
 						stopAndWait[nForCounter](IN:=FALSE); 
-						fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-waitForGapParkPos,900,velo);
+						fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-waitForGapParkPos,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
 						searchGap(resetSearch:=TRUE, fbMover := fbMover); 
 						nMoveState[nForCounter] := 60; 
 					END_IF 
@@ -378,28 +382,31 @@ CASE nCase OF
 				60: 
 					IF fbMover[nForCounter].P_PlanarFeedback.Done THEN// MCTrackOid_Shortcut THEN
 							nMoveState[nForCounter] := 60;
-							searchGap(resetSearch:=FALSE, gapStartDistToEndOfSwitch := gapStart, gapLength := gapLength, fbMover := fbMover); 
+							searchGap(resetSearch:=FALSE, gapStartDistToEndOfSwitch := stMergeConfig.gapStart, gapLength := stMergeConfig.gapLength, fbMover := fbMover); 
 							IF searchGap.gapFound THEN
 								nMoveState[nForCounter] := 70;
-								moverInFront := searchGap.moverToFollow; 
+								stMergeConfig.moverInFront := searchGap.moverToFollow; 
 							END_IF 
 					END_IF
 				70:  //merge with gap zero
 					//issue commmand to sync 
-					masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-100;
-					masterPosAtSync := Mover[moverInFront].MoverPos; 
-					followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-1000;
-					followerPosAtSync :=Mover[nForCounter].MoverPos; 
+					stMergeConfig.masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-100;
+					stMergeConfig.masterPosAtSync := Mover[stMergeConfig.moverInFront].MoverPos; 
+					stMergeConfig.followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-100-stMoverConfigNormal.MoverGap;
+					stMergeConfig.followerPosAtSync :=Mover[nForCounter].MoverPos; 
 					fbMover[nForCounter].SyncToOtherMover( 
-						masterSyncPos := masterSyncPos,
+						masterSyncPos := stMergeConfig.masterSyncPos,
 						masterTrack := GVL_Mc.MC_Tracks[E_TrackNum.Big],
-						followerSyncPos := followSyncPos,
+						followerSyncPos := stMergeConfig.followSyncPos,
 						followerTrack := GVL_Mc.MC_Tracks[e_TrackNum.Small],
-						PlanarMoverToFollow := fbMover[moverInFront].P_PlanarMover,
-						velo:= velo);
+						PlanarMoverToFollow := fbMover[stMergeConfig.moverInFront].P_PlanarMover,
+						velo:= stMoverConfigNormal.velo);
 						nMoveState[nForCounter] := 80; 
-
-					aggressiveDynamics.SetValuesVADJ(4000,4000,8000,400000); 
+					stMoverCfgAggressive.Velo := 4000;
+					stMoverCfgAggressive.Accel := 4000;
+					stMoverCfgAggressive.Decel := 8000;
+					stMoverCfgAggressive.Jerk := 400000;
+					aggressiveDynamics.SetValuesVADJ(stMoverCfgAggressive.Velo,stMoverCfgAggressive.Accel,stMoverCfgAggressive.Decel,stMoverCfgAggressive.Jerk); 
 					fbMover[nForCounter].P_Dynamics := aggressiveDynamics;
 					//fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,900,velo);
 					
@@ -429,7 +436,7 @@ CASE nCase OF
 			FOR nForCounter:=1 TO nNumMovers DO
 				fbMover[nForCounter].P_Dynamics:= slowDynamics;
 				nMoveState[nForCounter] := 0;
-				fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.main], 300,900,1000 );
+				fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.main], 300,stMoverConfigNormal.MoverGap,1000 );
 			END_FOR
 
 			nCase:= 130; 
@@ -438,7 +445,7 @@ CASE nCase OF
 				CASE nMoveState[nForCounter] OF
 					0:								
 						IF Mover[nForCounter].MoverPos < 300 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID THEN
-							fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.main], aStopPositions[nActStopPos],900,1000);
+							fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.main], aStopPositions[nActStopPos],stMoverConfigNormal.MoverGap,1000);
 							nActStopPos := nActStopPos + 1;
 							nMoveState[nForCounter] := 10;
 						END_IF
@@ -490,13 +497,13 @@ END_CASE
 bMagnetOn := FALSE;
 FOR nForCounter:=1 TO nNumMovers DO
 	
-	IF  fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackObjectId(0) = XtsShortcutOid AND (IsBetween(fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0), fMagnetEntry - (Velo*0.08), fMagnetExit)) THEN
+	IF  fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackObjectId(0) = XtsShortcutOid AND (IsBetween(fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0), SwitchConfig.MagnetStartPosition - (stMoverConfigNormal.Velo*0.045), SwitchConfig.MagnetEndPosition)) THEN
 		bMagnetOn := TRUE;
 	END_IF
 END_FOR
 
 pwm();
-SwitchCurrent := ((A*(((Velo/1000)*(Velo/1000))))+(B*(Velo/1000))+C);	
+SwitchCurrent := ((SwitchConfig.MagnetConfig.CurrentFunctionCoeffA*(((stMoverConfigNormal.Velo/1000)*(stMoverConfigNormal.Velo/1000))))+(SwitchConfig.MagnetConfig.CurrentFunctionCoeffB*(stMoverConfigNormal.Velo/1000))+SwitchConfig.MagnetConfig.CurrentFunctionCoeffC);	
 IF bMagnetOn AND NOT Fault THEN
 	MagnetValue := TO_INT(SwitchCurrent*1310);
 ELSE
@@ -512,37 +519,11 @@ END_IF
 
 //distanceMonitoring of Mover 1 when on the big track 
 IF Mover[1].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THEN //calculate out how far it is to the mover in front 
-	IF MOver[moverInFront].MoverPos -  Mover[1].MoverPos > 10 THEN 
-		mover1FollowDist := MOver[moverInFront].MoverPos -  Mover[1].MoverPos;
+	IF MOver[stMergeConfig.moverInFront].MoverPos -  Mover[1].MoverPos > 10 THEN 
+		stMergeConfig.mover1FollowDist := MOver[stMergeConfig.moverInFront].MoverPos -  Mover[1].MoverPos;
 	END_IF   
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="3" Count="213" />
-      <LineId Id="402" Count="0" />
-      <LineId Id="217" Count="2" />
-      <LineId Id="397" Count="1" />
-      <LineId Id="400" Count="1" />
-      <LineId Id="399" Count="0" />
-      <LineId Id="220" Count="9" />
-      <LineId Id="409" Count="0" />
-      <LineId Id="230" Count="2" />
-      <LineId Id="410" Count="1" />
-      <LineId Id="413" Count="1" />
-      <LineId Id="416" Count="0" />
-      <LineId Id="415" Count="0" />
-      <LineId Id="233" Count="9" />
-      <LineId Id="404" Count="1" />
-      <LineId Id="407" Count="0" />
-      <LineId Id="417" Count="1" />
-      <LineId Id="406" Count="0" />
-      <LineId Id="243" Count="36" />
-      <LineId Id="408" Count="0" />
-      <LineId Id="280" Count="6" />
-      <LineId Id="419" Count="0" />
-      <LineId Id="287" Count="108" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

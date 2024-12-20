@@ -13,9 +13,6 @@ VAR_GLOBAL CONSTANT
 	gciNumStations 				: UINT := 3;
 	XtsShortcutOid				: otcid := 16#01010480 ;
 	XtsOutterLoopOid 			: otcid := 16#01010490;
-	
-	fMagnetEntry : LREAL := 10000; //PLEASE ENTER THE MAGNET ENTRY!!!
-	fMagnetExit : LREAL := 10700; //PLEASE ENTER THE MAGNET EXIT!!!
 END_VAR
 
 VAR_GLOBAL

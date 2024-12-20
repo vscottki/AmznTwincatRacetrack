@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="ST_MergeConfig" Id="{b515e9b4-0bb7-4f5a-a9c6-6de582513939}">
+    <Declaration><![CDATA[TYPE ST_MergeConfig :
+STRUCT
+	gapStart: LREAL := 5600;
+	gapLength: LREAL := 2000;
+	moverInFront: UDINT;
+	mover1FollowDist: LREAL;
+	followSyncPos: LREAL;
+	masterSyncPos: LREAL;
+	masterPosAtSync: LREAL;
+	followerPosAtSync: LREAL;
+END_STRUCT
+END_TYPE;]]></Declaration>
+  </DUT>
+</TcPlcObject>
