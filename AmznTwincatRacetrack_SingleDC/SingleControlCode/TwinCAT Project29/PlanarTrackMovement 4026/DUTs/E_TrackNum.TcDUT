@@ -5,9 +5,10 @@
 {attribute 'strict'}
 TYPE e_TrackNum :
 	(
-	Big :=3,
-	Small :=2,
-	Main:=1	);	
+	Main   :=1,
+	Small  :=2,
+	Big    :=3
+	);	
 END_TYPE
 ]]></Declaration>
   </DUT>

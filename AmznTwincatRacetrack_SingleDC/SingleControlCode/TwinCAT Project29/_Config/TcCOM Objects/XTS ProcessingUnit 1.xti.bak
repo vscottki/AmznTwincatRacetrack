@@ -4647,7 +4647,7 @@
 				</Value>
 				<Value>
 					<Name>XLMaxPeakCurrent</Name>
-					<Value>6</Value>
+					<Value>7</Value>
 				</Value>
 				<Value>
 					<Name>DisableCurrentLimitWarning</Name>

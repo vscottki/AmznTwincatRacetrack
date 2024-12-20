@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_TrackConfig" Id="{0bf444be-035e-0e71-1156-30382b0847a6}">
+    <Declaration><![CDATA[TYPE ST_TrackConfig :
+STRUCT
+	TargetPosnBeforeTrackEnd					: LREAL := 100;
+	StopPosPowermat										: LREAL := 7611; // Track Ref; Part Ref ~ 3750 (mm)
+	MergeWaitFinishDistance 					: LREAL := 1570;
+	MergeWaitAccelDistance						: LREAL; // distance to achieve v_max on the shortcut HD motor region
+	ShortcutHDRegionDistance					: LREAL := 2000;
+	ShortcutShuttleFullyInPosn 				: LREAL := 1500; // Part Reference (not Track)
+	ExpMoverLength										: LREAL := 1200; // roughly 2X SHUTTLE_LENGTH
+	MaxLagDistance										: LREAL := 100;
+	MergeCollisionRegionDeltaFromL		: LREAL := 2800; // 1715
+	MergeCollisionAdvance				: LREAL := 200;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

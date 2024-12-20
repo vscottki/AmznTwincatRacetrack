@@ -49,8 +49,9 @@ workspace/*.bootinfo_guids
 #*.library #We shall include the libraries in the commit.
 *.project.~u
 #*.tsproj
-*.tsproj.bak
-*.xti.bak
+*.bak
+*.~u
+*.suo
 LineIDs.dbg
 LineIDs.dbg.bak
 _Boot/

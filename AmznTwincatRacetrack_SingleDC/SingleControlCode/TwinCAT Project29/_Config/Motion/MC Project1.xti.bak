@@ -2947,10 +2947,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010450" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010450" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 1</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -3079,10 +3079,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010460" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010460" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 1</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -3857,10 +3857,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -4299,22 +4295,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -5567,10 +5547,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010540" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010540" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 2</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -5699,10 +5679,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010550" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010550" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 2</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -6477,10 +6457,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -6919,22 +6895,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -8187,10 +8147,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010560" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010560" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 3</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -8319,10 +8279,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010570" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010570" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 3</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -9097,10 +9057,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -9539,22 +9495,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -10807,10 +10747,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010580" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010580" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 4</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -10939,10 +10879,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010590" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010590" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 4</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -11717,10 +11657,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -12159,22 +12095,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -13427,10 +13347,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x010105f0" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x010105f0" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 5</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -13559,10 +13479,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010600" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010600" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 5</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -14337,10 +14257,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -14779,22 +14695,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -16047,10 +15947,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010610" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010610" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 6</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -16179,10 +16079,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010620" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010620" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 6</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -16957,10 +16857,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -17399,22 +17295,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -18667,10 +18547,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010630" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010630" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 7</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -18799,10 +18679,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010640" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010640" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 7</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -19577,10 +19457,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -20019,22 +19895,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -21287,10 +21147,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010650" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010650" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 8</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -21419,10 +21279,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010660" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010660" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 8</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -22197,10 +22057,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -22641,22 +22497,6 @@
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>15000</Id>
 								<Message><![CDATA[DEBUG-MSG: '{0}', '{1}', '{2}', '{3}']]></Message>
 							</EventMessage>
@@ -23035,10 +22875,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x010107a0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x010107a0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 9</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -23167,10 +23007,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x010107b0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x010107b0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 9</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -23945,10 +23785,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -24387,22 +24223,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -25655,10 +25475,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x010107c0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x010107c0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 10</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -25787,10 +25607,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x010107d0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x010107d0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 10</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -26565,10 +26385,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -27007,22 +26823,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -28275,10 +28075,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x010107e0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x010107e0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 11</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -28407,10 +28207,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x010107f0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x010107f0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 11</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -29185,10 +28985,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -29627,22 +29423,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -30895,10 +30675,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010800" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010800" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 12</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -31027,10 +30807,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010810" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010810" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 12</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -31805,10 +31585,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -32247,22 +32023,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -33515,10 +33275,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010820" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010820" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 13</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -33647,10 +33407,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010830" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010830" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 13</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -34425,10 +34185,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -34867,22 +34623,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -36135,10 +35875,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010840" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010840" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 14</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -36267,10 +36007,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010850" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010850" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 14</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -37045,10 +36785,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -37487,22 +37223,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -38755,10 +38475,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010860" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010860" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 15</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -38887,10 +38607,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010870" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010870" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 15</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -39665,10 +39385,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -40107,22 +39823,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -41375,10 +41075,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010880" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<Module Id="#x01010880" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XConverter 16</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -41507,10 +41207,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010890" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+				<Module Id="#x01010890" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 					<Name>MoverController 16</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -42285,10 +41985,6 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
-								<Id>5058</Id>
-								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -42727,22 +42423,6 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9110</Id>
-								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9111</Id>
-								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9112</Id>
-								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
-							</EventMessage>
-							<EventMessage>
-								<Id>9113</Id>
-								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>

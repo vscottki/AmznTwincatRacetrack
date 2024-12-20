@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <DUT Name="MoverSort" Id="{9403c367-f397-4377-a1bb-d63ff440ec18}">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="MoverSort" Id="{2ab215a1-e1dc-4200-b2c9-e846d3f77aee}">
     <Declaration><![CDATA[TYPE MoverSort :
 STRUCT
-	MoverNumber : UDINT;
-	TrackID : PlanarTrackOTCID;
-	MoverPos : LREAL;
-	MoverTrackNr : UDINT;
+	MoverNumber 	: UDINT;
+	TrackID  		: PlanarTrackOTCID;
+	MoverPos 		: LREAL;
+	MoverTrackNr 	: UDINT;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

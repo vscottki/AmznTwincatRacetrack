@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_MoverConfig" Id="{b2784631-d9fa-04c5-02b3-42fadcc04d80}">
+    <Declaration><![CDATA[TYPE ST_MoverConfig EXTENDS ST_MoveOnTrackOptions:
+STRUCT
+//Velocity (mm/s)
+	MaxVelo			: LREAL := 4000;
+	NormalVelo		: LREAL := 2700;
+	StoppingVelo	: LREAL := 400;
+//Acceleration (mm/s^2)
+	NormalAccel		: LREAL := 4000;
+	MaxAccel		: LREAL := 16000;
+//Deceleration (mm/s^2)
+	NormalDecel		: LREAL := 3000;	
+	MaxDecel		: LREAL := 10000;
+//Jerk (mm/s^3)
+	NormalJerk		: LREAL := 10000;
+	MaxJerk			: LREAL := 20000;
+//Platooning Vars
+	VeloComp		: LREAL := 200;
+	NormalMoverGap	: LREAL := 750;
+	TightMoverGap	: LREAL := 20;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
