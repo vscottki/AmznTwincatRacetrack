@@ -33,7 +33,6 @@
 		<Text TxtId="All groups will enter the ERROR-state because the initialization of Cyclic FRAM Data was wrong"/>
 		<Text TxtId="All groups will enter the ERROR-state because the safe logic program has been restarted"/>
 		<Text TxtId="All needed CfgData pages were downloaded before, no more pages are expected"/>
-		<Text TxtId="All parts are excluded from detection. Include part to be able to start detection."/>
 		<Text TxtId="All teaching values of XTS module {0} are negative."/>
 		<Text TxtId="All teaching values of XTS module {0} are one."/>
 		<Text TxtId="All teaching values of XTS module {0} are positive."/>
@@ -55,7 +54,6 @@
 		<Text TxtId="Analize your application and make, that this overvoltage can not happen."/>
 		<Text TxtId="Analize your application and make, that this thermic overload does not happen."/>
 		<Text TxtId="Analyze the mains voltage supply and resolve the problem."/>
-		<Text TxtId="Arrive of {0} ({1}) is aborted because it is enabled."/>
 		<Text TxtId="Ask the Beckhoff branch office that is responsible for you for the right Firmwareversion."/>
 		<Text TxtId="At least one Cfg Data page has to be defined in the Safe Logic Cfg Data"/>
 		<Text TxtId="At least one Cfg Data page has to be defined in the Safe User Parameter Cfg Data"/>
@@ -158,8 +156,6 @@
 		<Text TxtId="Default values of parameters could not be loaded."/>
 		<Text TxtId="Description"/>
 		<Text TxtId="Detected incompatible Pcb for this Firmware. &#10;- ID 0: PowerPcb&#10;- ID 1: LinkPcb&#10;- ID 2: OptionPcb&#10;- ID 3: DisplayPcb"/>
-		<Text TxtId="Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected."/>
-		<Text TxtId="Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected."/>
 		<Text TxtId="Detection is aborted due to {0} enabled movers."/>
 		<Text TxtId="Detection on {0} included tracks is aborted because there are already too many included movers ({1}) on track but only {2} are configured to be detected."/>
 		<Text TxtId="Detection on {0} included tracks is aborted because there are not enough movers available. Total available are {1} where {2} are already on included tracks but {3} are configured to be detected."/>
@@ -484,7 +480,6 @@
 		<Text TxtId="Mover '{0}' is frozen at track position {1} mm (Track = {2})."/>
 		<Text TxtId="Mover arrive is aborted. Track ({0}) is invalid - configure the track for arrive on the mover."/>
 		<Text TxtId="Mover detection is aborted after {0} cycles. {1} movers are detected but {2} are expected."/>
-		<Text TxtId="Mover detection is aborted. All parts are excluded from detection."/>
 		<Text TxtId="Mover detection is aborted. No tracks are included in detection."/>
 		<Text TxtId="Mover ID detection cannot start because no track is defined to run the detection."/>
 		<Text TxtId="Mover ID Detection failed. A general error occurs on '{0}' with the global number '{1}'."/>
@@ -9450,7 +9445,7 @@
 		</Property>
 	</Source>
 	<Source>
-		<GUID>{CD85CB43-5D78-9850-E8BB-C70707FD0EE1}</GUID>
+		<GUID>{0B8238E1-A7FD-10CD-F00B-52F2E4BF0064}</GUID>
 		<Name>XtsMoverController</Name>
 		<Event>
 			<Id>0</Id>
@@ -9865,10 +9860,6 @@
 			<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 		</Event>
 		<Event>
-			<Id>5058</Id>
-			<Message>All parts are excluded from detection. Include part to be able to start detection.</Message>
-		</Event>
-		<Event>
 			<Id>9000</Id>
 			<Message>XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?</Message>
 		</Event>
@@ -10309,28 +10300,12 @@
 			<Message>Task of {0} ({1}) is missing!</Message>
 		</Event>
 		<Event>
-			<Id>9110</Id>
-			<Message>Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.</Message>
-		</Event>
-		<Event>
-			<Id>9111</Id>
-			<Message>Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.</Message>
-		</Event>
-		<Event>
-			<Id>9112</Id>
-			<Message>Mover detection is aborted. All parts are excluded from detection.</Message>
-		</Event>
-		<Event>
-			<Id>9113</Id>
-			<Message>Arrive of {0} ({1}) is aborted because it is enabled.</Message>
-		</Event>
-		<Event>
 			<Id>15000</Id>
 			<Message><![CDATA[DEBUG-MSG: '{0}', '{1}', '{2}', '{3}']]></Message>
 		</Event>
 	</Source>
 	<Source>
-		<GUID>{E7750DA3-5E8C-9EFC-FE7B-2AA22CB395E3}</GUID>
+		<GUID>{2172FE01-A409-1661-E6CB-BF57CFF19B66}</GUID>
 		<Name>AT5100_0100</Name>
 		<Event>
 			<Id>9029</Id>
@@ -10338,7 +10313,7 @@
 		</Event>
 	</Source>
 	<Source>
-		<GUID>{9D2A792C-55A5-9ED7-F10C-1E9F16B74C2E}</GUID>
+		<GUID>{5B2D8A8E-AF20-164A-E9BC-8B6AF5F542AB}</GUID>
 		<Name>XtsXLPart</Name>
 		<Event>
 			<Id>9029</Id>
@@ -10346,7 +10321,7 @@
 		</Event>
 	</Source>
 	<Source>
-		<GUID>{71B6169E-6ECD-9E64-C96D-6955D015436E}</GUID>
+		<GUID>{B7B1E53C-9448-16F9-D1DD-FCA033574DEB}</GUID>
 		<Name>XtsTrack</Name>
 		<Event>
 			<Id>9029</Id>
@@ -10354,7 +10329,7 @@
 		</Event>
 	</Source>
 	<Source>
-		<GUID>{BA8C661A-3325-9B10-D652-B14CE07CBA24}</GUID>
+		<GUID>{7C8B95B8-C9A0-138D-CEE2-24B9033EB4A1}</GUID>
 		<Name>XtsProcessingUnit</Name>
 		<Event>
 			<Id>0</Id>
@@ -10769,10 +10744,6 @@
 			<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 		</Event>
 		<Event>
-			<Id>5058</Id>
-			<Message>All parts are excluded from detection. Include part to be able to start detection.</Message>
-		</Event>
-		<Event>
 			<Id>9000</Id>
 			<Message>XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?</Message>
 		</Event>
@@ -11213,22 +11184,6 @@
 			<Message>Task of {0} ({1}) is missing!</Message>
 		</Event>
 		<Event>
-			<Id>9110</Id>
-			<Message>Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.</Message>
-		</Event>
-		<Event>
-			<Id>9111</Id>
-			<Message>Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.</Message>
-		</Event>
-		<Event>
-			<Id>9112</Id>
-			<Message>Mover detection is aborted. All parts are excluded from detection.</Message>
-		</Event>
-		<Event>
-			<Id>9113</Id>
-			<Message>Arrive of {0} ({1}) is aborted because it is enabled.</Message>
-		</Event>
-		<Event>
 			<Id>15000</Id>
 			<Message><![CDATA[DEBUG-MSG: '{0}', '{1}', '{2}', '{3}']]></Message>
 		</Event>
@@ -11538,7 +11493,7 @@
 		</Event>
 	</Source>
 	<Source>
-		<GUID>{68E64A2B-A826-9780-C29E-0598DC59AC66}</GUID>
+		<GUID>{5F9C762F-C727-0773-12DF-3F18A6F3117B}</GUID>
 		<Name>XtsEventClass</Name>
 		<Event>
 			<Id>0</Id>
@@ -11953,10 +11908,6 @@
 			<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 		</Event>
 		<Event>
-			<Id>5058</Id>
-			<Message>All parts are excluded from detection. Include part to be able to start detection.</Message>
-		</Event>
-		<Event>
 			<Id>9000</Id>
 			<Message>XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?</Message>
 		</Event>
@@ -12395,22 +12346,6 @@
 		<Event>
 			<Id>9109</Id>
 			<Message>Task of {0} ({1}) is missing!</Message>
-		</Event>
-		<Event>
-			<Id>9110</Id>
-			<Message>Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.</Message>
-		</Event>
-		<Event>
-			<Id>9111</Id>
-			<Message>Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.</Message>
-		</Event>
-		<Event>
-			<Id>9112</Id>
-			<Message>Mover detection is aborted. All parts are excluded from detection.</Message>
-		</Event>
-		<Event>
-			<Id>9113</Id>
-			<Message>Arrive of {0} ({1}) is aborted because it is enabled.</Message>
 		</Event>
 		<Event>
 			<Id>15000</Id>

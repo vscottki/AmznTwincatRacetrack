@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.12" ClassName="CTComObjDef">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.11" ClassName="CTComObjDef">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{E5805EFC-D377-4AFA-A6C1-5D144A5CB7BF}" Namespace="XTS">XtsMoverGeneralParameterSetOTCID</Name>
@@ -416,10 +416,10 @@
 		<ImageData Id="1005">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000646464000900000009000000b4b4b40000000000a9a9a900a4a4a4009e9e9e0099999900949494008e8e8e0089898900838383007e7e7e0078787800737373006e6e6e000900000009000000bdbdbd0000000000b2b2b200adadad00a8a8a800a2a2a2009d9d9d0097979700929292008c8c8c0087878700828282007c7c7c00777777000900000009000000c6c6c60000000000bcbcbc00b6b6b600b1b1b100ababab00a6a6a600a0a0a0009b9b9b009696960090909000838892003162d200747b8b000900000009000000d0d0d00000000000c5c5c500bfbfbf00bababa00b4b4b400afafaf00aaaaaa00a4a4a4009f9f9f00848fa7001858ed003967d20086888b000900000009000000d9d9d90000000000cecece00c8c8c800c3c3c300bebebe00b8b8b800b3b3b300adadad008092bc001055f6005b7cc70098989800929292000900000009000000e2e2e20000000000d7d7d700d2d2d200cccccc00c7c7c700c1c1c100bcbcbc006f8dd3001157f8007f93c100a6a6a600a1a1a1009b9b9b000900000009000000ebebeb0000000000e0e0e000dbdbdb00d5d5d500d0d0d000c9cacc005c85e4001c5ef6009eaac500b5b5b500afafaf00aaaaaa00a5a5a5000900000009000000f4f4f40000000000004dff00004dff00004dff00004dff00004dff00174fcf004e535d0053535300535353005353530053535300aeaeae000900000009000000fbfbfb0000000000f3f3f300ededed00e8e8e800e2e2e200dddddd00d7d7d700d2d2d200cdcdcd00c7c7c700c2c2c200bcbcbc00b7b7b7000900000009000000fbfbfb0000000000fbfbfb00f6f6f600f1f1f100ebebeb00e6e6e600e1e1e100dbdbdb00d6d6d600d0d0d000cbcbcb00c5c5c500c0c0c0000900000009000000fbfbfb0000000000fbfbfb00fbfbfb00fafafa00f5f5f500efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
 		<ImageData Id="1006">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000900000009000000b4b4b400afafaf00a9a9a900a4a4a4009e9e9e0099999900949494008e8e8e0089898900474747005353530078787800737373006e6e6e000900000009000000bdbdbd00b8b8b800b2b2b200adadad004e77d7000650fb004c74d00097979700929292007373730012121200343434007a7a7a00777777000900000009000000c6c6c600606060000000000000000000004af500004dff000048f000000000000000000000000000000000000000000044444400808080000900000009000000d0d0d000cacaca00c5c5c500bfbfbf005880de000952fb00567dd700aaaaaa00a4a4a40082828200141414003b3b3b008c8c8c00898989000900000009000000d9d9d900d3d3d300cecece00c8c8c800c0c1c300466cc300b5b6b800b3b3b300adadad005b5b5b006b6b6b009d9d9d0098989800929292000900000009000000e2e2e200dcdcdc00d7d7d700d2d2d200406aca00004dff003d67c700bcbcbc00b7b7b700b1b1b100acacac00a6a6a600a1a1a1009b9b9b000900000009000000ebebeb00e6e6e600e0e0e0007790c9000d50ec00004dff000e50ea006782bf00c0c0c000bababa00b5b5b500afafaf00aaaaaa00a5a5a5000900000009000000f4f4f400efefef00e9e9e900577acc00a1afd000004dff0099a7c8005174c600c9c9c900c3c3c300bebebe00b9b9b900b3b3b300aeaeae000900000009000000fbfbfb00f8f8f800f3f3f300ededed00e8e8e800004dff00dddddd00d7d7d700d2d2d200cdcdcd00c7c7c700c2c2c200bcbcbc00b7b7b7000900000009000000fbfbfb00fbfbfb00fbfbfb00f6f6f600f1f1f100004dff00e6e6e600e1e1e100dbdbdb00d6d6d600d0d0d000cbcbcb00c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00004dff00efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
 	</ImageDatas>
-	<Module Id="#x01010720" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+	<Module Id="#x01010720" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 		<Name>__FILENAME__</Name>
 		<ImageId>1000</ImageId>
-		<TmcDesc GUID="{B055B40D-DEC1-4D72-961C-D151E31A9BA5}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+		<TmcDesc GUID="{B055B40D-DEC1-4D72-961C-D151E31A9BA5}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 			<Name>XtsMoverParameterSet</Name>
 			<CLSID ClassFactory="TcIoXts">{B055B40D-DEC1-4D72-961C-D151E31A9BA5}</CLSID>
 			<Info>
@@ -588,10 +588,10 @@
 				</Value>
 			</ParameterValues>
 		</TmcDesc>
-		<Module Id="#x01010730" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+		<Module Id="#x01010730" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 			<Name>General</Name>
 			<ImageId>1001</ImageId>
-			<TmcDesc GUID="{98BEC76D-D436-4208-9F8B-486BE57865BD}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<TmcDesc GUID="{98BEC76D-D436-4208-9F8B-486BE57865BD}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XtsMoverGeneralParameterSet</Name>
 				<CLSID ClassFactory="TcIoXts">{98BEC76D-D436-4208-9F8B-486BE57865BD}</CLSID>
 				<Info>
@@ -855,10 +855,10 @@
 				</ParameterValues>
 			</TmcDesc>
 		</Module>
-		<Module Id="#x01010740" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+		<Module Id="#x01010740" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 			<Name>Encoder</Name>
 			<ImageId>1002</ImageId>
-			<TmcDesc GUID="{2A657C12-787C-40C0-8E6C-D68FB6D58760}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<TmcDesc GUID="{2A657C12-787C-40C0-8E6C-D68FB6D58760}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XtsMoverEncoderParameterSet</Name>
 				<CLSID ClassFactory="TcIoXts">{2A657C12-787C-40C0-8E6C-D68FB6D58760}</CLSID>
 				<Info>
@@ -1039,10 +1039,10 @@
 				</ParameterValues>
 			</TmcDesc>
 		</Module>
-		<Module Id="#x01010750" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+		<Module Id="#x01010750" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 			<Name>Position Control</Name>
 			<ImageId>1003</ImageId>
-			<TmcDesc GUID="{57584E44-D085-4D23-86E4-3BE2859F4EC5}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<TmcDesc GUID="{57584E44-D085-4D23-86E4-3BE2859F4EC5}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XtsMoverPositionControllerParameterSet</Name>
 				<CLSID ClassFactory="TcIoXts">{57584E44-D085-4D23-86E4-3BE2859F4EC5}</CLSID>
 				<Info>
@@ -1267,10 +1267,10 @@
 				</ParameterValues>
 			</TmcDesc>
 		</Module>
-		<Module Id="#x01010760" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+		<Module Id="#x01010760" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 			<Name>Velocity Control</Name>
 			<ImageId>1004</ImageId>
-			<TmcDesc GUID="{E9D8B517-6857-41D8-A4A3-60C89603D74A}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<TmcDesc GUID="{E9D8B517-6857-41D8-A4A3-60C89603D74A}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XtsMoverVelocityControllerParameterSet</Name>
 				<CLSID ClassFactory="TcIoXts">{E9D8B517-6857-41D8-A4A3-60C89603D74A}</CLSID>
 				<Info>
@@ -1521,10 +1521,10 @@
 				</ParameterValues>
 			</TmcDesc>
 		</Module>
-		<Module Id="#x01010770" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+		<Module Id="#x01010770" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 			<Name>Filter 1</Name>
 			<ImageId>1005</ImageId>
-			<TmcDesc GUID="{FAEB97D8-ED6E-4986-8449-630C65D48156}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<TmcDesc GUID="{FAEB97D8-ED6E-4986-8449-630C65D48156}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XtsMoverFilterParameterSet</Name>
 				<CLSID ClassFactory="TcIoXts">{FAEB97D8-ED6E-4986-8449-630C65D48156}</CLSID>
 				<Info>
@@ -1665,10 +1665,10 @@
 				</ParameterValues>
 			</TmcDesc>
 		</Module>
-		<Module Id="#x01010780" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+		<Module Id="#x01010780" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 			<Name>Filter 2</Name>
 			<ImageId>1005</ImageId>
-			<TmcDesc GUID="{FAEB97D8-ED6E-4986-8449-630C65D48156}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<TmcDesc GUID="{FAEB97D8-ED6E-4986-8449-630C65D48156}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XtsMoverFilterParameterSet</Name>
 				<CLSID ClassFactory="TcIoXts">{FAEB97D8-ED6E-4986-8449-630C65D48156}</CLSID>
 				<Info>
@@ -1809,10 +1809,10 @@
 				</ParameterValues>
 			</TmcDesc>
 		</Module>
-		<Module Id="#x01010790" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+		<Module Id="#x01010790" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 			<Name>Feed Forward</Name>
 			<ImageId>1006</ImageId>
-			<TmcDesc GUID="{7E8B155E-1E66-48E1-9D28-0607FA48FC11}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.26.0">
+			<TmcDesc GUID="{7E8B155E-1E66-48E1-9D28-0607FA48FC11}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
 				<Name>XtsMoverFeedForwardParameterSet</Name>
 				<CLSID ClassFactory="TcIoXts">{7E8B155E-1E66-48E1-9D28-0607FA48FC11}</CLSID>
 				<Info>
