@@ -64,8 +64,8 @@ VAR
 	Horntimer : tp; 
 	R_trigHorn : R_trig;
 	
-	TestPowerMat : BOOL;
-	StopTime : TIME := T#4S;
+	TestPowerMat : BOOL := TRUE;
+	StopTime : TIME := T#1S;
 	StopTimer :ARRAY[1..nMoverCount] OF ton;
 	StartTimer :ARRAY[1..nMoverCount] OF BOOL;
 	
@@ -94,6 +94,12 @@ VAR
 	trapErrorID: UDINT;
 	moverWithFault: UDINT;
 	stepWithFault: INT;
+	ModuleState1 AT%I*: E_EcState;
+	ModuleState2 AT%I*: E_EcState;
+	MessageTrigger : ARRAY[1..20] OF R_trig;
+	
+	SwitchParkPos : LREAL := 3500;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -104,17 +110,46 @@ GVL_MC.fbXtsEnvironment.Init(GVL_MC.cmdFeedback);
 IF NOT GVL_MC.cmdFeedback.IsDone THEN
 	RETURN;
 END_IF
-
+//*****************************************************
 Emergency :=  MoverStop;
 
 Operating := NOT  MoverStop;
-R_trigHorn(clk := Voltage1> 10000 OR Voltage2 >10000);
-Horntimer(in:= ( R_trigHorn.Q ) , PT:= T#2S,Q=> info);
+
+//================== Check Voltage=====================================================
+R_trigHorn(clk := Voltage1< 250000 );
+//Horntimer(in:= ( R_trigHorn.Q ) , PT:= T#2S,Q=> info);
+IF R_trigHorn.Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Voltage Fault ' , strArg:= '');
+END_IF 
+//=================== Check State of Modules===========================================
+
+MessageTrigger[1](clk:=ModuleState1 <> 8 AND nCASE> 0OR true);
+IF MessageTrigger[1].Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 1 %s' , strArg:= TO_STRING(ModuleState1));
+END_IF
+
+MessageTrigger[2](clk:=ModuleState1 <> 8 AND nCASE> 0);
+IF MessageTrigger[2].Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 2 %s ' , strArg:= TO_STRING(ModuleState2));
+END_IF
+
+//=====================================================================================
 
 IF nCASE > 90 THEN
 	Process := TRUE;
 ELSE 
 	Process := FALSE;	
+END_IF
+
+IF NOT MoverStop AND NOT MoverStopDone THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'E-Stop ' , strArg:= '');
+	FOR nForCounter:=1 TO nNumMovers DO
+		fbMover[nForCounter].P_Dynamics := slowDynamics; 
+		nCase := 140;
+	END_FOR		
+	MoverStopDone := TRUE;
+ELSIF 	MoverStop THEN
+	MoverStopDone := FALSE;
 END_IF
 
 stMoverConfigSlow.Velo := 1000;
@@ -129,35 +164,19 @@ stMoverConfigFast.Jerk := 16000;
 slowDynamics.SetValuesVADJ(stMoverConfigSlow.Velo,stMoverConfigSlow.Accel,stMoverConfigSlow.Decel,stMoverConfigSlow.Jerk);
 fastDynamics.SetValuesVADJ(stMoverConfigFast.Velo,stMoverConfigFast.Accel,stMoverConfigFast.Decel,stMoverConfigFast.Jerk);
 
-
-IF NOT MoverStop AND NOT MoverStopDone THEN
-	FOR nForCounter:=1 TO nNumMovers DO
-		fbMover[nForCounter].P_Dynamics := slowDynamics; 
-		nCase := 140;
-		//fbPlanarMover[nForCounter].McPlanarMover.Halt(MoverFeedback[nForCounter], aDynamics[nForCounter]);
-	END_FOR		
-	MoverStopDone := TRUE;
-ELSIF 	MoverStop THEN
-	MoverStopDone := FALSE;
-END_IF
-
-
-	TcRestart(
-	NETID:= '', 
-	RESTART:= Restart, 
-	TMOUT:=T#5S , 
-	BUSY=>busy , 
-	ERR=> , 
-	ERRID=> );
-
+TcRestart(
+NETID:= '', 
+RESTART:= Restart, 
+TMOUT:=T#5S , 
+BUSY=>busy , 
+ERR=> , 
+ERRID=> );
 
 fp_start(clk:=bStartSequence);
 IF fp_start.Q THEN
 	nCase := 10;
 	bStartSequence := FALSE;
 END_IF
-
-
 
 IsMoverInBlockingArea := FALSE;
 GVL_MC.ipXtsProcessingUnit :=  GVL_MC.fbXtsEnvironment.ProcessingUnit(1,0);
@@ -192,11 +211,12 @@ FOR M := 1 TO nMoverCount DO///Movers
 
 	IsMoverInBlockingArea := IsMoverInBlockingArea OR (Mover[M].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND IsBetween(Mover[M].MoverPos, SwitchConfig.MagnetStartPosition - 100, SwitchConfig.MagnetEndPosition + 100));
 
-//	Fp_error(clk := fbPlanarMover[M].McPlanarMover.Error);
+	Fp_error(clk := GVL_MC.fbMover[M].P_PlanarMover.Error AND GVL_MC.fbMover[M].XtsXlMover.GetIsActive(0));
 	IF Fp_error.Q THEN
 		nCase := 140;
 		Fault := TRUE;
 		bMagnetOn := FALSE;
+		ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Mover %s Faulted ' , strArg:= INT_TO_STRING(M));
 	ELSE
 		Fault := FALSE;
 	END_IF
@@ -213,12 +233,7 @@ FOR T := 1 TO nTrackCount DO
 	
 END_FOR
  MoverGap := (GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()- FirstMoverTrackPos);
-(*
-FTrigTrackCount(CLK:=GVL_Mc3.MC_Tracks[E_TrackNum.Small].MCTOPLC_STD.MoverCountOnTrack =0);
-IF FTrigTrackCount.Q    THEN
-	IsMoverCommandedInShortcut := FALSE;
-END_IF	
-*)
+
 
 CASE nCase OF
 	10:
@@ -355,7 +370,7 @@ CASE nCase OF
 				
 			
 				40:
-					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], 3500,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
+					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], SwitchParkPos ,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
 					nMoveState[nForCounter] := 45;
 	
 				45: 
@@ -367,12 +382,12 @@ CASE nCase OF
 					END_IF
 					IF fbMover[nForCounter].P_PlanarFeedback.Done THEN 
 						nMoveState[nForCounter] := 50;
-						stopAndWait[nForCounter](IN:=TRUE, PT:=T#1S); 
+						stopAndWait[nForCounter](IN:=TRUE, PT:=StopTime); 
 					END_IF 	
 
 				50:
 					stopAndWait[nForCounter](); 
-					IF stopAndWait[nForCounter].Q THEN // send the mover to a sync Position 2.6m before the end of the track 
+					IF stopAndWait[nForCounter].Q  OR NOT TestPowerMat THEN // send the mover to a sync Position 2.6m before the end of the track 
 						stopAndWait[nForCounter](IN:=FALSE); 
 						fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-waitForGapParkPos,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
 						searchGap(resetSearch:=TRUE, fbMover := fbMover); 
@@ -525,5 +540,38 @@ IF Mover[1].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THE
 END_IF
 ]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="10" />
+      <LineId Id="469" Count="0" />
+      <LineId Id="468" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="430" Count="0" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="431" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="484" Count="0" />
+      <LineId Id="471" Count="1" />
+      <LineId Id="478" Count="1" />
+      <LineId Id="485" Count="0" />
+      <LineId Id="481" Count="2" />
+      <LineId Id="473" Count="0" />
+      <LineId Id="486" Count="0" />
+      <LineId Id="480" Count="0" />
+      <LineId Id="470" Count="0" />
+      <LineId Id="17" Count="4" />
+      <LineId Id="487" Count="0" />
+      <LineId Id="434" Count="4" />
+      <LineId Id="440" Count="3" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="444" Count="0" />
+      <LineId Id="23" Count="11" />
+      <LineId Id="48" Count="6" />
+      <LineId Id="56" Count="5" />
+      <LineId Id="64" Count="33" />
+      <LineId Id="460" Count="7" />
+      <LineId Id="105" Count="13" />
+      <LineId Id="124" Count="304" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

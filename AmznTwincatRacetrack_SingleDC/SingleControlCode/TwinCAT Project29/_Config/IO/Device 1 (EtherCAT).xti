@@ -245,6 +245,9 @@
 		<Image Id="2" ImageFlags="#x00000030" AddrType="9" ImageType="3">
 			<Name>Image</Name>
 		</Image>
+		<Image Id="4" AddrType="10" ImageType="3">
+			<Name>Image-2</Name>
+		</Image>
 		<Box Id="1" BoxType="9099">
 			<Name>Term 1 (EK1200)</Name>
 			<ImageId>1000</ImageId>

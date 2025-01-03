@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.12">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.11">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{E5805EFC-D377-4AFA-A6C1-5D144A5CB7BF}" Namespace="XTS">XtsMoverGeneralParameterSetOTCID</Name>
@@ -2518,6 +2518,46 @@ External Setpoint Generation:
 			</EventId>
 		</DataType>
 		<DataType>
+			<Name GUID="{43F4247C-8FE8-BDE9-CDD8-3E736BB4CC5A}" AutoDeleteType="true">E_EcState</Name>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[InitNoCom_Fault]]></Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Init]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Preop]]></Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Boot]]></Text>
+				<Enum>3</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SafeOP]]></Text>
+				<Enum>4</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Op_Ready]]></Text>
+				<Enum>8</Enum>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>qualified_only</Name>
+				</Property>
+				<Property>
+					<Name>strict</Name>
+				</Property>
+				<Property>
+					<Name>generate_implicit_init_function</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
 			<Name GUID="{6D2B99B2-A9F2-44AF-A298-4BB7A08AE294}" Namespace="MC" TcBaseType="true">MC_PLANAR_STATE</Name>
 			<Comment><![CDATA[Indicates the enable state of a component.]]></Comment>
 			<BitSize>16</BitSize>
@@ -3178,6 +3218,9 @@ External Setpoint Generation:
 				<Cpu CpuId="3" BaseTime="5000"/>
 				<IoIdleTask Affinity="#x00000004"/>
 			</Settings>
+			<Licenses>
+				<Target BkhfOrder="DCC1" CustomOrder="Amazon"/>
+			</Licenses>
 			<Tasks>
 				<Task Id="2" Priority="1" CycleTime="5000" AmsPort="350" Affinity="#x00000008" AdtTasks="true">
 					<Name>XTS Task</Name>
@@ -8069,7 +8112,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{32F8CABC-1B04-5A55-F9BB-B6C1DF9D2A7E}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{15A62F96-30DD-5E7C-B3B1-A28E401FA9AC}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8211,6 +8254,14 @@ External Setpoint Generation:
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.ModuleState1</Name>
+							<Type GUID="{43F4247C-8FE8-BDE9-CDD8-3E736BB4CC5A}">E_EcState</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ModuleState2</Name>
+							<Type GUID="{43F4247C-8FE8-BDE9-CDD8-3E736BB4CC5A}">E_EcState</Type>
+						</Var>
+						<Var>
 							<Name>GVL_Mc.MC_Tracks[1].MCTOPLC_STD</Name>
 							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
 							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
@@ -8306,6 +8357,16 @@ External Setpoint Generation:
 							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
 						</Var>
 					</Vars>
+					<UnrestoredVarLinks ImportTime="2025-01-03T02:18:04">
+						<OwnerA Name="InputDst" Prefix="TIPC^PlanarTrackMovement^PlanarTrackMovement Instance" Type="1">
+							<OwnerB Name="TIID^Device 4 (EtherCAT)">
+								<Link VarA="MAIN.ModuleState2" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="SyncUnits^&lt;default&gt;^XTS Task^InfoData^State" RestoreInfo="TypeMismatch" OldTypeA="UINT" OldGuidA="{18071995-0000-0000-0000-000000000005}" NewTypeA="E_EcState" NewGuidA="{43F4247C-8FE8-BDE9-CDD8-3E736BB4CC5A}"/>
+							</OwnerB>
+							<OwnerB Name="TIID^Device 8 (EtherCAT)">
+								<Link VarA="MAIN.ModuleState1" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="SyncUnits^&lt;default&gt;^XTS Task^InfoData^State" RestoreInfo="TypeMismatch" OldTypeA="UINT" OldGuidA="{18071995-0000-0000-0000-000000000005}" NewTypeA="E_EcState" NewGuidA="{43F4247C-8FE8-BDE9-CDD8-3E736BB4CC5A}"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
 					<Contexts>
 						<Context>
 							<Id>0</Id>
@@ -8323,7 +8384,7 @@ External Setpoint Generation:
 				</Instance>
 			</Project>
 			<Project GUID="{23F3AAC5-D2AC-4B6B-826F-C638329B5E0D}" Name="SaftyPLC" PrjFilePath="SaftyPLC\SaftyPLC.plcproj" TmcFilePath="SaftyPLC\SaftyPLC.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{69F01462-F57F-BDB7-589B-0D3AECCD8CC8}" TmcPath="SaftyPLC\SaftyPLC.tmc">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{17719EE3-410A-9FEF-9560-8C8925B945FD}" TmcPath="SaftyPLC\SaftyPLC.tmc">
 					<Name>SaftyPLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8475,8 +8536,11 @@ External Setpoint Generation:
 		</SymbolWatch>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500841000403}" Id="#x020301c0"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500891000403}" Id="#x020301d0"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-5008B1000403}" Id="#x020301e0"/>
 		<MappingInfo Identifier="{00000000-0020-0304-2000-040380000403}" Id="#x02030160"/>
-		<MappingInfo Identifier="{00000000-0020-0304-A000-040320000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-0020-0304-2000-0403A0000403}" Id="#x02030050"/>
 		<MappingInfo Identifier="{08502001-0020-0304-0020-500820000403}" Id="#x02030070" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{02010020-0040-0201-0008-0101C0001105}" Id="#x02030170" Watchdog="10000000040000000400000004000000"/>
 		<MappingInfo Identifier="{02010020-0040-0201-1006-010160001105}" Id="#x020300e0" Watchdog="10000000040000000400000004000000"/>
@@ -8509,7 +8573,6 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 51 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 51 (AT5100-0100) - Module 1 (SAFETY)_108 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
-				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 51 (AT5100-0100) - Module 1 (SAFETY)_108 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 52 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 52 (AT5100-0100) - Module 1 (SAFETY)_109 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -8545,7 +8608,6 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 60 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 60 (AT5100-0100) - Module 1 (SAFETY)_117 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
-				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 60 (AT5100-0100) - Module 1 (SAFETY)_117 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 61 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 61 (AT5100-0100) - Module 1 (SAFETY)_118 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -8569,7 +8631,6 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 66 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 66 (AT5100-0100) - Module 1 (SAFETY)_123 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
-				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 66 (AT5100-0100) - Module 1 (SAFETY)_123 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 67 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 67 (AT5100-0100) - Module 1 (SAFETY)_124 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -8588,6 +8649,7 @@ External Setpoint Generation:
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 70 (AT5100-0100) - Module 1 (SAFETY)_127 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 71 (AT5100-0100)">
+				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 71 (AT5100-0100) - Module 1 (SAFETY)_128 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 71 (AT5100-0100) - Module 1 (SAFETY)_128 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 72 (AT5100-0100)">
@@ -8603,11 +8665,11 @@ External Setpoint Generation:
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 74 (AT5100-0100) - Module 1 (SAFETY)_131 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 75 (AT5100-0100)">
+				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 75 (AT5100-0100) - Module 1 (SAFETY)_132 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 75 (AT5100-0100) - Module 1 (SAFETY)_132 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 76 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 76 (AT5100-0100) - Module 1 (SAFETY)_133 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
-				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 76 (AT5100-0100) - Module 1 (SAFETY)_133 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 77 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 77 (AT5100-0100) - Module 1 (SAFETY)_134 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -8615,7 +8677,6 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 78 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 78 (AT5100-0100) - Module 1 (SAFETY)_135 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
-				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 78 (AT5100-0100) - Module 1 (SAFETY)_135 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 79 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 79 (AT5100-0100) - Module 1 (SAFETY)_136 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -8711,6 +8772,7 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 38 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 38 (AT5100-0100) - Module 1 (SAFETY)_95 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
+				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 38 (AT5100-0100) - Module 1 (SAFETY)_95 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 39 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 39 (AT5100-0100) - Module 1 (SAFETY)_96 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -8718,6 +8780,7 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 40 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 40 (AT5100-0100) - Module 1 (SAFETY)_97 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
+				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 40 (AT5100-0100) - Module 1 (SAFETY)_97 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 41 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 41 (AT5100-0100) - Module 1 (SAFETY)_98 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -8745,11 +8808,9 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 47 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 47 (AT5100-0100) - Module 1 (SAFETY)_104 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
-				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 47 (AT5100-0100) - Module 1 (SAFETY)_104 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 48 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 48 (AT5100-0100) - Module 1 (SAFETY)_105 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
-				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionOutputs^TwinSafeGroup1.Box 48 (AT5100-0100) - Module 1 (SAFETY)_105 RxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 8 (EtherCAT)^Box 49 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 49 (AT5100-0100) - Module 1 (SAFETY)_106 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -8758,14 +8819,17 @@ External Setpoint Generation:
 		</OwnerA>
 		<OwnerA Name="TIID^Device 4 (EtherCAT)">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 13 (EL2912)">
-				<Link VarA="Box 71 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4" VarB="ConnectionInputs^TwinSafeGroup1.Box 71 (AT5100-0100) - Module 1 (SAFETY)_128 TxPDO"/>
-				<Link VarA="Box 75 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4" VarB="ConnectionInputs^TwinSafeGroup1.Box 75 (AT5100-0100) - Module 1 (SAFETY)_132 TxPDO"/>
+				<Link VarA="Box 51 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 51 (AT5100-0100) - Module 1 (SAFETY)_108 RxPDO"/>
+				<Link VarA="Box 60 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 60 (AT5100-0100) - Module 1 (SAFETY)_117 RxPDO"/>
+				<Link VarA="Box 66 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 66 (AT5100-0100) - Module 1 (SAFETY)_123 RxPDO"/>
+				<Link VarA="Box 76 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 76 (AT5100-0100) - Module 1 (SAFETY)_133 RxPDO"/>
+				<Link VarA="Box 78 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 78 (AT5100-0100) - Module 1 (SAFETY)_135 RxPDO"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIID^Device 8 (EtherCAT)">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 13 (EL2912)">
-				<Link VarA="Box 38 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 38 (AT5100-0100) - Module 1 (SAFETY)_95 RxPDO"/>
-				<Link VarA="Box 40 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 40 (AT5100-0100) - Module 1 (SAFETY)_97 RxPDO"/>
+				<Link VarA="Box 47 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 47 (AT5100-0100) - Module 1 (SAFETY)_104 RxPDO"/>
+				<Link VarA="Box 48 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 48 (AT5100-0100) - Module 1 (SAFETY)_105 RxPDO"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^PlanarTrackMovement^PlanarTrackMovement Instance">
@@ -8775,6 +8839,15 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 7 (EL4034)">
 				<Link VarA="PlcTask Outputs^MAIN.MagnetValue" VarB="AO Outputs Channel 1^Analog output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 15 (AX8640-0000-0105)">
+				<Link VarA="PlcTask Inputs^MAIN.Voltage1" VarB="PSM Voltages^Actual DC link voltage"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)">
+				<Link VarA="PlcTask Inputs^MAIN.ModuleState2" VarB="SyncUnits^&lt;default&gt;^XTS Task^InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 8 (EtherCAT)">
+				<Link VarA="PlcTask Inputs^MAIN.ModuleState1" VarB="SyncUnits^&lt;default&gt;^XTS Task^InfoData^State"/>
 			</OwnerB>
 			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 1">
 				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[1].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
@@ -8907,11 +8980,11 @@ External Setpoint Generation:
 			<OwnerB Name="TINC^MC Project1^Groups^MC Track - XL Part 1">
 				<Link VarA="PlcTask Inputs^GVL_Mc.MC_Tracks[3].MCTOPLC_STD" VarB="McToPlc^STD"/>
 			</OwnerB>
-			<OwnerB Name="TINC^MC Project1^Groups^MC Track - XL Part 10">
-				<Link VarA="PlcTask Inputs^GVL_Mc.MC_Tracks[1].MCTOPLC_STD" VarB="McToPlc^STD"/>
-			</OwnerB>
 			<OwnerB Name="TINC^MC Project1^Groups^MC Track - XL Part 2">
 				<Link VarA="PlcTask Inputs^GVL_Mc.MC_Tracks[2].MCTOPLC_STD" VarB="McToPlc^STD"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Groups^MC Track - XL Part 3">
+				<Link VarA="PlcTask Inputs^GVL_Mc.MC_Tracks[1].MCTOPLC_STD" VarB="McToPlc^STD"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^SaftyPLC^SaftyPLC Instance">
@@ -8921,6 +8994,16 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^GVL_Safety.Reset" VarB="StandardOutputs^TwinSafeGroup1.ErrorAcknowledgement_1"/>
 				<Link VarA="PlcTask Outputs^GVL_Safety.Run" VarB="StandardOutputs^TwinSafeGroup1.Run_2"/>
 				<Link VarA="PlcTask Outputs^GVL_Safety.Start" VarB="StandardOutputs^TwinSafeGroup1.STO_75"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1809)">
+				<Link VarA="PlcTask Inputs^MAIN.HwReset" VarB="Channel 16^Input"/>
+				<Link VarA="PlcTask Inputs^MAIN.HwStart" VarB="Channel 14^Input"/>
+				<Link VarA="PlcTask Inputs^MAIN.HwStop" VarB="Channel 15^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 4 (EL2809)">
+				<Link VarA="PlcTask Outputs^MAIN.xError" VarB="Channel 15^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.xOn" VarB="Channel 14^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.xRequestReset" VarB="Channel 16^Output"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 50 (AT5100-0100)">
 				<Link VarA="PlcTask Outputs^GVL_Safety.Reset" VarB="Module 1 (SAFETY)^SAFETY Standard Outputdata^Standard In Var 1"/>
