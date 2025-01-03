@@ -123,7 +123,7 @@ IF R_trigHorn.Q THEN
 END_IF 
 //=================== Check State of Modules===========================================
 
-MessageTrigger[1](clk:=ModuleState1 <> 8 AND nCASE> 0OR true);
+MessageTrigger[1](clk:=ModuleState1 <> 8 AND nCASE> 0);
 IF MessageTrigger[1].Q THEN
 	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 1 %s' , strArg:= TO_STRING(ModuleState1));
 END_IF

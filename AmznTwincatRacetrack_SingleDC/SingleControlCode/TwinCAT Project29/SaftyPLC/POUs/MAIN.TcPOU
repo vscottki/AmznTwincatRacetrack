@@ -4,14 +4,12 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	nCase 					: INT;
-	HwStart 		AT%I* 	: BOOL;
-	HwStop  		AT%I* 	: BOOL;
-	HwReset 		AT%I* 	: BOOL;
+	
 	xOn 			AT%Q* 	: BOOL;
 	xRequestReset 	AT%Q* 	: BOOL;
 	xError 			AT%Q* 	: BOOL;
 		
-	VoltageSP 			  	: LREAL := 300;
+
 	rTrigSwitchon 		  	: R_trig;
 	fTrigSwitchOff		  	: F_trig;
 	Chargtimer 				: ton;
@@ -55,33 +53,13 @@ END_IF
 
 xError := NOT gvl_safety.SafetyInRun AND NOT gvl_safety.HWSafetyOk AND GVL_Safety.Run AND GVL_Safety.Start;
 
-rTrigSwitchon(clk := HwStart );
-fTrigSwitchOff(clk:= HwStop );
 
-
- Chargtimer(in := SwitchOn ,pt := T#1M, q=>GVL_IO.ChargingResistor);
-
-IF rTrigSwitchon.Q THEN
-	GVL_IO.VoltageSet := GVL_IO.VoltageAct;
-	SwitchOn := TRUE;
-ELSIF fTrigSwitchOff.Q THEN
-	SwitchOn := FALSE;
-	GVL_IO.VoltageSet :=   0;
-END_IF
-
-
-
-IF (VoltageSP-2) > GVL_IO.VoltageAct AND  GVL_IO.Voltageset <VoltageSP AND SwitchOn THEN
-	GVL_IO.VoltageSet := GVL_IO.VoltageSet +0.1;
-END_IF
 
 
 
 IF GVL_IO.hwReset OR HwReset THEN
-	GVL_IO.ControlDrive1121 := 16#FF;
 	GVL_Safety.Reset := TRUE;
 ELSE 	
-	GVL_IO.ControlDrive1121 := 16#0;
 	GVL_Safety.Reset := FALSE;
 END_IF
 ]]></ST>
@@ -111,7 +89,11 @@ END_IF
       <LineId Id="80" Count="0" />
       <LineId Id="150" Count="0" />
       <LineId Id="149" Count="0" />
-      <LineId Id="114" Count="29" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="134" Count="4" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="142" Count="1" />
       <LineId Id="113" Count="0" />
     </LineIds>
   </POU>

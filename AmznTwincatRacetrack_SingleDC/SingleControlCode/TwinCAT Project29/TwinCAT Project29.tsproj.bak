@@ -8112,7 +8112,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{15A62F96-30DD-5E7C-B3B1-A28E401FA9AC}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{5516C39C-59CA-E2D8-EF29-62F4D910EFB7}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8996,9 +8996,9 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^GVL_Safety.Start" VarB="StandardOutputs^TwinSafeGroup1.STO_75"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1809)">
-				<Link VarA="PlcTask Inputs^MAIN.HwReset" VarB="Channel 16^Input"/>
-				<Link VarA="PlcTask Inputs^MAIN.HwStart" VarB="Channel 14^Input"/>
-				<Link VarA="PlcTask Inputs^MAIN.HwStop" VarB="Channel 15^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_Safety.HWReset" VarB="Channel 16^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_Safety.HWStart" VarB="Channel 14^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_Safety.HWStop" VarB="Channel 15^Input"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 4 (EL2809)">
 				<Link VarA="PlcTask Outputs^MAIN.xError" VarB="Channel 15^Output"/>
