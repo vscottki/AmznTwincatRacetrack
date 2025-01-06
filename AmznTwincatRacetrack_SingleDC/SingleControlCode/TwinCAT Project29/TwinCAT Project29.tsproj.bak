@@ -2517,6 +2517,702 @@ External Setpoint Generation:
 				<Severity>Verbose</Severity>
 			</EventId>
 		</DataType>
+		<DataType>
+			<Name GUID="{17A70D2C-9636-EAEF-D97D-3CE9C860D0D5}" AutoDeleteType="true">E_EcState</Name>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[InitNoCom_Fault]]></Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Init]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Preop]]></Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Boot]]></Text>
+				<Enum>3</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SafeOP]]></Text>
+				<Enum>4</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Op_Ready]]></Text>
+				<Enum>8</Enum>
+			</EnumInfo>
+			<Default>
+				<EnumText>InitNoCom_Fault</EnumText>
+			</Default>
+			<Properties>
+				<Property>
+					<Name>qualified_only</Name>
+				</Property>
+				<Property>
+					<Name>strict</Name>
+				</Property>
+				<Property>
+					<Name>to_string</Name>
+				</Property>
+				<Property>
+					<Name>to_string_function</Name>
+					<Value>__TO_STRING__1189</Value>
+				</Property>
+				<Property>
+					<Name>to_wstring_function</Name>
+					<Value>__TO_WSTRING__1189</Value>
+				</Property>
+				<Property>
+					<Name>generate_implicit_init_function</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{6D2B99B2-A9F2-44AF-A298-4BB7A08AE294}" Namespace="MC" TcBaseType="true">MC_PLANAR_STATE</Name>
+			<Comment><![CDATA[Indicates the enable state of a component.]]></Comment>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Invalid]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Indicates no or invalid information, e.g. no connection or component not yet ready.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Disabled]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[Indicates a disabled component.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Enabling]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[Indicates an enabling component.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Enabled]]></Text>
+				<Enum>3</Enum>
+				<Comment><![CDATA[Indicates an enabled component.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Disabling]]></Text>
+				<Enum>4</Enum>
+				<Comment><![CDATA[Indicates a disabling component.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Error]]></Text>
+				<Enum>5</Enum>
+				<Comment><![CDATA[Indicates a component in error state.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[ErrorPending]]></Text>
+				<Enum>6</Enum>
+				<Comment><![CDATA[Indicates that a component is transitioning from any non error state to the error state.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Resetting]]></Text>
+				<Enum>7</Enum>
+				<Comment><![CDATA[Indicates that a component is resetting after it was in error state.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{6E814ACD-1DD8-4E30-80DB-648BE0A7193D}" Namespace="MC">MC_PLANAR_TRACK_OPERATION_MODE</Name>
+			<Comment><![CDATA[Indicates the state of an enabled PlanarTrack, i.e. how PlanarMovers currently interact with the PlanarTrack.]]></Comment>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Invalid]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Indicates no or invalid information, e.g. no connection or component not yet ready.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Uninitialized]]></Text>
+				<Enum>201</Enum>
+				<Comment><![CDATA[Indicates that there is no finalized gemetric path yet.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Standing]]></Text>
+				<Enum>202</Enum>
+				<Comment><![CDATA[All PlanarMovers on the PlanarTrack are standing.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Configuring]]></Text>
+				<Enum>203</Enum>
+				<Comment><![CDATA[At least one PlanarMover is joining/leaving the track or crossing it in free movement mode.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Moving]]></Text>
+				<Enum>204</Enum>
+				<Comment><![CDATA[At least one PlanarMover on the PlanarTrack is busy (moving).]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC" TcBaseType="true">CDT_MCTOPLC_PLANAR_TRACK</Name>
+			<Comment><![CDATA[CDT provides current planar track information.]]></Comment>
+			<BitSize>160</BitSize>
+			<SubItem>
+				<Name>TrackOID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<Comment><![CDATA[Object id of the planar track.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>GroupOID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<Comment><![CDATA[Object id of the planar group the track is in.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>State</Name>
+				<Type GUID="{6D2B99B2-A9F2-44AF-A298-4BB7A08AE294}" Namespace="MC">MC_PLANAR_STATE</Type>
+				<Comment><![CDATA[State of the planar track, e.g. disabled.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>OperationMode</Name>
+				<Type GUID="{6E814ACD-1DD8-4E30-80DB-648BE0A7193D}" Namespace="MC">MC_PLANAR_TRACK_OPERATION_MODE</Type>
+				<Comment><![CDATA[Operation mode of the planar track, e.g. moving.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MoverCountOnTrack</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<Comment><![CDATA[Number of movers coupled to this track.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MovingMoverCount</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<Comment><![CDATA[Number of movers having a movement planned that includes this track.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{FAE6DCD6-33EF-4275-8592-10BCED19E1EA}" Namespace="MC">MC_PLANAR_MOVER_COMMAND_MODE</Name>
+			<Comment><![CDATA[Indicates the command mode of an enabled PlanarMover, i.e. how setpoints are currently produced.]]></Comment>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Invalid]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Indicates no or invalid information, e.g. no connection or component not yet ready.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[FreeMovement]]></Text>
+				<Enum>101</Enum>
+				<Comment><![CDATA[Indicates a freely moving PlanarMover.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[OnTrack]]></Text>
+				<Enum>102</Enum>
+				<Comment><![CDATA[Indicates that the PlanarMover is moving on a PlanarTrack.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[JoiningTrack]]></Text>
+				<Enum>103</Enum>
+				<Comment><![CDATA[Indicates that the PlanarMover is approaching a PlanarTrack to join it.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[LeavingTrack]]></Text>
+				<Enum>104</Enum>
+				<Comment><![CDATA[Indicates that the PlanarMover is leaving a PlanarTrack to move freely afterwards.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[ExternalSetpointGeneration]]></Text>
+				<Enum>105</Enum>
+				<Comment><![CDATA[Indicates that the PlanarMover is following externally provided setpoints.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[CRotationFreeMovement]]></Text>
+				<Enum>106</Enum>
+				<Comment><![CDATA[Indicates that the PlanarMover only rotating the C coordinate in free movement, X and Y are standing.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[CRotationOnTrack]]></Text>
+				<Enum>107</Enum>
+				<Comment><![CDATA[Indicates that the PlanarMover only rotating the C coordinate on a track, X and Y are standing.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{1724CCE2-4FE1-4A80-AEC5-6F25F9789895}" Namespace="MC">MoverBusy</Name>
+			<Comment><![CDATA[Indicates the busy state of the PlanarMover.]]></Comment>
+			<BitSize>8</BitSize>
+			<SubItem>
+				<Name>busyMover</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Indicates the busy state of the whole PlanarMover.]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>busyXYC</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Indicates the busy state of the main coordinates (includes only x and y if c is independent).]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>busyX</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Indicates the busy state of the x coordinate.]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>busyY</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Indicates the busy state of the y coordinate.]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>busyZ</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Indicates the busy state of the z coordinate.]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>busyA</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Indicates the busy state of the a coordinate.]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>busyB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Indicates the busy state of the b coordinate.]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>6</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>busyC</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[Indicates the busy state of the c coordinate.]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{7D131116-81E4-45B0-AC50-A71EE4201E30}" Namespace="MC" TcBaseType="true">CDT_MCTOPLC_PLANAR_MOVER_STD</Name>
+			<Comment><![CDATA[CDT provides current general information about the planar mover.]]></Comment>
+			<BitSize>160</BitSize>
+			<SubItem>
+				<Name>MoverOID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<Comment><![CDATA[Object id of the planar mover.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>GroupOID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<Comment><![CDATA[Object id of the planar group the mover is in.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>State</Name>
+				<Type GUID="{6D2B99B2-A9F2-44AF-A298-4BB7A08AE294}" Namespace="MC">MC_PLANAR_STATE</Type>
+				<Comment><![CDATA[State of the planar mover, e.g. enabled.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>CommandMode</Name>
+				<Type GUID="{FAE6DCD6-33EF-4275-8592-10BCED19E1EA}" Namespace="MC">MC_PLANAR_MOVER_COMMAND_MODE</Type>
+				<Comment><![CDATA[Command mode of the planar mover, e.g. onTrack.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Busy</Name>
+				<Type GUID="{1724CCE2-4FE1-4A80-AEC5-6F25F9789895}" Namespace="MC">MoverBusy</Type>
+				<Comment><![CDATA[Busy state of the planar mover.]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ErrorCode</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
+				<Comment><![CDATA[Error code of the planar mover.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Name>
+			<Comment><![CDATA[A vector of six numeric values corresponding to the six coordinates of the PlanarMover. May be used e.g. for position, velocity or acceleration of the PlanarMover.]]></Comment>
+			<BitSize>384</BitSize>
+			<SubItem>
+				<Name>x</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[X coordinate.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>y</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Y coordinate.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>z</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Z coordinate.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>a</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[A coordinate.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>192</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[B coordinate.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>256</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>c</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[C coordinate.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>320</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{D7D4F146-9962-4745-8631-17F5FB457164}" Namespace="MC" TcBaseType="true">CDT_MCTOPLC_PLANAR_MOVER_SET</Name>
+			<Comment><![CDATA[CDT provides the current planar mover setpoint.]]></Comment>
+			<BitSize>1280</BitSize>
+			<SubItem>
+				<Name>SetPos</Name>
+				<Type GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+				<Comment><![CDATA[Current position.]]></Comment>
+				<BitSize>384</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetVelo</Name>
+				<Type GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+				<Comment><![CDATA[Current velocity.]]></Comment>
+				<BitSize>384</BitSize>
+				<BitOffs>384</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetAcc</Name>
+				<Type GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+				<Comment><![CDATA[Current acceleration.]]></Comment>
+				<BitSize>384</BitSize>
+				<BitOffs>768</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DcTimeStamp</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000B}">ULINT</Type>
+				<Comment><![CDATA[Current time stamp.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>1152</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>PhysicalAreaID</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<Comment><![CDATA[Current physical area id.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>1216</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{F18FBB92-D68F-43D8-95AE-0E42EDCD14E2}" Namespace="MC" TcBaseType="true">CDT_MCTOPLC_PLANAR_MOVER_ACT</Name>
+			<Comment><![CDATA[CDT provides the current mover actpoint.]]></Comment>
+			<BitSize>896</BitSize>
+			<SubItem>
+				<Name>ActPos</Name>
+				<Type GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+				<Comment><![CDATA[Current position.]]></Comment>
+				<BitSize>384</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ActVelo</Name>
+				<Type GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Type>
+				<Comment><![CDATA[Current velocity.]]></Comment>
+				<BitSize>384</BitSize>
+				<BitOffs>384</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DcTimeStamp</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000B}">ULINT</Type>
+				<Comment><![CDATA[Current time stamp.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>768</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>PhysicalAreaID</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<Comment><![CDATA[Current physical area id.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>832</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{4A0F472D-280E-4FC8-9A7B-F63984042D8D}" Namespace="MC">MC_PLANAR_COORDINATE_MODE</Name>
+			<Comment><![CDATA[Indicates if the setpoint generation for a coordinate is independent, coupled to the main coordinates (x, y) or controlled by other sources.]]></Comment>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Invalid]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Indicates no or invalid information, e.g. no connection or component not yet ready.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Independent]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[Indicates an independent coordinate, controlled separately.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Dependent]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[Indicates a dependent coordinate, controlled together with x and y.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[External]]></Text>
+				<Enum>3</Enum>
+				<Comment><![CDATA[Indicates a coordinate controlled by external setpoint generation.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{B2D0D1AF-2BA9-49BA-AF3F-BC95009CD9CD}" Namespace="MC" TcBaseType="true">CDT_MCTOPLC_PLANAR_MOVER_COORDMODE</Name>
+			<Comment><![CDATA[CDT provides the current mover coordinate modes.]]></Comment>
+			<BitSize>80</BitSize>
+			<SubItem>
+				<Name>XYCoordinateMode</Name>
+				<Type GUID="{4A0F472D-280E-4FC8-9A7B-F63984042D8D}" Namespace="MC">MC_PLANAR_COORDINATE_MODE</Type>
+				<Comment><![CDATA[X and Y coordinate.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ZCoordinateMode</Name>
+				<Type GUID="{4A0F472D-280E-4FC8-9A7B-F63984042D8D}" Namespace="MC">MC_PLANAR_COORDINATE_MODE</Type>
+				<Comment><![CDATA[Z coordinate.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ACoordinateMode</Name>
+				<Type GUID="{4A0F472D-280E-4FC8-9A7B-F63984042D8D}" Namespace="MC">MC_PLANAR_COORDINATE_MODE</Type>
+				<Comment><![CDATA[A coordinate.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>BCoordinateMode</Name>
+				<Type GUID="{4A0F472D-280E-4FC8-9A7B-F63984042D8D}" Namespace="MC">MC_PLANAR_COORDINATE_MODE</Type>
+				<Comment><![CDATA[B coordinate.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>CCoordinateMode</Name>
+				<Type GUID="{4A0F472D-280E-4FC8-9A7B-F63984042D8D}" Namespace="MC">MC_PLANAR_COORDINATE_MODE</Type>
+				<Comment><![CDATA[C coordinate.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{DB4B14FF-1923-4ED2-A97C-3D3120BDBDAA}" Namespace="MC" TcBaseType="true">CDT_MCTOPLC_PLANAR_MOVER_TRACK</Name>
+			<Comment><![CDATA[CDT provides the current mover setpoint on the planar track (if mover is on track).]]></Comment>
+			<BitSize>320</BitSize>
+			<SubItem>
+				<Name>SetPos</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Current position.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetVelo</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Current velocity.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetAcc</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Current acceleration.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SetJerk</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Current jerk.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>192</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TrackOID</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+				<Comment><![CDATA[Current track object id.]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>256</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion" IecLibraryType="true" AutoDeleteType="true">CDT_MCTOPLC_PLANAR_MOVER</Name>
+			<Comment><![CDATA[ Contains the information of the Planar Mover passed from MC to PLC. ]]></Comment>
+			<BitSize>320</BitSize>
+			<SubItem>
+				<Name>STD</Name>
+				<Type GUID="{7D131116-81E4-45B0-AC50-A71EE4201E30}" Namespace="MC" ReferenceTo="true">CDT_MCTOPLC_PLANAR_MOVER_STD</Type>
+				<Comment><![CDATA[ Mover standard data that is transferred from the Planar Mover to this function block. ]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcPointerMapping</Name>
+					</Property>
+					<Property>
+						<Name>Namespace</Name>
+						<Value>MC</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>SET</Name>
+				<Type GUID="{D7D4F146-9962-4745-8631-17F5FB457164}" Namespace="MC" ReferenceTo="true">CDT_MCTOPLC_PLANAR_MOVER_SET</Type>
+				<Comment><![CDATA[ Mover setpoint data that is transferred from the Planar Mover to this function block. ]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>64</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcPointerMapping</Name>
+					</Property>
+					<Property>
+						<Name>Namespace</Name>
+						<Value>MC</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>ACT</Name>
+				<Type GUID="{F18FBB92-D68F-43D8-95AE-0E42EDCD14E2}" Namespace="MC" ReferenceTo="true">CDT_MCTOPLC_PLANAR_MOVER_ACT</Type>
+				<Comment><![CDATA[ Mover actpoint data that is transferred from the Planar Mover to this function block. ]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcPointerMapping</Name>
+					</Property>
+					<Property>
+						<Name>Namespace</Name>
+						<Value>MC</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>COORDMODE</Name>
+				<Type GUID="{B2D0D1AF-2BA9-49BA-AF3F-BC95009CD9CD}" Namespace="MC" ReferenceTo="true">CDT_MCTOPLC_PLANAR_MOVER_COORDMODE</Type>
+				<Comment><![CDATA[ Mover coordinate mode information that is transferred from the Planar Mover to this function block. ]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>192</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcPointerMapping</Name>
+					</Property>
+					<Property>
+						<Name>Namespace</Name>
+						<Value>MC</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>SETONTRACK</Name>
+				<Type GUID="{DB4B14FF-1923-4ED2-A97C-3D3120BDBDAA}" Namespace="MC" ReferenceTo="true">CDT_MCTOPLC_PLANAR_MOVER_TRACK</Type>
+				<Comment><![CDATA[ Mover busy information that is transferred from the Planar Mover to this function block. ]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>256</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcPointerMapping</Name>
+					</Property>
+					<Property>
+						<Name>Namespace</Name>
+						<Value>MC</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{BC77732B-A71D-4084-AA53-85A5016932F3}" Namespace="MC" TcBaseType="true">CDT_PLCTOMC_PLANAR_MOVER_STD</Name>
+			<Comment><![CDATA[CDT for the current general MC_PlanarMover information.]]></Comment>
+			<BitSize>8</BitSize>
+			<SubItem>
+				<Name>Enable</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[Unused as of now.]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion" IecLibraryType="true" AutoDeleteType="true">CDT_PLCTOMC_PLANAR_MOVER</Name>
+			<Comment><![CDATA[ Contains the information of the Planar Mover passed from PLC to MC. ]]></Comment>
+			<BitSize>64</BitSize>
+			<SubItem>
+				<Name>STD</Name>
+				<Type GUID="{BC77732B-A71D-4084-AA53-85A5016932F3}" Namespace="MC" ReferenceTo="true">CDT_PLCTOMC_PLANAR_MOVER_STD</Type>
+				<Comment><![CDATA[ Mover standard data that is transferred from this function block to the Planar Mover. ]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>TcPointerMapping</Name>
+					</Property>
+					<Property>
+						<Name>Namespace</Name>
+						<Value>MC</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+		</DataType>
 	</DataTypes>
 	<ImageDatas>
 		<ImageData Id="1000">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009000000a2a2a2009c9c9c0097979700929292002222220087878700818181007c7c7c0076767600717171006c6c6c006666660061616100222222000000000009000000ababab00a6a6a600979797009b9b9b0022222200909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00222222000000000009000000b9b9b900b9b9b90097979700a4a4a4002222220099999900222222008e8e8e002222220022222200222222002222220073737300222222000000000009000000b9b9b900b8b8b80097979700adadad0022222200a2a2a2009d9d9d0097979700929292008c8c8c0087878700828282007c7c7c00222222000000000009000000b9b9b900c1c1c10097979700b6b6b60022222200ababab0022222200a0a0a0002222220022222200222222002222220085858500222222000000000009000000b9b9b900cacaca0097979700bfbfbf0022222200b4b4b400afafaf00aaaaaa00a4a4a4009f9f9f0099999900949494008e8e8e00222222000000000009000000b9b9b900d3d3d30097979700c8c8c80022222200bebebe00b8b8b800b3b3b300adadad00a8a8a800222222002222220022222200222222000000000009000000b9b9b900dcdcdc0097979700d2d2d20022222200c7c7c700c1c1c100bcbcbc00b7b7b700b1b1b10022222200a3a3a30049494900474747000000000009000000b9b9b900e6e6e60097979700dbdbdb0022222200d0d0d000cbcbcb00c5c5c500c0c0c000bababa00222222004d4d4d0049494900a1a1a1000900000009000000b9b9b900efefef0097979700e4e4e400222222002222220022222200222222002222220022222200222222004a4a4a00b0b0b000aeaeae000900000009000000b9b9b900f8f8f80097979700ededed00e8e8e800e2e2e200dddddd00d7d7d700d0d0d000a8a8a800a5a5a500c1c1c100bcbcbc00b7b7b7000900000009000000b9b9b900fbfbfb0097979700979797009797970097979700979797009797970097979700a5a5a500cfcfcf00cbcbcb00c5c5c500c0c0c0000900000009000000b9b9b900fbfbfb00fbfbfb00fbfbfb00fafafa00f5f5f500eeeeee00c8c8c800c5c5c500dedede00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000b9b9b900b9b9b900b9b9b900b9b9b900b9b9b900b9b9b900b9b9b900cbcbcb00ebebeb00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
@@ -2528,7 +3224,7 @@ External Setpoint Generation:
 		<ImageData Id="1006">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000900000009000000b4b4b400afafaf00a9a9a900a4a4a4009e9e9e0099999900949494008e8e8e0089898900474747005353530078787800737373006e6e6e000900000009000000bdbdbd00b8b8b800b2b2b200adadad004e77d7000650fb004c74d00097979700929292007373730012121200343434007a7a7a00777777000900000009000000c6c6c600606060000000000000000000004af500004dff000048f000000000000000000000000000000000000000000044444400808080000900000009000000d0d0d000cacaca00c5c5c500bfbfbf005880de000952fb00567dd700aaaaaa00a4a4a40082828200141414003b3b3b008c8c8c00898989000900000009000000d9d9d900d3d3d300cecece00c8c8c800c0c1c300466cc300b5b6b800b3b3b300adadad005b5b5b006b6b6b009d9d9d0098989800929292000900000009000000e2e2e200dcdcdc00d7d7d700d2d2d200406aca00004dff003d67c700bcbcbc00b7b7b700b1b1b100acacac00a6a6a600a1a1a1009b9b9b000900000009000000ebebeb00e6e6e600e0e0e0007790c9000d50ec00004dff000e50ea006782bf00c0c0c000bababa00b5b5b500afafaf00aaaaaa00a5a5a5000900000009000000f4f4f400efefef00e9e9e900577acc00a1afd000004dff0099a7c8005174c600c9c9c900c3c3c300bebebe00b9b9b900b3b3b300aeaeae000900000009000000fbfbfb00f8f8f800f3f3f300ededed00e8e8e800004dff00dddddd00d7d7d700d2d2d200cdcdcd00c7c7c700c2c2c200bcbcbc00b7b7b7000900000009000000fbfbfb00fbfbfb00fbfbfb00f6f6f600f1f1f100004dff00e6e6e600e1e1e100dbdbdb00d6d6d600d0d0d000cbcbcb00c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00004dff00efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
 		<ImageData Id="1007">424d360400000000000036000000280000001000000010000000010020000000000000000000c30e0000c30e000000000000000000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000a2a2a2009c9c9c0097979700929292008c8c8c0087878700818181007c7c7c0076767600717171006c6c6c0066666600616161005b5b5b000900000009000000ababab00a6a6a600a0a0a0009b9b9b0095959500909090008a8a8a0085858500808080007a7a7a00757575006f6f6f006a6a6a00646464000900000009000000b4b4b400afafaf00004dff00004dff00004dff00004dff00004dff00004dff00004dff00004dff007e7e7e0078787800737373006e6e6e000900000009000000bcbcbd00b8b8b800004dff00adadad00a7a7a800a2a2a2009d9d9d009797970092929200004dff0087878700828282007c7c7c007777770009000000090000004c7be9007f99d600004dff007892cf004473e100ababab00a6a6a600a0a0a0009b9b9b00004dff00909090008b8b8b0085858500808080000900000009000000aab8d9001157fa00004dff001056f90098a6c700b4b4b400afafaf00aaaaaa00a4a4a400004dff0099999900949494008e8e8e00898989000900000009000000d9d9d9008ba5e200014eff00849edb00c3c3c300bebebe00b8b8b800b3b3b300adadad00004dff007a7a7a004949490096969600929292000900000009000000e2e2e2006991ee000852fe00658de900cccccc00535353005353530053535300b7b7b700004dff00a0a0a0002e2e2e00282828008e8e8e000900000009000000ebebeb000b54fe00004dff000049f2000000000053535300535353005353530000000000000000000000000000000000000000002b2b2b000900000009000000f4f4f4007199f7000a54fe006d95f200dfdfdf00535353005353530053535300c9c9c900c3c3c300b1b1b100333333002c2c2c009f9f9f000900000009000000fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e2e2e200dddddd00d7d7d700d2d2d200cdcdcd00959595005a5a5a00bababa00b7b7b7000900000009000000fbfbfb00fbfbfb00fbfbfb00f6f6f600f1f1f100ebebeb00e6e6e600e1e1e100dbdbdb00d6d6d600d0d0d000cbcbcb00c5c5c500c0c0c0000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fafafa00f5f5f500efefef00eaeaea00e4e4e400dfdfdf00d9d9d900d4d4d400cfcfcf00c9c9c9000900000009000000fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00fbfbfb00f8f8f800f3f3f300ededed00e8e8e800e3e3e300dddddd00d8d8d800d2d2d2000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{2C908431-BA47-423A-AF4F-887E2E229EBE}" Target64Bit="true" RelativeTargetNetId="true" RelativeIpAddresses="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{2C908431-BA47-423A-AF4F-887E2E229EBE}" TargetNetId="11.200.5.30.1.1" Target64Bit="true" RelativeTargetNetId="true" RelativeIpAddresses="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings MaxCpus="4" NonWinCpus="2" RouterMemory="134217728" MaxStackSize="128">
 				<Cpu CpuId="1" BaseTime="5000"/>
@@ -7430,9 +8126,239 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{8AB59682-0364-D7AF-6FB8-FD7F27E9E44A}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>MAIN.MagnetValue</Name>
+							<Comment><![CDATA[ Magnet]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.MoverStopDone</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Info</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Operating</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Process</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Fault</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Emergency</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[1].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[2].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[3].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[4].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[5].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[6].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[7].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[8].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[9].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[10].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[11].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[12].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[13].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[14].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[15].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[16].fbPlanarMover.PLCTOMC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.MoverStop</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Voltage1</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Voltage2</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ModuleState1</Name>
+							<Type GUID="{17A70D2C-9636-EAEF-D97D-3CE9C860D0D5}">E_EcState</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.ModuleState2</Name>
+							<Type GUID="{17A70D2C-9636-EAEF-D97D-3CE9C860D0D5}">E_EcState</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.MC_Tracks[1].MCTOPLC_STD</Name>
+							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
+							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.MC_Tracks[2].MCTOPLC_STD</Name>
+							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
+							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.MC_Tracks[3].MCTOPLC_STD</Name>
+							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
+							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[1].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[2].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[3].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[4].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[5].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[6].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[7].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[8].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[9].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[10].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[11].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[12].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[13].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[14].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[15].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.fbMover[16].fbPlanarMover.MCTOPLC</Name>
+							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
+							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
+						</Var>
+					</Vars>
 					<Contexts>
 						<Context>
 							<Id>0</Id>
@@ -7450,7 +8376,7 @@ External Setpoint Generation:
 				</Instance>
 			</Project>
 			<Project GUID="{23F3AAC5-D2AC-4B6B-826F-C638329B5E0D}" Name="SaftyPLC" PrjFilePath="SaftyPLC\SaftyPLC.plcproj" TmcFilePath="SaftyPLC\SaftyPLC.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{77CBB7A8-5734-B73F-6FCE-45A0BD9995C0}" TmcPath="SaftyPLC\SaftyPLC.tmc">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{D498083C-6ABC-F06B-46E5-4B4A66965F3A}" TmcPath="SaftyPLC\SaftyPLC.tmc">
 					<Name>SaftyPLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -7466,18 +8392,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>MAIN.xError</Name>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ChargingResistor</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.VoltageSet</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ControlDrive1121</Name>
-							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Safety.Run</Name>
@@ -7502,14 +8416,6 @@ External Setpoint Generation:
 					</Vars>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
-						<Var>
-							<Name>GVL_IO.VoltageAct</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.StatusDrive1121</Name>
-							<Type>UINT</Type>
-						</Var>
 						<Var>
 							<Name>GVL_Safety.SafetyInRun</Name>
 							<Type>BOOL</Type>
@@ -7585,11 +8491,14 @@ External Setpoint Generation:
 			<Device File="Device 8 (EtherCAT).xti" Id="8"/>
 			<Device File="Device 4 (EtherCAT).xti" Id="4"/>
 		</Io>
-		<SymbolWatch>
-			<Variable>TIID^Device 1 (EtherCAT)^Term 15 (AX8640-0000-0105)^PSM Diagnostics^DcLink state machine</Variable>
-		</SymbolWatch>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500841000403}" Id="#x020300a0"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500891000403}" Id="#x020300c0"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-5008B1000403}" Id="#x02030160"/>
+		<MappingInfo Identifier="{00000000-0020-0304-2000-040380000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-0020-0304-2000-0403A0000403}" Id="#x02030070"/>
+		<MappingInfo Identifier="{08502001-0020-0304-0020-500820000403}" Id="#x02030090" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{02010020-0040-0201-0008-0101C0001105}" Id="#x02030170" Watchdog="10000000040000000400000004000000"/>
 		<MappingInfo Identifier="{02010020-0040-0201-1006-010160001105}" Id="#x020300e0" Watchdog="10000000040000000400000004000000"/>
 		<MappingInfo Identifier="{02010020-0040-0201-2008-0101D0001105}" Id="#x02030180" Watchdog="10000000040000000400000004000000"/>
@@ -7606,6 +8515,14 @@ External Setpoint Generation:
 		<MappingInfo Identifier="{02010020-0040-0201-C007-0101A0001105}" Id="#x02030120" Watchdog="10000000040000000400000004000000"/>
 		<MappingInfo Identifier="{02010020-0040-0201-E007-0101B0001105}" Id="#x02030140" Watchdog="10000000040000000400000004000000"/>
 		<MappingInfo Identifier="{02010020-0040-0201-F005-010150001105}" Id="#x020300d0" Watchdog="10000000040000000400000004000000"/>
+		<MappingInfo Identifier="{03040020-0020-0304-2000-040320000403}" Id="#x02030050" Watchdog="04000000040000000400000004000000"/>
+		<MappingInfo Identifier="{02010040-2001-0850-1000-100500205008}" Id="#x02030110" Watchdog="04000000040000000400000004000000"/>
+		<MappingInfo Identifier="{02010040-2001-0850-1000-120500205008}" Id="#x020301e0" Watchdog="04000000040000000400000004000000"/>
+		<MappingInfo Identifier="{02010040-2001-0850-2000-120500205008}" Id="#x020301d0" Watchdog="04000000040000000400000004000000"/>
+		<MappingInfo Identifier="{02010040-2001-0850-3000-120500205008}" Id="#x020301c0" Watchdog="04000000040000000400000004000000"/>
+		<MappingInfo Identifier="{08502042-0020-0304-4020-500820000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{08502042-0080-0304-4020-500880000403}" Id="#x020300b0" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{08502042-00A0-0304-4020-5008A0000403}" Id="#x02030150" Watchdog="00000000000000000000000000000000"/>
 		<OwnerA Name="TIID^Device 1 (EtherCAT)">
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 50 (AT5100-0100)">
 				<Link VarA="Term 1 (EK1200)^Term 13 (EL2912)^ConnectionInputs^TwinSafeGroup1.Box 50 (AT5100-0100) - Module 1 (SAFETY)_107 TxPDO" VarB="Module 1 (SAFETY)^SAFETY FSoE Connection 1 Receive Message^Message_4"/>
@@ -7870,6 +8787,161 @@ External Setpoint Generation:
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 13 (EL2912)">
 				<Link VarA="Box 47 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 47 (AT5100-0100) - Module 1 (SAFETY)_104 RxPDO"/>
 				<Link VarA="Box 48 (AT5100-0100)^Module 1 (SAFETY)^SAFETY FSoE Connection 1 Send Message^Message_4" VarB="ConnectionOutputs^TwinSafeGroup1.Box 48 (AT5100-0100) - Module 1 (SAFETY)_105 RxPDO"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TIPC^PlanarTrackMovement^PlanarTrackMovement Instance">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 13 (EL2912)">
+				<Link VarA="PlcTask Inputs^MAIN.MoverStop" VarB="StandardInputs^TwinSafeGroup1.E-StopReq_139"/>
+				<Link VarA="PlcTask Outputs^MAIN.MoverStopDone" VarB="StandardOutputs^TwinSafeGroup1.STO_Release_140"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 7 (EL4034)">
+				<Link VarA="PlcTask Outputs^MAIN.MagnetValue" VarB="AO Outputs Channel 1^Analog output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 15 (AX8640-0000-0105)">
+				<Link VarA="PlcTask Inputs^MAIN.Voltage1" VarB="PSM Voltages^Actual DC link voltage"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)">
+				<Link VarA="PlcTask Inputs^MAIN.ModuleState2" VarB="SyncUnits^&lt;default&gt;^XTS Task^InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 8 (EtherCAT)">
+				<Link VarA="PlcTask Inputs^MAIN.ModuleState1" VarB="SyncUnits^&lt;default&gt;^XTS Task^InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 1">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[1].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[1].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[1].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[1].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[1].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[1].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 10">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[10].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[10].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[10].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[10].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[10].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[10].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 11">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[11].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[11].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[11].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[11].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[11].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[11].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 12">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[12].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[12].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[12].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[12].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[12].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[12].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 13">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[13].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[13].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[13].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[13].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[13].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[13].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 14">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[14].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[14].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[14].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[14].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[14].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[14].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 15">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[15].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[15].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[15].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[15].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[15].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[15].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 16">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[16].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[16].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[16].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[16].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[16].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[16].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 2">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[2].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[2].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[2].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[2].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[2].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[2].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 3">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[3].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[3].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[3].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[3].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[3].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[3].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 4">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[4].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[4].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[4].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[4].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[4].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[4].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 5">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[5].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[5].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[5].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[5].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[5].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[5].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 6">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[6].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[6].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[6].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[6].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[6].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[6].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 7">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[7].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[7].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[7].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[7].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[7].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[7].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 8">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[8].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[8].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[8].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[8].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[8].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[8].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Axes^MC_Mover 9">
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[9].fbPlanarMover.MCTOPLC^ACT" VarB="McToPlc^ACT" Size="896"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[9].fbPlanarMover.MCTOPLC^COORDMODE" VarB="McToPlc^COORDMODE" Size="80"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[9].fbPlanarMover.MCTOPLC^SET" VarB="McToPlc^SET" Size="1280"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[9].fbPlanarMover.MCTOPLC^SETONTRACK" VarB="McToPlc^SETONTRACK" Size="320"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.fbMover[9].fbPlanarMover.MCTOPLC^STD" VarB="McToPlc^STD" Size="160"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.fbMover[9].fbPlanarMover.PLCTOMC^STD" VarB="PlcToMc^STD" Size="8"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Groups^MC Track - XL Part 1">
+				<Link VarA="PlcTask Inputs^GVL_Mc.MC_Tracks[3].MCTOPLC_STD" VarB="McToPlc^STD"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Groups^MC Track - XL Part 2">
+				<Link VarA="PlcTask Inputs^GVL_Mc.MC_Tracks[2].MCTOPLC_STD" VarB="McToPlc^STD"/>
+			</OwnerB>
+			<OwnerB Name="TINC^MC Project1^Groups^MC Track - XL Part 3">
+				<Link VarA="PlcTask Inputs^GVL_Mc.MC_Tracks[1].MCTOPLC_STD" VarB="McToPlc^STD"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^SaftyPLC^SaftyPLC Instance">
