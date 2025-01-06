@@ -8126,7 +8126,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{0CEB7E2E-4E94-FD6C-B2E8-1E30262AB22A}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{8AB59682-0364-D7AF-6FB8-FD7F27E9E44A}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8491,9 +8491,6 @@ External Setpoint Generation:
 			<Device File="Device 8 (EtherCAT).xti" Id="8"/>
 			<Device File="Device 4 (EtherCAT).xti" Id="4"/>
 		</Io>
-		<SymbolWatch>
-			<Variable>TIID^Device 1 (EtherCAT)^Term 15 (AX8640-0000-0105)^PSM Diagnostics^DcLink state machine</Variable>
-		</SymbolWatch>
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500841000403}" Id="#x020300a0"/>
