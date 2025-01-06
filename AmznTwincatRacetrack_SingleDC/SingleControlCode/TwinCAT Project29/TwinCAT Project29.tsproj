@@ -8376,7 +8376,7 @@ External Setpoint Generation:
 				</Instance>
 			</Project>
 			<Project GUID="{23F3AAC5-D2AC-4B6B-826F-C638329B5E0D}" Name="SaftyPLC" PrjFilePath="SaftyPLC\SaftyPLC.plcproj" TmcFilePath="SaftyPLC\SaftyPLC.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{A5E5C8DF-3B87-81B6-EE17-E43018D3EB2F}" TmcPath="SaftyPLC\SaftyPLC.tmc">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{77CBB7A8-5734-B73F-6FCE-45A0BD9995C0}" TmcPath="SaftyPLC\SaftyPLC.tmc">
 					<Name>SaftyPLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8394,16 +8394,16 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ControlDrive1121</Name>
-							<Type>UINT</Type>
+							<Name>GVL_IO.ChargingResistor</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.VoltageSet</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ChargingResistor</Name>
-							<Type>BOOL</Type>
+							<Name>GVL_IO.ControlDrive1121</Name>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Safety.Run</Name>
