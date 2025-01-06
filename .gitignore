@@ -75,28 +75,7 @@ _CompileInfo/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+*.vsidx
 
 # Dont save archives (usually due to size)
 *.zip
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/CurrentConfig/PlanarTrackMovement.tpzip
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TargetDescription.xml
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/CurrentConfig.tszip
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/CurrentConfig.xml
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/CurrentConfig/PlanarTrackMovement.tpzip
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/CurrentConfig/Safety Master.tfzip
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/CurrentConfig/SafetyModule.tfzip
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/CurrentConfig/SaftyPLC.tpzip
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/CurrentEventMessages.xml
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_851.app
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_851.cid
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_851.crc
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_851.occ
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_851.oce
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_851.ocm
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_851_boot.tizip
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_852.app
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_852.cid
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_852.crc
-AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot/TwinCAT RT (x64)/Plc/Port_852_boot.tizip
-/AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot
-/AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot
