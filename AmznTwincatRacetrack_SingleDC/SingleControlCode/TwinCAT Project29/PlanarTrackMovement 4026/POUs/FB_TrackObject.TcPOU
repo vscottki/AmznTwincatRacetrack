@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <POU Name="FB_TrackObject" Id="{ca311e0f-ebac-4a24-bb0f-17dadbea699e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TrackObject
+// for a track/part this block keeps a list of the movers in order with their positions on a track
+
+VAR_INPUT
+	TrackID: OTCID;
+END_VAR
+
+VAR_OUTPUT
+	bBusy: BOOL;
+	bDone: BOOL;
+	bError: BOOL;
+	bInit: BOOL;
+	ipResultMessage: I_TcMessage := fbResult;
+	moverIDs : ARRAY[1..nMoverCount] OF UDINT;
+	
+END_VAR
+VAR_IN_OUT 
+	fbMover	:ARRAY[1..nMoverCount] OF FB_Mover;
+END_VAR
+VAR_STAT
+	nNumMoversOnTrack: UDINT; //numberofMovers currently on this track
+	nMoverList: ARRAY [1..nMoverCount] OF OTCID; //list of movers currently on the track 
+END_VAR
+
+VAR
+
+	fbResult: FB_TcMessage;
+	_ipComObject: ITComObject;
+	PID_MOverList				: PTCID := 16#05030149;
+	PID_NumMover				: PTCID := 16#050300C5;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bInit THEN
+	IF GetComObject(nObjectId:=TrackID) THEN
+		bInit:=TRUE;
+	END_IF
+	RETURN;
+END_IF]]></ST>
+    </Implementation>
+    <Method Name="CyclicUpdate" Id="{149a973e-ed7c-4f0c-99fb-704f73e039f6}">
+      <Declaration><![CDATA[METHOD CyclicUpdate : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	J: UDINT;
+	I: UINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bInit THEN 
+	GetNumMovers(); 
+	GetMoverList(); 
+END_IF 
+MEMSET(ADR(moverIDs),0,SIZEOF(moverIDs)); // have to clear the list 
+FOR J := 1 TO nNumMoversOnTrack DO  
+	FOR I := 1 TO nNumMovers DO  
+		IF fbMover[I].MoverOTCID = nMoverList[J] THEN 
+			moverIDs[J] := I; 
+		END_IF
+	END_FOR
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="findMergePosition" Id="{dd500d75-06ba-4313-90f5-106388706078}">
+      <Declaration><![CDATA[METHOD findMergePosition : BOOL
+VAR_INPUT
+	mergeSyncCommandPos : LREAL;
+	spaceToMerge :LREAL; 
+END_VAR
+VAR_OUTPUT 
+	nMoverToFollow: UDINT; 
+	mergeWithoutFollow : BOOL; 
+	mergeNotPossible : BOOL; 
+END_VAR
+VAR_INST 
+	I: UDINT;
+	moverInMerge: UDINT;
+	moverIsWhereWeSync: BOOL;
+	moversDist: LREAL;
+//END_VAR
+//VAR
+
+	Iplus1Dist: LREAL;
+	idist: LREAL;
+
+	needToFollow: BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[mergeNotPossible := TRUE; 
+mergeWithoutFollow:=FALSE;
+nMoverToFollow := 0; 
+moverInMerge := 0;
+needToFollow := TRUE;  
+IF nNumMoversOnTrack = 0  THEN // if there's no movers on the track we can just merge 
+	mergeWithoutFollow := TRUE;
+	mergeNotPossible := FALSE; 
+ELSE
+  	// there's movers in the track we need to look where there are 
+	// go through the movers positions and find a place to merge if available 
+	FOR I := 1 TO nNumMoversOnTrack DO 
+		// is this mover in the range where we would sync? 
+		moverIsWhereWeSync := IsBetween(fbMover[moverIDs[I]].distToEndOfTrack, mergeSyncCommandPos, mergeSyncCommandPos + spaceToMerge); 
+		needToFollow := IsBetween(fbMover[moverIDs[I]].distToEndOfTrack, mergeSyncCommandPos, mergeSyncCommandPos + spaceToMerge); //lagerwindow we can merge but must sync still
+		IF moverIsWhereWeSync THEN //if the mover is where we would sync start looking for places to merge behind it
+			moverInMerge := moverIDs[I]; // this mover is is the id of the mover thats in the way 
+			// can we merge behind this one ?
+			IF I < nNumMoversOnTrack - 1 THEN 
+				moversDist := fbMover[moverIDs[I+1]].distToEndOfTrack - fbMover[moverIDs[I]].distToEndOfTrack;
+				Iplus1Dist := fbMover[moverIDs[I+1]].distToEndOfTrack; // folowwing movers distance 
+				idist := fbMover[moverIDs[I]].distToEndOfTrack; //this movers distance 
+				// is the spacing between these two movers bigger than the space we need to merge?
+				IF (fbMover[moverIDs[I+1]].distToEndOfTrack - fbMover[moverIDs[I]].distToEndOfTrack )> spaceToMerge THEN 
+					nMoverToFollow := moverIDs[I]; //yes follow this mover 
+					mergeNotPossible := FALSE; // the merge is possible 
+					EXIT; 
+				END_IF
+			END_IF	
+		END_IF
+	END_FOR 
+	//if we went through the whole list and no mover is in the range where we would merge in, then just merge 
+	IF moverInMerge = 0 AND NOT needToFollow AND FALSE THEN //there's noone where we want to merge, just merge in 
+		mergeWithoutFollow:=TRUE;
+		mergeNotPossible := FALSE;
+	END_IF
+END_IF
+IF mergeNotPossible THEN 
+	nMoverToFollow := 0; 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetComObject" Id="{c9c88a85-b788-4022-952b-ad04476a1ab5}">
+      <Declaration><![CDATA[METHOD GetComObject : BOOL
+VAR_INPUT
+	nObjectId: OTCID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF FW_ObjMgr_GetObjectInstance(	oid		:= nObjectId, 
+								iid		:= TC_GLOBAL_IID_LIST.IID_ITComObject, 
+								pipUnk	:= ADR(_ipComObject)) = 0
+THEN
+	GetComObject := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetMoverList" Id="{d06cf094-c1a3-41cb-a4b5-f620fbfb81d0}">
+      <Declaration><![CDATA[METHOD GetMoverList : BOOL
+VAR
+	nData 			: UDINT := SIZEOF(nMoverList);
+	pData 			: PVOID := ADR(nMoverList);
+	stEventEntry	: TcEventEntry;
+	pstEventEntry	: REFERENCE TO TcEventEntry REF= stEventEntry;
+END_VAR
+VAR_INST
+	hResult : HRESULT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError := FALSE;
+
+IF _ipComObject <> 0 THEN 
+	 hResult := 	_ipComObject.TcgetObjPara(		pid := PID_MOverList,
+													nData := nData,
+													pData := pData,
+													pgp := 0); 	
+	IF hResult = 0 THEN
+		GetMoverList := TRUE;
+	ELSE
+		HRESULTAdsErr_TO_TcEventEntry(hResult,stEventEntry);
+		IF NOT fbResult.EqualsToEventEntryEx( stOther := stEventEntry) THEN
+			fbResult.CreateEx(stEventEntry, 0);
+			fbResult.Send(0);
+			fbResult.Release();
+		END_IF
+		bError := TRUE;
+	END_IF							
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetNumMovers" Id="{1c6c66c2-07d3-4410-b44d-50eec326d7af}">
+      <Declaration><![CDATA[METHOD GetNumMovers : BOOL
+VAR
+	stEventEntry: TcEventEntry;
+	pstEventEntry: REFERENCE TO TcEventEntry := stEventEntry;
+	nData 			: UDINT := SIZEOF(nNumMoversOnTrack);
+	pData 			: PVOID := ADR(nNumMoversOnTrack);
+END_VAR
+
+VAR_INST
+	hResult : HRESULT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError := FALSE;
+
+IF _ipComObject <> 0 THEN 	
+	
+
+	 hResult := 	_ipComObject.TcGetObjPara(		pid := PID_NumMover,
+													nData := nData,
+													pData := pData,
+													pgp := 0); 	
+	IF hResult = 0 THEN
+		GetNumMovers := TRUE;
+	ELSE
+		HRESULTAdsErr_TO_TcEventEntry(hResult,stEventEntry);
+		IF NOT fbResult.EqualsToEventEntryEx( stOther := stEventEntry) THEN
+			fbResult.CreateEx(stEventEntry, 0);
+			fbResult.Send(0);
+			fbResult.Release();
+		END_IF
+		bError := TRUE;
+	END_IF							
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_TrackObject">
+      <LineId Id="1" Count="5" />
+    </LineIds>
+    <LineIds Name="FB_TrackObject.CyclicUpdate">
+      <LineId Id="1" Count="11" />
+    </LineIds>
+    <LineIds Name="FB_TrackObject.findMergePosition">
+      <LineId Id="1" Count="39" />
+    </LineIds>
+    <LineIds Name="FB_TrackObject.GetComObject">
+      <LineId Id="1" Count="5" />
+    </LineIds>
+    <LineIds Name="FB_TrackObject.GetMoverList">
+      <LineId Id="1" Count="19" />
+    </LineIds>
+    <LineIds Name="FB_TrackObject.GetNumMovers">
+      <LineId Id="1" Count="21" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

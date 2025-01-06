@@ -8126,7 +8126,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{459C8F9B-733E-56A3-FB5C-06D75229E064}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{F9D92D43-3FE0-2C81-A3EB-852AD502361C}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8376,7 +8376,7 @@ External Setpoint Generation:
 				</Instance>
 			</Project>
 			<Project GUID="{23F3AAC5-D2AC-4B6B-826F-C638329B5E0D}" Name="SaftyPLC" PrjFilePath="SaftyPLC\SaftyPLC.plcproj" TmcFilePath="SaftyPLC\SaftyPLC.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{A5E5C8DF-3B87-81B6-EE17-E43018D3EB2F}" TmcPath="SaftyPLC\SaftyPLC.tmc">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{77CBB7A8-5734-B73F-6FCE-45A0BD9995C0}" TmcPath="SaftyPLC\SaftyPLC.tmc">
 					<Name>SaftyPLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8394,16 +8394,16 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ControlDrive1121</Name>
-							<Type>UINT</Type>
+							<Name>GVL_IO.ChargingResistor</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.VoltageSet</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ChargingResistor</Name>
-							<Type>BOOL</Type>
+							<Name>GVL_IO.ControlDrive1121</Name>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Safety.Run</Name>
