@@ -10,11 +10,7 @@ VAR
 	nCase 		: INT;
 	nMoveState		: ARRAY[1..nMoverCount] OF INT;
 	
-//	aDynamics	: ARRAY[1..nMoverCount] OF DynamicConstraint_PathXY;
-//	aDynamicsFast	: ARRAY[1..nMoverCount] OF DynamicConstraint_PathXY;
-//	aMoveOnTrackOptions : ARRAY[1..20] OF ST_MoveOnTrackOptions;
-	
-	//fbXtsEnvironment: FB_TcIoXtsEnvironment;
+
 	
 	nForCounter: UDINT;
 	M,N,T,Tr : UINT;
@@ -28,7 +24,6 @@ VAR
 	bMagnetOn : BOOL;	
 
 	Init : BOOL ; 	
-	pwm: FB_PWM;
 	
 	IsMoverCommandedInShortcut: BOOL;
 	IsMoverInBlockingArea: BOOL;
@@ -88,18 +83,41 @@ VAR
 	stMergeConfig		 : ST_MergeConfig;
 	SwitchConfig		 : ST_SwitchConfig;
 
+	
+	
+
+	ModuleState1 AT%I*: E_EcState;
+	ModuleState2 AT%I*: E_EcState;
+	MessageTrigger : ARRAY[1..20] OF R_trig;
+	
+	//========= Merge =========================================
+	
+	SwitchParkPos : LREAL := 3500;
 	nextMoverForSwitch: UDINT :=1;
 	moverInSwitchDoNotSendAnother: BOOL;
 	trapError: BOOL;
 	trapErrorID: UDINT;
 	moverWithFault: UDINT;
 	stepWithFault: INT;
-	ModuleState1 AT%I*: E_EcState;
-	ModuleState2 AT%I*: E_EcState;
-	MessageTrigger : ARRAY[1..20] OF R_trig;
 	
-	SwitchParkPos : LREAL := 3500;
+	followSyncPos: LREAL;
+	masterSyncPos: LREAL;
+	masterPosAtSync: LREAL;
+	followerPosAtSync: LREAL;
+	moverInFront: UDINT;
+	gapStart: LREAL := 5600;
+	gapLength: LREAL := 1500;
+	fbTrackobject : FB_TrackObject;
+	getList: BOOL;
+	directMerge: BOOL;
+	mergeNotPossible: BOOL;
 	
+	endOfBigTrack : LREAL; 
+	endOfSmallTrack : LREAL; 
+	endOfMainTrack : LREAL; 
+	followerToEndOfTrack: LREAL;
+	leaderToEndofTrack: LREAL;
+	distToMoverInFront: LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -152,17 +170,7 @@ ELSIF 	MoverStop THEN
 	MoverStopDone := FALSE;
 END_IF
 
-stMoverConfigSlow.Velo := 1000;
-stMoverConfigSlow.Accel := 4000;
-stMoverConfigSlow.Decel := 4000; 
-stMoverConfigSlow.Jerk := 16000;
-stMoverConfigFast.Velo := 4000;
-stMoverConfigFast.Accel := 4000;
-stMoverConfigFast.Decel := 4000; 
-stMoverConfigFast.Jerk := 16000;
 
-slowDynamics.SetValuesVADJ(stMoverConfigSlow.Velo,stMoverConfigSlow.Accel,stMoverConfigSlow.Decel,stMoverConfigSlow.Jerk);
-fastDynamics.SetValuesVADJ(stMoverConfigFast.Velo,stMoverConfigFast.Accel,stMoverConfigFast.Decel,stMoverConfigFast.Jerk);
 
 TcRestart(
 NETID:= '', 
@@ -176,8 +184,28 @@ fp_start(clk:=bStartSequence);
 IF fp_start.Q THEN
 	nCase := 10;
 	bStartSequence := FALSE;
+	
+	stMoverConfigSlow.Velo := 1000;
+	stMoverConfigSlow.Accel := 4000;
+	stMoverConfigSlow.Decel := 4000; 
+	stMoverConfigSlow.Jerk := 16000;
+	stMoverConfigFast.Velo := 4000;
+	stMoverConfigFast.Accel := 4000;
+	stMoverConfigFast.Decel := 4000; 
+	stMoverConfigFast.Jerk := 16000;
+	
+	slowDynamics.SetValuesVADJ(stMoverConfigSlow.Velo,stMoverConfigSlow.Accel,stMoverConfigSlow.Decel,stMoverConfigSlow.Jerk);
+	fastDynamics.SetValuesVADJ(stMoverConfigFast.Velo,stMoverConfigFast.Accel,stMoverConfigFast.Decel,stMoverConfigFast.Jerk);
+	
 END_IF
 
+//================  merge ===============
+
+fbTrackobject(TrackID:= MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID,fbMover:= fbMover ); 
+fbTrackobject.CyclicUpdate(); 
+
+
+//======================================
 IsMoverInBlockingArea := FALSE;
 GVL_MC.ipXtsProcessingUnit :=  GVL_MC.fbXtsEnvironment.ProcessingUnit(1,0);
 FOR M := 1 TO nMoverCount DO///Movers
@@ -193,9 +221,7 @@ FOR M := 1 TO nMoverCount DO///Movers
 	GVL_Mc.Mover[M].MoverPos  :=GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.SETONTRACK.SetPos;
 	GVL_Mc.Mover[M].TrackID:= GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.SETONTRACK.TrackOID;
 	GVL_Mc.Mover[M].MoverNumber := M;
-	
-//	MoverPos[M].SetValuesXYC(GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.SET.SetPos.x, GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.SET.SetPos.y,GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.SET.SetPos.c);
-	
+		
 	TR := Tr+1;
 	IF Tr = 4 THEN
 		Tr :=1;
@@ -207,8 +233,6 @@ FOR M := 1 TO nMoverCount DO///Movers
  		GVL_Mc.Mover[M].MoverTrackNr := Tr;
 	END_IF	
 	
-	
-
 	IsMoverInBlockingArea := IsMoverInBlockingArea OR (Mover[M].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND IsBetween(Mover[M].MoverPos, SwitchConfig.MagnetStartPosition - 100, SwitchConfig.MagnetEndPosition + 100));
 
 	Fp_error(clk := GVL_MC.fbMover[M].P_PlanarMover.Error AND GVL_MC.fbMover[M].XtsXlMover.GetIsActive(0));
@@ -246,8 +270,7 @@ CASE nCase OF
 			MC_Tracks[T].Enable(MC_Trackfeedback[T]);
 		END_FOR
 				nCase := 30;
-		
-		
+				
 	30: 
 		IF MC_Trackfeedback[1].Done AND MC_Trackfeedback[2].Done AND MC_Trackfeedback[3].Done THEN
 			nCase := 35;
@@ -260,8 +283,7 @@ CASE nCase OF
 			fbMover[nForCounter].P_PlanarMover.Reset(MoverFeedback[nForCounter]);
 		END_FOR
 		nCase := 36;	
-		
-		
+			
 	36:	
 		bAllDone:=TRUE;
 		FOR nForCounter:=1 TO nNumMovers DO
@@ -271,15 +293,13 @@ CASE nCase OF
 		IF bAllDone THEN
 			nCase := 40;
 		END_IF
-		
-		
+				
 	40:
 		FOR nForCounter:=1 TO nNumMovers DO
 			fbMover[nForCounter].P_PlanarMover.Enable(MoverFeedback[nForCounter]);
 		END_FOR
 		nCase := 50;
-	
-		
+			
 	50:
 		bAllDone:=TRUE;
 		FOR nForCounter:=1 TO nNumMovers DO
@@ -290,11 +310,9 @@ CASE nCase OF
 			nCase := 60;
 		END_IF
 
-	//55:
-
 	60:
 		FOR nForCounter:=nNumMovers TO 1  BY -1 DO
-			fbMover[nForCounter].JoinNearestTrack();//  Mover[nForCounter].MoverTrackNr]);//
+			fbMover[nForCounter].JoinNearestTrack();
 		END_FOR
 		
 		nCase := 70;
@@ -394,41 +412,53 @@ CASE nCase OF
 						nMoveState[nForCounter] := 60; 
 					END_IF 
 					
-				60: 
+				60: // look for a merge position 
 					IF fbMover[nForCounter].P_PlanarFeedback.Done THEN// MCTrackOid_Shortcut THEN
-							nMoveState[nForCounter] := 60;
-							searchGap(resetSearch:=FALSE, gapStartDistToEndOfSwitch := stMergeConfig.gapStart, gapLength := stMergeConfig.gapLength, fbMover := fbMover); 
-							IF searchGap.gapFound THEN
+							fbTrackobject.findMergePosition(
+								mergeSyncCommandPos := gapStart , 
+								spaceToMerge := gapLength, 
+								nMoverToFollow => moverInFront, 
+								mergeWithoutFollow => directMerge, 
+								mergeNotPossible => mergeNotPossible); 
+							IF (directMerge OR moverInFront <> 0) AND NOT mergeNotPossible THEN
 								nMoveState[nForCounter] := 70;
-								stMergeConfig.moverInFront := searchGap.moverToFollow; 
 							END_IF 
 					END_IF
 				70:  //merge with gap zero
 					//issue commmand to sync 
-					stMergeConfig.masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-100;
-					stMergeConfig.masterPosAtSync := Mover[stMergeConfig.moverInFront].MoverPos; 
-					stMergeConfig.followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-100-stMoverConfigNormal.MoverGap;
-					stMergeConfig.followerPosAtSync :=Mover[nForCounter].MoverPos; 
-					fbMover[nForCounter].SyncToOtherMover( 
-						masterSyncPos := stMergeConfig.masterSyncPos,
-						masterTrack := GVL_Mc.MC_Tracks[E_TrackNum.Big],
-						followerSyncPos := stMergeConfig.followSyncPos,
-						followerTrack := GVL_Mc.MC_Tracks[e_TrackNum.Small],
-						PlanarMoverToFollow := fbMover[stMergeConfig.moverInFront].P_PlanarMover,
-						velo:= stMoverConfigNormal.velo);
-						nMoveState[nForCounter] := 80; 
-					stMoverCfgAggressive.Velo := 4000;
-					stMoverCfgAggressive.Accel := 4000;
-					stMoverCfgAggressive.Decel := 8000;
-					stMoverCfgAggressive.Jerk := 400000;
-					aggressiveDynamics.SetValuesVADJ(stMoverCfgAggressive.Velo,stMoverCfgAggressive.Accel,stMoverCfgAggressive.Decel,stMoverCfgAggressive.Jerk); 
-					fbMover[nForCounter].P_Dynamics := aggressiveDynamics;
-					//fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,900,velo);
+					IF directMerge THEN 
+						fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap, stMoverConfigNormal.velo);
+						nMoveState[nForCounter] := 10; 
+					ELSIF moverInFront <>0 THEN 
+						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
+						masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-100;
+						masterPosAtSync := Mover[moverInFront].MoverPos; 
+						followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-2500;
+						followerPosAtSync :=Mover[1].MoverPos; 
+						fbMover[nForCounter].SyncToOtherMover( 
+							masterSyncPos := masterSyncPos,
+							masterTrack := GVL_Mc.MC_Tracks[E_TrackNum.Big],
+							followerSyncPos := followSyncPos,
+							followerTrack := GVL_Mc.MC_Tracks[e_TrackNum.Small],
+							PlanarMoverToFollow := fbMover[moverInFront].P_PlanarMover,
+							velo:= stMoverConfigNormal.velo);
+							nMoveState[nForCounter] := 80; 
+						// reduce the gap of the leading mover 
+						fbMover[moverInFront].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,0(*Gap*), stMoverConfigNormal.velo);
+					END_IF 
 					
 				80: // wait for in Sync 
-					IF fbMover[nForCounter].P_InSync OR  MOver[nForCounter].TrackID =  GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THEN 
+					IF fbMover[nForCounter].P_SyncFeedback.Active AND MOver[moverInFront].TrackID =  GVL_Mc.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN // actively syncing calculate distance from mover 
+						followerToEndOfTrack := endOfSmallTrack - Mover[nForCounter].MoverPos; 
+						leaderToEndofTrack := endOfBigTrack - Mover[moverInFront].MoverPos; 
+						distToMoverInFront := followerToEndOfTrack - leaderToEndofTrack; 
+					ELSE 
+						followerToEndOfTrack := 0; 
+						leaderToEndofTrack := 0; 
+						distToMoverInFront := 0;
+					END_IF
+					IF fbMover[nForCounter].P_SyncFeedback.inSync OR  MOver[nForCounter].TrackID =  GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THEN 
 						nMoveState[nForCounter] := 10;
-						moverInSwitchDoNotSendAnother := FALSE; 
 					END_IF 
 				END_CASE
 		
@@ -517,7 +547,6 @@ FOR nForCounter:=1 TO nNumMovers DO
 	END_IF
 END_FOR
 
-pwm();
 SwitchCurrent := ((SwitchConfig.MagnetConfig.CurrentFunctionCoeffA*(((stMoverConfigNormal.Velo/1000)*(stMoverConfigNormal.Velo/1000))))+(SwitchConfig.MagnetConfig.CurrentFunctionCoeffB*(stMoverConfigNormal.Velo/1000))+SwitchConfig.MagnetConfig.CurrentFunctionCoeffC);	
 IF bMagnetOn AND NOT Fault THEN
 	MagnetValue := TO_INT(SwitchCurrent*1310);
@@ -564,13 +593,32 @@ END_IF
       <LineId Id="440" Count="3" />
       <LineId Id="22" Count="0" />
       <LineId Id="444" Count="0" />
-      <LineId Id="23" Count="11" />
+      <LineId Id="33" Count="1" />
       <LineId Id="48" Count="6" />
-      <LineId Id="56" Count="5" />
-      <LineId Id="64" Count="33" />
+      <LineId Id="56" Count="4" />
+      <LineId Id="500" Count="0" />
+      <LineId Id="490" Count="9" />
+      <LineId Id="488" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="550" Count="2" />
+      <LineId Id="554" Count="1" />
+      <LineId Id="553" Count="0" />
+      <LineId Id="549" Count="0" />
+      <LineId Id="64" Count="16" />
+      <LineId Id="83" Count="10" />
+      <LineId Id="96" Count="1" />
       <LineId Id="460" Count="7" />
       <LineId Id="105" Count="13" />
-      <LineId Id="124" Count="304" />
+      <LineId Id="124" Count="13" />
+      <LineId Id="139" Count="12" />
+      <LineId Id="153" Count="9" />
+      <LineId Id="164" Count="5" />
+      <LineId Id="171" Count="8" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="183" Count="101" />
+      <LineId Id="501" Count="47" />
+      <LineId Id="321" Count="85" />
+      <LineId Id="408" Count="20" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

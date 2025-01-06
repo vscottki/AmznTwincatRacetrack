@@ -1906,7 +1906,7 @@
 				<Group><![CDATA[Development]]></Group>
 				<Group Collapsed="true"><![CDATA[Advanced]]></Group>
 				<Group Collapsed="true"><![CDATA[Simulation]]></Group>
-				<Group><![CDATA[XL]]></Group>
+				<Group Collapsed="true"><![CDATA[XL]]></Group>
 				<Group Collapsed="true"><![CDATA[Structure]]></Group>
 				<Group><![CDATA[Info]]></Group>
 				<Group><![CDATA[Drive Info]]></Group>
@@ -4246,7 +4246,7 @@
 		</TmcDesc>
 		<Module File="XL Part 1.xti"/>
 		<Module File="XL Part 2.xti"/>
-		<Module File="XL Part 10.xti"/>
+		<Module File="XL Part 3.xti"/>
 		<Module File="OuterLoop.xti"/>
 		<Module File="InnerLoop.xti"/>
 		<Module File="XL_Mover 1.xti"/>

@@ -699,7 +699,7 @@
 				</Value>
 				<Value>
 					<Name>Collision range at end</Name>
-					<Value>250</Value>
+					<Value>2000</Value>
 				</Value>
 				<Value>
 					<Name>Collision range mode</Name>

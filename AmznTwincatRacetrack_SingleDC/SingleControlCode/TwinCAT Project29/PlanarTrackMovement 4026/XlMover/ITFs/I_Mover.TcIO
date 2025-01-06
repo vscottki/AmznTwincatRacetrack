@@ -10,6 +10,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="distToEndOfTrack" Id="{54946fd7-00e4-4584-be84-948ea3635443}">
+      <Declaration><![CDATA[PROPERTY distToEndOfTrack : Lreal]]></Declaration>
+      <Get Name="Get" Id="{272d4256-d034-4aee-8d40-2bf5aa2f5980}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="Init" Id="{70e27be2-2f8a-4a12-af9c-c87e7a1f6409}">
       <Declaration><![CDATA[METHOD Init : BOOL
 VAR_INPUT
@@ -68,12 +74,6 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
-    <Property Name="P_InSync" Id="{44e12130-9d7b-42f1-8fbe-83c3e8bf9e21}">
-      <Declaration><![CDATA[PROPERTY P_InSync : Bool]]></Declaration>
-      <Get Name="Get" Id="{c1e62b68-c344-428b-816f-4dc4e05c9105}">
-        <Declaration><![CDATA[]]></Declaration>
-      </Get>
-    </Property>
     <Property Name="P_PlanarFeedback" Id="{9e77b007-b995-4d4e-847f-52481bc8b65f}">
       <Declaration><![CDATA[PROPERTY P_PlanarFeedback : REFERENCE TO MC_PlanarFeedback]]></Declaration>
       <Get Name="Get" Id="{e9ed8e49-d6ca-4f9e-8d3e-078d51cca372}">
@@ -83,6 +83,12 @@ END_VAR
     <Property Name="P_PlanarMover" Id="{fa6a8c9a-a607-48a6-a503-b7396c44d435}">
       <Declaration><![CDATA[PROPERTY P_PlanarMover :   REFERENCE TO  MC_PlanarMover]]></Declaration>
       <Get Name="Get" Id="{026c43a2-9a34-4289-9222-3635d4914500}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="P_SyncFeedback" Id="{44e12130-9d7b-42f1-8fbe-83c3e8bf9e21}">
+      <Declaration><![CDATA[PROPERTY P_SyncFeedback :  REFERENCE TO MC_PlanarFeedbackGearInPosOnTrackWithMasterMover]]></Declaration>
+      <Get Name="Get" Id="{c1e62b68-c344-428b-816f-4dc4e05c9105}">
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>

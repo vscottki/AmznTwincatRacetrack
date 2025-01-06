@@ -24,7 +24,11 @@ VAR
 	SyncMoverFeedback: Tc3_Mc3PlanarMotion.MC_PlanarFeedbackGearInPosOnTrackWithMasterMover;
 	_InSync :BOOL; 
 	options: Tc3_Mc3PlanarMotion.ST_GearInPosOnTrackWithMasterMoverOptions;
-	syncTrail : MC_PlanarTrackTrail; 
+	syncTrail : MC_PlanarTrackTrail;
+	_PositionOnTrack : LREAL;
+	_Track : OTCID; 
+	_distToEndOfTrack : LREAL;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -34,21 +38,28 @@ END_VAR
       <Declaration><![CDATA[METHOD CycleUpdate : BOOL
 VAR_INPUT
 END_VAR
-]]></Declaration>
+VAR 
+	_trackEnum: e_TrackNum;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT bIsInitialized THEN
 	RETURN;
 END_IF
 
 fbPlanarMover.GetTrackTrailInformation(trackTrail);
-
+_PositionOnTrack := fbPlanarMover.MCTOPLC.SETONTRACK.SetPos;
+IF fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID<>0 THEN 
+	_Track := fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID;
+	_trackEnum := F_GetTrackEnum(fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID); 
+	_distToEndOfTrack := GVL_Mc.MC_Tracks[_trackEnum].GetLength()-_PositionOnTrack;
+END_IF
 
 fbPlanarMover.Update();
 
 
 fbPlanarFeedback.Update();
 SyncMoverFeedback.Update(); 
-_InSync := SyncMoverFeedback.inSync; 
+
 
 UpdateXtsTrack();
 
@@ -56,6 +67,17 @@ UpdateXtsTrack();
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="distToEndOfTrack" Id="{73f87dbe-d3e0-40d5-a94b-2adcb27e9f3d}">
+      <Declaration><![CDATA[PROPERTY distToEndOfTrack : Lreal]]></Declaration>
+      <Get Name="Get" Id="{941c3edb-8ea5-4874-842b-245d4cbb6bda}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[distToEndOfTrack := _distToEndOfTrack;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="Init" Id="{64dda721-646a-4cf1-ab7d-9993c2a9294b}">
       <Declaration><![CDATA[METHOD Init : BOOL
 VAR_INPUT
@@ -204,17 +226,6 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <Property Name="P_InSync" Id="{d85f38ed-ffc5-44d4-bfc1-afe7972a3eda}">
-      <Declaration><![CDATA[PROPERTY P_InSync : Bool]]></Declaration>
-      <Get Name="Get" Id="{28310d05-e0ea-47ee-9110-56e3087a7b08}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[P_InSync := _InSync; ]]></ST>
-        </Implementation>
-      </Get>
-    </Property>
     <Property Name="P_PlanarFeedback" Id="{21da37fd-6f26-475d-beab-c040fa3e1691}">
       <Declaration><![CDATA[PROPERTY P_PlanarFeedback : REFERENCE TO MC_PlanarFeedback]]></Declaration>
       <Get Name="Get" Id="{f89ddc18-b0ec-4284-b9a5-c602ea9db8a5}">
@@ -234,6 +245,17 @@ END_VAR
 ]]></Declaration>
         <Implementation>
           <ST><![CDATA[P_PlanarMover REF= fbPlanarMover;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="P_SyncFeedback" Id="{d85f38ed-ffc5-44d4-bfc1-afe7972a3eda}">
+      <Declaration><![CDATA[PROPERTY P_SyncFeedback :  REFERENCE TO MC_PlanarFeedbackGearInPosOnTrackWithMasterMover]]></Declaration>
+      <Get Name="Get" Id="{28310d05-e0ea-47ee-9110-56e3087a7b08}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_SyncFeedback REF= SyncMoverFeedback; ]]></ST>
         </Implementation>
       </Get>
     </Property>
@@ -434,9 +456,14 @@ END_VAR
       <LineId Id="4" Count="0" />
     </LineIds>
     <LineIds Name="FB_Mover.CycleUpdate">
-      <LineId Id="1" Count="10" />
+      <LineId Id="1" Count="2" />
+      <LineId Id="20" Count="6" />
+      <LineId Id="6" Count="5" />
       <LineId Id="18" Count="0" />
       <LineId Id="12" Count="5" />
+    </LineIds>
+    <LineIds Name="FB_Mover.distToEndOfTrack.Get">
+      <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="FB_Mover.Init">
       <LineId Id="1" Count="8" />
@@ -479,13 +506,13 @@ END_VAR
     <LineIds Name="FB_Mover.P_Dynamics.Set">
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="FB_Mover.P_InSync.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
     <LineIds Name="FB_Mover.P_PlanarFeedback.Get">
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="FB_Mover.P_PlanarMover.Get">
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Mover.P_SyncFeedback.Get">
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="FB_Mover.P_TargetTrack.Get">
