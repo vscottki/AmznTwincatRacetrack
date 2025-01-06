@@ -85,6 +85,9 @@
     <Compile Include="POUs\FB_PWM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\F_GetTrackEnum.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\F_SearchTheBigTrackForAHole.TcPOU">
       <SubType>Code</SubType>
     </Compile>
