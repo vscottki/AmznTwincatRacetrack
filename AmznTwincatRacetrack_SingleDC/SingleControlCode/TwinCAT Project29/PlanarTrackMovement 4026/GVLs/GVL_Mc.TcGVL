@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <GVL Name="GVL_Mc" Id="{128fe823-5e0a-4d4b-9c8c-d35aeb611c41}">
+    <Declaration><![CDATA[
+VAR_GLOBAL PERSISTENT
+	nNumMovers: UINT := 16;
+END_VAR
+
+
+VAR_GLOBAL CONSTANT
+	nMoverCount					: UINT := 16;
+	nTrackCount					: UINT := 3;
+	gciNumStations 				: UINT := 3;
+	XtsShortcutOid				: otcid := 16#01010480 ;
+	XtsOutterLoopOid 			: otcid := 16#01010490;
+END_VAR
+
+VAR_GLOBAL
+	//Track_BigCircle		: 	MC_PlanarTrack; 	
+	//Track_MainCircle	: 	MC_PlanarTrack;
+ 	//Track_SmallCircle	: 	MC_PlanarTrack;
+	
+	MC_Tracks    		:	ARRAY[1..nTrackCount] OF MC_PlanarTrack;
+	MC_Trackfeedback	:	ARRAY[1..nTrackCount] OF MC_PlanarFeedback;
+	TrackTrail 			:	MC_PlanarTrackTrail;
+	
+	fbXtsEnvironment			: 	FB_XtsEnvironment;
+	ipXlMover 					: 	I_XtsXlMover1;
+	ipXtsProcessingUnit			:   I_XtsProcessingUnit1;
+	cmdFeedback					: 	XtsCommandFeedback;
+	fbMover				:	ARRAY[1..nMoverCount] OF FB_Mover;
+
+	//fbPlanarMover		:	ARRAY[1..nNumMaxMovers] OF FB_PlanarMover;
+	MoverFeedback		:	ARRAY[1..nMoverCount] OF MC_PlanarFeedback;
+	aStopPositions : ARRAY [1..nMoverCount] OF LREAL;// := [2400, 1700, 1000, 300];
+	
+	
+	Mover				:	ARRAY[0..nMoverCount] OF MoverSort;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

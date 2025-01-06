@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="E_EcState" Id="{07d073c9-4762-4bc5-9cb5-996cbd5bbe2b}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE E_EcState :
+(
+	InitNoCom_Fault := 0,
+	Init := 1,
+	Preop := 2,
+	Boot := 3,
+	SafeOP := 4,
+	Op_Ready := 8
+)UINT := InitNoCom_Fault ;
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

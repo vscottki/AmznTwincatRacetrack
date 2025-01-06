@@ -1,0 +1,591 @@
+<div id="Desktop" data-tchmi-type="TcHmi.Controls.System.TcHmiView" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width-mode="Content" data-tchmi-min-width="100" data-tchmi-min-width-unit="%" data-tchmi-height-mode="Content" data-tchmi-min-height="100" data-tchmi-min-height-unit="%">
+  <div id="ViewDesktopBeckhoffLogo" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-src="Images/Beckhoff_Logo.svg" data-tchmi-left="46" data-tchmi-top="9" data-tchmi-width="194" data-tchmi-height="57">
+
+  </div>
+<div id="TcHmiAdsState" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiAdsState" data-tchmi-ads-runtime="PLC1" data-tchmi-height="53" data-tchmi-height-unit="px" data-tchmi-left="43" data-tchmi-left-unit="px" data-tchmi-server-interval="500" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="52" data-tchmi-width-unit="px">
+</div>
+<div id="TcHmiAdsState_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiAdsState" data-tchmi-ads-runtime="Safety" data-tchmi-height="49" data-tchmi-height-unit="px" data-tchmi-left="43" data-tchmi-left-unit="px" data-tchmi-server-interval="500" data-tchmi-top="74" data-tchmi-top-unit="px" data-tchmi-width="52" data-tchmi-width-unit="px">
+</div>
+<div id="TcHmiButton_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="134" data-tchmi-left-unit="px" data-tchmi-text="Start" data-tchmi-top="337" data-tchmi-top-unit="px" data-tchmi-width="239" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size-unit="px" data-tchmi-text-font-size="18">
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.bStartSequence%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": true
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiButton_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="134" data-tchmi-left-unit="px" data-tchmi-text="Stop" data-tchmi-top="395" data-tchmi-top-unit="px" data-tchmi-width="114" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18">
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.bStopSequence%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": true
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiButton_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="134" data-tchmi-left-unit="px" data-tchmi-text="Restart Runtime" data-tchmi-top="453" data-tchmi-top-unit="px" data-tchmi-width="239" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18">
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Restart%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": true
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="37" data-tchmi-height-unit="px" data-tchmi-left="134" data-tchmi-left-unit="px" data-tchmi-max-value="4400" data-tchmi-min-value="200" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="251" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="239" data-tchmi-width-unit="px" data-tchmi-step="100" data-tchmi-value="%s%PLC1.GVL_General.stMoverConfig.NormalVelo|BindingMode=TwoWay|SubscriptionMode=Change%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+<div id="TcHmiTextblock_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="409" data-tchmi-left-unit="px" data-tchmi-text="Actual Switch Current" data-tchmi-top="70" data-tchmi-top-unit="px" data-tchmi-width="128" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiTextblock_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="49" data-tchmi-height-unit="px" data-tchmi-left="113" data-tchmi-left-unit="px" data-tchmi-text="Safety PLC" data-tchmi-top="74" data-tchmi-top-unit="px" data-tchmi-width="59" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiTextblock_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="49" data-tchmi-height-unit="px" data-tchmi-left="113" data-tchmi-left-unit="px" data-tchmi-text="Logic" data-tchmi-top="133" data-tchmi-top-unit="px" data-tchmi-width="59" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiCheckbox" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCheckbox" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="43" data-tchmi-left-unit="px" data-tchmi-text="E-Stop" data-tchmi-top="192" data-tchmi-top-unit="px" data-tchmi-width="181" data-tchmi-width-unit="px" data-tchmi-state-symbol="%s%PLC1.MAIN.MoverStop%/s%">
+</div>
+<div id="TcHmiTextblock_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="14" data-tchmi-left-unit="px" data-tchmi-text="Total Mover Count" data-tchmi-top="525" data-tchmi-top-unit="px" data-tchmi-width="141" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="18">
+</div>
+<div id="TcHmiSpinboxInput_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="162" data-tchmi-left-unit="px" data-tchmi-max-value="20" data-tchmi-min-value="1" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="525" data-tchmi-top-unit="px" data-tchmi-value="%s%PLC1.GVL_General.nNumMovers|BindingMode=TwoWay|SubscriptionMode=Change%/s%" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-step="1">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiButton_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="259" data-tchmi-left-unit="px" data-tchmi-text="Shutdown" data-tchmi-top="395" data-tchmi-top-unit="px" data-tchmi-width="114" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18">
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%Safety.GVL_Safety.Start%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": false
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="162" data-tchmi-left-unit="px" data-tchmi-max-value="1" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="558" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-step="1" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.MaxAllowedDivertCount|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+<div id="TcHmiTextblock_6" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="63" data-tchmi-left-unit="px" data-tchmi-text="Divert Count" data-tchmi-top="558" data-tchmi-top-unit="px" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="18">
+</div>
+<div id="TcHmiTextblock_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="8" data-tchmi-left-unit="px" data-tchmi-text="Velocity (mm/s)" data-tchmi-top="260" data-tchmi-top-unit="px" data-tchmi-width="105" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="16">
+</div>
+<div id="TcHmiTextblock_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="424" data-tchmi-left-unit="px" data-tchmi-text="Magnet Start Position" data-tchmi-top="137" data-tchmi-top-unit="px" data-tchmi-width="129" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiTextblock_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="512" data-tchmi-left-unit="px" data-tchmi-text="Mover Dynamics" data-tchmi-top="340" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiTextblock_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="38" data-tchmi-height-unit="px" data-tchmi-left="12" data-tchmi-left-unit="px" data-tchmi-text="Platoon V Reduction" data-tchmi-top="293" data-tchmi-top-unit="px" data-tchmi-width="106" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiSpinboxInput_6" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="37" data-tchmi-height-unit="px" data-tchmi-left="134" data-tchmi-left-unit="px" data-tchmi-max-value="4100" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="293" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="239" data-tchmi-width-unit="px" data-tchmi-step="50" data-tchmi-value="%s%PLC1.GVL_General.stMoverConfig.VeloComp|BindingMode=TwoWay|SubscriptionMode=Change%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+<div id="TcHmiToggleSwitch" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="38" data-tchmi-height-unit="px" data-tchmi-left="604" data-tchmi-left-unit="px" data-tchmi-text="User-Specified Current" data-tchmi-top="26" data-tchmi-top-unit="px" data-tchmi-width="177" data-tchmi-width-unit="px" data-tchmi-toggle-state="Normal" data-tchmi-state-symbol="%s%PLC1.GVL_General.stSwitchConfig.UseNominalCurrentVeloSetpoints|SubscriptionMode=Change%/s%">
+</div>
+<div id="TcHmiSpinboxInput_7" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="563" data-tchmi-left-unit="px" data-tchmi-max-value="10500" data-tchmi-min-value="9000" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="137" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="5" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.MagnetStartPosition|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="563" data-tchmi-left-unit="px" data-tchmi-max-value="11000" data-tchmi-min-value="9500" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="166" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="5" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.MagnetEndPosition|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiTextblock_11" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="315" data-tchmi-left-unit="px" data-tchmi-text="I(v) = av^2+bv+c" data-tchmi-top="102" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiSpinboxInput_9" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="2" data-tchmi-height="24" data-tchmi-height-unit="px" data-tchmi-left="581" data-tchmi-left-unit="px" data-tchmi-max-value="8" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="102" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-step="0.01" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffB|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="24" data-tchmi-height-unit="px" data-tchmi-left="701" data-tchmi-left-unit="px" data-tchmi-max-value="25" data-tchmi-min-value="2" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="102" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-step="0.5" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffC|BindingMode=TwoWay|SubscriptionMode=Change%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput_11" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="2" data-tchmi-height="24" data-tchmi-height-unit="px" data-tchmi-left="463" data-tchmi-left-unit="px" data-tchmi-max-value="2" data-tchmi-min-value="0" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="102" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-step="0.01" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffA|BindingMode=TwoWay|SubscriptionMode=Change%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiTextblock_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="409" data-tchmi-left-unit="px" data-tchmi-text="Magnet Position % Coeff" data-tchmi-top="196" data-tchmi-top-unit="px" data-tchmi-width="144" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiSpinboxInput_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="3" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="563" data-tchmi-left-unit="px" data-tchmi-max-value="1.03" data-tchmi-min-value="0.97" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="196" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="0.001" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.PosnCoilResponseTimeCoeffNominal%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="409" data-tchmi-left-unit="px" data-tchmi-max-value="25" data-tchmi-min-value="3" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="32" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="0.5" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchCurrentNominal|BindingMode=TwoWay|SubscriptionMode=Change%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiTextblock_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="21" data-tchmi-height-unit="px" data-tchmi-left="446" data-tchmi-left-unit="px" data-tchmi-text="a" data-tchmi-top="104" data-tchmi-top-unit="px" data-tchmi-width="14" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiTextblock_16" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="21" data-tchmi-height-unit="px" data-tchmi-left="564" data-tchmi-left-unit="px" data-tchmi-text="b" data-tchmi-top="104" data-tchmi-top-unit="px" data-tchmi-width="14" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiTextblock_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="21" data-tchmi-height-unit="px" data-tchmi-left="685" data-tchmi-left-unit="px" data-tchmi-text="c" data-tchmi-top="104" data-tchmi-top-unit="px" data-tchmi-width="14" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiSpinboxInput_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="563" data-tchmi-left-unit="px" data-tchmi-max-value="25" data-tchmi-min-value="3" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="70" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="0.1" data-tchmi-value="%s%PLC1.GVL_General.stSwitchStatus.CurrentOutputMax|BindingMode=OneWay|SubscriptionMode=Poll%/s%" data-tchmi-button-position="MinusLeftAndPlusRight">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiTextblock_18" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="424" data-tchmi-left-unit="px" data-tchmi-text="Magnet End Position" data-tchmi-top="166" data-tchmi-top-unit="px" data-tchmi-width="129" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
+</div>
+<div id="TcHmiTextblock_19" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="445" data-tchmi-left-unit="px" data-tchmi-text="Normal Accel (mm/s^2)" data-tchmi-top="368" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="13">
+</div>
+<div id="TcHmiTextblock_20" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="405" data-tchmi-left-unit="px" data-tchmi-text="Shortcut (Max) Accel (mm/s^2)" data-tchmi-top="397" data-tchmi-top-unit="px" data-tchmi-width="163" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="13">
+</div>
+<div id="TcHmiTextblock_21" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="407" data-tchmi-left-unit="px" data-tchmi-text="Shortcut (Max) Decel (mm/s^2)" data-tchmi-top="455" data-tchmi-top-unit="px" data-tchmi-width="163" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="13">
+</div>
+<div id="TcHmiTextblock_22" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="446" data-tchmi-left-unit="px" data-tchmi-text="Normal Decel (mm/s^2)" data-tchmi-top="426" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="13">
+</div>
+<div id="TcHmiSpinboxInput_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="577" data-tchmi-left-unit="px" data-tchmi-max-value="10000" data-tchmi-min-value="500" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="368" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="100" data-tchmi-value="%s%PLC1.GVL_General.stMoverConfig.NormalAccel|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput_16" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="577" data-tchmi-left-unit="px" data-tchmi-max-value="20000" data-tchmi-min-value="500" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="397" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="100" data-tchmi-value="%s%PLC1.GVL_General.stMoverConfig.MaxAccel|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="577" data-tchmi-left-unit="px" data-tchmi-max-value="10000" data-tchmi-min-value="500" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="425" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="100" data-tchmi-value="%s%PLC1.GVL_General.stMoverConfig.NormalDecel|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiSpinboxInput_18" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="577" data-tchmi-left-unit="px" data-tchmi-max-value="20000" data-tchmi-min-value="500" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="454" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="100" data-tchmi-value="%s%PLC1.GVL_General.stMoverConfig.MaxDecel|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiTextblock_23" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="447" data-tchmi-left-unit="px" data-tchmi-text="Mover Gap (mm)" data-tchmi-top="482" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="13">
+</div>
+<div id="TcHmiSpinboxInput_19" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="577" data-tchmi-left-unit="px" data-tchmi-max-value="2000" data-tchmi-min-value="625" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="483" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="25" data-tchmi-value="%s%PLC1.GVL_General.stMoverConfig.NormalMoverGap|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 0
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]</script>
+</div>
+<div id="TcHmiIFrame" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiIFrame" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="793" data-tchmi-left-unit="px" data-tchmi-top="32" data-tchmi-top-unit="px" data-tchmi-width="465" data-tchmi-width-unit="px" data-tchmi-src="%s%PLC1.GVL_General.GraphPage%/s%">
+</div>
+</div>

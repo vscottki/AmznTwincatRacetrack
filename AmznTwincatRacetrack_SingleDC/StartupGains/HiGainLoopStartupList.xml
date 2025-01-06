@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EtherCATMailbox>
+	<CoE>
+		<InitCmds>
+			<InitCmd>
+				<Transition>IP</Transition>
+				<Timeout>0</Timeout>
+				<Ccs>1</Ccs>
+				<Index>61569</Index>
+				<SubIndex>1</SubIndex>
+				<Data>64000c27</Data>
+			</InitCmd>
+			<InitCmd>
+				<Transition>IP</Transition>
+				<Comment><![CDATA[Enable DiagMessage as emergency]]></Comment>
+				<Timeout>0</Timeout>
+				<Ccs>1</Ccs>
+				<Index>4339</Index>
+				<SubIndex>5</SubIndex>
+				<Data>0100</Data>
+			</InitCmd>
+			<InitCmd>
+				<Transition>PS</Transition>
+				<Comment><![CDATA[Current loop proportional gain]]></Comment>
+				<Timeout>0</Timeout>
+				<Ccs>1</Ccs>
+				<Index>32784</Index>
+				<SubIndex>19</SubIndex>
+				<Data>ee02</Data>
+			</InitCmd>
+			<InitCmd>
+				<Transition>PS</Transition>
+				<Comment><![CDATA[Current loop integral time]]></Comment>
+				<Timeout>0</Timeout>
+				<Ccs>1</Ccs>
+				<Index>32784</Index>
+				<SubIndex>18</SubIndex>
+				<Data>4100</Data>
+			</InitCmd>
+		</InitCmds>
+	</CoE>
+</EtherCATMailbox>

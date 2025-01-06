@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <POU Name="MAIN" Id="{66ade15a-bef8-4e71-a124-c2e5978c50eb}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+
+	bAllDone		: BOOL;
+	bStopSequence	: BOOL;
+	
+	nCase 		: INT;
+	nMoveState		: ARRAY[1..nMoverCount] OF INT;
+	
+
+	
+	nForCounter: UDINT;
+	M,N,T,Tr : UINT;
+	slowDynamics: DynamicConstraint_PathXY;
+	fastDynamics :	DynamicConstraint_PathXY;
+	aggressiveDynamics : DynamicConstraint_PathXY;
+	stopAndWait : ARRAY[1..GVL_Mc.nMoverCount] OF TON; 
+	waitForGapParkPos: LREAL := 3500;
+	// Magnet
+	MagnetValue AT%Q*: INT;
+	bMagnetOn : BOOL;	
+
+	Init : BOOL ; 	
+	
+	IsMoverCommandedInShortcut: BOOL;
+	IsMoverInBlockingArea: BOOL;
+	nActStopPos: UINT := 1;
+	Fp_error : R_Trig;
+
+	Switch : BOOL;
+	WithoutSwitch : BOOL := TRUE;
+	SwtichOnly: BOOL;
+	
+	MoverStop 	AT%I* :BOOL;
+	MoverStopDone AT%Q*		: BOOL;
+	Info 		AT%Q*: BOOL;
+	Operating	AT%Q*: BOOL;
+	Process		AT%Q*: BOOL;
+	Fault		AT%Q*: BOOL;
+	Emergency	AT%Q*: BOOL;
+	
+	Voltage1 AT%I*: UDINT;
+	Voltage2 AT%I*: UDINT;
+	
+	
+	TcRestart : TC_Restart;
+	Restart : BOOL;
+	busy : BOOL;
+	fp_start : R_Trig;
+	bStartSequence: BOOL;
+	
+	FP_Counter : r_trig;
+	Switchcounter : DINT;
+	SwitchCurrent: REAL ; 
+	test : LREAL;
+	Horntimer : tp; 
+	R_trigHorn : R_trig;
+	
+	TestPowerMat : BOOL := TRUE;
+	StopTime : TIME := T#1S;
+	StopTimer :ARRAY[1..nMoverCount] OF ton;
+	StartTimer :ARRAY[1..nMoverCount] OF BOOL;
+	
+	
+	MoverPos :ARRAY[1..nMoverCount] OF PositionXYC;
+	ArcLength :ARRAY[1..nMoverCount] OF LREAL;
+	TrackPos :ARRAY[1..nMoverCount] OF ARRAY[1..nMoverCount] OF PositionXYC;
+	
+	searchGap : F_SearchTheBigTrackForAHole; 
+	aMoverTrack : ARRAY[1..nMoverCount] OF Global.OTCID;
+	FirstMoverTrackPos : LREAL;
+	MoverGap : LREAL;
+	FTrigTrackCount : F_Trig;
+	MoverNo  : UDINT;
+	stMoverConfigSlow	: ST_MoverConfig;
+	stMoverConfigNormal : ST_MoverConfig;
+	stMoverConfigFast  : ST_MoverConfig;
+	stMoverCfgAggressive : ST_MoverConfig;
+	
+	stMergeConfig		 : ST_MergeConfig;
+	SwitchConfig		 : ST_SwitchConfig;
+
+	
+	
+
+	ModuleState1 AT%I*: E_EcState;
+	ModuleState2 AT%I*: E_EcState;
+	MessageTrigger : ARRAY[1..20] OF R_trig;
+	
+	//========= Merge =========================================
+	
+	SwitchParkPos : LREAL := 3500;
+	nextMoverForSwitch: UDINT :=1;
+	moverInSwitchDoNotSendAnother: BOOL;
+	trapError: BOOL;
+	trapErrorID: UDINT;
+	moverWithFault: UDINT;
+	stepWithFault: INT;
+	
+	followSyncPos: LREAL;
+	masterSyncPos: LREAL;
+	masterPosAtSync: LREAL;
+	followerPosAtSync: LREAL;
+	moverInFront: UDINT;
+	gapStart: LREAL := 4500; //5600
+	gapLength: LREAL := 1800; //1800
+	fbTrackobject : FB_TrackObject;
+	getList: BOOL;
+	directMerge: BOOL;
+	mergeNotPossible: BOOL;
+	
+	endOfBigTrack : LREAL; 
+	endOfSmallTrack : LREAL; 
+	endOfMainTrack : LREAL; 
+	followerToEndOfTrack: LREAL;
+	leaderToEndofTrack: LREAL;
+	distToMoverInFront: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// =====================
+// Initalize XTS Utility
+GVL_MC.fbXtsEnvironment.Init(GVL_MC.cmdFeedback);
+IF NOT GVL_MC.cmdFeedback.IsDone THEN
+	RETURN;
+END_IF
+//*****************************************************
+Emergency :=  MoverStop;
+
+Operating := NOT  MoverStop;
+
+//================== Check Voltage=====================================================
+R_trigHorn(clk := Voltage1< 250000 );
+//Horntimer(in:= ( R_trigHorn.Q ) , PT:= T#2S,Q=> info);
+IF R_trigHorn.Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Voltage Fault ' , strArg:= '');
+END_IF 
+//=================== Check State of Modules===========================================
+
+MessageTrigger[1](clk:=ModuleState1 <> 8 AND nCASE> 0);
+IF MessageTrigger[1].Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 1 %s' , strArg:= TO_STRING(ModuleState1));
+END_IF
+
+MessageTrigger[2](clk:=ModuleState1 <> 8 AND nCASE> 0);
+IF MessageTrigger[2].Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 2 %s ' , strArg:= TO_STRING(ModuleState2));
+END_IF
+
+//=====================================================================================
+
+IF nCASE > 90 THEN
+	Process := TRUE;
+ELSE 
+	Process := FALSE;	
+END_IF
+
+IF NOT MoverStop AND NOT MoverStopDone THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'E-Stop ' , strArg:= '');
+	FOR nForCounter:=1 TO nNumMovers DO
+		fbMover[nForCounter].P_Dynamics := slowDynamics; 
+		nCase := 140;
+	END_FOR		
+	MoverStopDone := TRUE;
+ELSIF 	MoverStop THEN
+	MoverStopDone := FALSE;
+END_IF
+
+
+
+TcRestart(
+NETID:= '', 
+RESTART:= Restart, 
+TMOUT:=T#5S , 
+BUSY=>busy , 
+ERR=> , 
+ERRID=> );
+
+fp_start(clk:=bStartSequence);
+IF fp_start.Q THEN
+	nCase := 10;
+	bStartSequence := FALSE;
+	
+	stMoverConfigSlow.Velo := 1000;
+	stMoverConfigSlow.Accel := 4000;
+	stMoverConfigSlow.Decel := 4000; 
+	stMoverConfigSlow.Jerk := 16000;
+	stMoverConfigFast.Velo := 4000;
+	stMoverConfigFast.Accel := 4000;
+	stMoverConfigFast.Decel := 4000; 
+	stMoverConfigFast.Jerk := 16000;
+	
+	slowDynamics.SetValuesVADJ(stMoverConfigSlow.Velo,stMoverConfigSlow.Accel,stMoverConfigSlow.Decel,stMoverConfigSlow.Jerk);
+	fastDynamics.SetValuesVADJ(stMoverConfigFast.Velo,stMoverConfigFast.Accel,stMoverConfigFast.Decel,stMoverConfigFast.Jerk);
+	
+END_IF
+
+//================  merge ===============
+
+fbTrackobject(TrackID:= MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID,fbMover:= fbMover ); 
+fbTrackobject.CyclicUpdate(); 
+
+
+//======================================
+IsMoverInBlockingArea := FALSE;
+GVL_MC.ipXtsProcessingUnit :=  GVL_MC.fbXtsEnvironment.ProcessingUnit(1,0);
+FOR M := 1 TO nMoverCount DO///Movers
+	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
+
+	GVL_MC.ipXlMover  :=  GVL_MC.fbXtsEnvironment.ProcessingUnit(1, 0).XlMover(m, 0);
+	IF NOT Init THEN
+		Init :=GVL_MC.fbMover[m].Init( GVL_MC.ipXlMover, GVL_MC.ipXtsProcessingUnit); 
+	END_IF
+	 MoverFeedback[m].Update();
+	GVL_MC.fbMover[m].CycleUpdate();
+	
+	GVL_Mc.Mover[M].MoverPos  :=GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.SETONTRACK.SetPos;
+	GVL_Mc.Mover[M].TrackID:= GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.SETONTRACK.TrackOID;
+	GVL_Mc.Mover[M].MoverNumber := M;
+		
+	TR := Tr+1;
+	IF Tr = 4 THEN
+		Tr :=1;
+	END_IF
+	ArcLength[M] :=GVL_Mc.MC_Tracks[Tr].GetArcLengthClosestTo(MoverPos[M]);
+	GVL_Mc.MC_Tracks[Tr].GetPositionAt(ArcLength[M],TrackPos[M][Tr]);
+	
+	IF ABS(MoverPos[m].x - TrackPos[M][Tr].x) < 1 AND  ABS(MoverPos[m].y - TrackPos[M][Tr].y) < 1 THEN
+ 		GVL_Mc.Mover[M].MoverTrackNr := Tr;
+	END_IF	
+	
+	IsMoverInBlockingArea := IsMoverInBlockingArea OR (Mover[M].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID AND IsBetween(Mover[M].MoverPos, SwitchConfig.MagnetStartPosition - 100, SwitchConfig.MagnetEndPosition + 100));
+
+	Fp_error(clk := GVL_MC.fbMover[M].P_PlanarMover.Error AND GVL_MC.fbMover[M].XtsXlMover.GetIsActive(0));
+	IF Fp_error.Q THEN
+		nCase := 140;
+		Fault := TRUE;
+		bMagnetOn := FALSE;
+		ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Mover %s Faulted ' , strArg:= INT_TO_STRING(M));
+	ELSE
+		Fault := FALSE;
+	END_IF
+	
+	IF aMoverTrack[1] <> 0 AND_THEN GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.STD.MoverOID = aMoverTrack[1] THEN
+		FirstMoverTrackPos := GVL_MC.fbMover[M].P_PlanarMover.MCTOPLC.SETONTRACK.SetPos;
+	END_IF
+	
+END_FOR
+
+FOR T := 1 TO nTrackCount DO 
+	MC_Tracks[T].Update();
+	MC_Trackfeedback[T].Update();
+	
+END_FOR
+ MoverGap := (GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()- FirstMoverTrackPos);
+
+
+CASE nCase OF
+	10:
+		
+		Fault := FALSE;
+		nCase := 20;
+
+	20:
+		FOR T := 1 TO nTrackCount DO 
+			MC_Tracks[T].Enable(MC_Trackfeedback[T]);
+		END_FOR
+				nCase := 30;
+				
+	30: 
+		IF MC_Trackfeedback[1].Done AND MC_Trackfeedback[2].Done AND MC_Trackfeedback[3].Done THEN
+			nCase := 35;
+		END_IF
+		
+		
+	35:
+		FOR nForCounter:=1 TO nNumMovers DO
+
+			fbMover[nForCounter].P_PlanarMover.Reset(MoverFeedback[nForCounter]);
+		END_FOR
+		nCase := 36;	
+			
+	36:	
+		bAllDone:=TRUE;
+		FOR nForCounter:=1 TO nNumMovers DO
+			bAllDone:=bAllDone AND MoverFeedback[nForCounter].Done;
+		END_FOR
+		
+		IF bAllDone THEN
+			nCase := 40;
+		END_IF
+				
+	40:
+		FOR nForCounter:=1 TO nNumMovers DO
+			fbMover[nForCounter].P_PlanarMover.Enable(MoverFeedback[nForCounter]);
+		END_FOR
+		nCase := 50;
+			
+	50:
+		bAllDone:=TRUE;
+		FOR nForCounter:=1 TO nNumMovers DO
+			bAllDone:=bAllDone AND MoverFeedback[nForCounter].Done;
+		END_FOR
+		
+		IF bAllDone THEN
+			nCase := 60;
+		END_IF
+
+	60:
+		FOR nForCounter:=nNumMovers TO 1  BY -1 DO
+			fbMover[nForCounter].JoinNearestTrack();
+		END_FOR
+		
+		nCase := 70;
+		
+		
+	70:
+		bAllDone:=TRUE;
+		FOR nForCounter:=1 TO nNumMovers DO
+			bAllDone:=bAllDone AND fbMover[nForCounter].P_PlanarFeedback.Done;
+		END_FOR
+		
+		IF bAllDone THEN
+			nCase := 80;
+		END_IF
+		
+	80:	
+		FOR nForCounter:=1 TO nNumMovers DO
+			nMoveState[nForCounter] := 0;
+		END_FOR
+		
+		nCase := 90;
+
+	100:
+		
+		FOR nForCounter:=1 TO nNumMovers DO
+			fbMover[nForCounter].P_Dynamics := slowDynamics; 
+			IF MoverNo <> 0 AND_THEN 	fbMover[nForCounter].P_PlanarMover.MCTOPLC.SETONTRACK.TrackOID =	 GVL_Mc.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN
+				IsMoverCommandedInShortcut := FALSE;
+			//	MoverNo := 0;
+			END_IF
+				
+			CASE nMoveState[nForCounter] OF
+				
+				0: // Track 3 Main Cycel 
+				fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);				
+					nMoveState[nForCounter] := 10;
+					
+				10:
+					IF Mover[nForCounter].MoverPos > GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-6000  AND  Mover[nForCounter].TrackID =   GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID    THEN//     MCTrackOid_MainSemicircle THEN
+						IF  (SwtichOnly OR NOT IsMoverCommandedInShortcut )AND NOT WithoutSwitch  AND  nForCounter = 1 THEN // AND NOT( moverInSwitchDoNotSendAnother)  THEN
+							nMoveState[nForCounter] := 40; // 20 - BigCycel
+								moverInSwitchDoNotSendAnother := TRUE; 
+							//IF fbPlanarMover[nForCounter].IsCommandedInShortcut THEN
+								IsMoverCommandedInShortcut := TRUE;
+								MoverNo :=nForCounter; /// fbPlanarMover[nForCounter].McPlanarMover.MCTOPLC.STD.MoverOID;
+								IF nextMoverForSwitch >= nNumMovers THEN // send the next mover to the switch
+									nextMoverForSwitch := 1; 
+								ELSE 
+									nextMoverForSwitch := nextMoverForSwitch + 1; 
+								END_IF
+							//END_IF
+						ELSE
+							nMoveState[nForCounter] := 20;  // 40- SmallCycel					
+						END_IF
+					END_IF
+
+				
+				20:
+					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Big], GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-1000, stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
+					nMoveState[nForCounter] := 30;
+				
+					
+				30:
+					IF fbMover[nForCounter].P_PlanarFeedback.Error AND NOT trapError THEN //trap the error once.  
+						moverWithFault := nForCounter; 
+						trapError := fbMover[nForCounter].P_PlanarFeedback.Error; 
+						trapErrorID := fbMover[nForCounter].P_PlanarFeedback.ErrorId; 
+						stepWithFault := 30; 
+					END_IF 
+					IF Mover[nForCounter].MoverPos > GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-4000 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
+						nMoveState[nForCounter] := 0;
+					END_IF				
+				
+			
+				40:
+					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], SwitchParkPos ,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
+					nMoveState[nForCounter] := 45;
+	
+				45: 
+					IF fbMover[nForCounter].P_PlanarFeedback.Error AND NOT trapError THEN //trap the error once.   
+						trapError := fbMover[nForCounter].P_PlanarFeedback.Error; 
+						trapErrorID := fbMover[nForCounter].P_PlanarFeedback.ErrorId;
+						stepWithFault := 45;
+ 						moverWithFault := nForCounter; 
+					END_IF
+					IF fbMover[nForCounter].P_PlanarFeedback.Done THEN 
+						nMoveState[nForCounter] := 50;
+						stopAndWait[nForCounter](IN:=TRUE, PT:=StopTime); 
+					END_IF 	
+
+				50:
+					stopAndWait[nForCounter](); 
+					IF stopAndWait[nForCounter].Q  OR NOT TestPowerMat THEN // send the mover to a sync Position 2.6m before the end of the track 
+						stopAndWait[nForCounter](IN:=FALSE); 
+						fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-waitForGapParkPos,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
+						searchGap(resetSearch:=TRUE, fbMover := fbMover); 
+						nMoveState[nForCounter] := 60; 
+					END_IF 
+					
+				60: // look for a merge position 
+					IF fbMover[nForCounter].P_PlanarFeedback.Done THEN// MCTrackOid_Shortcut THEN
+							fbTrackobject.findMergePosition(
+								mergeSyncCommandPos := gapStart , 
+								spaceToMerge := gapLength, 
+								nMoverToFollow => moverInFront, 
+								mergeWithoutFollow => directMerge, 
+								mergeNotPossible => mergeNotPossible); 
+							IF (directMerge OR moverInFront <> 0) AND NOT mergeNotPossible THEN
+								nMoveState[nForCounter] := 70;
+							END_IF 
+					END_IF
+				70:  //merge with gap zero
+					//issue commmand to sync 
+					IF directMerge THEN 
+						fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap, stMoverConfigNormal.velo);
+						nMoveState[nForCounter] := 10; 
+					ELSIF moverInFront <>0 THEN 
+						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
+						masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-100;
+						masterPosAtSync := Mover[moverInFront].MoverPos; 
+						followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-stMoverConfigNormal.MoverGap;
+						followerPosAtSync :=Mover[1].MoverPos; 
+						fbMover[nForCounter].SyncToOtherMover( 
+							masterSyncPos := masterSyncPos,
+							masterTrack := GVL_Mc.MC_Tracks[E_TrackNum.Big],
+							followerSyncPos := followSyncPos,
+							followerTrack := GVL_Mc.MC_Tracks[e_TrackNum.Small],
+							PlanarMoverToFollow := fbMover[moverInFront].P_PlanarMover,
+							velo:= stMoverConfigNormal.velo);
+							nMoveState[nForCounter] := 80; 
+						// reduce the gap of the leading mover 
+						fbMover[moverInFront].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,0(*Gap*), stMoverConfigNormal.velo);
+					END_IF 
+					
+				80: // wait for in Sync 
+					IF fbMover[nForCounter].P_SyncFeedback.Active AND MOver[moverInFront].TrackID =  GVL_Mc.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN // actively syncing calculate distance from mover 
+						followerToEndOfTrack := endOfSmallTrack - Mover[nForCounter].MoverPos; 
+						leaderToEndofTrack := endOfBigTrack - Mover[moverInFront].MoverPos; 
+						distToMoverInFront := followerToEndOfTrack - leaderToEndofTrack; 
+					ELSE 
+						followerToEndOfTrack := 0; 
+						leaderToEndofTrack := 0; 
+						distToMoverInFront := 0;
+					END_IF
+					IF fbMover[nForCounter].P_SyncFeedback.inSync OR  MOver[nForCounter].TrackID =  GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THEN 
+						nMoveState[nForCounter] := 10;
+					END_IF 
+				END_CASE
+		
+		END_FOR
+
+		IF bStopSequence AND NOT(IsMoverInBlockingArea) THEN
+			nCase := 110;
+			bStopSequence := FALSE;
+		END_IF
+		110:
+			N:= nNumMovers;
+			FOR nForCounter:=1 TO nNumMovers DO		
+				aStopPositions[nForCounter] := fbMover[nForCounter].XtsXlMover.GetSimulatedStartUpPosition(0);
+				N := N -1;
+			END_FOR
+			nCase := 120;
+		
+		120:	
+			nActStopPos := UDINT_TO_UINT(nMoverCount-nNumMovers+1);
+			FOR nForCounter:=1 TO nNumMovers DO
+				fbMover[nForCounter].P_Dynamics:= slowDynamics;
+				nMoveState[nForCounter] := 0;
+				fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.main], 300,stMoverConfigNormal.MoverGap,1000 );
+			END_FOR
+
+			nCase:= 130; 
+		130:
+			FOR nForCounter:=1 TO nMoverCount - (nMoverCount -nNumMovers)  DO
+				CASE nMoveState[nForCounter] OF
+					0:								
+						IF Mover[nForCounter].MoverPos < 300 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID THEN
+							fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.main], aStopPositions[nActStopPos],stMoverConfigNormal.MoverGap,1000);
+							nActStopPos := nActStopPos + 1;
+							nMoveState[nForCounter] := 10;
+						END_IF
+				END_CASE
+			END_FOR
+		
+			bAllDone := TRUE;
+			FOR nForCounter:=1 TO nNumMovers DO
+				IF NOT(MoverFeedback[nForCounter].Done OR MoverFeedback[nForCounter].Error) THEN
+					bAllDone := FALSE;
+					EXIT;
+				END_IF
+			END_FOR
+			
+			IF bAllDone THEN
+				nCase := 150;
+			END_IF
+		
+		140:
+			FOR nForCounter:=1 TO nNumMovers DO
+				fbMover[nForCounter].P_PlanarMover.Halt(MoverFeedback[nForCounter], slowDynamics);
+			END_FOR	
+			
+			nCase := 145;
+			
+		145:
+			bAllDone := TRUE;
+			FOR nForCounter:=1 TO nNumMovers DO
+				IF NOT(MoverFeedback[nForCounter].Done OR MoverFeedback[nForCounter].Error) THEN
+					bAllDone := FALSE;
+					EXIT;
+				END_IF
+			END_FOR
+			
+			IF bAllDone THEN
+				nCase := 150;
+			END_IF
+		
+		//Disable
+		150:
+			MoverStopDone := TRUE;
+			FOR nForCounter:=1 TO nNumMovers DO
+				fbMover[nForCounter].P_PlanarMover.Disable(MoverFeedback[nForCounter]);
+			END_FOR
+				
+			nCase := 0;
+END_CASE
+
+bMagnetOn := FALSE;
+FOR nForCounter:=1 TO nNumMovers DO
+	
+	IF  fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackObjectId(0) = XtsShortcutOid AND (IsBetween(fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0), SwitchConfig.MagnetStartPosition - (stMoverConfigNormal.Velo*0.045), SwitchConfig.MagnetEndPosition)) THEN
+		bMagnetOn := TRUE;
+	END_IF
+END_FOR
+
+SwitchCurrent := ((SwitchConfig.MagnetConfig.CurrentFunctionCoeffA*(((stMoverConfigNormal.Velo/1000)*(stMoverConfigNormal.Velo/1000))))+(SwitchConfig.MagnetConfig.CurrentFunctionCoeffB*(stMoverConfigNormal.Velo/1000))+SwitchConfig.MagnetConfig.CurrentFunctionCoeffC);	
+IF bMagnetOn AND NOT Fault THEN
+	MagnetValue := TO_INT(SwitchCurrent*1310);
+ELSE
+ 	MagnetValue := 0;
+END_IF
+
+FP_Counter(clk:=bMagnetOn);
+
+IF FP_Counter.Q THEN
+	Switchcounter := Switchcounter+1;
+
+END_IF
+
+//distanceMonitoring of Mover 1 when on the big track 
+IF Mover[1].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THEN //calculate out how far it is to the mover in front 
+	IF MOver[stMergeConfig.moverInFront].MoverPos -  Mover[1].MoverPos > 10 THEN 
+		stMergeConfig.mover1FollowDist := MOver[stMergeConfig.moverInFront].MoverPos -  Mover[1].MoverPos;
+	END_IF   
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="10" />
+      <LineId Id="469" Count="0" />
+      <LineId Id="468" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="430" Count="0" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="431" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="484" Count="0" />
+      <LineId Id="471" Count="1" />
+      <LineId Id="478" Count="1" />
+      <LineId Id="485" Count="0" />
+      <LineId Id="481" Count="2" />
+      <LineId Id="473" Count="0" />
+      <LineId Id="486" Count="0" />
+      <LineId Id="480" Count="0" />
+      <LineId Id="470" Count="0" />
+      <LineId Id="17" Count="4" />
+      <LineId Id="487" Count="0" />
+      <LineId Id="434" Count="4" />
+      <LineId Id="440" Count="3" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="444" Count="0" />
+      <LineId Id="33" Count="1" />
+      <LineId Id="48" Count="6" />
+      <LineId Id="56" Count="4" />
+      <LineId Id="500" Count="0" />
+      <LineId Id="490" Count="9" />
+      <LineId Id="488" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="550" Count="2" />
+      <LineId Id="554" Count="1" />
+      <LineId Id="553" Count="0" />
+      <LineId Id="549" Count="0" />
+      <LineId Id="64" Count="16" />
+      <LineId Id="83" Count="10" />
+      <LineId Id="96" Count="1" />
+      <LineId Id="460" Count="7" />
+      <LineId Id="105" Count="13" />
+      <LineId Id="124" Count="13" />
+      <LineId Id="139" Count="12" />
+      <LineId Id="153" Count="9" />
+      <LineId Id="164" Count="5" />
+      <LineId Id="171" Count="8" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="183" Count="101" />
+      <LineId Id="501" Count="47" />
+      <LineId Id="321" Count="85" />
+      <LineId Id="408" Count="20" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

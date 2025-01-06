@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_ExpMoverStatus" Id="{a98e7ea4-f570-0414-0e88-a9faaf2729e3}">
+    <Declaration><![CDATA[TYPE ST_ExpMoverStatus :
+STRUCT
+	XtsBaseRefData						: REFERENCE TO Tc3_XTS_Utility.ST_PositionInfo;
+	HasInterference						: BOOL;
+	TrackSectorBndryHeadF			: LREAL;
+	TrackSectorBndryTailF			: LREAL;
+	TrackSectorCenterHead			: LREAL;
+	TrackSectorCenterTail			: LREAL;
+	TrackSectorBndryHeadR			: LREAL;
+	TrackSectorBndryTailR			: LREAL;
+	PartSectorBndryHeadF			: LREAL;
+	PartSectorBndryTailF			: LREAL;
+	PartSectorCenterHead			: LREAL;
+	PartSectorCenterTail			: LREAL;
+	PartSectorBndryHeadR			: LREAL;
+	PartSectorBndryTailR			: LREAL;
+	XtsAdjustedData						: Tc3_XTS_Utility.ST_PositionInfo;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

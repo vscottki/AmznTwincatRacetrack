@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="ST_MoverConfig" Id="{b2784631-d9fa-04c5-02b3-42fadcc04d80}">
+    <Declaration><![CDATA[TYPE ST_MoverConfig EXTENDS ST_MoveOnTrackOptions:
+STRUCT
+	Velo			: LREAL := 1500;
+	Accel			: LREAL := 4000;
+	Decel			: LREAL := 4000;
+	Jerk			: LREAL := 16000;
+	VeloComp		: LREAL := 200;
+	MoverGap		: LREAL := 900;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

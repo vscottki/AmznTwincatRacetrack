@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <POU Name="F_SearchTheBigTrackForAHole" Id="{9db6f2fb-fbf4-44ba-81d0-538dbb1d2ef9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK F_SearchTheBigTrackForAHole
+VAR_INPUT 
+	resetSearch: BOOL;
+	gapStartDistToEndOfSwitch : LREAL; 
+	gapLength : LREAL; 	
+END_VAR
+VAR_IN_OUT 
+	fbMover		:	ARRAY[1..GVL_mc.nMovercount] OF FB_Mover;
+END_VAR
+VAR_OUTPUT
+	gapFound: BOOL;
+	moverToFollow : UDINT; 
+END_VAR
+VAR
+	I : UDINT; 
+	nState: INT;
+	trackPosGapStart  : LREAL; 
+	trackPosGapEnd : LREAL;
+	trackCollisionArea : LREAL; 
+	moverTrackID: Global.GLOBAL.OTCID;
+	lastMoverAfterGap: UDINT;
+	closestAfterGap: LREAL;
+	distanceAfterGap: LREAL;
+	moverFound: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF resetSearch THEN 
+//	nState := 0; 
+END_IF
+
+trackPosGapStart := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-gapStartDistToEndOfSwitch; 
+trackPosGapEnd := trackPosGapStart - gapLength; 
+moverFound:= FALSE; 
+gapFound := TRUE; 
+
+//watch for a mover crossing the gap boundary and a free space behind it of 2m.  
+FOR I:= 1 TO GVL_mc.nNumMovers DO 
+	// Only evaluate Movers on the big track
+	IF Mover[I].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN  
+		IF Mover[I].MoverPos > trackPosGapStart AND Mover[I].MoverPos < trackPosGapStart + 16  THEN 
+			 moverFound := TRUE;  // there is a mover in the way, 
+			 moverToFollow:=I; 
+			 // since we are looking at each mover we want to look at each one only once 
+		END_IF			
+		//is a mover in the gap?   
+		IF 	Mover[I].MoverPos < trackPosGapStart AND Mover[I].MoverPos > trackPosGapEnd THEN
+			gapFound := FALSE; 						
+		END_IF 
+	END_IF 
+END_FOR
+
+gapFound :=  gapfound AND moverFound;
+
+
+(*CASE nState OF
+	0: //see if there is any mover in this range if there is no mover in this range go.  
+		gapFound := TRUE; 
+		lastMoverAfterGap := 0; 
+		closestAfterGap := 10000; 
+		FOR I:= 1 TO GVL_mc.nNumMovers DO 
+			// Only evaluate Movers on the big track
+			IF Mover[I].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Big].MCTOPLC_STD.TrackOID THEN  
+				IF Mover[I].MoverPos < trackPosGapStart AND Mover[I].MoverPos > trackPosGapEnd  THEN 
+					 gapFound := FALSE;  // there is a mover in the way, 
+					 // since we are looking at each mover we want to look at each one only once 
+				END_IF			
+				//find last mover before gap 
+				IF 	Mover[I].MoverPos > trackPosGapStart THEN
+					distanceAfterGap :=  Mover[I].MoverPos - trackPosGapStart; 
+					IF distanceAfterGap < closestAfterGap THEN 
+						closestAfterGap := distanceAfterGap; 
+						lastMoverAfterGap := I; 
+					END_IF
+				END_IF 
+				IF closestAfterGap > 20 THEN // we want to follow a mover 
+					gapFound:=FALSE; 
+				END_IF
+			END_IF 
+		END_FOR
+		moverToFollow := lastMoverAfterGap; 
+END_CASE 		
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="F_SearchTheBigTrackForAHole">
+      <LineId Id="53" Count="5" />
+      <LineId Id="113" Count="1" />
+      <LineId Id="89" Count="1" />
+      <LineId Id="93" Count="4" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="98" Count="3" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="59" Count="19" />
+      <LineId Id="86" Count="2" />
+      <LineId Id="79" Count="1" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

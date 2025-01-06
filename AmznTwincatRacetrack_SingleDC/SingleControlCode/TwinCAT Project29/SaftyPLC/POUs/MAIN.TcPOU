@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <POU Name="MAIN" Id="{1b4dff48-5fc4-4640-872d-67c650f13b5e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	nCase 					: INT;
+	
+	xOn 			AT%Q* 	: BOOL;
+	xRequestReset 	AT%Q* 	: BOOL;
+	xError 			AT%Q* 	: BOOL;
+		
+
+	rTrigSwitchon 		  	: R_trig;
+	fTrigSwitchOff		  	: F_trig;
+	Chargtimer 				: ton;
+	
+	SwitchOn				: BOOL;
+	
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+IF GVL_Safety.HWStart THEN
+	GVL_Safety.Run  := TRUE;
+	GVL_Safety.Start := TRUE;
+END_IF
+
+IF  NOT GVL_Safety.HWStop THEN
+	GVL_Safety.Run  := FALSE;
+	GVL_Safety.Start := FALSE;
+END_IF
+		
+
+
+IF gvl_safety.SaeftyOk THEN
+	gvl_safety.HWSafetyOk := TRUE;
+	xOn := TRUE;
+	xRequestReset :=FALSE;
+ELSE	
+	gvl_safety.HWSafetyOk := FALSE;
+	xOn := FALSE;
+	
+END_IF
+
+IF NOT gvl_safety.SafetyInRun THEN
+	gvl_safety.HWerror := TRUE;
+ELSE	
+	gvl_safety.HWerror := FALSE;
+	xRequestReset := TRUE;
+END_IF
+
+xError := NOT gvl_safety.SafetyInRun AND NOT gvl_safety.HWSafetyOk AND GVL_Safety.Run AND GVL_Safety.Start;
+
+
+
+
+
+IF GVL_IO.hwReset OR HwReset THEN
+	GVL_Safety.Reset := TRUE;
+ELSE 	
+	GVL_Safety.Reset := FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="43" Count="3" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="81" Count="4" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="134" Count="4" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="142" Count="1" />
+      <LineId Id="113" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

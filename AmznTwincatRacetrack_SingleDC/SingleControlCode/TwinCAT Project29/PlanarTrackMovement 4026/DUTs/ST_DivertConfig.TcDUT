@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="ST_DivertConfig" Id="{f50f2845-a71f-0dc3-1470-052cc68dd787}">
+    <Declaration><![CDATA[TYPE ST_DivertConfig :
+STRUCT
+ 	SwitchOpMode         						: E_SwitchOpMode;
+	IntervalToDivert							: UDINT := 1;
+	MaxAllowedDivertCount						: UDINT := 0;
+	CurrentFunctionCoeffA						: LREAL := 0.55;
+	CurrentFunctionCoeffB						: LREAL := 0.15;
+	CurrentFunctionCoeffC						: LREAL := 5;
+END_STRUCT
+END_TYPE;]]></Declaration>
+  </DUT>
+</TcPlcObject>

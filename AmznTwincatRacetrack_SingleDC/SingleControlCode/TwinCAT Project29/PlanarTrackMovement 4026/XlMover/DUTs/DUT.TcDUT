@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="DUT" Id="{1cdba7a3-73fd-44f5-a354-5deeda6660e1}">
+    <Declaration><![CDATA[TYPE ST_XtsCommandFeedback :
+STRUCT
+		(* Returns wether the execution of the method is done. *)
+		IsDone : BOOL;
+		(* Returns wether the execution of the method is busy. *)
+		IsBusy : BOOL;
+		(* Returns wether the execution of the method is busy. *)
+		HasError : BOOL;
+		(* Returns the HRESULT to the call. *)
+		{attribute 'GUID' := '18071995-0000-0000-0000-000000000019'}
+		{attribute 'GlobalType'}
+		HRESULT : GLOBAL.HRESULT;
+	END_STRUCT
+END_TYPE
+
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

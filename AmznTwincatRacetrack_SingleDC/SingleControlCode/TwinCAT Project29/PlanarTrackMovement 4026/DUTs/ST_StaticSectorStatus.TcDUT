@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_StaticSectorStatus" Id="{81103d69-266a-0895-1575-10ee8e38fb8d}">
+    <Declaration><![CDATA[TYPE ST_StaticSectorStatus :
+STRUCT
+	MoverIsOnSector			: BOOL;
+	MoverCountOnSector		: UDINT;
+	MoverEnteredSector		: Tc2_Standard.R_TRIG;
+	MoverExitedSector		: Tc2_Standard.F_TRIG;
+	SectorLength				: LREAL;
+	MoverDistanceFromEnd	: LREAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>
