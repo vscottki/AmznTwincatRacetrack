@@ -55,8 +55,7 @@ workspace/*.bootinfo_guids
 *.bak
 *.~u
 *.suo
-LineIDs.dbg
-LineIDs.dbg.bak
+*.dbg
 _Boot/
 _CompileInfo/
 #_Libraries/  #We shall include the libraries in the commit.
