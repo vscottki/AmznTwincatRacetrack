@@ -846,7 +846,7 @@
 					</Value>
 					<Value>
 						<Name>CurrentChangeLimit</Name>
-						<Value>2</Value>
+						<Value>1</Value>
 					</Value>
 					<Value>
 						<Name>PhaseAdvance</Name>
