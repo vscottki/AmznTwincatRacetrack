@@ -7,6 +7,10 @@
       },
       {
         "publishServerExtension": true,
+        "name": "TcHmiEcDiagnostics"
+      },
+      {
+        "publishServerExtension": true,
         "name": "TcHmiLua"
       },
       {
@@ -54,6 +58,10 @@
       {
         "publishServerExtension": true,
         "name": "ADS"
+      },
+      {
+        "publishServerExtension": true,
+        "name": "TcHmiEcDiagnostics"
       },
       {
         "publishServerExtension": true,
