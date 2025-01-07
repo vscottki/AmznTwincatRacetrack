@@ -124,7 +124,7 @@ ELSE
 		END_IF
 	END_FOR 
 	//if we went through the whole list and no mover is in the range where we would merge in, then just merge 
-	IF moverInMerge = 0 AND NOT needToFollow AND FALSE THEN //there's noone where we want to merge, just merge in 
+	IF fbMover[moverIDs[1]].distToEndOfTrack > 8000 THEN //there's noone where we want to merge, just merge in 
 		mergeWithoutFollow:=TRUE;
 		mergeNotPossible := FALSE;
 	END_IF
