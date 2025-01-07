@@ -430,7 +430,7 @@ CASE nCase OF
 								nMoverToFollow => moverInFront, 
 								mergeWithoutFollow => directMerge, 
 								mergeNotPossible => mergeNotPossible); 
-							IF (directMerge OR moverInFront <> 0) AND NOT mergeNotPossible THEN
+							IF directMerge OR  ( moverInFront <> 0) AND NOT mergeNotPossible THEN
 								nMoveState[nForCounter] := 70;
 							END_IF 
 				//	END_IF
