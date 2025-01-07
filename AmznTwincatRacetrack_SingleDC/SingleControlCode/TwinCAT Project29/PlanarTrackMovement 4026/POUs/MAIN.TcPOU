@@ -222,7 +222,7 @@ GVL_Mc.StopLight  := (nCase = 100);
 
 IsMoverInBlockingArea := FALSE;
 
-FOR M := 1 TO nMoverCount DO///Movers
+FOR M := 1 TO GVL_Mc.nNumMovers DO///Movers
 	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
 
 	
