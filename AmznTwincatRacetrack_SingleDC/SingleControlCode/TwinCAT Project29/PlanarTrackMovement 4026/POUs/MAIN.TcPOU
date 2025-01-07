@@ -371,7 +371,8 @@ CASE nCase OF
 				
 				0: // Track 3 Main Cycel 
 					fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
-					fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);				
+					fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main], targetPos:= GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500, gap:= stMoverConfigNormal.MoverGap, velo:= stMoverConfigNormal.velo);
+				
 					nMoveState[nForCounter] := 10;
 					
 				10:
@@ -396,7 +397,8 @@ CASE nCase OF
 				
 				20:
 					fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
-					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Big], GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-1000, stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
+					fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Big], targetPos:= GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-1000, gap:= stMoverConfigNormal.MoverGap, velo:= stMoverConfigNormal.velo);
+			
 					nMoveState[nForCounter] := 30;
 				
 					
@@ -414,7 +416,8 @@ CASE nCase OF
 			
 				40:
 					fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
-					fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], SwitchParkPos ,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
+					fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Small], targetPos:= SwitchParkPos, gap:= stMoverConfigNormal.MoverGap, velo:= stMoverConfigNormal.velo);
+					
 					nMoveState[nForCounter] := 45;
 	
 				45: 
@@ -455,7 +458,8 @@ CASE nCase OF
 					//issue commmand to sync 
 					IF directMerge THEN 
 						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
-						fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap, stMoverConfigNormal.velo);
+						fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main], targetPos:= GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500, gap:= stMoverConfigNormal.MoverGap, velo:= stMoverConfigNormal.velo);
+
 						nMoveState[nForCounter] := 10; 
 					ELSIF moverInFront <>0 THEN 
 						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
@@ -472,8 +476,8 @@ CASE nCase OF
 							velo:= stMoverConfigNormal.velo);
 							nMoveState[nForCounter] := 80; 
 						// reduce the gap of the leading mover 
-		//				fbMover[moverInFront].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
-						fbMover[moverInFront].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,0(*Gap*), stMoverConfigNormal.velo);
+						fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main], targetPos:= GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500, gap:= 0, velo:= stMoverConfigNormal.velo);
+
 					END_IF 
 					
 				80: // wait for in Sync 
@@ -514,7 +518,7 @@ CASE nCase OF
 			FOR nForCounter:=1 TO nNumMovers DO
 				fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
 				nMoveState[nForCounter] := 0;
-				fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.main], 300,stMoverConfigNormal.MoverGap,1000 );
+				fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main], targetPos:= 300, gap:= stMoverConfigNormal.MoverGap, velo:= 1000);
 			END_FOR
 
 			nCase:= 130; 
@@ -523,7 +527,8 @@ CASE nCase OF
 				CASE nMoveState[nForCounter] OF
 					0:								
 						IF Mover[nForCounter].MoverPos < 300 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.main].MCTOPLC_STD.TrackOID THEN
-							fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.main], aStopPositions[nActStopPos],stMoverConfigNormal.MoverGap,1000);
+							fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main], targetPos:= aStopPositions[nActStopPos], gap:= stMoverConfigNormal.MoverGap, velo:= 1000);
+
 							nActStopPos := nActStopPos + 1;
 							nMoveState[nForCounter] := 10;
 						END_IF

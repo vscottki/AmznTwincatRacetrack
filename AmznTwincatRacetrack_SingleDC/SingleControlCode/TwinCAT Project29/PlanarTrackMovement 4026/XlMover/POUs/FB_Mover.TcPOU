@@ -162,8 +162,13 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[stMoveonTrackOptions.gap := gap; 
-THIS^.P_Dynamics.V := velo; 
-fbPlanarMover.MoveOnTrack(fbPlanarFeedback, track, targetPos, _stDynamics, stMoveOnTrackOptions);]]></ST>
+
+fbPlanarMover.MoveOnTrack(
+	commandFeedback:= fbPlanarFeedback, 
+	targetTrack:= track, 
+	targetPositionOnTrack:= targetPos, 
+	constraint:= _stDynamics, 
+	options:= stMoveOnTrackOptions);]]></ST>
       </Implementation>
     </Method>
     <Property Name="MoverOTCID" Id="{ce0ba360-bc0d-42ad-8903-9adb5e1a2946}">
@@ -320,7 +325,7 @@ VAR_INPUT
 	PlanarMoverToFollow: REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	masterTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack; 
 	followerTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack; 
-	velo : LREAL; 
+	velo : REFERENCE TO LREAL; 
 END_VAR
 
 VAR

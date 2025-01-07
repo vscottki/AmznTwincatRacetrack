@@ -2572,6 +2572,15 @@ External Setpoint Generation:
 			</Properties>
 		</DataType>
 		<DataType>
+			<Name GUID="{E2501123-680E-5A82-D657-5CA0731C8604}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..2] OF E_EcState</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>3</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{6D2B99B2-A9F2-44AF-A298-4BB7A08AE294}" Namespace="MC" TcBaseType="true">MC_PLANAR_STATE</Name>
 			<Comment><![CDATA[Indicates the enable state of a component.]]></Comment>
 			<BitSize>16</BitSize>
@@ -3179,15 +3188,6 @@ External Setpoint Generation:
 					</Property>
 				</Properties>
 			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{E2501123-680E-5A82-D657-5CA0731C8604}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..2] OF E_EcState</Name>
-			<BitSize>48</BitSize>
-			<BaseType GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>3</Elements>
-			</ArrayInfo>
 		</DataType>
 		<DataType>
 			<Name GUID="{BC77732B-A71D-4084-AA53-85A5016932F3}" Namespace="MC" TcBaseType="true">CDT_PLCTOMC_PLANAR_MOVER_STD</Name>
@@ -8132,7 +8132,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{BAC781C5-4E55-480F-D2E0-0643BE77CD1D}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{99A8BFBC-A1AD-7B81-6C4D-78FA8D07F62D}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8270,6 +8270,10 @@ External Setpoint Generation:
 							<Type GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.ModuleState3</Name>
+							<Type GUID="{E2501123-680E-5A82-D657-5CA0731C8604}">ARRAY [0..2] OF E_EcState</Type>
+						</Var>
+						<Var>
 							<Name>GVL_Mc.MC_Tracks[1].MCTOPLC_STD</Name>
 							<Comment><![CDATA[ Track data that is transferred from the Planar Track to this function block. ]]></Comment>
 							<Type GUID="{5769ADF0-D6E6-40D9-B474-790A2A7F1D1F}" Namespace="MC">CDT_MCTOPLC_PLANAR_TRACK</Type>
@@ -8363,10 +8367,6 @@ External Setpoint Generation:
 							<Name>GVL_Mc.fbMover[16].fbPlanarMover.MCTOPLC</Name>
 							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
 							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.ModuleState3</Name>
-							<Type GUID="{E2501123-680E-5A82-D657-5CA0731C8604}">ARRAY [0..2] OF E_EcState</Type>
 						</Var>
 					</Vars>
 					<Contexts>
