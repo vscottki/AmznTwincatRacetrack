@@ -88,16 +88,19 @@
     <Compile Include="POUs\FB_TrackObject.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\F_CalculateAccelTimeAndDistance.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\F_GetTrackEnum.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\F_SearchTheBigTrackForAHole.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MAIN.TcPOU">
+    <Compile Include="POUs\IsBetween.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\IsBetween.TcPOU">
+    <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XlMover\DUTs\DUT.TcDUT">

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <POU Name="F_CalculateAccelTimeAndDistance" Id="{8bb675e2-b633-4297-b481-4d84b9a7650a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK F_CalculateAccelTimeAndDistance
+VAR_INPUT
+	targetVelocity : LREAL; 
+	Accel : LREAL; 
+	Decel : LREAL; 
+	Jerk : LREAL; 
+	initialVelocity : LREAL; 
+END_VAR
+VAR_OUTPUT
+	timeToReachVelocity : LREAL; 
+	distanceTravelled : LREAL; 
+END_VAR
+VAR
+	deltav: LREAL;
+	timeAtAccel: LREAL;
+	timeAtJerk: LREAL;
+	velocityAfterJerk: LREAL;
+	velocityChangeDuetoJerk: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[   // determine if the jerk allows for the acceleration to be reached or if the delta V is too small 
+deltaV := targetVelocity - initialVelocity;
+
+IF deltav * Jerk < Accel * Accel THEN 
+	// accel lim is to high, jerk limited 
+	timeAtAccel := 0; 
+	timeAtJerk := SQRT(deltav/Jerk) ; 
+ELSE // accel limit wil be reachead 
+	timeAtJerk:= Accel/Jerk; 
+	velocityChangeDuetoJerk := Accel * timeAtJerk/2.000; 
+	velocityAfterJerk := initialVelocity +  velocityChangeDuetoJerk;
+	timeAtAccel := (deltav - 2*velocityChangeDuetoJerk)/Accel; 
+END_IF
+ // calc time at max accel 
+timeToReachVelocity := 2*timeAtJerk + timeAtAccel; 
+distanceTravelled := initialVelocity * timeToReachVelocity + timeAtJerk *velocityChangeDuetoJerk *2 + timeAtAccel *velocityChangeDuetoJerk + Accel * timeAtAccel*timeAtJerk + 0.5* Accel* timeAtAccel*timeAtAccel; 
+]]></ST>
+    </Implementation>
+    <LineIds Name="F_CalculateAccelTimeAndDistance">
+      <LineId Id="1" Count="16" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

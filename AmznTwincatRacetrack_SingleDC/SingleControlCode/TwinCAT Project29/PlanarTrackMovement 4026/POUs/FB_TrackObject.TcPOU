@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
-  <POU Name="FB_TrackObject" Id="{ca311e0f-ebac-4a24-bb0f-17dadbea699e}" SpecialFunc="None">
+  <POU Name="FB_TrackObject" Id="{29e2a0b7-3367-458c-a943-6af05a504777}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_TrackObject
 // for a track/part this block keeps a list of the movers in order with their positions on a track
 
@@ -41,7 +41,7 @@ END_VAR
 	RETURN;
 END_IF]]></ST>
     </Implementation>
-    <Method Name="CyclicUpdate" Id="{149a973e-ed7c-4f0c-99fb-704f73e039f6}">
+    <Method Name="CyclicUpdate" Id="{6466b22b-9a20-4361-bd3e-15dc54a6f9f2}">
       <Declaration><![CDATA[METHOD CyclicUpdate : BOOL
 VAR_INPUT
 END_VAR
@@ -65,7 +65,7 @@ FOR J := 1 TO nNumMoversOnTrack DO
 END_FOR]]></ST>
       </Implementation>
     </Method>
-    <Method Name="findMergePosition" Id="{dd500d75-06ba-4313-90f5-106388706078}">
+    <Method Name="findMergePosition" Id="{79edee76-eb47-46aa-a364-cc750422d478}">
       <Declaration><![CDATA[METHOD findMergePosition : BOOL
 VAR_INPUT
 	mergeSyncCommandPos : LREAL;
@@ -118,6 +118,12 @@ ELSE
 					mergeNotPossible := FALSE; // the merge is possible 
 					EXIT; 
 				END_IF
+			ELSIF I = nNumMoversOnTrack THEN // this is the last mover 
+				// look how much space is behind this mover that is bigger than the merge gap, merge behind this mover
+				IF fbMover[moverIDs[I]].distToEndOfTrack < mergeSyncCommandPos+spaceToMerge THEN // the mover is far enough along to sync to it.
+					nMoverToFollow := moverIDs[I]; //yes follow this mover 
+					mergeNotPossible := FALSE; // the merge is possible 
+				END_IF  
 			END_IF	
 		END_IF
 	END_FOR 
@@ -132,7 +138,7 @@ IF mergeNotPossible THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetComObject" Id="{c9c88a85-b788-4022-952b-ad04476a1ab5}">
+    <Method Name="GetComObject" Id="{9c3d8252-37e5-43a6-92ac-b9262faf50ab}">
       <Declaration><![CDATA[METHOD GetComObject : BOOL
 VAR_INPUT
 	nObjectId: OTCID;
@@ -147,7 +153,7 @@ THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetMoverList" Id="{d06cf094-c1a3-41cb-a4b5-f620fbfb81d0}">
+    <Method Name="GetMoverList" Id="{c310a186-1e82-4690-be52-ef705452e8ab}">
       <Declaration><![CDATA[METHOD GetMoverList : BOOL
 VAR
 	nData 			: UDINT := SIZEOF(nMoverList);
@@ -181,7 +187,7 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="GetNumMovers" Id="{1c6c66c2-07d3-4410-b44d-50eec326d7af}">
+    <Method Name="GetNumMovers" Id="{40bcbca1-019b-4460-9526-3630c8cebd02}">
       <Declaration><![CDATA[METHOD GetNumMovers : BOOL
 VAR
 	stEventEntry: TcEventEntry;
@@ -218,23 +224,5 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_TrackObject">
-      <LineId Id="1" Count="5" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.CyclicUpdate">
-      <LineId Id="1" Count="11" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.findMergePosition">
-      <LineId Id="1" Count="39" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetComObject">
-      <LineId Id="1" Count="5" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetMoverList">
-      <LineId Id="1" Count="19" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetNumMovers">
-      <LineId Id="1" Count="21" />
-    </LineIds>
   </POU>
 </TcPlcObject>
