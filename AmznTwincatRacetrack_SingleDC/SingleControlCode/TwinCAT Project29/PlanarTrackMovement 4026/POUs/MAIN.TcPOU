@@ -454,7 +454,7 @@ CASE nCase OF
 				70:  //merge with gap zero
 					//issue commmand to sync 
 					IF directMerge THEN 
-						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel*2,stMoverConfigNormal.Decel*2,stMoverConfigNormal.Jerk*2);
+						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
 						fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap, stMoverConfigNormal.velo);
 						nMoveState[nForCounter] := 10; 
 					ELSIF moverInFront <>0 THEN 
