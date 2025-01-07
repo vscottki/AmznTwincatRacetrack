@@ -3906,7 +3906,7 @@
 				</Value>
 				<Value>
 					<Name>OperationMode</Name>
-					<EnumText>Simulation</EnumText>
+					<EnumText>Normal</EnumText>
 				</Value>
 				<Value>
 					<Name>MoverType</Name>

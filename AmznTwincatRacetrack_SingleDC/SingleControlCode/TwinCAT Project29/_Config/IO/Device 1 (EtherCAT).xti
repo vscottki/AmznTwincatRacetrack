@@ -215,7 +215,7 @@
 		<ImageData Id="1009">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ff00bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c080808000bfff00bfff00bfff00bfff00bfffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ff00bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1010">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000074120000741200000000000000000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000000000000000000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
-	<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="11.200.1.30.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="4">
+	<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="11.200.1.30.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="4">
 		<Name>__FILENAME__</Name>
 		<AddressInfo>
 			<Ccat>
@@ -244,9 +244,6 @@
 		</AddressInfo>
 		<Image Id="2" ImageFlags="#x00000030" AddrType="9" ImageType="3">
 			<Name>Image</Name>
-		</Image>
-		<Image Id="3" AddrType="10" ImageType="3">
-			<Name>Image-2</Name>
 		</Image>
 		<Box Id="1" BoxType="9099">
 			<Name>Term 1 (EK1200)</Name>
@@ -3547,7 +3544,7 @@ Bit 8 - 15 : reserved]]></Comment>
 				<CoeProfile ProfileNo="62919561" DisplayName="AX8000 Power supply"/>
 			</EtherCAT>
 		</Box>
-		<EtherCAT ManualDcSelect="true" DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120"/>
+		<EtherCAT ManualDcSelect="true" MaxCdl="1" DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120"/>
 	</Device>
 	<Mappings>
 		<OwnerA>
