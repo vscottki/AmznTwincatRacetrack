@@ -118,6 +118,12 @@ ELSE
 					mergeNotPossible := FALSE; // the merge is possible 
 					EXIT; 
 				END_IF
+			ELSIF I = nNumMoversOnTrack THEN // this is the last mover 
+				// look how much space is behind this mover that is bigger than the merge gap, merge behind this mover
+				IF fbMover[moverIDs[I]].distToEndOfTrack < mergeSyncCommandPos+spaceToMerge THEN // the mover is far enough along to sync to it.
+					nMoverToFollow := moverIDs[I]; //yes follow this mover 
+					mergeNotPossible := FALSE; // the merge is possible 
+				END_IF  
 			END_IF	
 		END_IF
 	END_FOR 
@@ -225,7 +231,9 @@ END_IF
       <LineId Id="1" Count="11" />
     </LineIds>
     <LineIds Name="FB_TrackObject.findMergePosition">
-      <LineId Id="1" Count="39" />
+      <LineId Id="1" Count="27" />
+      <LineId Id="41" Count="5" />
+      <LineId Id="29" Count="11" />
     </LineIds>
     <LineIds Name="FB_TrackObject.GetComObject">
       <LineId Id="1" Count="5" />
