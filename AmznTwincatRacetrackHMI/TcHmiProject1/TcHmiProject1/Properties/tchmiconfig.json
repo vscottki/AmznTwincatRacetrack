@@ -1,5 +1,5 @@
 {
-  "$schema": "./../../../../../../Desktop/Packages/Beckhoff.TwinCAT.HMI.Framework.14.2.110/runtimes/native1.12-tchmi/Schema/TchmiConfig.Schema.json",
+  "$schema": "",
   "basePath": "./Beckhoff.TwinCAT.HMI.Framework",
   "scaleMode": "None",
   "startupView": "Desktop.view",
@@ -115,6 +115,10 @@
     {
       "name": "Beckhoff.TwinCAT.HMI.Functions",
       "basePath": "/Beckhoff.TwinCAT.HMI.Functions"
+    },
+    {
+      "name": "Beckhoff.TwinCAT.HMI.Server.Engineering",
+      "basePath": "/Beckhoff.TwinCAT.HMI.Server.Engineering"
     }
   ],
   "keyboardLayouts": [
