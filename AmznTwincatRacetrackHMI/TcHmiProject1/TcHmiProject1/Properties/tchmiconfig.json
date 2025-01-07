@@ -109,6 +109,10 @@
       "basePath": "/Beckhoff.TwinCAT.HMI.Controls"
     },
     {
+      "name": "Beckhoff.TwinCAT.HMI.EcDiagnosticsControl",
+      "basePath": "/Beckhoff.TwinCAT.HMI.EcDiagnosticsControl"
+    },
+    {
       "name": "Beckhoff.TwinCAT.HMI.Framework",
       "basePath": "/Beckhoff.TwinCAT.HMI.Framework"
     },

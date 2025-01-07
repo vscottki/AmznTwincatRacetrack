@@ -107,6 +107,19 @@
             "REQUIRED": true,
             "STARTUPTYPE": 1
         },
+        "TcHmiEcDiagnostics": {
+            "ENABLED": true,
+            "METADATA": {
+                "migrationVersion": "1.14",
+                "previousVersions": [
+                    "1.12"
+                ]
+            },
+            "NAME": "TcHmiEcDiagnostics",
+            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.EcDiagnostics.22.0.6418\\runtimes\\win-x64\\native\\",
+            "REQUIRED": false,
+            "STARTUPTYPE": 1
+        },
         "TcHmiLua": {
             "ENABLED": true,
             "METADATA": {
@@ -3282,6 +3295,1213 @@
             },
             "USEMAPPING": true
         },
+        "TcHmiEcDiagnostics.ClearCrc": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ClearCrc",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.ClearFrames": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ClearFrames",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.Config": {
+            "ACCESS": 0,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Config",
+            "OPTIONS": {},
+            "SCHEMA": {},
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.Diagnostics": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "Diagnostics",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "devices": {
+                        "additionalProperties": {
+                            "properties": {
+                                "connectionState": {
+                                    "propertyOrder": 4,
+                                    "type": "string"
+                                },
+                                "enabled": {
+                                    "propertyOrder": 1,
+                                    "type": "boolean",
+                                    "visibility": "HideInEngineering"
+                                },
+                                "master": {
+                                    "propertyOrder": 7,
+                                    "type": "string"
+                                },
+                                "masterState": {
+                                    "propertyOrder": 8,
+                                    "type": "string"
+                                },
+                                "target": {
+                                    "propertyOrder": 2,
+                                    "type": "string"
+                                },
+                                "targetAdsState": {
+                                    "propertyOrder": 6,
+                                    "type": "string"
+                                },
+                                "targetAdsVersion": {
+                                    "propertyOrder": 5,
+                                    "type": "string"
+                                },
+                                "targetAvailable": {
+                                    "propertyOrder": 3,
+                                    "type": "boolean",
+                                    "visibility": "HideInEngineering"
+                                }
+                            },
+                            "required": [
+                                "enabled",
+                                "target",
+                                "targetAvailable",
+                                "connectionState",
+                                "master"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.DisableSlave": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "DisableSlave",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "device": {
+                            "type": "string"
+                        },
+                        "slaveAddr": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "device",
+                        "slaveAddr"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.EnableSlave": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "EnableSlave",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "device": {
+                            "type": "string"
+                        },
+                        "slaveAddr": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "device",
+                        "slaveAddr"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.ForceProcessDataValues": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ForceProcessDataValues",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "device": {
+                            "type": "string"
+                        },
+                        "slaveAddr": {
+                            "type": "integer"
+                        },
+                        "values": {
+                            "items": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-EcDiagnosticsProcessDataObjectEntryID"
+                                        },
+                                        {
+                                            "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-EcDiagnosticsProcessDataObjectEntryValue"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.GetMaster": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetMaster",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "config": {
+                        "properties": {
+                            "targetNetId": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "netId": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "config",
+                    "name",
+                    "netId"
+                ],
+                "type": "object",
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.GetMasterOnlineInfo": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetMasterOnlineInfo",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "config": {
+                        "properties": {
+                            "masterNetId": {
+                                "type": "string"
+                            },
+                            "targetNetId": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "frames": {
+                        "properties": {
+                            "damaged": {
+                                "properties": {
+                                    "received": {
+                                        "type": "integer"
+                                    },
+                                    "sent": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "received",
+                                    "sent"
+                                ],
+                                "type": "object"
+                            },
+                            "missed": {
+                                "properties": {
+                                    "acyclic": {
+                                        "type": "integer"
+                                    },
+                                    "cyclic": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "acyclic",
+                                    "cyclic"
+                                ],
+                                "type": "object"
+                            },
+                            "perSec": {
+                                "properties": {
+                                    "acyclic": {
+                                        "type": "integer"
+                                    },
+                                    "cyclic": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "acyclic",
+                                    "cyclic"
+                                ],
+                                "type": "object"
+                            },
+                            "total": {
+                                "properties": {
+                                    "acyclic": {
+                                        "type": "integer"
+                                    },
+                                    "cyclic": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "acyclic",
+                                    "cyclic"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                        "required": [
+                            "damaged",
+                            "missed",
+                            "perSec",
+                            "total"
+                        ],
+                        "type": "object"
+                    },
+                    "stateMachine": {
+                        "type": "integer"
+                    },
+                    "stateMachineRequested": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "config",
+                    "frames",
+                    "stateMachine"
+                ],
+                "type": "object",
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.GetProcessDataValues": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetProcessDataValues",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "config": {
+                        "properties": {
+                            "masterNetId": {
+                                "type": "string"
+                            },
+                            "targetNetId": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "in": {
+                        "items": [
+                            {
+                                "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-EcDiagnosticsProcessDataInOutValues"
+                            }
+                        ],
+                        "type": "array"
+                    },
+                    "out": {
+                        "items": [
+                            {
+                                "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-EcDiagnosticsProcessDataInOutValues"
+                            }
+                        ],
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "config"
+                ],
+                "type": "object",
+                "writeValue": {
+                    "properties": {
+                        "device": {
+                            "type": "string"
+                        },
+                        "slaveAddr": {
+                            "type": "integer"
+                        },
+                        "updateForcedState": {
+                            "type": "boolean"
+                        },
+                        "updateValue": {
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.GetSlaves": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetSlaves",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "config": {
+                        "properties": {
+                            "masterNetId": {
+                                "type": "string"
+                            },
+                            "targetNetId": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "disabledSlaves": {
+                        "items": {
+                            "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-slave"
+                        },
+                        "type": "array"
+                    },
+                    "hotConnectGroups": {
+                        "items": {
+                            "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-slave"
+                        },
+                        "type": "array"
+                    },
+                    "master": {
+                        "properties": {
+                            "configuredSlave": {
+                                "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-slave"
+                            },
+                            "portPhysic": {
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "slavesCount": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "config",
+                    "slavesCount"
+                ],
+                "type": "object",
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.GetSlavesOnlineInfo": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetSlavesOnlineInfo",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "config": {
+                        "properties": {
+                            "masterNetId": {
+                                "type": "string"
+                            },
+                            "targetNetId": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "slaves": {
+                        "properties": {
+                            "1001": {
+                                "properties": {
+                                    "counter": {
+                                        "properties": {
+                                            "abnormalChanges": {
+                                                "type": "integer"
+                                            },
+                                            "connectionLosses": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "abnormalChanges",
+                                            "connectionLosses"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "current": {
+                                        "properties": {
+                                            "disabled": {
+                                                "type": "boolean"
+                                            },
+                                            "identity": {
+                                                "properties": {
+                                                    "isInvalid": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "isInvalidOnPrevSlaves": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "isInvalid",
+                                                    "isInvalidOnPrevSlaves"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "initError": {
+                                                "type": "boolean"
+                                            },
+                                            "presence": {
+                                                "properties": {
+                                                    "notPresent": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "notPresentOnPrevSlaves": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "notPresent",
+                                                    "notPresentOnPrevSlaves"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "signalsError": {
+                                                "type": "boolean"
+                                            },
+                                            "stateMachine": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "disabled",
+                                            "identity",
+                                            "initError",
+                                            "presence",
+                                            "signalsError",
+                                            "stateMachine"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "ports": {
+                                        "items": [
+                                            {
+                                                "properties": {
+                                                    "counter": {
+                                                        "properties": {
+                                                            "crc": {
+                                                                "properties": {
+                                                                    "errorOnPrevPort": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "total": {
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "errorOnPrevPort",
+                                                                    "total"
+                                                                ],
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "crc"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "current": {
+                                                        "properties": {
+                                                            "linkError": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "missingLink": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "unexpectedLink": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "linkError",
+                                                            "missingLink",
+                                                            "unexpectedLink"
+                                                        ],
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "counter",
+                                                    "current"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            {
+                                                "properties": {
+                                                    "counter": {
+                                                        "properties": {
+                                                            "crc": {
+                                                                "properties": {
+                                                                    "errorOnPrevPort": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "total": {
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "errorOnPrevPort",
+                                                                    "total"
+                                                                ],
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "crc"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "current": {
+                                                        "properties": {
+                                                            "linkError": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "missingLink": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "unexpectedLink": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "linkError",
+                                                            "missingLink",
+                                                            "unexpectedLink"
+                                                        ],
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "counter",
+                                                    "current"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            {
+                                                "properties": {
+                                                    "counter": {
+                                                        "properties": {
+                                                            "crc": {
+                                                                "properties": {
+                                                                    "errorOnPrevPort": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "total": {
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "errorOnPrevPort",
+                                                                    "total"
+                                                                ],
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "crc"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "current": {
+                                                        "properties": {
+                                                            "linkError": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "missingLink": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "unexpectedLink": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "linkError",
+                                                            "missingLink",
+                                                            "unexpectedLink"
+                                                        ],
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "counter",
+                                                    "current"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            {
+                                                "properties": {
+                                                    "counter": {
+                                                        "properties": {
+                                                            "crc": {
+                                                                "properties": {
+                                                                    "errorOnPrevPort": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "total": {
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "errorOnPrevPort",
+                                                                    "total"
+                                                                ],
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "crc"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "current": {
+                                                        "properties": {
+                                                            "linkError": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "missingLink": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "unexpectedLink": {
+                                                                "type": "boolean"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "linkError",
+                                                            "missingLink",
+                                                            "unexpectedLink"
+                                                        ],
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "counter",
+                                                    "current"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "type": "array"
+                                    },
+                                    "requested": {
+                                        "properties": {
+                                            "stateMachine": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "stateMachine"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "syncUnits": {
+                                        "properties": {
+                                            "0": {
+                                                "properties": {
+                                                    "error": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "frameMissedCounter": {
+                                                        "type": "integer"
+                                                    },
+                                                    "wcFaultCounter": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "error",
+                                                    "frameMissedCounter",
+                                                    "wcFaultCounter"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "0"
+                                        ],
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "counter",
+                                    "current",
+                                    "ports",
+                                    "requested",
+                                    "syncUnits"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "config",
+                    "slaves"
+                ],
+                "type": "object",
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.GetSlavesScanned": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetSlavesScanned",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "config": {
+                        "properties": {
+                            "masterNetId": {
+                                "type": "string"
+                            },
+                            "targetNetId": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "slaves": {
+                        "items": [
+                            {
+                                "properties": {
+                                    "addr": {
+                                        "type": "integer"
+                                    },
+                                    "productCode": {
+                                        "type": "integer"
+                                    },
+                                    "revisionNumber": {
+                                        "type": "integer"
+                                    },
+                                    "serialNumber": {
+                                        "type": "integer"
+                                    },
+                                    "vendorId": {
+                                        "type": "integer"
+                                    },
+                                    "vendorLabelName": {
+                                        "type": "string"
+                                    },
+                                    "vendorMemberName": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "addr",
+                                    "productCode",
+                                    "revisionNumber",
+                                    "serialNumber",
+                                    "vendorId",
+                                    "vendorLabelName",
+                                    "vendorMemberName"
+                                ],
+                                "type": "object"
+                            }
+                        ],
+                        "type": "array"
+                    },
+                    "updated": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "config",
+                    "slaves",
+                    "updated"
+                ],
+                "type": "object",
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.GetTarget": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "GetTarget",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "properties": {
+                    "available": {
+                        "type": "boolean"
+                    },
+                    "config": {
+                        "properties": {
+                            "masterNetId": {
+                                "format": "amsnetid",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "masterNetId"
+                        ],
+                        "type": "object"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "netId": {
+                        "type": "string"
+                    },
+                    "sysServiceAdsState": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "available",
+                    "config",
+                    "name",
+                    "netId",
+                    "sysServiceAdsState"
+                ],
+                "type": "object",
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.ListConfiguredDevices": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ListConfiguredDevices",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "additionalProperties": {
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "masterNetId": {
+                            "format": "amsnetid",
+                            "type": "string"
+                        },
+                        "targetNetId": {
+                            "format": "amsnetid",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "enabled",
+                        "targetNetId",
+                        "masterNetId"
+                    ],
+                    "type": "object"
+                },
+                "function": true,
+                "type": "object"
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.ListMastersOfRoute": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ListMastersOfRoute",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "items": [
+                    {
+                        "properties": {
+                            "label": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "format": "amsnetid",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "label",
+                            "value"
+                        ],
+                        "type": "object"
+                    }
+                ],
+                "type": "array",
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.ListSlavesWithForcedProcessData": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ListSlavesWithForcedProcessData",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "config": {
+                    "properties": {
+                        "masterNetId": {
+                            "type": "string"
+                        },
+                        "targetNetId": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "function": true,
+                "slaves": {
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": "array"
+                },
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.ReleaseProcessDataValues": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "ReleaseProcessDataValues",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "properties": {
+                                "device": {
+                                    "type": "string"
+                                },
+                                "slaveAddr": {
+                                    "type": "integer"
+                                },
+                                "values": {
+                                    "items": [
+                                        {
+                                            "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-EcDiagnosticsProcessDataObjectEntryID"
+                                        }
+                                    ],
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ]
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.SendSlavesScanCmd": {
+            "ACCESS": 2,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "SendSlavesScanCmd",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "type": "string"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.SetMasterStateMachine": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "SetMasterStateMachine",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "device": {
+                            "type": "string"
+                        },
+                        "state": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "device",
+                        "state"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.SetProcessDataValues": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "SetProcessDataValues",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "device": {
+                            "type": "string"
+                        },
+                        "slaveAddr": {
+                            "type": "integer"
+                        },
+                        "values": {
+                            "items": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-EcDiagnosticsProcessDataObjectEntryID"
+                                        },
+                                        {
+                                            "$ref": "tchmi:server#/definitions/TcHmiEcDiagnostics-EcDiagnosticsProcessDataObjectEntryValue"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
+        "TcHmiEcDiagnostics.SetSlaveStateMachine": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiEcDiagnostics",
+            "DYNAMIC": false,
+            "HIDDEN": true,
+            "MAPPING": "SetSlaveStateMachine",
+            "OPTIONS": {},
+            "SCHEMA": {
+                "function": true,
+                "writeValue": {
+                    "properties": {
+                        "device": {
+                            "type": "string"
+                        },
+                        "slaveAddr": {
+                            "type": "integer"
+                        },
+                        "state": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "device",
+                        "slaveAddr",
+                        "state"
+                    ],
+                    "type": "object"
+                }
+            },
+            "USEMAPPING": true
+        },
         "TcHmiLua.Config": {
             "ACCESS": 0,
             "DOMAIN": "TcHmiLua",
@@ -4108,6 +5328,17 @@
                 "Safety.MAIN.start": 3,
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
+                "TcHmiEcDiagnostics.Diagnostics": 3,
+                "TcHmiEcDiagnostics.GetMaster": 3,
+                "TcHmiEcDiagnostics.GetMasterOnlineInfo": 3,
+                "TcHmiEcDiagnostics.GetProcessDataValues": 3,
+                "TcHmiEcDiagnostics.GetSlaves": 3,
+                "TcHmiEcDiagnostics.GetSlavesOnlineInfo": 3,
+                "TcHmiEcDiagnostics.GetSlavesScanned": 3,
+                "TcHmiEcDiagnostics.GetTarget": 3,
+                "TcHmiEcDiagnostics.ListConfiguredDevices": 3,
+                "TcHmiEcDiagnostics.ListMastersOfRoute": 3,
+                "TcHmiEcDiagnostics.ListSlavesWithForcedProcessData": 3,
                 "TcHmiSqliteLogger.Diagnostics": 3,
                 "TcHmiUserManagement.ChangePassword": 3,
                 "TcHmiUserManagement.Disable2FA": 3,
@@ -4157,6 +5388,7 @@
     "VIRTUALDIRECTORIES": {
         "/": "..\\..\\..\\Documents\\AmznTwincatRacetrack\\AmznTwincatRacetrackHMI\\TcHmiProject1\\TcHmiProject1\\",
         "/Beckhoff.TwinCAT.HMI.Controls": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Controls.14.2.110\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.EcDiagnosticsControl": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.EcDiagnosticsControl.14.2.90\\runtimes\\native1.12-tchmi",
         "/Beckhoff.TwinCAT.HMI.Framework": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Framework.14.2.110\\runtimes\\native1.12-tchmi",
         "/Beckhoff.TwinCAT.HMI.Functions": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Functions.14.2.90\\runtimes\\native1.12-tchmi",
         "/bin": "..\\..\\..\\Documents\\AmznTwincatRacetrack\\AmznTwincatRacetrackHMI\\TcHmiProject1\\TcHmiProject1\\bin\\"

@@ -1,0 +1,19 @@
+{
+    "devices": {
+        "Device1": {
+            "enabled": true,
+            "masterNetId": "11.200.1.30.2.1",
+            "targetNetId": "11.200.5.30.1.1"
+        },
+        "Device4": {
+            "enabled": true,
+            "masterNetId": "11.200.1.30.5.1",
+            "targetNetId": "11.200.5.30.1.1"
+        },
+        "Device8": {
+            "enabled": true,
+            "masterNetId": "11.200.1.30.9.1",
+            "targetNetId": "11.200.5.30.1.1"
+        }
+    }
+}
