@@ -41,6 +41,8 @@ VAR_GLOBAL
 	HWStop		AT%I* : BOOL;	
 	StartLight 	AT%Q* : BOOL;
 	StopLight	AT%Q* : BOOL;
+	
+	sGraphCalciFrame : T_MaxString := 'https://www.desmos.com/calculator';
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

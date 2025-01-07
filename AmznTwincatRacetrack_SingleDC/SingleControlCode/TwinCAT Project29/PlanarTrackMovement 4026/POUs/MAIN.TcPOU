@@ -55,7 +55,6 @@ VAR
 	
 	FP_Counter : r_trig;
 	Switchcounter : DINT;
-	SwitchCurrent: REAL ; 
 	test : LREAL;
 	Horntimer : tp; 
 	R_trigHorn : R_trig;
@@ -84,6 +83,8 @@ VAR
 	
 	stMergeConfig		 : ST_MergeConfig;
 	SwitchConfig		 : ST_SwitchConfig;
+	
+	SwitchStatus 		  : ST_SwitchStatus;
 
 	ModuleState1 AT%I*: E_EcState;
 	ModuleState2 AT%I*: E_EcState;
@@ -591,9 +592,14 @@ FOR nForCounter:=1 TO nNumMovers DO
 	END_IF
 END_FOR
 
-SwitchCurrent := ((SwitchConfig.MagnetConfig.CurrentFunctionCoeffA*(((stMoverConfigNormal.Velo/1000)*(stMoverConfigNormal.Velo/1000))))+(SwitchConfig.MagnetConfig.CurrentFunctionCoeffB*(stMoverConfigNormal.Velo/1000))+SwitchConfig.MagnetConfig.CurrentFunctionCoeffC);	
+IF SwitchConfig.UseNominalCurrentVeloSetpoints THEN
+	SwitchStatus.CurrentOutputMax := SwitchConfig.SwitchCurrentNominal;	
+ELSE
+	SwitchStatus.CurrentOutputMax := ((SwitchConfig.MagnetConfig.CurrentFunctionCoeffA*(((stMoverConfigNormal.Velo/1000)*(stMoverConfigNormal.Velo/1000))))+(SwitchConfig.MagnetConfig.CurrentFunctionCoeffB*(stMoverConfigNormal.Velo/1000))+SwitchConfig.MagnetConfig.CurrentFunctionCoeffC);	
+END_IF
+
 IF bMagnetOn AND NOT Fault THEN
-	MagnetValue := TO_INT(SwitchCurrent*1310);
+	MagnetValue := TO_INT(SwitchStatus.CurrentOutputMax*1310);
 ELSE
  	MagnetValue := 0;
 END_IF

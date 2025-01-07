@@ -326,38 +326,6 @@
   }
 ]</script>
 </div>
-<div id="TcHmiTextblock_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="409" data-tchmi-left-unit="px" data-tchmi-text="Magnet Position % Coeff" data-tchmi-top="196" data-tchmi-top-unit="px" data-tchmi-width="144" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
-</div>
-<div id="TcHmiSpinboxInput_12" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="3" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="563" data-tchmi-left-unit="px" data-tchmi-max-value="1.03" data-tchmi-min-value="0.97" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="196" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="0.001" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.PosnCoilResponseTimeCoeffNominal%/s%">
-<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
-{
-  "top": 3,
-  "right": 3,
-  "bottom": 3,
-  "left": 3
-}
-</script>
-
-
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onValueChanged",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%s%PLC1.MAIN.Switchcounter%/s%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/DINT",
-          "value": 0
-        },
-        "asyncWait": true
-      }
-    ]
-  }
-]</script>
-</div>
 <div id="TcHmiSpinboxInput_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="409" data-tchmi-left-unit="px" data-tchmi-max-value="25" data-tchmi-min-value="3" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="32" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="0.5" data-tchmi-value="%s%PLC1.GVL_General.stSwitchConfig.SwitchCurrentNominal|BindingMode=TwoWay|SubscriptionMode=Change%/s%">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
@@ -394,7 +362,7 @@
 </div>
 <div id="TcHmiTextblock_17" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="21" data-tchmi-height-unit="px" data-tchmi-left="685" data-tchmi-left-unit="px" data-tchmi-text="c" data-tchmi-top="104" data-tchmi-top-unit="px" data-tchmi-width="14" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="15">
 </div>
-<div id="TcHmiSpinboxInput_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="563" data-tchmi-left-unit="px" data-tchmi-max-value="25" data-tchmi-min-value="3" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="70" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="0.1" data-tchmi-value="%s%PLC1.GVL_General.stSwitchStatus.CurrentOutputMax|BindingMode=OneWay|SubscriptionMode=Poll%/s%" data-tchmi-button-position="MinusLeftAndPlusRight">
+<div id="TcHmiSpinboxInput_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="1" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="563" data-tchmi-left-unit="px" data-tchmi-max-value="25" data-tchmi-min-value="3" data-tchmi-reset-to-last-valid-value="true" data-tchmi-top="70" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="184" data-tchmi-width-unit="px" data-tchmi-step="0.1" data-tchmi-button-position="MinusLeftAndPlusRight" data-tchmi-value="%s%ADS.PLC1.MAIN.SwitchStatus.CurrentOutputMax|BindingMode=TwoWay%/s%">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -586,6 +554,6 @@
   }
 ]</script>
 </div>
-<div id="TcHmiIFrame" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiIFrame" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="793" data-tchmi-left-unit="px" data-tchmi-top="32" data-tchmi-top-unit="px" data-tchmi-width="465" data-tchmi-width-unit="px" data-tchmi-src="%s%PLC1.GVL_General.GraphPage%/s%">
+<div id="TcHmiIFrame" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiIFrame" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="793" data-tchmi-left-unit="px" data-tchmi-top="32" data-tchmi-top-unit="px" data-tchmi-width="465" data-tchmi-width-unit="px" data-tchmi-src="%s%ADS.PLC1.GVL_Mc.sGraphCalciFrame%/s%">
 </div>
 </div>
