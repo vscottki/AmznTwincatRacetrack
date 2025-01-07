@@ -5,9 +5,8 @@
 VAR
 	nCase 					: INT;
 	
-	xOn 			AT%Q* 	: BOOL;
 	xRequestReset 	AT%Q* 	: BOOL;
-	xError 			AT%Q* 	: BOOL;
+	xError 				 	: BOOL;
 		
 
 	rTrigSwitchon 		  	: R_trig;
@@ -36,11 +35,8 @@ END_IF
 
 IF gvl_safety.SaeftyOk THEN
 	gvl_safety.HWSafetyOk := TRUE;
-	xOn := TRUE;
 ELSE	
 	gvl_safety.HWSafetyOk := FALSE;
-	xOn := FALSE;
-	
 END_IF
 
 IF NOT gvl_safety.SafetyInRun THEN

@@ -2518,7 +2518,7 @@ External Setpoint Generation:
 			</EventId>
 		</DataType>
 		<DataType>
-			<Name GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}" AutoDeleteType="true">E_EcState</Name>
+			<Name GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}" AutoDeleteType="true">E_EcState</Name>
 			<BitSize>16</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
 			<EnumInfo>
@@ -2550,6 +2550,9 @@ External Setpoint Generation:
 			</Default>
 			<Properties>
 				<Property>
+					<Name>generate_implicit_init_function</Name>
+				</Property>
+				<Property>
 					<Name>qualified_only</Name>
 				</Property>
 				<Property>
@@ -2566,15 +2569,12 @@ External Setpoint Generation:
 					<Name>to_wstring_function</Name>
 					<Value>__TO_WSTRING__1178</Value>
 				</Property>
-				<Property>
-					<Name>generate_implicit_init_function</Name>
-				</Property>
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name GUID="{E2501123-680E-5A82-D657-5CA0731C8604}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..2] OF E_EcState</Name>
+			<Name GUID="{AABB7CBC-D21D-1ABD-F449-BB8131589989}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..2] OF E_EcState</Name>
 			<BitSize>48</BitSize>
-			<BaseType GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</BaseType>
+			<BaseType GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}">E_EcState</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
 				<Elements>3</Elements>
@@ -3244,10 +3244,10 @@ External Setpoint Generation:
 			<Licenses>
 				<Target BkhfOrder="DCC1" CustomOrder="Amazon">
 					<ManualSelect>{4989A799-AEEA-4FEE-88EF-666B99EEFB45}</ManualSelect>
-					<ManualSelect>{27326EE5-AB30-4084-B15B-8CCA96CCBF0B}</ManualSelect>
 					<ManualSelect>{648F394E-7DD1-499C-8112-7C38E161A94C}</ManualSelect>
-					<ManualSelect>{3DDCAB25-BF0E-412C-A721-DC77C1B8099C}</ManualSelect>
+					<ManualSelect>{27326EE5-AB30-4084-B15B-8CCA96CCBF0B}</ManualSelect>
 					<ManualSelect>{57BD9670-089D-434A-85CF-90A857EE0EFF}</ManualSelect>
+					<ManualSelect>{3DDCAB25-BF0E-412C-A721-DC77C1B8099C}</ManualSelect>
 					<ManualSelect>{C7C2EEE2-23C9-47B9-82D4-0ADF5D82C0A0}</ManualSelect>
 				</Target>
 			</Licenses>
@@ -8139,7 +8139,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{B4802C96-BCDA-3E33-7B57-D91811F7D506}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{493CA747-72F2-7C6B-1B36-D1E603BADF1C}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8171,6 +8171,10 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.Emergency</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.StartLight</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -8253,6 +8257,10 @@ External Setpoint Generation:
 							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
 							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
 						</Var>
+						<Var>
+							<Name>GVL_Mc.StopLight</Name>
+							<Type>BOOL</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
@@ -8270,15 +8278,19 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.ModuleState1</Name>
-							<Type GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</Type>
+							<Type GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}">E_EcState</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.ModuleState2</Name>
-							<Type GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</Type>
+							<Type GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}">E_EcState</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.ModuleState3</Name>
-							<Type GUID="{E2501123-680E-5A82-D657-5CA0731C8604}">ARRAY [0..2] OF E_EcState</Type>
+							<Type GUID="{AABB7CBC-D21D-1ABD-F449-BB8131589989}">ARRAY [0..2] OF E_EcState</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.HWStart</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Mc.MC_Tracks[1].MCTOPLC_STD</Name>
@@ -8375,6 +8387,10 @@ External Setpoint Generation:
 							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
 							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
 						</Var>
+						<Var>
+							<Name>GVL_Mc.HWStop</Name>
+							<Type>BOOL</Type>
+						</Var>
 					</Vars>
 					<Contexts>
 						<Context>
@@ -8393,21 +8409,13 @@ External Setpoint Generation:
 				</Instance>
 			</Project>
 			<Project GUID="{23F3AAC5-D2AC-4B6B-826F-C638329B5E0D}" Name="SaftyPLC" PrjFilePath="SaftyPLC\SaftyPLC.plcproj" TmcFilePath="SaftyPLC\SaftyPLC.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{776F57C7-7C31-E81B-563D-944CB3782F6C}" TmcPath="SaftyPLC\SaftyPLC.tmc">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{C830FD3F-D8B7-AF6A-25C9-F11E46C81402}" TmcPath="SaftyPLC\SaftyPLC.tmc">
 					<Name>SaftyPLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
 						<Var>
-							<Name>MAIN.xOn</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.xRequestReset</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.xError</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -8817,6 +8825,14 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Inputs^MAIN.MoverStop" VarB="StandardInputs^TwinSafeGroup1.E-StopReq_139"/>
 				<Link VarA="PlcTask Outputs^MAIN.MoverStopDone" VarB="StandardOutputs^TwinSafeGroup1.STO_Release_140"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_Mc.HWStart" VarB="Channel 14^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_Mc.HWStop" VarB="Channel 15^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 4 (EL2809)">
+				<Link VarA="PlcTask Outputs^GVL_Mc.StartLight" VarB="Channel 14^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_Mc.StopLight" VarB="Channel 15^Output"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 7 (EL4034)">
 				<Link VarA="PlcTask Outputs^MAIN.MagnetValue" VarB="AO Outputs Channel 1^Analog output"/>
 			</OwnerB>
@@ -8981,8 +8997,6 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Inputs^GVL_Safety.HWStop" VarB="Channel 15^Input"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 4 (EL2809)">
-				<Link VarA="PlcTask Outputs^MAIN.xError" VarB="Channel 15^Output"/>
-				<Link VarA="PlcTask Outputs^MAIN.xOn" VarB="Channel 14^Output"/>
 				<Link VarA="PlcTask Outputs^MAIN.xRequestReset" VarB="Channel 16^Output"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 50 (AT5100-0100)">

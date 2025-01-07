@@ -36,6 +36,11 @@ VAR_GLOBAL
 	
 	
 	Mover				:	ARRAY[0..nMoverCount] OF MoverSort;
+	
+	HWStart		AT%I* : BOOL;
+	HWStop		AT%I* : BOOL;	
+	StartLight 	AT%Q* : BOOL;
+	StopLight	AT%Q* : BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
