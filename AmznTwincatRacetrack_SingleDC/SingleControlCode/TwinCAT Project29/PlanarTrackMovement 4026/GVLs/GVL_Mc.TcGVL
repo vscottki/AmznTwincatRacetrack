@@ -29,7 +29,7 @@ VAR_GLOBAL
 	ipXtsProcessingUnit			:   I_XtsProcessingUnit1;
 	cmdFeedback					: 	XtsCommandFeedback;
 	fbMover				:	ARRAY[1..nMoverCount] OF FB_Mover;
-
+	iMover				:	ARRAY[1..nMoverCount] OF I_Mover;
 	//fbPlanarMover		:	ARRAY[1..nNumMaxMovers] OF FB_PlanarMover;
 	MoverFeedback		:	ARRAY[1..nMoverCount] OF MC_PlanarFeedback;
 	aStopPositions : ARRAY [1..nMoverCount] OF LREAL;// := [2400, 1700, 1000, 300];

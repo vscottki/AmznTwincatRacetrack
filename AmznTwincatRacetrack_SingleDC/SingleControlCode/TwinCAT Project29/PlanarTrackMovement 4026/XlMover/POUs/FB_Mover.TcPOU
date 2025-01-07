@@ -11,7 +11,7 @@ VAR
 	fbPlanarMover : MC_PlanarMover;
 	fbPlanarFeedback: MC_PlanarFeedback;
 	CmdFeedback :  XtsCommandFeedback;
-	bIsInitialized: BOOL;
+	_bIsInitialized: BOOL;
 	ipXtsMover:   I_XtsXlMover1;
 	ipXtsProcessingUnit:  I_XtsProcessingUnit1;
 	trackTrail: MC_PlanarTrackTrail;
@@ -42,7 +42,7 @@ VAR
 	_trackEnum: e_TrackNum;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT bIsInitialized THEN
+        <ST><![CDATA[IF NOT _bIsInitialized THEN
 	RETURN;
 END_IF
 
@@ -103,7 +103,8 @@ syncTrail.AddTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main]);
 
 //_stDynamics.SetValuesVADJ(500, 4000, 4000, 10000);
 
-bIsInitialized := TRUE;]]></ST>
+_bIsInitialized := TRUE;
+Init := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="JoinNearestTrack" Id="{7049d311-b9c1-401e-88ee-2d1a43482209}">
@@ -225,6 +226,17 @@ END_VAR
           <ST><![CDATA[_stDynamics := P_Dynamics;  ]]></ST>
         </Implementation>
       </Set>
+    </Property>
+    <Property Name="P_IsInitialized" Id="{b7011b40-0827-4f2c-9967-dcf04f3d6670}">
+      <Declaration><![CDATA[PROPERTY P_IsInitialized : bool]]></Declaration>
+      <Get Name="Get" Id="{9ac2d880-f778-4311-bc48-311a57bb2852}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_IsInitialized := _bIsInitialized;]]></ST>
+        </Implementation>
+      </Get>
     </Property>
     <Property Name="P_PlanarFeedback" Id="{21da37fd-6f26-475d-beab-c040fa3e1691}">
       <Declaration><![CDATA[PROPERTY P_PlanarFeedback : REFERENCE TO MC_PlanarFeedback]]></Declaration>
@@ -452,97 +464,5 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <LineIds Name="FB_Mover">
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.CycleUpdate">
-      <LineId Id="1" Count="2" />
-      <LineId Id="20" Count="6" />
-      <LineId Id="6" Count="5" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="12" Count="5" />
-    </LineIds>
-    <LineIds Name="FB_Mover.distToEndOfTrack.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.Init">
-      <LineId Id="1" Count="8" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="10" Count="3" />
-    </LineIds>
-    <LineIds Name="FB_Mover.JoinNearestTrack">
-      <LineId Id="1" Count="4" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="6" Count="1" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="9" Count="6" />
-      <LineId Id="18" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.LeaveSystemAt">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="FB_Mover.MoveOnTrack">
-      <LineId Id="2" Count="1" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.MoverOTCID.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.MoverOTCID.Set">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.MoverStopped.Get">
-      <LineId Id="1" Count="2" />
-    </LineIds>
-    <LineIds Name="FB_Mover.MoverStopped.Set">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.P_Dynamics.Get">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="FB_Mover.P_Dynamics.Set">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.P_PlanarFeedback.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.P_PlanarMover.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.P_SyncFeedback.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.P_TargetTrack.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.P_TargetTrack.Set">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.Rework.Get">
-      <LineId Id="1" Count="1" />
-    </LineIds>
-    <LineIds Name="FB_Mover.Rework.Set">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.SyncToOtherMover">
-      <LineId Id="1" Count="7" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="9" Count="11" />
-    </LineIds>
-    <LineIds Name="FB_Mover.UpdateXtsTrack">
-      <LineId Id="1" Count="52" />
-    </LineIds>
-    <LineIds Name="FB_Mover.XlProcessingUnit.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.XtsComFeed.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Mover.XtsXlMover.Get">
-      <LineId Id="1" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

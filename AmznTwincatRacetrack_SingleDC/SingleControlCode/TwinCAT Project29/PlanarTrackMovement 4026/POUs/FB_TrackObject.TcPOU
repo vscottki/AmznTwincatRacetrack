@@ -6,6 +6,7 @@
 
 VAR_INPUT
 	TrackID: OTCID;
+	iMover	:REFERENCE TO ARRAY[1..nMoverCount] OF I_Mover;
 END_VAR
 
 VAR_OUTPUT
@@ -17,9 +18,7 @@ VAR_OUTPUT
 	moverIDs : ARRAY[1..nMoverCount] OF UDINT;
 	
 END_VAR
-VAR_IN_OUT 
-	fbMover	:ARRAY[1..nMoverCount] OF FB_Mover;
-END_VAR
+
 VAR_STAT
 	nNumMoversOnTrack: UDINT; //numberofMovers currently on this track
 	nMoverList: ARRAY [1..nMoverCount] OF OTCID; //list of movers currently on the track 
@@ -58,7 +57,7 @@ END_IF
 MEMSET(ADR(moverIDs),0,SIZEOF(moverIDs)); // have to clear the list 
 FOR J := 1 TO nNumMoversOnTrack DO  
 	FOR I := 1 TO nNumMovers DO  
-		IF fbMover[I].MoverOTCID = nMoverList[J] THEN 
+		IF iMover[I].MoverOTCID = nMoverList[J] THEN 
 			moverIDs[J] := I; 
 		END_IF
 	END_FOR

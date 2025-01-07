@@ -77,3 +77,5 @@ _CompileInfo/
 
 # Dont save archives (usually due to size)
 *.zip
+/Amzn TwincatRacetrackLib/TwinCAT LibPro/_Boot
+/AmznTwincatRacetrack_SingleDC/SingleControlCode/TwinCAT Project29/_Boot

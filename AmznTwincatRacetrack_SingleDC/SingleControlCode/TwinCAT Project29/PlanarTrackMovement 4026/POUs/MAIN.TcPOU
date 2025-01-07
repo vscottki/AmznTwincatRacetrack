@@ -68,7 +68,7 @@ VAR
 	ArcLength :ARRAY[1..nMoverCount] OF LREAL;
 	TrackPos :ARRAY[1..nMoverCount] OF ARRAY[1..nMoverCount] OF PositionXYC;
 	
-	searchGap : F_SearchTheBigTrackForAHole; 
+	//searchGap : F_SearchTheBigTrackForAHole; 
 	aMoverTrack : ARRAY[1..nMoverCount] OF Global.OTCID;
 	FirstMoverTrackPos : LREAL;
 	MoverGap : LREAL;
@@ -105,7 +105,7 @@ VAR
 	masterPosAtSync: LREAL;
 	followerPosAtSync: LREAL;
 	moverInFront: UDINT;
-	gapStart: LREAL := 4500; //5600
+	gapStart: LREAL := 5000; //5600
 	gapLength: LREAL := 2000; //1800
 	fbTrackobject : FB_TrackObject;
 	getList: BOOL;
@@ -201,21 +201,18 @@ IF fp_start.Q THEN
 	haltDynamics.SetValuesVADJ(stMoverCfgHalt.Velo,stMoverCfgHalt.Accel,stMoverCfgHalt.Decel,stMoverCfgHalt.Jerk);
 END_IF
 
-//================  merge ===============
 
-fbTrackobject(TrackID:= MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID,fbMover:= fbMover ); 
-fbTrackobject.CyclicUpdate(); 
-
-
-//======================================
 IsMoverInBlockingArea := FALSE;
-GVL_MC.ipXtsProcessingUnit :=  GVL_MC.fbXtsEnvironment.ProcessingUnit(1,0);
+
 FOR M := 1 TO nMoverCount DO///Movers
 	StopTimer[M](in:=StartTimer[m],PT:=StopTime);
 
-	GVL_MC.ipXlMover  :=  GVL_MC.fbXtsEnvironment.ProcessingUnit(1, 0).XlMover(m, 0);
-	IF NOT Init THEN
-		Init :=GVL_MC.fbMover[m].Init( GVL_MC.ipXlMover, GVL_MC.ipXtsProcessingUnit); 
+	
+	IF NOT GVL_MC.fbMover[nMoverCount].P_IsInitialized THEN
+		GVL_MC.ipXtsProcessingUnit :=  GVL_MC.fbXtsEnvironment.ProcessingUnit(1,0);
+		GVL_MC.ipXlMover  :=  GVL_MC.fbXtsEnvironment.ProcessingUnit(1, 0).XlMover(m, 0);
+		GVL_MC.fbMover[m].Init( GVL_MC.ipXlMover, GVL_MC.ipXtsProcessingUnit); 
+		iMover[m] := fbMover[m] ;
 	END_IF
 	 MoverFeedback[m].Update();
 	GVL_MC.fbMover[m].CycleUpdate();
@@ -259,7 +256,14 @@ FOR T := 1 TO nTrackCount DO
 	
 END_FOR
  MoverGap := (GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()- FirstMoverTrackPos);
+ 
+//================  merge ===============
 
+fbTrackobject(TrackID:= MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID,iMover:= iMover ); 
+fbTrackobject.CyclicUpdate(); 
+
+
+//======================================
 
 CASE nCase OF
 	10:
@@ -386,7 +390,7 @@ CASE nCase OF
 						trapErrorID := fbMover[nForCounter].P_PlanarFeedback.ErrorId; 
 						stepWithFault := 30; 
 					END_IF 
-					IF Mover[nForCounter].MoverPos > GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-4000 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
+					IF Mover[nForCounter].MoverPos > GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-8000 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
 						nMoveState[nForCounter] := 0;
 					END_IF				
 				
@@ -404,7 +408,7 @@ CASE nCase OF
  						moverWithFault := nForCounter; 
 					END_IF
 					IF fbMover[nForCounter].P_PlanarFeedback.Done THEN 
-						nMoveState[nForCounter] := 50;
+						nMoveState[nForCounter] := 50; //50;
 						stopAndWait[nForCounter](IN:=TRUE, PT:=StopTime); 
 					END_IF 	
 
@@ -412,14 +416,14 @@ CASE nCase OF
 					stopAndWait[nForCounter](); 
 					IF stopAndWait[nForCounter].Q  OR NOT TestPowerMat THEN // send the mover to a sync Position 2.6m before the end of the track 
 						stopAndWait[nForCounter](IN:=FALSE); 							
-						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
-						fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-waitForGapParkPos,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
-						searchGap(resetSearch:=TRUE, fbMover := fbMover); 
+					//	fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
+					//	fbMover[nForCounter].MoveOnTrack( GVL_Mc.MC_Tracks[E_TrackNum.Small], GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-waitForGapParkPos,stMoverConfigNormal.MoverGap,stMoverConfigNormal.velo);
+					//	searchGap(resetSearch:=TRUE, fbMover := fbMover); 
 						nMoveState[nForCounter] := 60; 
 					END_IF 
 					
 				60: // look for a merge position 
-					IF fbMover[nForCounter].P_PlanarFeedback.Done THEN// MCTrackOid_Shortcut THEN
+					//IF fbMover[nForCounter].P_PlanarFeedback.Done THEN// MCTrackOid_Shortcut THEN
 							fbTrackobject.findMergePosition(
 								mergeSyncCommandPos := gapStart , 
 								spaceToMerge := gapLength, 
@@ -429,7 +433,7 @@ CASE nCase OF
 							IF (directMerge OR moverInFront <> 0) AND NOT mergeNotPossible THEN
 								nMoveState[nForCounter] := 70;
 							END_IF 
-					END_IF
+				//	END_IF
 				70:  //merge with gap zero
 					//issue commmand to sync 
 					IF directMerge THEN 
@@ -437,10 +441,10 @@ CASE nCase OF
 						fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap, stMoverConfigNormal.velo);
 						nMoveState[nForCounter] := 10; 
 					ELSIF moverInFront <>0 THEN 
-						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,2*stMoverConfigNormal.Decel,4*stMoverConfigNormal.Jerk);
-						masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-10;
+						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
+						masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-2750;
 						masterPosAtSync := Mover[moverInFront].MoverPos; 
-						followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-stMoverConfigNormal.MoverGap-100;
+						followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-stMoverConfigNormal.MoverGap-2750;
 						followerPosAtSync :=Mover[1].MoverPos; 
 						fbMover[nForCounter].SyncToOtherMover( 
 							masterSyncPos := masterSyncPos,
@@ -451,7 +455,7 @@ CASE nCase OF
 							velo:= stMoverConfigNormal.velo);
 							nMoveState[nForCounter] := 80; 
 						// reduce the gap of the leading mover 
-						fbMover[moverInFront].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
+		//				fbMover[moverInFront].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
 						fbMover[moverInFront].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,0(*Gap*), stMoverConfigNormal.velo);
 					END_IF 
 					
