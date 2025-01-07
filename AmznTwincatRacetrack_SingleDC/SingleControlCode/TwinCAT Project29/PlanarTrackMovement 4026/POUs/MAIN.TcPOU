@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
   <POU Name="MAIN" Id="{741d33e8-52ed-4b62-8ea9-8d206e7291c9}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
@@ -88,6 +88,8 @@ VAR
 
 	ModuleState1 AT%I*: E_EcState;
 	ModuleState2 AT%I*: E_EcState;
+	ModuleState3 AT%I*: ARRAY[0..2] OF E_EcState;
+	
 	MessageTrigger : ARRAY[1..20] OF R_trig;
 	
 	//========= Merge =========================================
@@ -146,9 +148,24 @@ IF MessageTrigger[1].Q THEN
 	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 1 %s' , strArg:= TO_STRING(ModuleState1));
 END_IF
 
-MessageTrigger[2](clk:=ModuleState1 <> 8 AND nCASE> 0);
+MessageTrigger[2](clk:=ModuleState2 <> 8 AND nCASE> 0);
 IF MessageTrigger[2].Q THEN
 	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 2 %s ' , strArg:= TO_STRING(ModuleState2));
+END_IF
+
+MessageTrigger[3](clk:=ModuleState3[0] <> 8 AND nCASE> 0);
+IF MessageTrigger[3].Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 3 Default SyncUnit %s ' , strArg:= TO_STRING(ModuleState3[0]));
+END_IF
+
+MessageTrigger[4](clk:=ModuleState3[1] <> 8 AND nCASE> 0);
+IF MessageTrigger[4].Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 3 XtsTask SyncUnit %s ' , strArg:= TO_STRING(ModuleState3[1]));
+END_IF
+
+MessageTrigger[5](clk:=ModuleState3[2] <> 8 AND nCASE> 0);
+IF MessageTrigger[5].Q THEN
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG , msgFmtStr:= 'Module Fault Line 3 PlcTask SyncUnit %s ' , strArg:= TO_STRING(ModuleState3[2]));
 END_IF
 
 //=====================================================================================
@@ -585,13 +602,5 @@ IF Mover[1].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THE
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="3" Count="350" />
-      <LineId Id="463" Count="1" />
-      <LineId Id="354" Count="0" />
-      <LineId Id="462" Count="0" />
-      <LineId Id="355" Count="106" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
