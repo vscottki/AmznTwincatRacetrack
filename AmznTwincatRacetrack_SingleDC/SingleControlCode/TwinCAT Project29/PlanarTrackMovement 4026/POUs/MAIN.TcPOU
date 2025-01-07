@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
   <POU Name="MAIN" Id="{741d33e8-52ed-4b62-8ea9-8d206e7291c9}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
@@ -105,8 +105,8 @@ VAR
 	masterPosAtSync: LREAL;
 	followerPosAtSync: LREAL;
 	moverInFront: UDINT;
-	gapStart: LREAL := 5000; //5600
-	gapLength: LREAL := 2000; //1800
+	gapStart: LREAL := 8500; //5600
+	gapLength: LREAL := 2200; //1800
 	fbTrackobject : FB_TrackObject;
 	getList: BOOL;
 	directMerge: BOOL;
@@ -390,7 +390,7 @@ CASE nCase OF
 						trapErrorID := fbMover[nForCounter].P_PlanarFeedback.ErrorId; 
 						stepWithFault := 30; 
 					END_IF 
-					IF Mover[nForCounter].MoverPos > GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-8000 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
+					IF Mover[nForCounter].MoverPos > GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-10000 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
 						nMoveState[nForCounter] := 0;
 					END_IF				
 				
@@ -472,7 +472,10 @@ CASE nCase OF
 					IF fbMover[nForCounter].P_SyncFeedback.inSync OR  MOver[nForCounter].TrackID =  GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THEN 
 						nMoveState[nForCounter] := 10;
 						IsMoverCommandedInShortcut :=FALSE;
+					ELSIF	fbMover[nForCounter].P_SyncFeedback.Error THEN
+						nMoveState[nForCounter] := 60;
 					END_IF 
+					
 				END_CASE
 		
 		END_FOR
@@ -582,5 +585,13 @@ IF Mover[1].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THE
 END_IF
 ]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="350" />
+      <LineId Id="463" Count="1" />
+      <LineId Id="354" Count="0" />
+      <LineId Id="462" Count="0" />
+      <LineId Id="355" Count="106" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

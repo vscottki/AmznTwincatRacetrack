@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.12" ClassName="CTComObjDef">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.13" ClassName="CTComObjDef">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{C929B002-BF94-48A2-937B-5D20DED8EF3B}" Namespace="XTS">OperationMode</Name>
@@ -1905,8 +1905,8 @@
 				<Group Collapsed="true"><![CDATA[Diagnostics]]></Group>
 				<Group><![CDATA[Development]]></Group>
 				<Group Collapsed="true"><![CDATA[Advanced]]></Group>
-				<Group Collapsed="true"><![CDATA[Simulation]]></Group>
-				<Group Collapsed="true"><![CDATA[XL]]></Group>
+				<Group><![CDATA[Simulation]]></Group>
+				<Group><![CDATA[XL]]></Group>
 				<Group Collapsed="true"><![CDATA[Structure]]></Group>
 				<Group><![CDATA[Info]]></Group>
 				<Group><![CDATA[Drive Info]]></Group>
@@ -4226,7 +4226,7 @@
 				</Value>
 				<Value>
 					<Name>XLMaxPeakCurrent</Name>
-					<Value>7</Value>
+					<Value>6</Value>
 				</Value>
 				<Value>
 					<Name>DisableCurrentLimitWarning</Name>
