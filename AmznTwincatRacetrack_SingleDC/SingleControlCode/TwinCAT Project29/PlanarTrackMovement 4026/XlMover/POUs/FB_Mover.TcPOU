@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
   <POU Name="FB_Mover" Id="{198fd53d-d7b4-4fcb-b2eb-8f7ae59664d7}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'no_assign'}
 FUNCTION_BLOCK FB_Mover IMPLEMENTS I_Mover
@@ -11,7 +11,6 @@ VAR
 	fbPlanarMover : MC_PlanarMover;
 	fbPlanarFeedback: MC_PlanarFeedback;
 	CmdFeedback :  XtsCommandFeedback;
-	extraByte : BYTE; 
 	_bIsInitialized: BOOL;
 	ipXtsMover:   I_XtsXlMover1;
 	ipXtsProcessingUnit:  I_XtsProcessingUnit1;
@@ -163,10 +162,13 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[stMoveonTrackOptions.gap := gap; 
-THIS^.P_Dynamics.V := velo; 
-fbPlanarMover.MoveOnTrack(fbPlanarFeedback, track, targetPos, _stDynamics, stMoveOnTrackOptions);
 
-]]></ST>
+fbPlanarMover.MoveOnTrack(
+	commandFeedback:= fbPlanarFeedback, 
+	targetTrack:= track, 
+	targetPositionOnTrack:= targetPos, 
+	constraint:= _stDynamics, 
+	options:= stMoveOnTrackOptions);]]></ST>
       </Implementation>
     </Method>
     <Property Name="MoverOTCID" Id="{ce0ba360-bc0d-42ad-8903-9adb5e1a2946}">
@@ -323,7 +325,7 @@ VAR_INPUT
 	PlanarMoverToFollow: REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarMover;
 	masterTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack; 
 	followerTrack : REFERENCE TO Tc3_Mc3PlanarMotion.MC_PlanarTrack; 
-	velo : LREAL; 
+	velo : REFERENCE TO LREAL; 
 END_VAR
 
 VAR

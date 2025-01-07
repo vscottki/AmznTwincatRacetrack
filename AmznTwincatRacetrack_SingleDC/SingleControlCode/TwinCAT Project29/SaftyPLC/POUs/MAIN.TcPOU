@@ -37,7 +37,6 @@ END_IF
 IF gvl_safety.SaeftyOk THEN
 	gvl_safety.HWSafetyOk := TRUE;
 	xOn := TRUE;
-	xRequestReset :=FALSE;
 ELSE	
 	gvl_safety.HWSafetyOk := FALSE;
 	xOn := FALSE;
@@ -48,14 +47,11 @@ IF NOT gvl_safety.SafetyInRun THEN
 	gvl_safety.HWerror := TRUE;
 ELSE	
 	gvl_safety.HWerror := FALSE;
-	xRequestReset := TRUE;
 END_IF
 
 xError := NOT gvl_safety.SafetyInRun AND NOT gvl_safety.HWSafetyOk AND GVL_Safety.Run AND GVL_Safety.Start;
 
-
-
-
+xRequestReset	:= NOT GVL_Safety.SaeftyOk;
 
 IF GVL_safety.hwReset OR SoftReset  THEN
 	GVL_Safety.Reset := TRUE;
