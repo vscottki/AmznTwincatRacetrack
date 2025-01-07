@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
   <POU Name="FB_TrackObject" Id="{29e2a0b7-3367-458c-a943-6af05a504777}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_TrackObject
 // for a track/part this block keeps a list of the movers in order with their positions on a track
@@ -19,7 +19,7 @@ VAR_OUTPUT
 	
 END_VAR
 
-VAR_STAT
+VAR
 	nNumMoversOnTrack: UDINT; //numberofMovers currently on this track
 	nMoverList: ARRAY [1..nMoverCount] OF OTCID; //list of movers currently on the track 
 END_VAR
@@ -220,29 +220,5 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_TrackObject">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.CyclicUpdate">
-      <LineId Id="3" Count="10" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.findMergePosition">
-      <LineId Id="3" Count="44" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetComObject">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetMoverList">
-      <LineId Id="3" Count="18" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetNumMovers">
-      <LineId Id="3" Count="20" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
