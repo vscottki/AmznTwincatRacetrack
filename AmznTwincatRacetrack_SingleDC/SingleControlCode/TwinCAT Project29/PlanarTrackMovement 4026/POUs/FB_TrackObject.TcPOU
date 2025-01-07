@@ -7,6 +7,7 @@
 VAR_INPUT
 	TrackID: OTCID;
 	iMover	:REFERENCE TO ARRAY[1..nMoverCount] OF I_Mover;
+	trackLength : LREAL;// this should be a loookup but I don't know how to look it up so I'm going to pass it externally 
 END_VAR
 
 VAR_OUTPUT
@@ -16,12 +17,13 @@ VAR_OUTPUT
 	bInit: BOOL;
 	ipResultMessage: I_TcMessage := fbResult;
 	moverIDs : ARRAY[1..nMoverCount] OF UDINT;
-	
 END_VAR
 
-VAR_STAT
-	nNumMoversOnTrack: UDINT; //numberofMovers currently on this track
+VAR
+	nNumMoversThisTrack: UDINT; //numberofMovers currently on this track
 	nMoverList: ARRAY [1..nMoverCount] OF OTCID; //list of movers currently on the track 
+
+	distToNextMover : ARRAY[1..nMoverCount] OF LREAL;  
 END_VAR
 
 VAR
@@ -47,7 +49,7 @@ END_VAR
 
 VAR
 	J: UDINT;
-	I: UINT;
+	I: UDINT;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF bInit THEN 
@@ -55,12 +57,19 @@ END_VAR]]></Declaration>
 	GetMoverList(); 
 END_IF 
 MEMSET(ADR(moverIDs),0,SIZEOF(moverIDs)); // have to clear the list 
-FOR J := 1 TO nNumMoversOnTrack DO  
+FOR J := 1 TO nNumMoversThisTrack DO  
 	FOR I := 1 TO nNumMovers DO  
 		IF iMover[I].MoverOTCID = nMoverList[J] THEN 
 			moverIDs[J] := I; 
 		END_IF
 	END_FOR
+END_FOR
+FOR I := 1 TO nNumMoversThisTrack DO 
+	IF I <= nNumMoversThisTrack -1 THEN
+		distToNextMover[I] := fbMover[moverIDs[I+1]].distToEndOfTrack - fbMover[moverIDs[I]].distToEndOfTrack;
+	ELSIF I = nNumMoversThisTrack THEN
+		distToNextMover[I] := trackLength - fbMover[moverIDs[I]].distToEndOfTrack;
+	END_IF
 END_FOR]]></ST>
       </Implementation>
     </Method>
@@ -78,56 +87,29 @@ END_VAR
 VAR_INST 
 	I: UDINT;
 	moverInMerge: UDINT;
-	moverIsWhereWeSync: BOOL;
-	moversDist: LREAL;
-	Iplus1Dist: LREAL;
-	idist: LREAL;
-
-	needToFollow: BOOL;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[mergeNotPossible := TRUE; 
 mergeWithoutFollow:=FALSE;
 nMoverToFollow := 0; 
 moverInMerge := 0;
-needToFollow := TRUE;  
-IF nNumMoversOnTrack = 0  THEN // if there's no movers on the track we can just merge 
+// do not get fancy,  go through the list find all the distances between
+//cyclic update finds builds a list of moers on the track and their spaceing 
+
+IF nNumMoversThisTrack = 0  THEN // if there's no movers on the track we can just merge 
 	mergeWithoutFollow := TRUE;
 	mergeNotPossible := FALSE; 
 ELSE
-  	// there's movers in the track we need to look where there are 
-	// go through the movers positions and find a place to merge if available 
-	FOR I := 1 TO nNumMoversOnTrack DO 
-		// is this mover in the range where we would sync? 
-		moverIsWhereWeSync := IsBetween(fbMover[moverIDs[I]].distToEndOfTrack, mergeSyncCommandPos, mergeSyncCommandPos + spaceToMerge); 
-		needToFollow := IsBetween(fbMover[moverIDs[I]].distToEndOfTrack, mergeSyncCommandPos, mergeSyncCommandPos + spaceToMerge); //lagerwindow we can merge but must sync still
-		IF moverIsWhereWeSync THEN //if the mover is where we would sync start looking for places to merge behind it
-			moverInMerge := moverIDs[I]; // this mover is is the id of the mover thats in the way 
-			// can we merge behind this one ?
-			IF I < nNumMoversOnTrack - 1 THEN 
-				moversDist := fbMover[moverIDs[I+1]].distToEndOfTrack - fbMover[moverIDs[I]].distToEndOfTrack;
-				Iplus1Dist := fbMover[moverIDs[I+1]].distToEndOfTrack; // folowwing movers distance 
-				idist := fbMover[moverIDs[I]].distToEndOfTrack; //this movers distance 
-				// is the spacing between these two movers bigger than the space we need to merge?
-				IF (fbMover[moverIDs[I+1]].distToEndOfTrack - fbMover[moverIDs[I]].distToEndOfTrack )> spaceToMerge THEN 
-					nMoverToFollow := moverIDs[I]; //yes follow this mover 
-					mergeNotPossible := FALSE; // the merge is possible 
-					EXIT; 
-				END_IF
-			ELSIF I = nNumMoversOnTrack THEN // this is the last mover 
-				// look how much space is behind this mover that is bigger than the merge gap, merge behind this mover
-				IF fbMover[moverIDs[I]].distToEndOfTrack < mergeSyncCommandPos+spaceToMerge THEN // the mover is far enough along to sync to it.
-					nMoverToFollow := moverIDs[I]; //yes follow this mover 
-					mergeNotPossible := FALSE; // the merge is possible 
-				END_IF  
-			END_IF	
+	// find a mover to follow starting at sync position look for a space to merge sized hole 
+	FOR I := 1 TO nNumMoversThisTrack DO 
+		IF fbMover[moverIDs[I]].distToEndOfTrack > mergeSyncCommandPos THEN // this mover is a potentialmover to follow 
+			IF distToNextMover[I] > spaceToMerge THEN // follow this mover 
+				nMoverToFollow := moverIDs[I]; //yes follow this mover 
+				mergeNotPossible := FALSE; // the merge is possible 
+				EXIT ; //get out of the loop we want the first one 
+			END_IF
 		END_IF
 	END_FOR 
-	//if we went through the whole list and no mover is in the range where we would merge in, then just merge 
-	IF fbMover[moverIDs[1]].distToEndOfTrack > 7000 THEN //there's noone where we want to merge, just merge in 
-		mergeWithoutFollow:=TRUE;
-		mergeNotPossible := FALSE;
-	END_IF
 END_IF
 IF mergeNotPossible THEN 
 	nMoverToFollow := 0; 
@@ -188,8 +170,8 @@ END_IF
 VAR
 	stEventEntry: TcEventEntry;
 	pstEventEntry: REFERENCE TO TcEventEntry := stEventEntry;
-	nData 			: UDINT := SIZEOF(nNumMoversOnTrack);
-	pData 			: PVOID := ADR(nNumMoversOnTrack);
+	nData 			: UDINT := SIZEOF(nNumMoversThisTrack);
+	pData 			: PVOID := ADR(nNumMoversThisTrack);
 END_VAR
 
 VAR_INST
@@ -199,12 +181,14 @@ END_VAR]]></Declaration>
         <ST><![CDATA[bError := FALSE;
 
 IF _ipComObject <> 0 THEN 	
-	
+	nData := SIZEOF(nNumMoversThisTrack);
+	pData  := ADR(nNumMoversThisTrack);
 
 	 hResult := 	_ipComObject.TcGetObjPara(		pid := PID_NumMover,
 													nData := nData,
 													pData := pData,
 													pgp := 0); 	
+													
 	IF hResult = 0 THEN
 		GetNumMovers := TRUE;
 	ELSE
@@ -220,29 +204,5 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_TrackObject">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.CyclicUpdate">
-      <LineId Id="3" Count="10" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.findMergePosition">
-      <LineId Id="3" Count="44" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetComObject">
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetMoverList">
-      <LineId Id="3" Count="18" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TrackObject.GetNumMovers">
-      <LineId Id="3" Count="20" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

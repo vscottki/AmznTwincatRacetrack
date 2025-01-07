@@ -259,7 +259,7 @@ END_FOR
  
 //================  merge ===============
 
-fbTrackobject(TrackID:= MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID,iMover:= iMover ); 
+fbTrackobject(TrackID:= MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID,iMover:= iMover,trackLength:= GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()); 
 fbTrackobject.CyclicUpdate(); 
 
 
@@ -437,7 +437,7 @@ CASE nCase OF
 				70:  //merge with gap zero
 					//issue commmand to sync 
 					IF directMerge THEN 
-						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel*2,stMoverConfigNormal.Decel*2,stMoverConfigNormal.Jerk*2);
+						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
 						fbMover[nForCounter].MoveOnTrack(GVL_Mc.MC_Tracks[E_TrackNum.Main],  GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500,stMoverConfigNormal.MoverGap, stMoverConfigNormal.velo);
 						nMoveState[nForCounter] := 10; 
 					ELSIF moverInFront <>0 THEN 
@@ -585,13 +585,5 @@ IF Mover[1].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THE
 END_IF
 ]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="3" Count="350" />
-      <LineId Id="463" Count="1" />
-      <LineId Id="354" Count="0" />
-      <LineId Id="462" Count="0" />
-      <LineId Id="355" Count="106" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

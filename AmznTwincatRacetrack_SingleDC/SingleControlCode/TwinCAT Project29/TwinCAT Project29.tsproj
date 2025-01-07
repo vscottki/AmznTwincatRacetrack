@@ -2518,7 +2518,7 @@ External Setpoint Generation:
 			</EventId>
 		</DataType>
 		<DataType>
-			<Name GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}" AutoDeleteType="true">E_EcState</Name>
+			<Name GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}" AutoDeleteType="true">E_EcState</Name>
 			<BitSize>16</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
 			<EnumInfo>
@@ -2550,9 +2550,6 @@ External Setpoint Generation:
 			</Default>
 			<Properties>
 				<Property>
-					<Name>generate_implicit_init_function</Name>
-				</Property>
-				<Property>
 					<Name>qualified_only</Name>
 				</Property>
 				<Property>
@@ -2568,6 +2565,9 @@ External Setpoint Generation:
 				<Property>
 					<Name>to_wstring_function</Name>
 					<Value>__TO_WSTRING__1178</Value>
+				</Property>
+				<Property>
+					<Name>generate_implicit_init_function</Name>
 				</Property>
 			</Properties>
 		</DataType>
@@ -8123,7 +8123,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{CE508C07-024F-56AC-C748-477F98184B6A}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{4F95413A-9127-6159-DD50-9C8C0CD0FE03}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8254,11 +8254,11 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.ModuleState1</Name>
-							<Type GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}">E_EcState</Type>
+							<Type GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.ModuleState2</Name>
-							<Type GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}">E_EcState</Type>
+							<Type GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Mc.MC_Tracks[1].MCTOPLC_STD</Name>
