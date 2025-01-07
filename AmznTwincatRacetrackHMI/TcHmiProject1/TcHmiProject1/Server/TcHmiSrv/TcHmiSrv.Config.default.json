@@ -15,8 +15,7 @@
     "CLIENTPRIORITYLIST": [],
     "CLIENT_CACHE_MAX_AGE": 0,
     "CONFIGURATIONS": [
-        "remote",
-        "local"
+        "remote"
     ],
     "COOKIEEXPIRATIONDATE": "P30D",
     "CUSTOM_CSS": "",
