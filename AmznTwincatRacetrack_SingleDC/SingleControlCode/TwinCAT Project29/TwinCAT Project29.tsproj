@@ -3242,7 +3242,14 @@ External Setpoint Generation:
 				<IoIdleTask Affinity="#x00000004"/>
 			</Settings>
 			<Licenses>
-				<Target BkhfOrder="DCC1" CustomOrder="Amazon"/>
+				<Target BkhfOrder="DCC1" CustomOrder="Amazon">
+					<ManualSelect>{4989A799-AEEA-4FEE-88EF-666B99EEFB45}</ManualSelect>
+					<ManualSelect>{27326EE5-AB30-4084-B15B-8CCA96CCBF0B}</ManualSelect>
+					<ManualSelect>{648F394E-7DD1-499C-8112-7C38E161A94C}</ManualSelect>
+					<ManualSelect>{3DDCAB25-BF0E-412C-A721-DC77C1B8099C}</ManualSelect>
+					<ManualSelect>{57BD9670-089D-434A-85CF-90A857EE0EFF}</ManualSelect>
+					<ManualSelect>{C7C2EEE2-23C9-47B9-82D4-0ADF5D82C0A0}</ManualSelect>
+				</Target>
 			</Licenses>
 			<Tasks>
 				<Task Id="2" Priority="1" CycleTime="5000" AmsPort="350" Affinity="#x00000008" AdtTasks="true">
