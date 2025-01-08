@@ -217,7 +217,7 @@ IF rt_InitStart.Q THEN
 //	fastDynamics.SetValuesVADJ(stMoverConfigFast.Velo,stMoverConfigFast.Accel,stMoverConfigFast.Decel,stMoverConfigFast.Jerk);
 	haltDynamics.SetValuesVADJ(stMoverCfgHalt.Velo,stMoverCfgHalt.Accel,stMoverCfgHalt.Decel,stMoverCfgHalt.Jerk);
 END_IF
-
+	haltDynamics.SetValuesVADJ(stMoverCfgHalt.Velo,stMoverCfgHalt.Accel,stMoverCfgHalt.Decel,stMoverCfgHalt.Jerk);
 GVL_Mc.StartLight := MoverStop AND nCase < 100;
 GVL_Mc.StopLight  := (nCase = 100);
 
