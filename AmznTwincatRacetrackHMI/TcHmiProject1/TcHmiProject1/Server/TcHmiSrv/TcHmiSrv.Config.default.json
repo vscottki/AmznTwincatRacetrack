@@ -780,6 +780,16 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.MAIN.HMI_StopCmd": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::HMI_StopCmd",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.MAIN.SwitchStatus.CurrentOutputMax": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -5257,6 +5267,7 @@
                 "ADS.CheckLicense": 3,
                 "ADS.Diagnostics": 3,
                 "ADS.PLC1.GVL_Mc.sGraphCalciFrame": 3,
+                "ADS.PLC1.MAIN.HMI_StopCmd": 3,
                 "ADS.PLC1.MAIN.SwitchStatus.CurrentOutputMax": 3,
                 "ChangeUserSettings": 3,
                 "ConfirmAlarm": 3,
