@@ -2572,7 +2572,7 @@ External Setpoint Generation:
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name IecBaseType="true">ARRAY [0..2] OF E_EcState</Name>
+			<Name GUID="{E2501123-680E-5A82-D657-5CA0731C8604}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..2] OF E_EcState</Name>
 			<BitSize>48</BitSize>
 			<BaseType GUID="{3A9D43BA-B06A-16F7-DD42-038A3C5AED43}">E_EcState</BaseType>
 			<ArrayInfo>
@@ -3244,10 +3244,10 @@ External Setpoint Generation:
 			<Licenses>
 				<Target BkhfOrder="DCC1" CustomOrder="Amazon">
 					<ManualSelect>{4989A799-AEEA-4FEE-88EF-666B99EEFB45}</ManualSelect>
-					<ManualSelect>{27326EE5-AB30-4084-B15B-8CCA96CCBF0B}</ManualSelect>
 					<ManualSelect>{648F394E-7DD1-499C-8112-7C38E161A94C}</ManualSelect>
-					<ManualSelect>{3DDCAB25-BF0E-412C-A721-DC77C1B8099C}</ManualSelect>
+					<ManualSelect>{27326EE5-AB30-4084-B15B-8CCA96CCBF0B}</ManualSelect>
 					<ManualSelect>{57BD9670-089D-434A-85CF-90A857EE0EFF}</ManualSelect>
+					<ManualSelect>{3DDCAB25-BF0E-412C-A721-DC77C1B8099C}</ManualSelect>
 					<ManualSelect>{C7C2EEE2-23C9-47B9-82D4-0ADF5D82C0A0}</ManualSelect>
 				</Target>
 			</Licenses>
@@ -8822,7 +8822,6 @@ External Setpoint Generation:
 			<OwnerB Name="TIID^Device 1 (EtherCAT)">
 				<Link VarA="PlcTask Inputs^MAIN.ModuleState3[0]" VarB="SyncUnits^&lt;default&gt;^&lt;unreferenced&gt;^InfoData^State"/>
 				<Link VarA="PlcTask Inputs^MAIN.ModuleState3[1]" VarB="SyncUnits^&lt;default&gt;^XTS Task^InfoData^State"/>
-				<Link VarA="PlcTask Inputs^MAIN.ModuleState3[2]" VarB="SyncUnits^&lt;default&gt;^PlcTask^InfoData^State"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 13 (EL2912)">
 				<Link VarA="PlcTask Inputs^MAIN.MoverStop" VarB="StandardInputs^TwinSafeGroup1.E-StopReq_139"/>
