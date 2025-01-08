@@ -3,9 +3,11 @@
 	<Project ProjectGUID="{4D31AD18-87A0-46E8-8820-02B7D880B8B6}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Licenses>
-				<Target BkhfOrder="HMI" CustomOrder="Amazon">
-					<ManualSelect>{2752D285-16AD-4E89-AE6C-80E72784D264}</ManualSelect>
-					<ManualSelect>{F1CFF3CF-B042-45EE-A380-4FB3270F0BA5}</ManualSelect>
+				<Target BkhfOrder="IPC_HMI" CustomOrder="Amazon">
+					<ManualSelect>{4989A799-AEEA-4FEE-88EF-666B99EEFB45}</ManualSelect>
+					<ManualSelect>{27326EE5-AB30-4084-B15B-8CCA96CCBF0B}</ManualSelect>
+					<ManualSelect>{648F394E-7DD1-499C-8112-7C38E161A94C}</ManualSelect>
+					<ManualSelect>{5002C16A-02B3-4A8C-8C5C-A65EDD0AE398}</ManualSelect>
 				</Target>
 			</Licenses>
 		</System>
