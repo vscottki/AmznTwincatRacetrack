@@ -456,17 +456,17 @@ CASE nCase OF
 				//	END_IF
 				70:  //merge with gap zero
 					//issue commmand to sync 
-					IF directMerge THEN 
+					IF  directMerge THEN 
 						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
 						fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main], targetPos:= GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500, gap:= stMoverConfigNormal.MoverGap, velo:= stMoverConfigNormal.velo);
 
 						nMoveState[nForCounter] := 10; 
 					ELSIF moverInFront <>0 THEN 
 						fbMover[nForCounter].P_Dynamics.SetValuesVADJ(stMoverConfigNormal.velo,stMoverConfigNormal.Accel,stMoverConfigNormal.Decel,stMoverConfigNormal.Jerk);
-						masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-2750;
+						masterSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-2500;
 						masterPosAtSync := Mover[moverInFront].MoverPos; 
-						followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-stMoverConfigNormal.MoverGap-2750;
-						followerPosAtSync :=Mover[1].MoverPos; 
+						followSyncPos := GVL_Mc.MC_Tracks[E_TrackNum.Small].GetLength()-stMoverConfigNormal.MoverGap-2500;
+						followerPosAtSync :=Mover[nForCounter].MoverPos; 
 						fbMover[nForCounter].SyncToOtherMover( 
 							masterSyncPos := masterSyncPos,
 							masterTrack := GVL_Mc.MC_Tracks[E_TrackNum.Big],
@@ -476,7 +476,7 @@ CASE nCase OF
 							velo:= stMoverConfigNormal.velo);
 							nMoveState[nForCounter] := 80; 
 						// reduce the gap of the leading mover 
-						fbMover[nForCounter].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main], targetPos:= GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500, gap:= 0, velo:= stMoverConfigNormal.velo);
+						fbMover[moverInFront].MoveOnTrack(track:= GVL_Mc.MC_Tracks[E_TrackNum.Main], targetPos:= GVL_Mc.MC_Tracks[E_TrackNum.Main].GetLength()-500, gap:= 0, velo:= stMoverConfigNormal.velo);
 
 					END_IF 
 					

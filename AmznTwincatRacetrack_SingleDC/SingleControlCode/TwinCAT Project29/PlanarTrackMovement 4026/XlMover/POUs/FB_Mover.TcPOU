@@ -11,6 +11,7 @@ VAR
 	fbPlanarMover : MC_PlanarMover;
 	fbPlanarFeedback: MC_PlanarFeedback;
 	CmdFeedback :  XtsCommandFeedback;
+	extrabyte : BYTE; 
 	_bIsInitialized: BOOL;
 	ipXtsMover:   I_XtsXlMover1;
 	ipXtsProcessingUnit:  I_XtsProcessingUnit1;
