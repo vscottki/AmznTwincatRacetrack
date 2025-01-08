@@ -2518,7 +2518,7 @@ External Setpoint Generation:
 			</EventId>
 		</DataType>
 		<DataType>
-			<Name GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}" AutoDeleteType="true">E_EcState</Name>
+			<Name GUID="{C1A7E2C7-7DA9-B33E-E1F7-0B56EEBA5E22}" AutoDeleteType="true">E_EcState</Name>
 			<BitSize>16</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
 			<EnumInfo>
@@ -2550,9 +2550,6 @@ External Setpoint Generation:
 			</Default>
 			<Properties>
 				<Property>
-					<Name>generate_implicit_init_function</Name>
-				</Property>
-				<Property>
 					<Name>qualified_only</Name>
 				</Property>
 				<Property>
@@ -2563,18 +2560,21 @@ External Setpoint Generation:
 				</Property>
 				<Property>
 					<Name>to_string_function</Name>
-					<Value>__TO_STRING__1178</Value>
+					<Value>__TO_STRING__1184</Value>
 				</Property>
 				<Property>
 					<Name>to_wstring_function</Name>
-					<Value>__TO_WSTRING__1178</Value>
+					<Value>__TO_WSTRING__1184</Value>
+				</Property>
+				<Property>
+					<Name>generate_implicit_init_function</Name>
 				</Property>
 			</Properties>
 		</DataType>
 		<DataType>
 			<Name IecBaseType="true">ARRAY [0..2] OF E_EcState</Name>
 			<BitSize>48</BitSize>
-			<BaseType GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}">E_EcState</BaseType>
+			<BaseType GUID="{C1A7E2C7-7DA9-B33E-E1F7-0B56EEBA5E22}">E_EcState</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
 				<Elements>3</Elements>
@@ -3244,8 +3244,8 @@ External Setpoint Generation:
 			<Licenses>
 				<Target BkhfOrder="DCC1" CustomOrder="Amazon">
 					<ManualSelect>{4989A799-AEEA-4FEE-88EF-666B99EEFB45}</ManualSelect>
-					<ManualSelect>{648F394E-7DD1-499C-8112-7C38E161A94C}</ManualSelect>
 					<ManualSelect>{27326EE5-AB30-4084-B15B-8CCA96CCBF0B}</ManualSelect>
+					<ManualSelect>{648F394E-7DD1-499C-8112-7C38E161A94C}</ManualSelect>
 					<ManualSelect>{57BD9670-089D-434A-85CF-90A857EE0EFF}</ManualSelect>
 					<ManualSelect>{3DDCAB25-BF0E-412C-A721-DC77C1B8099C}</ManualSelect>
 					<ManualSelect>{C7C2EEE2-23C9-47B9-82D4-0ADF5D82C0A0}</ManualSelect>
@@ -8139,7 +8139,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{82986A50-2405-1B90-8EA2-0857E824D19B}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{E74DF541-0F18-D432-96A4-9CFFEA8BCBBE}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8172,10 +8172,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>MAIN.Emergency</Name>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.SwitchStatus.MagnetValue</Name>
-							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Mc.StartLight</Name>
@@ -8265,6 +8261,10 @@ External Setpoint Generation:
 							<Name>GVL_Mc.StopLight</Name>
 							<Type>BOOL</Type>
 						</Var>
+						<Var>
+							<Name>MAIN.SwitchStatus.MagnetValue</Name>
+							<Type>INT</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
@@ -8282,18 +8282,22 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.ModuleState1</Name>
-							<Type GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}">E_EcState</Type>
+							<Type GUID="{C1A7E2C7-7DA9-B33E-E1F7-0B56EEBA5E22}">E_EcState</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.ModuleState2</Name>
-							<Type GUID="{D7ADB42C-6699-955B-654A-CFB8A4267E8E}">E_EcState</Type>
+							<Type GUID="{C1A7E2C7-7DA9-B33E-E1F7-0B56EEBA5E22}">E_EcState</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.ModuleState3</Name>
-							<Type GUID="{AABB7CBC-D21D-1ABD-F449-BB8131589989}">ARRAY [0..2] OF E_EcState</Type>
+							<Type GUID="{2FE85321-4957-794C-2B7D-27869C77AE6B}">ARRAY [0..2] OF E_EcState</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Mc.HWStart</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.HWStop</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -8392,8 +8396,8 @@ External Setpoint Generation:
 							<Type GUID="{1500FFCE-0727-F0FF-6AEB-C3B7FBED5C6B}" Namespace="Tc3_Mc3PlanarMotion">CDT_MCTOPLC_PLANAR_MOVER</Type>
 						</Var>
 						<Var>
-							<Name>GVL_Mc.HWStop</Name>
-							<Type>BOOL</Type>
+							<Name>MAIN.MagnetFdbkValue</Name>
+							<Type>INT</Type>
 						</Var>
 					</Vars>
 					<Contexts>
@@ -8834,6 +8838,9 @@ External Setpoint Generation:
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 4 (EL2809)">
 				<Link VarA="PlcTask Outputs^GVL_Mc.StartLight" VarB="Channel 14^Output"/>
 				<Link VarA="PlcTask Outputs^GVL_Mc.StopLight" VarB="Channel 15^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL3004)">
+				<Link VarA="PlcTask Inputs^MAIN.MagnetFdbkValue" VarB="AI Standard Channel 1^Value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 7 (EL4034)">
 				<Link VarA="PlcTask Outputs^MAIN.MagnetValue" VarB="AO Outputs Channel 1^Analog output"/>
