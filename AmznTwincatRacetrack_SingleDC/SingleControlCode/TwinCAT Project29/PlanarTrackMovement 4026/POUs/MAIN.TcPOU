@@ -6,6 +6,7 @@ VAR
 
 	bAllDone		: BOOL;
 	bStopSequence	: BOOL;
+	HMI_StopCmd		: BOOL;
 	
 	nCase 		: INT;
 	nMoveState		: ARRAY[1..nMoverCount] OF INT;
@@ -48,7 +49,8 @@ VAR
 	TcRestart : TC_Restart;
 	Restart : BOOL;
 	busy : BOOL;
-	fp_start : R_Trig;
+	rt_InitStart : R_TRIG;
+	rt_InitStop : R_TRIG;
 	bStartSequence: BOOL;
 	
 	FP_Counter : r_trig;
@@ -82,9 +84,6 @@ VAR
 	
 	stMergeConfig		 : ST_MergeConfig;
 	SwitchConfig		 : ST_SwitchConfig;
-
-	
-	
 
 	ModuleState1 AT%I*: E_EcState;
 	ModuleState2 AT%I*: E_EcState;
@@ -191,17 +190,17 @@ END_IF
 
 TcRestart(
 NETID:= '', 
-RESTART:= Restart, 
+RESTART:= Restart OR (GVL_Mc.HWStart AND NOT GVL_Mc.HWStop), 
 TMOUT:=T#5S , 
 BUSY=>busy , 
 ERR=> , 
 ERRID=> );
 
-fp_start(clk:=bStartSequence);
-IF fp_start.Q THEN
+rt_InitStart(clk:= (bStartSequence OR GVL_Mc.HWStart) AND GVL_Mc.HWStop);
+IF rt_InitStart.Q THEN
 	nCase := 10;
-	bStartSequence := FALSE;
-	
+	bStartSequence	:= FALSE;
+
 	stMoverConfigSlow.Velo := 1000;
 // 	stMoverConfigSlow.Accel := 4000;
 // 	stMoverConfigSlow.Decel := 4000; 
@@ -218,6 +217,8 @@ IF fp_start.Q THEN
 	haltDynamics.SetValuesVADJ(stMoverCfgHalt.Velo,stMoverCfgHalt.Accel,stMoverCfgHalt.Decel,stMoverCfgHalt.Jerk);
 END_IF
 
+GVL_Mc.StartLight := MoverStop AND nCase < 100;
+GVL_Mc.StopLight  := (nCase = 100);
 
 IsMoverInBlockingArea := FALSE;
 
@@ -356,7 +357,7 @@ CASE nCase OF
 			nMoveState[nForCounter] := 0;
 		END_FOR
 		
-		nCase := 90;
+		nCase := 100;
 
 	100:
 		
@@ -501,10 +502,15 @@ CASE nCase OF
 		
 		END_FOR
 
+		rt_InitStop(CLK := HMI_StopCmd OR NOT GVL_Mc.HWStop);
+		IF rt_InitStop.Q AND NOT bStopSequence THEN
+			bStopSequence := TRUE;
+		END_IF
 		IF bStopSequence AND NOT(IsMoverInBlockingArea) THEN
 			nCase := 110;
 			bStopSequence := FALSE;
 		END_IF
+		
 		110:
 			N:= nNumMovers;
 			FOR nForCounter:=1 TO nNumMovers DO		
