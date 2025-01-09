@@ -121,6 +121,11 @@ VAR
 	followerToEndOfTrack: LREAL;
 	leaderToEndofTrack: LREAL;
 	distToMoverInFront: LREAL;
+	moverSwitching: UDINT;
+	switchingMoverPosition: LREAL;
+	trapWhenMagnetturnedOn: R_TRIG;
+	moverPositionWhenMagnetTurnedOn: LREAL;
+	moverInSwitch: UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -218,7 +223,7 @@ IF rt_InitStart.Q THEN
 //	fastDynamics.SetValuesVADJ(stMoverConfigFast.Velo,stMoverConfigFast.Accel,stMoverConfigFast.Decel,stMoverConfigFast.Jerk);
 	haltDynamics.SetValuesVADJ(stMoverCfgHalt.Velo,stMoverCfgHalt.Accel,stMoverCfgHalt.Decel,stMoverCfgHalt.Jerk);
 END_IF
-	haltDynamics.SetValuesVADJ(stMoverCfgHalt.Velo,stMoverCfgHalt.Accel,stMoverCfgHalt.Decel,stMoverCfgHalt.Jerk);
+haltDynamics.SetValuesVADJ(stMoverCfgHalt.Velo,stMoverCfgHalt.Accel,stMoverCfgHalt.Decel,stMoverCfgHalt.Jerk);
 GVL_Mc.StartLight := MoverStop AND nCase < 100;
 GVL_Mc.StopLight  := (nCase = 100);
 
@@ -415,7 +420,7 @@ CASE nCase OF
 						trapErrorID := fbMover[nForCounter].P_PlanarFeedback.ErrorId; 
 						stepWithFault := 30; 
 					END_IF 
-					IF Mover[nForCounter].MoverPos > GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-10000 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
+					IF Mover[nForCounter].MoverPos > GVL_Mc.MC_Tracks[E_TrackNum.Big].GetLength()-12000 AND  Mover[nForCounter].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.big].MCTOPLC_STD.TrackOID    THEN//      MCTrackOid_BigSemicircle THEN
 						nMoveState[nForCounter] := 0;
 					END_IF				
 				
@@ -590,11 +595,16 @@ END_CASE
 
 bMagnetOn := FALSE;
 FOR nForCounter:=1 TO nNumMovers DO
-	
-	IF  fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackObjectId(0) = XtsShortcutOid AND (IsBetween(fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0), SwitchConfig.MagnetStartPosition - (stMoverConfigNormal.Velo*0.045), SwitchConfig.MagnetEndPosition)) THEN
-		bMagnetOn := TRUE;
+	IF  fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackObjectId(0) = XtsShortcutOid THEN // this mover wll go through the switch start tracking his positon 
+		switchingMoverPosition := fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0);  
 	END_IF
+	// check if the mover is in range of the switch position and on the switch track, if so turn on the magnet 
+	IF  fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackObjectId(0) = XtsShortcutOid AND (IsBetween(fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0), SwitchConfig.MagnetStartPosition - (stMoverConfigNormal.Velo*0.045), SwitchConfig.MagnetEndPosition)) THEN
+		bMagnetOn := TRUE; 
+	END_IF
+	moverInSwitch := nForCounter; 
 END_FOR
+
 
 IF SwitchConfig.UseNominalCurrentVeloSetpoints THEN
 	SwitchStatus.CurrentTheorOutputMax := SwitchConfig.SwitchCurrentNominal;	
@@ -614,6 +624,11 @@ IF bMagnetOn AND NOT Fault THEN
 ELSE
  	MagnetValue := 0;
 END_IF
+trapWhenMagnetturnedOn(CLK:= bMagnetOn); 
+IF moverInSwitch <> 0 AND trapWhenMagnetTurnedOn.Q THEN 
+	moverPositionWhenMagnetTurnedOn:=fbMover[moverInSwitch].XtsXlMover.GetPositionInfo_trackPosition(0);
+END_IF
+
 
 FP_Counter(clk:=bMagnetOn);
 
@@ -621,6 +636,8 @@ IF FP_Counter.Q THEN
 	Switchcounter := Switchcounter+1;
 
 END_IF
+
+
 
 //distanceMonitoring of Mover 1 when on the big track 
 IF Mover[1].TrackID = GVL_Mc.MC_Tracks[E_TrackNum.Main].MCTOPLC_STD.TrackOID THEN //calculate out how far it is to the mover in front 
