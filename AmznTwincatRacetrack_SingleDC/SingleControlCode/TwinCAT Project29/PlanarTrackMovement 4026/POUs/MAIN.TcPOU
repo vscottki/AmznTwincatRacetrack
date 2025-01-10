@@ -26,7 +26,9 @@ VAR
 	// Magnet
 	MagnetValue AT%Q*: INT;
 	MagnetFdbkValue AT%I* : INT;
-	bMagnetOn : BOOL;	
+	bMagnetOn : BOOL;
+	MagnetOnManHMICmd 	: BOOL;
+	tMagnetOnTime	: TIME := T#3S;
 
 	Init : BOOL ; 	
 	
@@ -620,7 +622,7 @@ FOR nForCounter:=1 TO nNumMovers DO
 		switchingMoverPosition := fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0);  
 	END_IF
 	// check if the mover is in range of the switch position and on the switch track, if so turn on the magnet 
-	IF  fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackObjectId(0) = XtsShortcutOid AND (IsBetween(fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0), SwitchConfig.MagnetStartPosition - (stMoverConfigNormal.Velo*0.045), SwitchConfig.MagnetEndPosition)) THEN
+	IF fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackObjectId(0) = XtsShortcutOid AND (IsBetween(fbMover[nForCounter].XtsXlMover.GetPositionInfo_trackPosition(0), SwitchConfig.MagnetStartPosition - (stMoverConfigNormal.Velo*0.045), SwitchConfig.MagnetEndPosition)) THEN
 		bMagnetOn := TRUE; 
 	END_IF
 	moverInSwitch := nForCounter; 
@@ -640,11 +642,22 @@ SwitchStatus.CurrentActualOutput := F_MapLReal(
 	out_min:= 0, 
 	out_max:= 54);
 
-IF bMagnetOn AND NOT Fault THEN
-	MagnetValue := TO_INT(SwitchStatus.CurrentTheorOutputMax*1310);
-ELSE
- 	MagnetValue := 0;
+IF (nCase = 100) THEN
+	IF bMagnetOn AND NOT Fault THEN
+		MagnetValue := TO_INT(SwitchStatus.CurrentTheorOutputMax*1310);
+	ELSE
+		MagnetValue := 0;
+	END_IF
+ELSE // Manual Control of the Magnet Coil
+	IF MagnetOnManHMICmd THEN
+		MagnetValue := TO_INT(SwitchStatus.CurrentTheorOutputMax*1310);
+	ELSE
+		MagnetValue := 0;
+		MagnetOnManHMICmd	:= FALSE;
+	END_IF
 END_IF
+
+
 trapWhenMagnetturnedOn(CLK:= bMagnetOn); 
 IF moverInSwitch <> 0 AND trapWhenMagnetTurnedOn.Q THEN 
 	moverPositionWhenMagnetTurnedOn:=fbMover[moverInSwitch].XtsXlMover.GetPositionInfo_trackPosition(0);

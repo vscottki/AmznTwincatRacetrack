@@ -2572,7 +2572,7 @@ External Setpoint Generation:
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name IecBaseType="true">ARRAY [0..2] OF E_EcState</Name>
+			<Name GUID="{33E30669-860F-1743-1A4C-676A35C2616F}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..2] OF E_EcState</Name>
 			<BitSize>48</BitSize>
 			<BaseType GUID="{9A0CD95C-A400-4258-28D0-44ECA6FAE5CF}">E_EcState</BaseType>
 			<ArrayInfo>
@@ -8139,7 +8139,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{D68CFB53-3BBC-0BBD-1643-59840DBC263E}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{3BF0BE91-DC6B-216F-0E61-2296B2230E8A}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -8179,6 +8179,10 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>GVL_Mc.StartLight</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Mc.StopLight</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -8260,10 +8264,6 @@ External Setpoint Generation:
 							<Name>GVL_Mc.fbMover[16].fbPlanarMover.PLCTOMC</Name>
 							<Comment><![CDATA[ Mover data that is transferred from the Planar Mover to this function block. ]]></Comment>
 							<Type GUID="{8CF7E034-6BBC-291C-E83F-2D2297581DBB}" Namespace="Tc3_Mc3PlanarMotion">CDT_PLCTOMC_PLANAR_MOVER</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Mc.StopLight</Name>
-							<Type>BOOL</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="1">
@@ -8417,7 +8417,7 @@ External Setpoint Generation:
 				</Instance>
 			</Project>
 			<Project GUID="{23F3AAC5-D2AC-4B6B-826F-C638329B5E0D}" Name="SaftyPLC" PrjFilePath="SaftyPLC\SaftyPLC.plcproj" TmcFilePath="SaftyPLC\SaftyPLC.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{70ABAB5E-B735-74AB-4480-96572C7F00B9}" TmcPath="SaftyPLC\SaftyPLC.tmc">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{C830FD3F-D8B7-AF6A-25C9-F11E46C81402}" TmcPath="SaftyPLC\SaftyPLC.tmc">
 					<Name>SaftyPLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
