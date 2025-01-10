@@ -29,6 +29,27 @@
     "DEFAULTTIMEZONE": "client",
     "DEFINITIONS": {
         "ADS": {
+            "ADS-PLC1.E_SwitchOpMode": {
+                "attributes": {
+                    "generate_implicit_init_function": "",
+                    "qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    1
+                ],
+                "options": [
+                    {
+                        "label": "DivertSpecifiedCount",
+                        "value": 0
+                    },
+                    {
+                        "label": "DivertAll",
+                        "value": 1
+                    }
+                ],
+                "type": "integer"
+            },
             "ADS-PLC1.MC.MC_LREAL": {
                 "$ref": "tchmi:general#/definitions/LREAL"
             },
@@ -54,6 +75,163 @@
                         "$ref": "tchmi:general#/definitions/String"
                     }
                 ]
+            },
+            "ADS-PLC1.ST_DivertConfig": {
+                "additionalProperties": false,
+                "properties": {
+                    "CurrentFunctionCoeffA": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "CurrentFunctionCoeffB": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "CurrentFunctionCoeffC": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "IntervalToDivert": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "MaxAllowedDivertCount": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "SwitchOpMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_SwitchOpMode"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.ST_SwitchConfig": {
+                "additionalProperties": false,
+                "properties": {
+                    "CurrentMultFactor": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Scaling factor for 10V output=25.0A",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "DivertConfig": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_DivertConfig"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "MagnetEndPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "mm",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "MagnetStartPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "mm",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "OnInnerLoopOffMagnetPosn": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "mm",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "SwitchCurrentNominal": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "A (See function for computation)",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "UseNominalCurrentVeloSetpoints": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "UseNominalPositionCoeff": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
             },
             "ADS-PLC1.Tc2_System.T_MaxString": {
                 "$ref": "tchmi:server#/definitions/ADS-PLC1.STRING-255"
@@ -790,11 +968,48 @@
             },
             "USEMAPPING": true
         },
-        "ADS.PLC1.MAIN.SwitchStatus.CurrentOutputMax": {
+        "ADS.PLC1.MAIN.RuntimeDuration": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
             "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::SwitchStatus::CurrentOutputMax",
+            "MAPPING": "PLC1::MAIN::RuntimeDuration",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/TIME"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.SwitchConfig": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::SwitchConfig",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_SwitchConfig"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.CurrentFunctionCoeffA": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::SwitchConfig::DivertConfig::CurrentFunctionCoeffA",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.CurrentFunctionCoeffB": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::SwitchConfig::DivertConfig::CurrentFunctionCoeffB",
             "SCHEMA": {
                 "allOf": [
                     {
@@ -802,6 +1017,74 @@
                     },
                     {
                         "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.CurrentFunctionCoeffC": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::SwitchConfig::DivertConfig::CurrentFunctionCoeffC",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.MaxAllowedDivertCount": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::SwitchConfig::DivertConfig::MaxAllowedDivertCount",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/UDINT"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.SwitchStatus.CurrentTheorOutputMax": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::SwitchStatus::CurrentTheorOutputMax",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.stMoverConfigNormal.MoverGap": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stMoverConfigNormal::MoverGap",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 12
                     }
                 ]
             },
@@ -2810,74 +3093,6 @@
                     {
                         "comment": "A (See function for computation)",
                         "propertyOrder": 4
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffA": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::SwitchConfig::MagnetConfig::CurrentFunctionCoeffA",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/LREAL"
-                    },
-                    {
-                        "propertyOrder": 4
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffB": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::SwitchConfig::MagnetConfig::CurrentFunctionCoeffB",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/LREAL"
-                    },
-                    {
-                        "propertyOrder": 5
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.CurrentFunctionCoeffC": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::SwitchConfig::MagnetConfig::CurrentFunctionCoeffC",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/LREAL"
-                    },
-                    {
-                        "propertyOrder": 6
-                    }
-                ]
-            },
-            "USEMAPPING": true
-        },
-        "PLC1.GVL_General.stSwitchConfig.SwitchModeHMI.MaxAllowedDivertCount": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::SwitchConfig::MagnetConfig::MaxAllowedDivertCount",
-            "SCHEMA": {
-                "allOf": [
-                    {
-                        "$ref": "tchmi:general#/definitions/UDINT"
-                    },
-                    {
-                        "propertyOrder": 3
                     }
                 ]
             },
@@ -5268,7 +5483,15 @@
                 "ADS.Diagnostics": 3,
                 "ADS.PLC1.GVL_Mc.sGraphCalciFrame": 3,
                 "ADS.PLC1.MAIN.HMI_StopCmd": 3,
+                "ADS.PLC1.MAIN.RuntimeDuration": 3,
+                "ADS.PLC1.MAIN.SwitchConfig": 3,
+                "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.CurrentFunctionCoeffA": 3,
+                "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.CurrentFunctionCoeffB": 3,
+                "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.CurrentFunctionCoeffC": 3,
+                "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.MaxAllowedDivertCount": 3,
                 "ADS.PLC1.MAIN.SwitchStatus.CurrentOutputMax": 3,
+                "ADS.PLC1.MAIN.SwitchStatus.CurrentTheorOutputMax": 3,
+                "ADS.PLC1.MAIN.stMoverConfigNormal.MoverGap": 3,
                 "ChangeUserSettings": 3,
                 "ConfirmAlarm": 3,
                 "CreateEvent": 3,

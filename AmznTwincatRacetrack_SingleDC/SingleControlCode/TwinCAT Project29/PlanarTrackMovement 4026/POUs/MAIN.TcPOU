@@ -3,6 +3,10 @@
   <POU Name="MAIN" Id="{741d33e8-52ed-4b62-8ea9-8d206e7291c9}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	RuntimeDuration	: STRING;
+	TempRuntimeDur	: TIME;
+	RuntimeTimer	: TON;
+	CurrentSysTime	: ULINT;
 
 	bAllDone		: BOOL;
 	bStopSequence	: BOOL;
@@ -203,6 +207,17 @@ BUSY=>busy ,
 ERR=> , 
 ERRID=> );
 
+CurrentSysTime	:= Tc2_System.F_GetSystemTime();
+
+IF TcRestart.BUSY THEN
+	RuntimeTimer.IN 	:= FALSE;
+ELSIF Process THEN
+	RuntimeTimer.IN		:= TRUE;
+	TempRuntimeDur		:= RuntimeTimer.ET;
+	RuntimeDuration		:= TIME_TO_STRING(TempRuntimeDur);
+END_IF
+RuntimeTimer(PT := T#7D);
+
 rt_InitStart(clk:= (bStartSequence OR GVL_Mc.HWStart) AND GVL_Mc.HWStop);
 IF rt_InitStart.Q THEN
 	nCase := 10;
@@ -377,7 +392,13 @@ CASE nCase OF
 			
 			//Adjust the first mover parameters to induce a platoon
 			fbMover[1].P_Dynamics.SetValuesVADJ(V:= stMoverConfigNormal.velo-stMoverConfigNormal.VeloComp, A:= stMoverConfigNormal.Accel, D:= stMoverConfigNormal.Decel, J:= stMoverConfigNormal.Jerk);	
-				
+			
+			IF SwitchConfig.DivertConfig.MaxAllowedDivertCount > 0 THEN
+				WithoutSwitch 	:= FALSE;
+			ELSE
+				WithoutSwitch	:= TRUE;
+			END_IF
+			
 			CASE nMoveState[nForCounter] OF
 				
 				0: // Track 3 Main Cycle
@@ -609,7 +630,7 @@ END_FOR
 IF SwitchConfig.UseNominalCurrentVeloSetpoints THEN
 	SwitchStatus.CurrentTheorOutputMax := SwitchConfig.SwitchCurrentNominal;	
 ELSE
-	SwitchStatus.CurrentTheorOutputMax := ((SwitchConfig.MagnetConfig.CurrentFunctionCoeffA*(((stMoverConfigNormal.Velo/1000)*(stMoverConfigNormal.Velo/1000))))+(SwitchConfig.MagnetConfig.CurrentFunctionCoeffB*(stMoverConfigNormal.Velo/1000))+SwitchConfig.MagnetConfig.CurrentFunctionCoeffC);	
+	SwitchStatus.CurrentTheorOutputMax := ((SwitchConfig.DivertConfig.CurrentFunctionCoeffA*(((stMoverConfigNormal.Velo/1000)*(stMoverConfigNormal.Velo/1000))))+(SwitchConfig.DivertConfig.CurrentFunctionCoeffB*(stMoverConfigNormal.Velo/1000))+SwitchConfig.DivertConfig.CurrentFunctionCoeffC);	
 END_IF
 
 SwitchStatus.CurrentActualOutput := F_MapLReal(

@@ -10,7 +10,7 @@ STRUCT
 	CurrentMultFactor							: LREAL := 1310; // Scaling factor for 10V output=25.0A
     UseNominalCurrentVeloSetpoints              : BOOL;
     UseNominalPositionCoeff			            : BOOL := TRUE;
- 	MagnetConfig	       						: ST_DivertConfig;
+ 	DivertConfig	       						: ST_DivertConfig;
 END_STRUCT
 END_TYPE;]]></Declaration>
   </DUT>
