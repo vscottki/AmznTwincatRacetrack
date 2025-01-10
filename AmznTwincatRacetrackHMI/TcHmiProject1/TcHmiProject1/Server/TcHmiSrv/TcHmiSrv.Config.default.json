@@ -968,6 +968,16 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.MAIN.MagnetOnManHMICmd": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::MagnetOnManHMICmd",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.MAIN.RuntimeDuration": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -1087,6 +1097,16 @@
                         "propertyOrder": 12
                     }
                 ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.tMagnetOnTime": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::tMagnetOnTime",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/TIME"
             },
             "USEMAPPING": true
         },
@@ -5483,6 +5503,7 @@
                 "ADS.Diagnostics": 3,
                 "ADS.PLC1.GVL_Mc.sGraphCalciFrame": 3,
                 "ADS.PLC1.MAIN.HMI_StopCmd": 3,
+                "ADS.PLC1.MAIN.MagnetOnManHMICmd": 3,
                 "ADS.PLC1.MAIN.RuntimeDuration": 3,
                 "ADS.PLC1.MAIN.SwitchConfig": 3,
                 "ADS.PLC1.MAIN.SwitchConfig.DivertConfig.CurrentFunctionCoeffA": 3,
@@ -5492,6 +5513,7 @@
                 "ADS.PLC1.MAIN.SwitchStatus.CurrentOutputMax": 3,
                 "ADS.PLC1.MAIN.SwitchStatus.CurrentTheorOutputMax": 3,
                 "ADS.PLC1.MAIN.stMoverConfigNormal.MoverGap": 3,
+                "ADS.PLC1.MAIN.tMagnetOnTime": 3,
                 "ChangeUserSettings": 3,
                 "ConfirmAlarm": 3,
                 "CreateEvent": 3,
