@@ -29,7 +29,6 @@ VAR
 	bMagnetOn : BOOL;
 	MagnetOnManHMICmd 	: BOOL;
 	tMagnetOnTime	: TIME := T#3S;
-	MagnetOnTimeout : Tc2_Standard.TON := (PT := tMagnetOnTime);
 
 	Init : BOOL ; 	
 	
@@ -650,14 +649,12 @@ IF (nCase = 100) THEN
 		MagnetValue := 0;
 	END_IF
 ELSE // Manual Control of the Magnet Coil
-	IF MagnetOnManHMICmd AND NOT MagnetOnTimeout.Q THEN
+	IF MagnetOnManHMICmd THEN
 		MagnetValue := TO_INT(SwitchStatus.CurrentTheorOutputMax*1310);
 	ELSE
 		MagnetValue := 0;
 		MagnetOnManHMICmd	:= FALSE;
 	END_IF
-	
-	MagnetOnTimeout(IN := MagnetOnManHMICmd);
 END_IF
 
 
